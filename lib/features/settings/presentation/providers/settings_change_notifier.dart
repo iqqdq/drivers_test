@@ -30,56 +30,38 @@ class SettingsChangeNotifier with ChangeNotifier {
   SettingsEntity? _settings;
   SettingsEntity? get settings => _settings;
 
-  int _stateIndex = -1;
-  int get stateIndex => _stateIndex;
-
-  int _licenseTypeIndex = -1;
-  int get licenseTypeIndex => _licenseTypeIndex;
-
   SettingsChangeNotifier() {
     _init();
   }
 
   _init() async {
     _settings =
-        (await sl.get<SettingsRepository>().getSettings()) ?? SettingsEntity();
+        await sl.get<SettingsRepository>().getSettings() ?? SettingsEntity();
     notifyListeners();
   }
 
-  _saveSettings(SettingsEntity? settings) async {
-    if (settings == null) return;
-    await sl.get<SettingsRepository>().saveSettings(settings: settings);
-  }
-
-  void selectState(int index) {
-    _stateIndex = index;
-    notifyListeners();
-  }
-
-  void selectLicenseType(int index) {
-    _licenseTypeIndex = index;
-    notifyListeners();
+  Future saveSettings() async {
+    if (_settings == null) return;
+    await sl.get<SettingsRepository>().saveSettings(settings: _settings!);
   }
 
   Future<bool> togglePushNotifications(bool value) async {
     if (await Permission.notification.status.isDenied) return false;
-
     _settings?.isPushNotificationsEnabled = value;
-    await _saveSettings(_settings);
+
+    await saveSettings();
     notifyListeners();
 
     return true;
   }
 
-  Future saveState(String state) async {
+  Future selectState(String state) async {
     _settings?.state = state;
-    await _saveSettings(_settings);
     notifyListeners();
   }
 
-  Future saveLicenseType(String type) async {
+  Future selectLicenseType(String type) async {
     _settings?.licenseType = type;
-    await _saveSettings(_settings);
     notifyListeners();
   }
 

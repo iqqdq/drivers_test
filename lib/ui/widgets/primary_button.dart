@@ -12,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
     final BorderRadius borderRadius = BorderRadius.circular(20.0);
 
     return Material(
-      color: onTap == null ? AppColors.black10 : AppColors.blue100,
+      color: onTap == null ? AppColors.blue10 : AppColors.blue100,
       borderRadius: borderRadius,
       child: InkWell(
         borderRadius: borderRadius,
@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
             child: Text(
               title,
               style: AppTextStyles.buttonTitle.copyWith(
-                color: onTap == null ? null : AppColors.white,
+                color: onTap == null ? AppColors.black20 : AppColors.white,
               ),
             ),
           ),

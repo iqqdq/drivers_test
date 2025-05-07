@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -44,32 +45,64 @@ class LocalStorage {
     return LocalStorage._(db);
   }
 
-  // Сохранить значение по ключу
-  Future<void> save(String key, String value) async {
+  // Закрыть соединение с БД (вызывать при завершении работы)
+  Future<void> close() async {
+    await _db.close();
+  }
+
+  /// Сохраняет данные любого типа (T), которые можно сериализовать в String.
+  Future<void> save<T>(String key, T value) async {
+    final stringValue = _serialize(value); // Сериализация в String
     await _db
         .into(_db.localStorageItems)
         .insertOnConflictUpdate(
-          LocalStorageItemsCompanion.insert(key: key, value: Value(value)),
+          LocalStorageItemsCompanion.insert(
+            key: key,
+            value: Value(stringValue),
+          ),
         );
   }
 
-  // Получить значение по ключу
-  Future<String?> get(String key) async {
+  /// Получает данные типа T (десериализует из String).
+  Future<T?> get<T>(String key) async {
     final item =
         await (_db.select(_db.localStorageItems)
           ..where((tbl) => tbl.key.equals(key))).getSingleOrNull();
 
-    return item?.value;
+    return item?.value != null ? _deserialize<T>(item!.value!) : null;
   }
 
-  // Удалить значение по ключу
+  /// Удаляет данные по ключу.
   Future<void> delete(String key) async {
     await (_db.delete(_db.localStorageItems)
       ..where((tbl) => tbl.key.equals(key))).go();
   }
 
-  // Закрыть соединение с БД (вызывать при завершении работы)
-  Future<void> close() async {
-    await _db.close();
+  // Приватные методы для сериализации/десериализации
+  String _serialize<T>(T value) {
+    if (value is String) return value;
+    if (value is int || value is double || value is bool) {
+      return value.toString();
+    }
+    if (value is Map || value is List) {
+      return json.encode(value);
+    }
+    throw ArgumentError('Unsupported type for serialization');
+  }
+
+  T _deserialize<T>(String value) {
+    if (T == String) return value as T;
+    if (T == int) return int.parse(value) as T;
+    if (T == double) return double.parse(value) as T;
+    if (T == bool) return (value.toLowerCase() == 'true') as T;
+    if (T == Map || T == List) {
+      return json.decode(value) as T;
+    }
+    if (T == Map<String, dynamic>) {
+      final decoded = json.decode(value) as Map;
+      return decoded.cast<String, dynamic>() as T;
+    }
+
+    throw ArgumentError('Unsupported type for deserialization');
   }
 }

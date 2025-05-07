@@ -1,6 +1,7 @@
 import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
+import 'package:drivers_test/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class _AppState extends State<DriverTestApp> {
         ),
       ],
       child: MaterialApp(
+        theme: AppTheme.appTheme,
         initialRoute: AppNavigation.initialRoute,
         routes: AppNavigation.routes,
       ),

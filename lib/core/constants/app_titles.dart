@@ -4,6 +4,16 @@ abstract class AppTitles {
   static const continuee = 'Continue';
   static const cancel = 'Cancel';
 
+  // Home
+  static const practicalTests = 'Practical tests';
+  static const testPassed = 'tests passed';
+  static const exam = 'Exam';
+  static const questions = 'questions';
+  static const passingScore = 'passing score';
+  static const correctAnswersToPass = 'correct answers to pass';
+  static const minutesToCompleteTest = '30 minutes to complete test';
+  static const examReadiness = 'Exam readiness';
+
   // Settings
   static const settings = 'Settings';
   static const pushNotification = 'Push Notification';

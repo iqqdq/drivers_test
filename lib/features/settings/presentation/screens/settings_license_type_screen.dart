@@ -54,12 +54,13 @@ class _SettingsLicenseTypeScreenState extends State<SettingsLicenseTypeScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 16.0),
 
             /// LIST VIEW
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.only(bottom: 16.0),
                 itemCount: licenseTypes.length,
                 separatorBuilder:
                     (context, index) =>
@@ -67,7 +68,8 @@ class _SettingsLicenseTypeScreenState extends State<SettingsLicenseTypeScreen> {
                 itemBuilder: (context, index) {
                   return SettingsSelectionTile(
                     title: licenseTypes[index],
-                    isSelected: watch.licenseTypeIndex == index,
+                    isSelected:
+                        watch.settings?.licenseType == licenseTypes[index],
                     onTap: () => _onLicenseTypeTap(index),
                   );
                 },
@@ -75,17 +77,17 @@ class _SettingsLicenseTypeScreenState extends State<SettingsLicenseTypeScreen> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ).copyWith(top: 8.0),
               child:
               /// CONTINUE BUTTON
               PrimaryButton(
                 title: AppTitles.continuee,
                 onTap:
-                    watch.licenseTypeIndex.isNegative
+                    watch.settings?.licenseType == null
                         ? null
-                        : () => _onContinuePressed(
-                          licenseTypes[watch.licenseTypeIndex],
-                        ),
+                        : () => _onContinuePressed(),
               ),
             ),
           ],
@@ -97,10 +99,11 @@ class _SettingsLicenseTypeScreenState extends State<SettingsLicenseTypeScreen> {
   // MARK: -
   // MARK: -
 
-  void _onLicenseTypeTap(int index) => read.selectLicenseType(index);
+  void _onLicenseTypeTap(int index) =>
+      read.selectLicenseType(licenseTypes[index]);
 
-  void _onContinuePressed(String licenseType) async {
-    await read.saveLicenseType(licenseType);
+  void _onContinuePressed() async {
+    await read.saveSettings();
     if (mounted) Navigator.pop(context);
   }
 }

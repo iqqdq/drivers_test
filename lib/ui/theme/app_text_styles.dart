@@ -2,6 +2,13 @@ import 'package:flutter/widgets.dart';
 
 abstract class AppTextStyles {
   // Urbanist
+  static const headlineLargeTitle = TextStyle(
+    fontFamily: 'Urbanist',
+    fontWeight: FontWeight.w700,
+    fontSize: 34.0,
+    height: 41.0 / 34.0,
+  );
+
   static const headlineTitle1 = TextStyle(
     fontFamily: 'Urbanist',
     fontWeight: FontWeight.w600,

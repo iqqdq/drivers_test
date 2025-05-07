@@ -17,7 +17,7 @@ class _CustomBackButtonState extends State<CustomBackButton> {
       onTap: () => Navigator.pop(context),
       child: Row(
         children: [
-          SvgPicture.asset(AppIcons.backArrow),
+          SvgPicture.asset(AppIcons.arrowBack),
           const SizedBox(width: 4.0),
           Text(
             AppTitles.back,

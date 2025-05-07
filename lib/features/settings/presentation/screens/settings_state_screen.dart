@@ -54,11 +54,13 @@ class _SettingsStateScreenState extends State<SettingsStateScreen> {
               ),
             ),
 
+            const SizedBox(height: 16.0),
+
             /// LIST VIEW
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.only(bottom: 16.0),
                 itemCount: usaStates.length,
                 separatorBuilder:
                     (context, index) =>
@@ -66,7 +68,7 @@ class _SettingsStateScreenState extends State<SettingsStateScreen> {
                 itemBuilder: (context, index) {
                   return SettingsSelectionTile(
                     title: usaStates[index],
-                    isSelected: watch.stateIndex == index,
+                    isSelected: watch.settings?.state == usaStates[index],
                     onTap: () => _onStateTap(index),
                   );
                 },
@@ -74,15 +76,17 @@ class _SettingsStateScreenState extends State<SettingsStateScreen> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ).copyWith(top: 8.0),
               child:
               /// CONTINUE BUTTON
               PrimaryButton(
                 title: AppTitles.continuee,
                 onTap:
-                    watch.stateIndex.isNegative
+                    watch.settings?.state == null
                         ? null
-                        : () => _onContinuePressed(usaStates[watch.stateIndex]),
+                        : () => _onContinuePressed(),
               ),
             ),
           ],
@@ -94,10 +98,10 @@ class _SettingsStateScreenState extends State<SettingsStateScreen> {
   // MARK: -
   // MARK: -
 
-  void _onStateTap(int index) => read.selectState(index);
+  void _onStateTap(int index) => read.selectState(usaStates[index]);
 
-  void _onContinuePressed(String state) async {
-    await read.saveState(state);
+  void _onContinuePressed() async {
+    await read.saveSettings();
     if (mounted) Navigator.pop(context);
   }
 }

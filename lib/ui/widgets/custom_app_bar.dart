@@ -28,14 +28,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: leading ?? CustomBackButton(),
       ),
       leadingWidth: 90.0,
-      title:
-          title == null
-              ? null
-              : Text(
-                title!,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.headlineHeadline,
-              ),
+      title: Text(
+        title ?? '',
+        textAlign: TextAlign.center,
+        style: AppTextStyles.headlineHeadline,
+      ),
       actions: actions,
     );
   }

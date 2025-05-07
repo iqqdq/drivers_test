@@ -51,7 +51,7 @@ class SettingsTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16.0),
-              SvgPicture.asset(AppIcons.rightArrow),
+              SvgPicture.asset(AppIcons.arrowRight),
             ],
           ),
         ),
