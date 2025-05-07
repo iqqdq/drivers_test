@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
-  // Background
-  static const bgPrimary = Color.fromRGBO(251, 252, 255, 1);
-
   // White
   static const white = Color.fromRGBO(255, 255, 255, 1);
+  static const black = Color.fromRGBO(0, 0, 0, 1);
+
+  // Background
+  static const bgPrimary = Color.fromRGBO(251, 252, 255, 1);
+  static const card = Color.fromRGBO(245, 248, 255, 1);
+  static const border = Color.fromRGBO(235, 241, 255, 1);
 
   // Blue
   static const blue100 = Color.fromRGBO(55, 114, 255, 1);
@@ -57,4 +60,14 @@ abstract class AppColors {
   static const orange20 = Color.fromRGBO(255, 221, 212, 1);
   static const orange10 = Color.fromRGBO(255, 238, 234, 1);
   static const orange5 = Color.fromRGBO(255, 246, 244, 1);
+
+  // Practical Test's
+  static const tests = [
+    Color.fromRGBO(55, 114, 255, 1),
+    Color.fromRGBO(32, 170, 24, 1),
+    Color.fromRGBO(240, 134, 6, 1),
+    Color.fromRGBO(255, 85, 85, 1),
+    Color.fromRGBO(206, 70, 255, 1),
+    Color.fromRGBO(51, 51, 51, 1),
+  ];
 }

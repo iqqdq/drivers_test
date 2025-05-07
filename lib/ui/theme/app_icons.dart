@@ -6,6 +6,8 @@ abstract class AppIcons {
   static const notifications = 'assets/icons/notifications.svg';
   static const settings = 'assets/icons/settings.svg';
   static const stats = 'assets/icons/stats.svg';
+  static const timer = 'assets/icons/timer.svg';
+  static const tips = 'assets/icons/tips.svg';
 
   static const check = 'assets/icons/check.svg';
   static const info = 'assets/icons/info.svg';

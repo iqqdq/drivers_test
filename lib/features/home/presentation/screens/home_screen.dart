@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // TODO CREATE TestChangeNotifier VARIABLE
+    // TODO CREATE TestChangeNotifier VARIABLE OR CRAETE GLOBAL NOTIFIER?
     final state = context.watch<SettingsChangeNotifier>().settings?.state;
 
     return Scaffold(
@@ -25,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
         onSettingsTap: _onSettingTap,
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(
+          16.0,
+        ).copyWith(bottom: MediaQuery.of(context).padding.bottom),
         children: [
           PracticalTestsCard(
             passed: 0,
@@ -57,7 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onNotificationsTap() {}
   // => Navigator.pushNamed(context, AppRoutes.settings);
 
-  void _onPracticalTestsCardTap() {}
+  void _onPracticalTestsCardTap() =>
+      Navigator.pushNamed(context, AppRoutes.practice);
 
   void _onExamCardTap() {}
 

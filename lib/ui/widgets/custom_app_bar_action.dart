@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomeAppBarAction extends StatelessWidget {
+class CustomAppBarAction extends StatelessWidget {
   final String icon;
   final VoidCallback onTap;
 
-  const HomeAppBarAction({super.key, required this.icon, required this.onTap});
+  const CustomAppBarAction({
+    super.key,
+    required this.icon,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

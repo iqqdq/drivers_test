@@ -14,6 +14,11 @@ abstract class AppTitles {
   static const minutesToCompleteTest = '30 minutes to complete test';
   static const examReadiness = 'Exam readiness';
 
+  // Practice
+  static const stateTestCatalog = 'state\ntest catalog';
+  static const practicalTest = 'Practical test';
+  static const testAccuracy = 'Test accuracy';
+
   // Settings
   static const settings = 'Settings';
   static const pushNotification = 'Push Notification';

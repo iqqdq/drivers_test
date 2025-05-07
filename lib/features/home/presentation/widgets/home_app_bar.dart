@@ -1,4 +1,3 @@
-import 'package:drivers_test/features/home/home.dart';
 import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -46,11 +45,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        HomeAppBarAction(
+        CustomAppBarAction(
           icon: AppIcons.notifications,
           onTap: onNotificationsTap,
         ),
-        HomeAppBarAction(icon: AppIcons.settings, onTap: onSettingsTap),
+        CustomAppBarAction(icon: AppIcons.settings, onTap: onSettingsTap),
       ],
     );
   }

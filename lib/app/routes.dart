@@ -5,6 +5,7 @@ const _splash = '/';
 const _onboard = '/onboard';
 const _paywall = '/paywall';
 const _home = '/home';
+const _practice = '/practice';
 
 const _settings = '/settings';
 const _settingsState = '/settings_state';
@@ -15,6 +16,7 @@ abstract class AppRoutes {
   static String get onboard => _onboard;
   static String get paywall => _paywall;
   static String get home => _home;
+  static String get practice => _practice;
 
   static String get settings => _settings;
   static String get settingsState => _settingsState;
@@ -29,6 +31,7 @@ abstract class AppNavigation {
     // _onboard: (_) => const OnboardScreen(),
     // _paywall: (_) => const PaywallScreen(isMonth: true),
     _home: (_) => const HomeScreen(),
+    _practice: (_) => const PracticeScreen(),
 
     _settings: (_) => SettingsScreen(),
     _settingsState: (_) => const SettingsStateScreen(),
