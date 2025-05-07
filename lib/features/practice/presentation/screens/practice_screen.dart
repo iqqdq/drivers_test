@@ -48,7 +48,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                 return TestCategoryTile(
                   title: 'Category name',
                   isSelected: index == 0,
-                  onTap: () {},
+                  onTap: () => _onTestCategoryTap(index),
                 );
               },
             ),
@@ -76,7 +76,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                           : 0,
                   current: 0,
                   total: 0,
-                  onTap: () {},
+                  onTap: () => _onPracticalTestTap(index),
                 );
               },
             ),
@@ -90,5 +90,9 @@ class _PracticeScreenState extends State<PracticeScreen> {
   // MARK: - FUNCTION'S
 
   void
-  _onStatisticsTap() {} // => Navigator.pushNamed(context, AppRoutes.settingsState);
+  _onStatisticsTap() {} // TODO => Navigator.pushNamed(context, AppRoutes.settingsState);
+
+  void _onTestCategoryTap(int index) {} // TODO
+
+  void _onPracticalTestTap(int index) {} // TODO
 }

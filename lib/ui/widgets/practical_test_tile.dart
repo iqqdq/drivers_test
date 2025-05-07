@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class PracticalTestTile extends StatelessWidget {
   final int index;
   final String name;
-  final int accuracy;
+  final int? accuracy;
   final int current;
   final int total;
   final VoidCallback onTap;
@@ -15,7 +15,7 @@ class PracticalTestTile extends StatelessWidget {
     super.key,
     required this.index,
     required this.name,
-    required this.accuracy,
+    this.accuracy,
     required this.current,
     required this.total,
     required this.onTap,
@@ -25,9 +25,9 @@ class PracticalTestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(20.0);
     final accuracyColor =
-        accuracy == 0
+        accuracy == null
             ? AppColors.black100
-            : accuracy < 80
+            : accuracy! < 80
             ? AppColors.orange100
             : AppColors.green100;
 
