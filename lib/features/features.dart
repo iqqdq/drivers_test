@@ -1,4 +1,3 @@
 export 'splash/splash.dart';
-export 'home/home.dart';
-export 'practice/practice.dart';
+export 'testing/testing.dart';
 export 'settings/settings.dart';

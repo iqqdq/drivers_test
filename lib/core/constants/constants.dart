@@ -1,4 +1,4 @@
 export 'app_titles.dart';
-export 'states_of_usa.dart';
-export 'license_types.dart';
+export 'states.dart';
+export 'licenses.dart';
 export 'app_constants.dart';

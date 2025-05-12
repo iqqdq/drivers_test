@@ -1,34 +1,30 @@
 class SettingsEntity {
   bool? isPushNotificationsEnabled;
   String? state;
-  String? licenseType;
+  String? license;
 
-  SettingsEntity({
-    this.isPushNotificationsEnabled,
-    this.state,
-    this.licenseType,
-  });
+  SettingsEntity({this.isPushNotificationsEnabled, this.state, this.license});
 
   factory SettingsEntity.fromJson(Map<String, dynamic> json) => SettingsEntity(
     isPushNotificationsEnabled: json['is_push_notifications_enabled'],
     state: json['state'],
-    licenseType: json['license_type'],
+    license: json['license'],
   );
 
   Map<String, dynamic> toJson() => {
     'is_push_notifications_enabled': isPushNotificationsEnabled,
     'state': state,
-    'license_type': licenseType,
+    'license': license,
   };
 
   SettingsEntity copyWith({
     bool? isPushNotificationsEnabled,
     String? state,
-    String? licenseType,
+    String? license,
   }) => SettingsEntity(
     isPushNotificationsEnabled:
         isPushNotificationsEnabled ?? this.isPushNotificationsEnabled,
     state: state ?? this.state,
-    licenseType: licenseType ?? this.licenseType,
+    license: license ?? this.license,
   );
 }

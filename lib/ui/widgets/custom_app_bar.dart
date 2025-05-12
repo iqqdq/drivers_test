@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: EdgeInsets.only(right: 12.0),
       leading: Padding(
         padding: EdgeInsets.only(left: 12.0),
-        child: leading ?? CustomBackButton(),
+        child: leading ?? CustomBackButton(onTap: () => Navigator.pop(context)),
       ),
       leadingWidth: 90.0,
       title: Text(

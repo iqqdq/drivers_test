@@ -1,7 +1,9 @@
 abstract class AppTitles {
   // Button's
   static const back = 'Back';
+  static const close = 'Close';
   static const continuee = 'Continue';
+  static const complete = 'Complete';
   static const cancel = 'Cancel';
 
   // Home
@@ -30,10 +32,12 @@ abstract class AppTitles {
   static const shareApp = 'Share app';
   static const settingStateDescription =
       'Each practice test is designed for your state and\nfollows the official driver\'s manual';
-  static const settingLicenseTypeDescription =
+  static const settingLicenseDescription =
       'Select the type of vehicle you want a driver’s license\nfor';
 
   // Alert's
+  static const pleaseWaitForTestToLoad = 'Please wait\nfor your test to load';
+  static const pleaseWaitForTestsToLoad = 'Please wait\nfor your tests to load';
   static const pushNotificationsDisabled = 'Push Notifications Disabled';
   static const pleaseEnablePushNotifications =
       'To receive important updates and alerts, please enable push notifications in your settings';

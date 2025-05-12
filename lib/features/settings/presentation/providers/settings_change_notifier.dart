@@ -6,6 +6,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+enum SettingsMode { state, license }
+
 class SettingsChangeNotifier with ChangeNotifier {
   final icons = [
     AppIcons.settingsNotifications,
@@ -27,6 +29,9 @@ class SettingsChangeNotifier with ChangeNotifier {
     AppTitles.shareApp,
   ];
 
+  SettingsMode _settingsMode = SettingsMode.state;
+  SettingsMode get settingsMode => _settingsMode;
+
   SettingsEntity? _settings;
   SettingsEntity? get settings => _settings;
 
@@ -34,9 +39,26 @@ class SettingsChangeNotifier with ChangeNotifier {
     _init();
   }
 
-  _init() async {
+  void _init() async {
     _settings =
         await sl.get<SettingsRepository>().getSettings() ?? SettingsEntity();
+    // Set push notification's enabled on settings screen first appereance
+    if (_settings?.isPushNotificationsEnabled == null) {
+      // togglePushNotifications(); TODO SET isPushNotificationsEnabled IF USER ALLOWED PUSH NOTIFICATIONS
+    }
+    notifyListeners();
+  }
+
+  void setSettingsMode(SettingsMode settingsMode) =>
+      _settingsMode = settingsMode;
+
+  Future selectState(String state) async {
+    _settings?.state = state;
+    notifyListeners();
+  }
+
+  Future selectLicense(String type) async {
+    _settings?.license = type;
     notifyListeners();
   }
 
@@ -53,16 +75,6 @@ class SettingsChangeNotifier with ChangeNotifier {
     notifyListeners();
 
     return true;
-  }
-
-  Future selectState(String state) async {
-    _settings?.state = state;
-    notifyListeners();
-  }
-
-  Future selectLicenseType(String type) async {
-    _settings?.licenseType = type;
-    notifyListeners();
   }
 
   void openSettings(int index) {

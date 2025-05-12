@@ -16,6 +16,13 @@ abstract class AppTextStyles {
     height: 34.0 / 28.0,
   );
 
+  static const headlineTitle2 = TextStyle(
+    fontFamily: 'Urbanist',
+    fontWeight: FontWeight.w700,
+    fontSize: 22.0,
+    height: 28.0 / 22.0,
+  );
+
   static const headlineTitle3 = TextStyle(
     fontFamily: 'Urbanist',
     fontWeight: FontWeight.w500,

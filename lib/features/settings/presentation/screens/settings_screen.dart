@@ -79,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           index == 1
                               ? watch.settings?.state ?? ''
                               : index == 2
-                              ? watch.settings?.licenseType ?? ''
+                              ? watch.settings?.license ?? ''
                               : '',
                       onTap: () => _onSettingTap(index),
                     ),
@@ -99,13 +99,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         if (!isEnabled && mounted) PushNotificationsAlert.show(context);
       });
 
-  void _onSettingTap(int index) =>
-      index == 1 || index == 2
-          ? Navigator.pushNamed(
-            context,
-            index == 1
-                ? AppRoutes.settingsState
-                : AppRoutes.settingsLicenseType,
-          )
-          : read.openSettings(index);
+  void _onSettingTap(int index) {
+    if (index == 1 || index == 2) {
+      read.setSettingsMode(
+        index == 1 ? SettingsMode.state : SettingsMode.license,
+      );
+      Navigator.pushNamed(context, AppRoutes.settingsSelection);
+    } else {
+      read.openSettings(index);
+    }
+  }
 }

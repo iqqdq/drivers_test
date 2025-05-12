@@ -35,7 +35,14 @@ class SettingsSelectionTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16.0),
-              isSelected ? SvgPicture.asset(AppIcons.check) : SizedBox.shrink(),
+              isSelected
+                  ? SvgPicture.asset(
+                    AppIcons.correct,
+                    width: 28.0,
+                    height: 28.0,
+                    fit: BoxFit.cover,
+                  )
+                  : SizedBox.shrink(),
             ],
           ),
         ),
