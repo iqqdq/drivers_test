@@ -14,7 +14,6 @@ class TestPageScreen extends StatefulWidget {
 
 class _TestPageScreenState extends State<TestPageScreen> {
   final PageController _pageController = PageController();
-
   late final TestPageChangeNotifier read;
 
   @override
@@ -29,22 +28,22 @@ class _TestPageScreenState extends State<TestPageScreen> {
         name: 'null',
         questions: [
           QuestionEntity(
-            text: 'Question 1',
+            question: 'Question 1',
             answers: ['1', '2', '3'],
             correct: 0,
           ),
           QuestionEntity(
-            text: 'Question 2',
+            question: 'Question 2',
             answers: ['1', '2', '3'],
             correct: 1,
           ),
           QuestionEntity(
-            text: 'Question 3',
+            question: 'Question 3',
             answers: ['1', '2', '3'],
             correct: 2,
           ),
           QuestionEntity(
-            text: 'Question 4',
+            question: 'Question 4',
             answers: ['1', '2', '3'],
             correct: 3,
           ),

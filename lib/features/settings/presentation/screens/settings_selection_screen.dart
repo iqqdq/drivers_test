@@ -28,7 +28,6 @@ class _SettingsSelectionScreenState extends State<SettingsSelectionScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: AppColors.bgPrimary,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -61,7 +61,13 @@ abstract class AppColors {
   static const orange10 = Color.fromRGBO(255, 238, 234, 1);
   static const orange5 = Color.fromRGBO(255, 246, 244, 1);
 
-  // Practical Test's
+  // Yellow
+  static const yellow = Color.fromRGBO(255, 188, 3, 1);
+
+  // Violet
+  static const violet = Color.fromRGBO(104, 66, 239, 1);
+
+  // Tests
   static const tests = [
     Color.fromRGBO(55, 114, 255, 1),
     Color.fromRGBO(32, 170, 24, 1),

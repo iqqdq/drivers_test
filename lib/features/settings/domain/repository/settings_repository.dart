@@ -1,7 +1,6 @@
 import 'package:drivers_test/features/settings/domain/domain.dart';
 
-abstract interface class SettingsRepository {
+abstract class SettingsRepository {
   Future<SettingsEntity?> getSettings();
-  Future saveSettings({required SettingsEntity settings});
-  Future deleteSettings();
+  Future updateSettings(SettingsEntity settings);
 }

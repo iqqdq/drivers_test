@@ -14,6 +14,24 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final icons = [
+    AppIcons.settingsNotifications,
+    AppIcons.settingsState,
+    AppIcons.settingsLicenseType,
+    AppIcons.settingsTermsOfUse,
+    AppIcons.settingsPrivacyPolicy,
+    AppIcons.settingsSupport,
+    AppIcons.settingsShareApp,
+  ];
+  final titles = [
+    AppTitles.pushNotification,
+    AppTitles.selectYourState,
+    AppTitles.selectLicenseType,
+    AppTitles.termsOfUse,
+    AppTitles.privacyPolicy,
+    AppTitles.support,
+    AppTitles.shareApp,
+  ];
   late final SettingsChangeNotifier read;
 
   @override
@@ -28,63 +46,63 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(title: AppTitles.settings),
-      backgroundColor: AppColors.bgPrimary,
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          border: Border.all(width: 1.0, color: AppColors.black10),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: ClipRRect(
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            itemCount: watch.titles.length,
-            separatorBuilder:
-                (context, index) => Divider(
-                  color: AppColors.black10,
-                  indent: 72.0,
-                  height: 1.0,
+      body: SizedBox.expand(
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                ).copyWith(top: 16.0),
+                child: GetFullAccessCard(onTap: _onGetFullAccessPressed),
+              ),
+
+              /// SETTING'S LIST VIEW
+              Container(
+                margin: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  border: Border.all(width: 1.0, color: AppColors.black10),
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-            itemBuilder: (context, index) {
-              return index == 0
-                  ? ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
-                    ),
-                    child: SettingsSwitchTile(
-                      icon: watch.icons[index],
-                      title: watch.titles[index],
-                      value:
-                          watch.settings?.isPushNotificationsEnabled ?? false,
-                      onChanged: _onSwitchTap,
-                    ),
-                  )
-                  : ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(
-                        index == watch.titles.length - 1 ? 16.0 : 0.0,
-                      ),
-                      bottomRight: Radius.circular(
-                        index == watch.titles.length - 1 ? 16.0 : 0.0,
-                      ),
-                    ),
-                    child: SettingsTile(
-                      icon: watch.icons[index],
-                      title: watch.titles[index],
-                      value:
-                          index == 1
-                              ? watch.settings?.state ?? ''
-                              : index == 2
-                              ? watch.settings?.license ?? ''
-                              : '',
-                      onTap: () => _onSettingTap(index),
-                    ),
-                  );
-            },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: titles.length,
+                    separatorBuilder:
+                        (context, index) => Divider(
+                          color: AppColors.black10,
+                          indent: 72.0,
+                          height: 1.0,
+                        ),
+                    itemBuilder: (context, index) {
+                      return index == 0
+                          ? SettingsSwitchTile(
+                            icon: icons[index],
+                            title: titles[index],
+                            value: watch.settings?.isPushEnabled ?? false,
+                            onChanged: _onSwitchTap,
+                          )
+                          : SettingsTile(
+                            icon: icons[index],
+                            title: titles[index],
+                            value:
+                                index == 1
+                                    ? watch.settings?.state ?? ''
+                                    : index == 2
+                                    ? watch.settings?.license ?? ''
+                                    : '',
+                            onTap: () => _onSettingTap(index),
+                          );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -93,6 +111,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   // MARK: -
   // MARK: - FUNCTION'S
+
+  void _onGetFullAccessPressed() {
+    // TODO SHOW PAYWALL
+  }
 
   void _onSwitchTap(bool value) async =>
       await read.togglePushNotifications(value).then((isEnabled) {

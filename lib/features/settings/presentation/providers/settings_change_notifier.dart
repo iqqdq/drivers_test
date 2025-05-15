@@ -1,52 +1,32 @@
-import 'package:drivers_test/core/core.dart';
-import 'package:drivers_test/features/settings/domain/domain.dart';
-import 'package:drivers_test/ui/ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/features/settings/domain/domain.dart';
 
 enum SettingsMode { state, license }
 
 class SettingsChangeNotifier with ChangeNotifier {
-  final icons = [
-    AppIcons.settingsNotifications,
-    AppIcons.settingsState,
-    AppIcons.settingsLicenseType,
-    AppIcons.settingsTermsOfUse,
-    AppIcons.settingsPrivacyPolicy,
-    AppIcons.settingsSupport,
-    AppIcons.settingsShareApp,
-  ];
-
-  final titles = [
-    AppTitles.pushNotification,
-    AppTitles.selectYourState,
-    AppTitles.selectLicenseType,
-    AppTitles.termsOfUse,
-    AppTitles.privacyPolicy,
-    AppTitles.support,
-    AppTitles.shareApp,
-  ];
-
   SettingsMode _settingsMode = SettingsMode.state;
   SettingsMode get settingsMode => _settingsMode;
 
   SettingsEntity? _settings;
   SettingsEntity? get settings => _settings;
 
-  SettingsChangeNotifier() {
-    _init();
-  }
-
-  void _init() async {
+  void getSettings() async {
     _settings =
         await sl.get<SettingsRepository>().getSettings() ?? SettingsEntity();
     // Set push notification's enabled on settings screen first appereance
-    if (_settings?.isPushNotificationsEnabled == null) {
+    if (_settings?.isPushEnabled == null) {
       // togglePushNotifications(); TODO SET isPushNotificationsEnabled IF USER ALLOWED PUSH NOTIFICATIONS
     }
     notifyListeners();
+  }
+
+  Future saveSettings() async {
+    if (_settings == null) return;
+    await sl.get<SettingsRepository>().updateSettings(_settings!);
   }
 
   void setSettingsMode(SettingsMode settingsMode) =>
@@ -62,14 +42,10 @@ class SettingsChangeNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  Future saveSettings() async {
-    if (_settings == null) return;
-    await sl.get<SettingsRepository>().saveSettings(settings: _settings!);
-  }
-
   Future<bool> togglePushNotifications(bool value) async {
+    // TODO PUSH PERMISSION LOGIC
     if (await Permission.notification.status.isDenied) return false;
-    _settings?.isPushNotificationsEnabled = value;
+    _settings?.isPushEnabled = value;
 
     await saveSettings();
     notifyListeners();

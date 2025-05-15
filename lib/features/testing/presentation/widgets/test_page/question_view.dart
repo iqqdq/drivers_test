@@ -50,7 +50,7 @@ class _QuestionViewState extends State<QuestionView>
 
         /// QUESTION
         Text(
-          widget.question.text,
+          widget.question.question,
           textAlign: TextAlign.start,
           style: AppTextStyles.headlineTitle1,
         ),

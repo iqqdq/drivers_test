@@ -21,7 +21,7 @@ class TestPageChangeNotifier with ChangeNotifier {
   bool get isTestCompleted =>
       _test == null
           ? false
-          : _test!.questions.any((element) => element.answer == null)
+          : _test!.questions.any((e) => e.answer == null)
           ? false
           : true;
 
@@ -62,8 +62,9 @@ class TestPageChangeNotifier with ChangeNotifier {
 
   void setQuestion(QuestionEntity question) {
     final index = _test!.questions.indexWhere(
-      (element) => element.text == question.text,
+      (e) => e.question == question.question,
     );
+
     _test!.questions[index] = question;
 
     if (isTestCompleted) _timer.cancel();

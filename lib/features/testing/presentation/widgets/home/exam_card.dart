@@ -27,7 +27,6 @@ class ExamCard extends StatelessWidget {
       borderRadius: borderRadius,
       child: InkWell(
         splashColor: Colors.transparent,
-        highlightColor: AppColors.orange50,
         borderRadius: borderRadius,
         onTap: onTap,
         child: Container(
@@ -65,7 +64,7 @@ class ExamCard extends StatelessWidget {
 
                   /// PASSING SCORE
                   Text(
-                    '$passing ${AppTitles.passingScore}',
+                    '$passing ${AppTitles.passingScore.toLowerCase()}',
                     style: AppTextStyles.subheadlineRegular.copyWith(
                       color: AppColors.white,
                     ),

@@ -8,6 +8,7 @@ abstract class AppIcons {
   static const stats = 'assets/icons/stats.svg';
   static const timer = 'assets/icons/timer.svg';
   static const tips = 'assets/icons/tips.svg';
+  static const clear = 'assets/icons/clear.svg';
 
   static const correct = 'assets/icons/correct.svg';
   static const incorrect = 'assets/icons/incorrect.svg';

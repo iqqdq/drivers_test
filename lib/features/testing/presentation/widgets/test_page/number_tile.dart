@@ -40,7 +40,6 @@ class NumberTile extends StatelessWidget {
                   child: InkWell(
                     borderRadius: borderRadius,
                     splashColor: Colors.transparent,
-                    highlightColor: AppColors.black10,
                     onTap: onTap,
                     child: Container(
                       width: width,

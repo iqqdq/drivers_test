@@ -4,9 +4,10 @@ import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/ui/ui.dart';
 
 class CustomBackButton extends StatelessWidget {
+  final Color? color;
   final VoidCallback onTap;
 
-  const CustomBackButton({super.key, required this.onTap});
+  const CustomBackButton({super.key, this.color, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,19 @@ class CustomBackButton extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          SvgPicture.asset(AppIcons.arrowBack),
+          SvgPicture.asset(
+            AppIcons.arrowBack,
+            colorFilter:
+                color == null
+                    ? null
+                    : ColorFilter.mode(color!, BlendMode.srcIn),
+          ),
           const SizedBox(width: 4.0),
           Text(
             AppTitles.back,
-            style: AppTextStyles.textBody.copyWith(color: AppColors.blue100),
+            style: AppTextStyles.textBody.copyWith(
+              color: color ?? AppColors.blue100,
+            ),
           ),
         ],
       ),

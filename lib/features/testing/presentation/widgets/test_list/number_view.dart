@@ -8,9 +8,10 @@ class NumberView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(12.0);
     final color = AppColors.tests[index % AppColors.tests.length];
-    final halfcircles = [
-      // 1. Top half-circle
+    final clipOvals = [
+      // 1. Top
       Positioned(
         top: 0,
         left: 0,
@@ -24,7 +25,7 @@ class NumberView extends StatelessWidget {
         ),
       ),
 
-      // 2. Right half-circle
+      // 2. Right
       Positioned(
         top: 0,
         right: 0,
@@ -38,7 +39,7 @@ class NumberView extends StatelessWidget {
         ),
       ),
 
-      // 3. Bottom half-circle
+      // 3. Bottom
       Positioned(
         bottom: 0,
         left: 0,
@@ -52,7 +53,7 @@ class NumberView extends StatelessWidget {
         ),
       ),
 
-      // 4. Left half-circle
+      // 4. Left
       Positioned(
         top: 0,
         left: 0,
@@ -67,27 +68,25 @@ class NumberView extends StatelessWidget {
       ),
     ];
 
-    return SizedBox(
+    return Container(
       width: 44.0,
       height: 44.0,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-          halfcircles[index % halfcircles.length],
-          Center(
-            child: Text(
-              '${index + 1}',
-              style: AppTextStyles.headlineTitle3.copyWith(
-                color: AppColors.white,
+      decoration: BoxDecoration(color: color, borderRadius: borderRadius),
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: Stack(
+          children: [
+            clipOvals[index % clipOvals.length],
+            Center(
+              child: Text(
+                '${index + 1}',
+                style: AppTextStyles.headlineTitle3.copyWith(
+                  color: AppColors.white,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
+import 'package:drivers_test/features/testing/presentation/providers/test_list_change_notifier.dart';
 import 'package:drivers_test/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class DriverTestApp extends StatefulWidget {
 class _AppState extends State<DriverTestApp> {
   @override
   void dispose() {
-    sl.get<LocalStorage>().close();
+    sl.get<AppDatabase>().close();
     super.dispose();
   }
 
@@ -24,7 +25,10 @@ class _AppState extends State<DriverTestApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<SettingsChangeNotifier>(
-          create: (_) => SettingsChangeNotifier(),
+          create: (_) => SettingsChangeNotifier()..getSettings(),
+        ),
+        ChangeNotifierProvider<TestListChangeNotifier>(
+          create: (_) => TestListChangeNotifier()..getTests(category: null),
         ),
       ],
       child: MaterialApp(

@@ -23,7 +23,6 @@ class SettingsSwitchTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         splashColor: Colors.transparent,
-        highlightColor: AppColors.black20,
         onTap: () => onChanged(!value),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),

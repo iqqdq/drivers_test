@@ -45,14 +45,14 @@ abstract class AppTextStyles {
 
   static const footnote = TextStyle(
     fontFamily: 'Urbanist',
-    fontWeight: FontWeight.w400,
     fontSize: 14.0,
     height: 20.0 / 14.0,
   );
 
   static const caption = TextStyle(
-    fontWeight: FontWeight.w400,
+    fontFamily: 'Urbanist',
     fontSize: 12.0,
+    height: 16.0 / 12.0,
     letterSpacing: -0.2,
   );
 

@@ -23,8 +23,7 @@ class TestCategoryTile extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         splashColor: Colors.transparent,
-        highlightColor: isSelected ? AppColors.blue50 : AppColors.black10,
-        onTap: onTap,
+        onTap: isSelected ? null : onTap,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
           decoration: BoxDecoration(

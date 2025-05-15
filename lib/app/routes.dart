@@ -1,3 +1,4 @@
+import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,9 +9,10 @@ const _splash = '/';
 const _home = '/home';
 const _testList = '/test_list';
 const _testPage = '/test_page';
-const _settings = '/settings';
 const _testResult = '/test_result';
-// const _statistics = '/statistics';
+const _statistics = '/statistics';
+const _tips = '/tips';
+const _settings = '/settings';
 const _settingsSelection = '/settings_selection';
 
 abstract class AppRoutes {
@@ -21,7 +23,8 @@ abstract class AppRoutes {
   static String get testList => _testList;
   static String get testPage => _testPage;
   static String get testResult => _testResult;
-  // static String get statistics => _statistics;
+  static String get statistics => _statistics;
+  static String get tips => _tips;
   static String get settings => _settings;
   static String get settingsSelection => _settingsSelection;
 }
@@ -34,14 +37,15 @@ abstract class AppNavigation {
     // _onboard: (_) => const OnboardScreen(),
     // _paywall: (_) => const PaywallScreen(isMonth: true),
     _home: (_) => const HomeScreen(),
-    _testList: (_) => const TestListScreen(),
+    _testList: (_) => TestListScreen(),
     _testPage:
         (_) => ChangeNotifierProvider(
           create: (_) => TestPageChangeNotifier(),
           child: const TestPageScreen(),
         ),
     _testResult: (_) => const TestResultScreen(),
-    // _statistics: (_) => const StatisticsScreen(),
+    _statistics: (_) => const StatisticsScreen(),
+    _tips: (_) => const TipsScreen(),
     _settings: (_) => SettingsScreen(),
     _settingsSelection: (_) => const SettingsSelectionScreen(),
   };

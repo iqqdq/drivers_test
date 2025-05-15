@@ -23,7 +23,6 @@ class TestsCard extends StatelessWidget {
       borderRadius: borderRadius,
       child: InkWell(
         splashColor: Colors.transparent,
-        highlightColor: AppColors.blue50,
         borderRadius: borderRadius,
         onTap: onTap,
         child: Container(

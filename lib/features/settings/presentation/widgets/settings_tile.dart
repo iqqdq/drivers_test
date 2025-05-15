@@ -22,7 +22,6 @@ class SettingsTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         splashColor: Colors.transparent,
-        highlightColor: AppColors.black20,
         onTap: onTap,
         child: Container(
           height: 64.0,

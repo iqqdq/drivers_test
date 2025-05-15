@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class TestTile extends StatelessWidget {
   final int index;
   final String name;
+  final String? category;
   final int? accuracy;
-  final int current;
+  final int correct;
   final int total;
   final VoidCallback onTap;
 
@@ -15,8 +16,9 @@ class TestTile extends StatelessWidget {
     super.key,
     required this.index,
     required this.name,
+    this.category,
     this.accuracy,
-    required this.current,
+    required this.correct,
     required this.total,
     required this.onTap,
   });
@@ -37,7 +39,6 @@ class TestTile extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         splashColor: Colors.transparent,
-        highlightColor: AppColors.black10,
         onTap: onTap,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -60,16 +61,14 @@ class TestTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         /// TITLE
-                        Text(
-                          AppTitles.practicalTest,
-                          style: AppTextStyles.headlineHeadline,
-                        ),
+                        Text(name, style: AppTextStyles.headlineHeadline),
                         const SizedBox(height: 4.0),
                         Row(
                           children: [
-                            /// NAME
+                            /// CATEGORY
                             Text(
-                              name + (accuracy == 0 ? '' : ' · '),
+                              (category ?? '') +
+                                  (category == null ? '' : ' · '),
                               style: AppTextStyles.caption.copyWith(
                                 color: AppColors.black70,
                               ),
@@ -77,7 +76,7 @@ class TestTile extends StatelessWidget {
                             ),
 
                             /// ACCURACY
-                            accuracy == 0
+                            accuracy == null
                                 ? SizedBox.shrink()
                                 : Text(
                                   '${AppTitles.testAccuracy} $accuracy%',
@@ -93,7 +92,7 @@ class TestTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 12.0),
                   Text(
-                    '$current/$total',
+                    '$correct/$total',
                     style: AppTextStyles.subheadlineRegular.copyWith(
                       color: accuracyColor,
                     ),

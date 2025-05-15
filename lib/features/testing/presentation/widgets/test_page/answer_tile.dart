@@ -39,7 +39,6 @@ class AnswerTile extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         splashColor: Colors.transparent,
-        highlightColor: AppColors.black10,
         onTap: onTap,
         child: Container(
           padding: EdgeInsets.all(16.0),

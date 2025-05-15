@@ -2,19 +2,26 @@ import 'package:drivers_test/features/settings/data/data.dart';
 import 'package:drivers_test/features/settings/domain/domain.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
-  final SettingsLocalStorage _localStorage;
+  final SettingsLocalDataSource localDataSource;
 
-  SettingsRepositoryImpl({required SettingsLocalStorage localStorage})
-    : _localStorage = localStorage;
-
-  @override
-  Future<SettingsEntity?> getSettings() async =>
-      await _localStorage.getSettings();
+  SettingsRepositoryImpl(this.localDataSource);
 
   @override
-  Future saveSettings({required SettingsEntity settings}) async =>
-      await _localStorage.saveSettings(settings);
+  Future<SettingsEntity?> getSettings() async {
+    try {
+      final settings = await localDataSource.getSettings();
+      return settings;
+    } catch (e) {
+      throw Exception('Failed to get settings');
+    }
+  }
 
   @override
-  Future deleteSettings() async => _localStorage.deleteSettings();
+  Future updateSettings(SettingsEntity settings) async {
+    try {
+      await localDataSource.setSettings(settings);
+    } catch (e) {
+      throw Exception('Failed to set settings');
+    }
+  }
 }

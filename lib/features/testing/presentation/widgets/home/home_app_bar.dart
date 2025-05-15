@@ -21,7 +21,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       forceMaterialTransparency: true,
       automaticallyImplyLeading: false,
-      backgroundColor: AppColors.bgPrimary,
       centerTitle: false,
       actionsPadding: EdgeInsets.only(right: 12.0),
       leadingWidth: 90.0,

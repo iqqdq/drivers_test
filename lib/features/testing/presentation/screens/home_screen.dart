@@ -1,5 +1,7 @@
 import 'package:drivers_test/app/app.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
+import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,24 +23,45 @@ class _HomeScreenState extends State<HomeScreen> {
         title: state,
         onStateTap: _onStateTap,
         onNotificationsTap: _onNotificationsTap,
-        onSettingsTap: _onSettingTap,
+        onSettingsTap: _onSettingsTap,
       ),
       body: ListView(
         padding: EdgeInsets.all(
           16.0,
         ).copyWith(bottom: MediaQuery.of(context).padding.bottom),
         children: [
-          TestsCard(passed: 0, total: 0, onTap: _onTestsCardTap),
+          /// TODO SHOW IF NOT SUBSCRIBED
+          /// GET PREMIUM
+          Padding(
+            padding: EdgeInsets.only(bottom: 12.0),
+            child: GetPremiumCard(
+              subtitle: AppTitles.getUnlimitedNumberOfTests,
+              secondSubtitle:
+                  '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
+              onTap: _onGetPremiumPressed,
+            ),
+          ),
+
+          /// TEST
+          TestsCard(
+            passed: 0, // TODO SHOW COMPLETED TEST COUNT
+            total: 0, // TODO SHOW AVAILABLE TEST COUNT
+            onTap: _onTestsTap,
+          ),
           const SizedBox(height: 12.0),
+
+          /// EXAM
           ExamCard(
             questions: 0,
             passing: 0,
             correct: 0,
             minutes: 0,
-            onTap: _onExamCardTap,
+            onTap: _onExamTap,
           ),
           const SizedBox(height: 12.0),
-          StatsCard(percent: 0, onTap: _onStatsCardTap),
+
+          /// STATISTIC'S
+          StatsCard(percent: 0, onTap: _onStatsTap),
         ],
       ),
     );
@@ -47,17 +70,24 @@ class _HomeScreenState extends State<HomeScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
+  void _onGetPremiumPressed() {
+    // TODO SHOW PAYWALL
+  }
+
   void _onStateTap() =>
       Navigator.pushNamed(context, AppRoutes.settingsSelection);
 
-  void _onSettingTap() => Navigator.pushNamed(context, AppRoutes.settings);
+  void _onSettingsTap() => Navigator.pushNamed(context, AppRoutes.settings);
 
   void _onNotificationsTap() {}
   // => Navigator.pushNamed(context, AppRoutes.settings);
 
-  void _onTestsCardTap() => Navigator.pushNamed(context, AppRoutes.testList);
+  void _onTestsTap() => Navigator.pushNamed(context, AppRoutes.testList);
 
-  void _onExamCardTap() {}
+  void _onExamTap() {
+    // TODO CHECK IF SUBSCRIBED
+    Navigator.pushNamed(context, AppRoutes.testPage);
+  }
 
-  void _onStatsCardTap() {}
+  void _onStatsTap() {}
 }
