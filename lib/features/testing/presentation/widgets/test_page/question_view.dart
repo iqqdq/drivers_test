@@ -1,5 +1,5 @@
-import 'package:drivers_test/features/testing/domain/domain.dart';
-import 'package:drivers_test/features/testing/presentation/widgets/test_page/answer_tile.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:drivers_test/features/features.dart';
 import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _QuestionViewState extends State<QuestionView>
       padding: EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 16.0,
-      ).copyWith(bottom: MediaQuery.of(context).padding.bottom),
+      ).copyWith(bottom: getBottomPadding(context)),
       children: [
         /// IMAGE
         widget.question.image == null
@@ -44,7 +44,10 @@ class _QuestionViewState extends State<QuestionView>
               height: 248.0,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0),
-                child: Image.network(widget.question.image!, fit: BoxFit.cover),
+                child: CachedNetworkImage(
+                  imageUrl: widget.question.image!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
 
@@ -60,7 +63,7 @@ class _QuestionViewState extends State<QuestionView>
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: widget.question.answers.length,
+          itemCount: widget.question.choices.length,
           separatorBuilder: (context, index) => SizedBox(height: 12.0),
           itemBuilder: (context, index) {
             bool isSelected = _index == index;
@@ -68,7 +71,7 @@ class _QuestionViewState extends State<QuestionView>
                 _index == null ? null : index == widget.question.correct;
 
             return AnswerTile(
-              text: widget.question.answers[index],
+              text: widget.question.choices[index],
               isSelected: isSelected,
               isCorrect: isCorrect,
               onTap:

@@ -1,24 +1,37 @@
-import 'question_entity.dart';
-
 class TestEntity {
-  final String category;
+  final int id;
+  final String state;
   final String name;
-  List<QuestionEntity> questions;
+  final int amount;
+  int? result;
 
   TestEntity({
-    required this.category,
+    required this.id,
+    required this.state,
     required this.name,
-    required this.questions,
+    required this.amount,
+    this.result,
   });
 
-  TestEntity copyWith({
-    String? category,
-    String? name,
-    List<QuestionEntity>? questions,
-    int? accuracy,
+  factory TestEntity.fromRow({
+    required int id,
+    required String state,
+    required String name,
+    required int amount,
+    required int? result,
   }) => TestEntity(
-    category: category ?? this.category,
-    name: name ?? this.name,
-    questions: questions ?? this.questions,
+    id: id,
+    state: state,
+    name: name,
+    amount: amount,
+    result: result,
+  );
+
+  TestEntity copyWith({int? result}) => TestEntity(
+    id: id,
+    state: state,
+    name: name,
+    amount: amount,
+    result: result ?? this.result,
   );
 }

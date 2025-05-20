@@ -1,5 +1,6 @@
 abstract class AppIcons {
   static const arrowRight = 'assets/icons/arrow_right.svg';
+  static const arrowUp = 'assets/icons/arrow_up.svg';
   static const arrowDown = 'assets/icons/arrow_down.svg';
   static const arrowBack = 'assets/icons/arrow_back.svg';
   static const close = 'assets/icons/close.svg';

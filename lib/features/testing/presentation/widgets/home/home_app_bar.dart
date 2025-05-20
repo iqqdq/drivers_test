@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Container(
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width / 2.0,
+                maxWidth: MediaQuery.of(context).size.width * 0.6,
               ),
               child: Text(
                 title ?? '',
@@ -44,11 +44,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        CustomAppBarAction(
+        CustomAppBarIconAction(
           icon: AppIcons.notifications,
           onTap: onNotificationsTap,
         ),
-        CustomAppBarAction(icon: AppIcons.settings, onTap: onSettingsTap),
+        CustomAppBarIconAction(icon: AppIcons.settings, onTap: onSettingsTap),
       ],
     );
   }

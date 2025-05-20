@@ -4,17 +4,24 @@ part of 'app_database.dart';
 
 // ignore_for_file: type=lint
 class $TestTableTable extends TestTable
-    with TableInfo<$TestTableTable, TestTableData> {
+    with TableInfo<$TestTableTable, TestEntity> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $TestTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _categoryMeta = const VerificationMeta(
-    'category',
-  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<String> category = GeneratedColumn<String>(
-    'category',
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _stateMeta = const VerificationMeta('state');
+  @override
+  late final GeneratedColumn<String> state = GeneratedColumn<String>(
+    'state',
     aliasedName,
     false,
     type: DriftSqlType.string,
@@ -29,8 +36,26 @@ class $TestTableTable extends TestTable
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _amountMeta = const VerificationMeta('amount');
   @override
-  List<GeneratedColumn> get $columns => [category, name];
+  late final GeneratedColumn<int> amount = GeneratedColumn<int>(
+    'amount',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _resultMeta = const VerificationMeta('result');
+  @override
+  late final GeneratedColumn<int> result = GeneratedColumn<int>(
+    'result',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, state, name, amount, result];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -38,18 +63,23 @@ class $TestTableTable extends TestTable
   static const String $name = 'test_table';
   @override
   VerificationContext validateIntegrity(
-    Insertable<TestTableData> instance, {
+    Insertable<TestEntity> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('category')) {
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('state')) {
       context.handle(
-        _categoryMeta,
-        category.isAcceptableOrUnknown(data['category']!, _categoryMeta),
+        _stateMeta,
+        state.isAcceptableOrUnknown(data['state']!, _stateMeta),
       );
     } else if (isInserting) {
-      context.missing(_categoryMeta);
+      context.missing(_stateMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -59,25 +89,53 @@ class $TestTableTable extends TestTable
     } else if (isInserting) {
       context.missing(_nameMeta);
     }
+    if (data.containsKey('amount')) {
+      context.handle(
+        _amountMeta,
+        amount.isAcceptableOrUnknown(data['amount']!, _amountMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_amountMeta);
+    }
+    if (data.containsKey('result')) {
+      context.handle(
+        _resultMeta,
+        result.isAcceptableOrUnknown(data['result']!, _resultMeta),
+      );
+    }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {category, name};
+  Set<GeneratedColumn> get $primaryKey => {id, state};
   @override
-  TestTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  TestEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return TestTableData(
-      category:
+    return TestEntity.fromRow(
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}id'],
+          )!,
+      state:
           attachedDatabase.typeMapping.read(
             DriftSqlType.string,
-            data['${effectivePrefix}category'],
+            data['${effectivePrefix}state'],
           )!,
       name:
           attachedDatabase.typeMapping.read(
             DriftSqlType.string,
             data['${effectivePrefix}name'],
           )!,
+      amount:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}amount'],
+          )!,
+      result: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}result'],
+      ),
     );
   }
 
@@ -87,106 +145,64 @@ class $TestTableTable extends TestTable
   }
 }
 
-class TestTableData extends DataClass implements Insertable<TestTableData> {
-  final String category;
-  final String name;
-  const TestTableData({required this.category, required this.name});
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['category'] = Variable<String>(category);
-    map['name'] = Variable<String>(name);
-    return map;
-  }
-
-  TestTableCompanion toCompanion(bool nullToAbsent) {
-    return TestTableCompanion(category: Value(category), name: Value(name));
-  }
-
-  factory TestTableData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return TestTableData(
-      category: serializer.fromJson<String>(json['category']),
-      name: serializer.fromJson<String>(json['name']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'category': serializer.toJson<String>(category),
-      'name': serializer.toJson<String>(name),
-    };
-  }
-
-  TestTableData copyWith({String? category, String? name}) => TestTableData(
-    category: category ?? this.category,
-    name: name ?? this.name,
-  );
-  TestTableData copyWithCompanion(TestTableCompanion data) {
-    return TestTableData(
-      category: data.category.present ? data.category.value : this.category,
-      name: data.name.present ? data.name.value : this.name,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('TestTableData(')
-          ..write('category: $category, ')
-          ..write('name: $name')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(category, name);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is TestTableData &&
-          other.category == this.category &&
-          other.name == this.name);
-}
-
-class TestTableCompanion extends UpdateCompanion<TestTableData> {
-  final Value<String> category;
+class TestTableCompanion extends UpdateCompanion<TestEntity> {
+  final Value<int> id;
+  final Value<String> state;
   final Value<String> name;
+  final Value<int> amount;
+  final Value<int?> result;
   final Value<int> rowid;
   const TestTableCompanion({
-    this.category = const Value.absent(),
+    this.id = const Value.absent(),
+    this.state = const Value.absent(),
     this.name = const Value.absent(),
+    this.amount = const Value.absent(),
+    this.result = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   TestTableCompanion.insert({
-    required String category,
+    required int id,
+    required String state,
     required String name,
+    required int amount,
+    this.result = const Value.absent(),
     this.rowid = const Value.absent(),
-  }) : category = Value(category),
-       name = Value(name);
-  static Insertable<TestTableData> custom({
-    Expression<String>? category,
+  }) : id = Value(id),
+       state = Value(state),
+       name = Value(name),
+       amount = Value(amount);
+  static Insertable<TestEntity> custom({
+    Expression<int>? id,
+    Expression<String>? state,
     Expression<String>? name,
+    Expression<int>? amount,
+    Expression<int>? result,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (category != null) 'category': category,
+      if (id != null) 'id': id,
+      if (state != null) 'state': state,
       if (name != null) 'name': name,
+      if (amount != null) 'amount': amount,
+      if (result != null) 'result': result,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   TestTableCompanion copyWith({
-    Value<String>? category,
+    Value<int>? id,
+    Value<String>? state,
     Value<String>? name,
+    Value<int>? amount,
+    Value<int?>? result,
     Value<int>? rowid,
   }) {
     return TestTableCompanion(
-      category: category ?? this.category,
+      id: id ?? this.id,
+      state: state ?? this.state,
       name: name ?? this.name,
+      amount: amount ?? this.amount,
+      result: result ?? this.result,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -194,11 +210,20 @@ class TestTableCompanion extends UpdateCompanion<TestTableData> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (category.present) {
-      map['category'] = Variable<String>(category.value);
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (state.present) {
+      map['state'] = Variable<String>(state.value);
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (amount.present) {
+      map['amount'] = Variable<int>(amount.value);
+    }
+    if (result.present) {
+      map['result'] = Variable<int>(result.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -209,8 +234,11 @@ class TestTableCompanion extends UpdateCompanion<TestTableData> {
   @override
   String toString() {
     return (StringBuffer('TestTableCompanion(')
-          ..write('category: $category, ')
+          ..write('id: $id, ')
+          ..write('state: $state, ')
           ..write('name: $name, ')
+          ..write('amount: $amount, ')
+          ..write('result: $result, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -223,26 +251,31 @@ class $QuestionTableTable extends QuestionTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $QuestionTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _testCategoryMeta = const VerificationMeta(
-    'testCategory',
-  );
+  static const VerificationMeta _stateMeta = const VerificationMeta('state');
   @override
-  late final GeneratedColumn<String> testCategory = GeneratedColumn<String>(
-    'test_category',
+  late final GeneratedColumn<String> state = GeneratedColumn<String>(
+    'state',
     aliasedName,
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _testNameMeta = const VerificationMeta(
-    'testName',
-  );
+  static const VerificationMeta _testIdMeta = const VerificationMeta('testId');
   @override
-  late final GeneratedColumn<String> testName = GeneratedColumn<String>(
-    'test_name',
+  late final GeneratedColumn<int> testId = GeneratedColumn<int>(
+    'test_id',
     aliasedName,
     false,
-    type: DriftSqlType.string,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
   static const VerificationMeta _imageMeta = const VerificationMeta('image');
@@ -266,14 +299,14 @@ class $QuestionTableTable extends QuestionTable
     requiredDuringInsert: true,
   );
   @override
-  late final GeneratedColumnWithTypeConverter<List<String>, String> answers =
+  late final GeneratedColumnWithTypeConverter<List<String>, String> choices =
       GeneratedColumn<String>(
-        'answers',
+        'choices',
         aliasedName,
         false,
         type: DriftSqlType.string,
         requiredDuringInsert: true,
-      ).withConverter<List<String>>($QuestionTableTable.$converteranswers);
+      ).withConverter<List<String>>($QuestionTableTable.$converterchoices);
   static const VerificationMeta _correctMeta = const VerificationMeta(
     'correct',
   );
@@ -296,11 +329,12 @@ class $QuestionTableTable extends QuestionTable
   );
   @override
   List<GeneratedColumn> get $columns => [
-    testCategory,
-    testName,
+    state,
+    testId,
+    id,
     image,
     question,
-    answers,
+    choices,
     correct,
     answer,
   ];
@@ -316,24 +350,26 @@ class $QuestionTableTable extends QuestionTable
   }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('test_category')) {
+    if (data.containsKey('state')) {
       context.handle(
-        _testCategoryMeta,
-        testCategory.isAcceptableOrUnknown(
-          data['test_category']!,
-          _testCategoryMeta,
-        ),
+        _stateMeta,
+        state.isAcceptableOrUnknown(data['state']!, _stateMeta),
       );
     } else if (isInserting) {
-      context.missing(_testCategoryMeta);
+      context.missing(_stateMeta);
     }
-    if (data.containsKey('test_name')) {
+    if (data.containsKey('test_id')) {
       context.handle(
-        _testNameMeta,
-        testName.isAcceptableOrUnknown(data['test_name']!, _testNameMeta),
+        _testIdMeta,
+        testId.isAcceptableOrUnknown(data['test_id']!, _testIdMeta),
       );
     } else if (isInserting) {
-      context.missing(_testNameMeta);
+      context.missing(_testIdMeta);
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
     }
     if (data.containsKey('image')) {
       context.handle(
@@ -367,11 +403,26 @@ class $QuestionTableTable extends QuestionTable
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {testCategory, testName, question};
+  Set<GeneratedColumn> get $primaryKey => {state, testId, id};
   @override
   QuestionEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return QuestionEntity.fromRow(
+      state:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}state'],
+          )!,
+      testId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}test_id'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}id'],
+          )!,
       image: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}image'],
@@ -381,10 +432,10 @@ class $QuestionTableTable extends QuestionTable
             DriftSqlType.string,
             data['${effectivePrefix}question'],
           )!,
-      answers: $QuestionTableTable.$converteranswers.fromSql(
+      choices: $QuestionTableTable.$converterchoices.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
-          data['${effectivePrefix}answers'],
+          data['${effectivePrefix}choices'],
         )!,
       ),
       correct:
@@ -404,59 +455,65 @@ class $QuestionTableTable extends QuestionTable
     return $QuestionTableTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<List<String>, String> $converteranswers =
+  static TypeConverter<List<String>, String> $converterchoices =
       const ListConverter();
 }
 
 class QuestionTableCompanion extends UpdateCompanion<QuestionEntity> {
-  final Value<String> testCategory;
-  final Value<String> testName;
+  final Value<String> state;
+  final Value<int> testId;
+  final Value<int> id;
   final Value<String?> image;
   final Value<String> question;
-  final Value<List<String>> answers;
+  final Value<List<String>> choices;
   final Value<int> correct;
   final Value<int?> answer;
   final Value<int> rowid;
   const QuestionTableCompanion({
-    this.testCategory = const Value.absent(),
-    this.testName = const Value.absent(),
+    this.state = const Value.absent(),
+    this.testId = const Value.absent(),
+    this.id = const Value.absent(),
     this.image = const Value.absent(),
     this.question = const Value.absent(),
-    this.answers = const Value.absent(),
+    this.choices = const Value.absent(),
     this.correct = const Value.absent(),
     this.answer = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   QuestionTableCompanion.insert({
-    required String testCategory,
-    required String testName,
+    required String state,
+    required int testId,
+    required int id,
     this.image = const Value.absent(),
     required String question,
-    required List<String> answers,
+    required List<String> choices,
     required int correct,
     this.answer = const Value.absent(),
     this.rowid = const Value.absent(),
-  }) : testCategory = Value(testCategory),
-       testName = Value(testName),
+  }) : state = Value(state),
+       testId = Value(testId),
+       id = Value(id),
        question = Value(question),
-       answers = Value(answers),
+       choices = Value(choices),
        correct = Value(correct);
   static Insertable<QuestionEntity> custom({
-    Expression<String>? testCategory,
-    Expression<String>? testName,
+    Expression<String>? state,
+    Expression<int>? testId,
+    Expression<int>? id,
     Expression<String>? image,
     Expression<String>? question,
-    Expression<String>? answers,
+    Expression<String>? choices,
     Expression<int>? correct,
     Expression<int>? answer,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (testCategory != null) 'test_category': testCategory,
-      if (testName != null) 'test_name': testName,
+      if (state != null) 'state': state,
+      if (testId != null) 'test_id': testId,
+      if (id != null) 'id': id,
       if (image != null) 'image': image,
       if (question != null) 'question': question,
-      if (answers != null) 'answers': answers,
+      if (choices != null) 'choices': choices,
       if (correct != null) 'correct': correct,
       if (answer != null) 'answer': answer,
       if (rowid != null) 'rowid': rowid,
@@ -464,21 +521,23 @@ class QuestionTableCompanion extends UpdateCompanion<QuestionEntity> {
   }
 
   QuestionTableCompanion copyWith({
-    Value<String>? testCategory,
-    Value<String>? testName,
+    Value<String>? state,
+    Value<int>? testId,
+    Value<int>? id,
     Value<String?>? image,
     Value<String>? question,
-    Value<List<String>>? answers,
+    Value<List<String>>? choices,
     Value<int>? correct,
     Value<int?>? answer,
     Value<int>? rowid,
   }) {
     return QuestionTableCompanion(
-      testCategory: testCategory ?? this.testCategory,
-      testName: testName ?? this.testName,
+      state: state ?? this.state,
+      testId: testId ?? this.testId,
+      id: id ?? this.id,
       image: image ?? this.image,
       question: question ?? this.question,
-      answers: answers ?? this.answers,
+      choices: choices ?? this.choices,
       correct: correct ?? this.correct,
       answer: answer ?? this.answer,
       rowid: rowid ?? this.rowid,
@@ -488,11 +547,14 @@ class QuestionTableCompanion extends UpdateCompanion<QuestionEntity> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (testCategory.present) {
-      map['test_category'] = Variable<String>(testCategory.value);
+    if (state.present) {
+      map['state'] = Variable<String>(state.value);
     }
-    if (testName.present) {
-      map['test_name'] = Variable<String>(testName.value);
+    if (testId.present) {
+      map['test_id'] = Variable<int>(testId.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
     }
     if (image.present) {
       map['image'] = Variable<String>(image.value);
@@ -500,9 +562,9 @@ class QuestionTableCompanion extends UpdateCompanion<QuestionEntity> {
     if (question.present) {
       map['question'] = Variable<String>(question.value);
     }
-    if (answers.present) {
-      map['answers'] = Variable<String>(
-        $QuestionTableTable.$converteranswers.toSql(answers.value),
+    if (choices.present) {
+      map['choices'] = Variable<String>(
+        $QuestionTableTable.$converterchoices.toSql(choices.value),
       );
     }
     if (correct.present) {
@@ -520,11 +582,12 @@ class QuestionTableCompanion extends UpdateCompanion<QuestionEntity> {
   @override
   String toString() {
     return (StringBuffer('QuestionTableCompanion(')
-          ..write('testCategory: $testCategory, ')
-          ..write('testName: $testName, ')
+          ..write('state: $state, ')
+          ..write('testId: $testId, ')
+          ..write('id: $id, ')
           ..write('image: $image, ')
           ..write('question: $question, ')
-          ..write('answers: $answers, ')
+          ..write('choices: $choices, ')
           ..write('correct: $correct, ')
           ..write('answer: $answer, ')
           ..write('rowid: $rowid')
@@ -745,14 +808,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
 
 typedef $$TestTableTableCreateCompanionBuilder =
     TestTableCompanion Function({
-      required String category,
+      required int id,
+      required String state,
       required String name,
+      required int amount,
+      Value<int?> result,
       Value<int> rowid,
     });
 typedef $$TestTableTableUpdateCompanionBuilder =
     TestTableCompanion Function({
-      Value<String> category,
+      Value<int> id,
+      Value<String> state,
       Value<String> name,
+      Value<int> amount,
+      Value<int?> result,
       Value<int> rowid,
     });
 
@@ -765,13 +834,28 @@ class $$TestTableTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<String> get category => $composableBuilder(
-    column: $table.category,
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get state => $composableBuilder(
+    column: $table.state,
     builder: (column) => ColumnFilters(column),
   );
 
   ColumnFilters<String> get name => $composableBuilder(
     column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get amount => $composableBuilder(
+    column: $table.amount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get result => $composableBuilder(
+    column: $table.result,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -785,13 +869,28 @@ class $$TestTableTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<String> get category => $composableBuilder(
-    column: $table.category,
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get state => $composableBuilder(
+    column: $table.state,
     builder: (column) => ColumnOrderings(column),
   );
 
   ColumnOrderings<String> get name => $composableBuilder(
     column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get amount => $composableBuilder(
+    column: $table.amount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get result => $composableBuilder(
+    column: $table.result,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -805,11 +904,20 @@ class $$TestTableTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<String> get category =>
-      $composableBuilder(column: $table.category, builder: (column) => column);
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get state =>
+      $composableBuilder(column: $table.state, builder: (column) => column);
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<int> get amount =>
+      $composableBuilder(column: $table.amount, builder: (column) => column);
+
+  GeneratedColumn<int> get result =>
+      $composableBuilder(column: $table.result, builder: (column) => column);
 }
 
 class $$TestTableTableTableManager
@@ -817,17 +925,17 @@ class $$TestTableTableTableManager
         RootTableManager<
           _$AppDatabase,
           $TestTableTable,
-          TestTableData,
+          TestEntity,
           $$TestTableTableFilterComposer,
           $$TestTableTableOrderingComposer,
           $$TestTableTableAnnotationComposer,
           $$TestTableTableCreateCompanionBuilder,
           $$TestTableTableUpdateCompanionBuilder,
           (
-            TestTableData,
-            BaseReferences<_$AppDatabase, $TestTableTable, TestTableData>,
+            TestEntity,
+            BaseReferences<_$AppDatabase, $TestTableTable, TestEntity>,
           ),
-          TestTableData,
+          TestEntity,
           PrefetchHooks Function()
         > {
   $$TestTableTableTableManager(_$AppDatabase db, $TestTableTable table)
@@ -843,22 +951,34 @@ class $$TestTableTableTableManager
               () => $$TestTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
-                Value<String> category = const Value.absent(),
+                Value<int> id = const Value.absent(),
+                Value<String> state = const Value.absent(),
                 Value<String> name = const Value.absent(),
+                Value<int> amount = const Value.absent(),
+                Value<int?> result = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TestTableCompanion(
-                category: category,
+                id: id,
+                state: state,
                 name: name,
+                amount: amount,
+                result: result,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
-                required String category,
+                required int id,
+                required String state,
                 required String name,
+                required int amount,
+                Value<int?> result = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TestTableCompanion.insert(
-                category: category,
+                id: id,
+                state: state,
                 name: name,
+                amount: amount,
+                result: result,
                 rowid: rowid,
               ),
           withReferenceMapper:
@@ -880,37 +1000,36 @@ typedef $$TestTableTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $TestTableTable,
-      TestTableData,
+      TestEntity,
       $$TestTableTableFilterComposer,
       $$TestTableTableOrderingComposer,
       $$TestTableTableAnnotationComposer,
       $$TestTableTableCreateCompanionBuilder,
       $$TestTableTableUpdateCompanionBuilder,
-      (
-        TestTableData,
-        BaseReferences<_$AppDatabase, $TestTableTable, TestTableData>,
-      ),
-      TestTableData,
+      (TestEntity, BaseReferences<_$AppDatabase, $TestTableTable, TestEntity>),
+      TestEntity,
       PrefetchHooks Function()
     >;
 typedef $$QuestionTableTableCreateCompanionBuilder =
     QuestionTableCompanion Function({
-      required String testCategory,
-      required String testName,
+      required String state,
+      required int testId,
+      required int id,
       Value<String?> image,
       required String question,
-      required List<String> answers,
+      required List<String> choices,
       required int correct,
       Value<int?> answer,
       Value<int> rowid,
     });
 typedef $$QuestionTableTableUpdateCompanionBuilder =
     QuestionTableCompanion Function({
-      Value<String> testCategory,
-      Value<String> testName,
+      Value<String> state,
+      Value<int> testId,
+      Value<int> id,
       Value<String?> image,
       Value<String> question,
-      Value<List<String>> answers,
+      Value<List<String>> choices,
       Value<int> correct,
       Value<int?> answer,
       Value<int> rowid,
@@ -925,13 +1044,18 @@ class $$QuestionTableTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<String> get testCategory => $composableBuilder(
-    column: $table.testCategory,
+  ColumnFilters<String> get state => $composableBuilder(
+    column: $table.state,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get testName => $composableBuilder(
-    column: $table.testName,
+  ColumnFilters<int> get testId => $composableBuilder(
+    column: $table.testId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -946,8 +1070,8 @@ class $$QuestionTableTableFilterComposer
   );
 
   ColumnWithTypeConverterFilters<List<String>, List<String>, String>
-  get answers => $composableBuilder(
-    column: $table.answers,
+  get choices => $composableBuilder(
+    column: $table.choices,
     builder: (column) => ColumnWithTypeConverterFilters(column),
   );
 
@@ -971,13 +1095,18 @@ class $$QuestionTableTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<String> get testCategory => $composableBuilder(
-    column: $table.testCategory,
+  ColumnOrderings<String> get state => $composableBuilder(
+    column: $table.state,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get testName => $composableBuilder(
-    column: $table.testName,
+  ColumnOrderings<int> get testId => $composableBuilder(
+    column: $table.testId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -991,8 +1120,8 @@ class $$QuestionTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get answers => $composableBuilder(
-    column: $table.answers,
+  ColumnOrderings<String> get choices => $composableBuilder(
+    column: $table.choices,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -1016,13 +1145,14 @@ class $$QuestionTableTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<String> get testCategory => $composableBuilder(
-    column: $table.testCategory,
-    builder: (column) => column,
-  );
+  GeneratedColumn<String> get state =>
+      $composableBuilder(column: $table.state, builder: (column) => column);
 
-  GeneratedColumn<String> get testName =>
-      $composableBuilder(column: $table.testName, builder: (column) => column);
+  GeneratedColumn<int> get testId =>
+      $composableBuilder(column: $table.testId, builder: (column) => column);
+
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
   GeneratedColumn<String> get image =>
       $composableBuilder(column: $table.image, builder: (column) => column);
@@ -1030,8 +1160,8 @@ class $$QuestionTableTableAnnotationComposer
   GeneratedColumn<String> get question =>
       $composableBuilder(column: $table.question, builder: (column) => column);
 
-  GeneratedColumnWithTypeConverter<List<String>, String> get answers =>
-      $composableBuilder(column: $table.answers, builder: (column) => column);
+  GeneratedColumnWithTypeConverter<List<String>, String> get choices =>
+      $composableBuilder(column: $table.choices, builder: (column) => column);
 
   GeneratedColumn<int> get correct =>
       $composableBuilder(column: $table.correct, builder: (column) => column);
@@ -1075,40 +1205,44 @@ class $$QuestionTableTableTableManager
               ),
           updateCompanionCallback:
               ({
-                Value<String> testCategory = const Value.absent(),
-                Value<String> testName = const Value.absent(),
+                Value<String> state = const Value.absent(),
+                Value<int> testId = const Value.absent(),
+                Value<int> id = const Value.absent(),
                 Value<String?> image = const Value.absent(),
                 Value<String> question = const Value.absent(),
-                Value<List<String>> answers = const Value.absent(),
+                Value<List<String>> choices = const Value.absent(),
                 Value<int> correct = const Value.absent(),
                 Value<int?> answer = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => QuestionTableCompanion(
-                testCategory: testCategory,
-                testName: testName,
+                state: state,
+                testId: testId,
+                id: id,
                 image: image,
                 question: question,
-                answers: answers,
+                choices: choices,
                 correct: correct,
                 answer: answer,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
-                required String testCategory,
-                required String testName,
+                required String state,
+                required int testId,
+                required int id,
                 Value<String?> image = const Value.absent(),
                 required String question,
-                required List<String> answers,
+                required List<String> choices,
                 required int correct,
                 Value<int?> answer = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => QuestionTableCompanion.insert(
-                testCategory: testCategory,
-                testName: testName,
+                state: state,
+                testId: testId,
+                id: id,
                 image: image,
                 question: question,
-                answers: answers,
+                choices: choices,
                 correct: correct,
                 answer: answer,
                 rowid: rowid,

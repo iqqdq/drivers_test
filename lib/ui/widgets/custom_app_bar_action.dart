@@ -1,13 +1,13 @@
+import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CustomAppBarAction extends StatelessWidget {
-  final String icon;
-  final VoidCallback onTap;
+  final String title;
+  final VoidCallback? onTap;
 
   const CustomAppBarAction({
     super.key,
-    required this.icon,
+    required this.title,
     required this.onTap,
   });
 
@@ -17,10 +17,18 @@ class CustomAppBarAction extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
+      child: Container(
+        color: Colors.transparent,
         width: height,
         height: height,
-        child: Center(child: SvgPicture.asset(icon)),
+        child: Center(
+          child: Text(
+            title,
+            style: AppTextStyles.textBody.copyWith(
+              color: onTap == null ? AppColors.blue50 : AppColors.blue100,
+            ),
+          ),
+        ),
       ),
     );
   }

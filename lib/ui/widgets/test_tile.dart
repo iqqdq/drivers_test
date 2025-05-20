@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class TestTile extends StatelessWidget {
   final int index;
   final String name;
-  final String? category;
   final int? accuracy;
   final int correct;
   final int total;
@@ -16,7 +15,6 @@ class TestTile extends StatelessWidget {
     super.key,
     required this.index,
     required this.name,
-    this.category,
     this.accuracy,
     required this.correct,
     required this.total,
@@ -65,16 +63,6 @@ class TestTile extends StatelessWidget {
                         const SizedBox(height: 4.0),
                         Row(
                           children: [
-                            /// CATEGORY
-                            Text(
-                              (category ?? '') +
-                                  (category == null ? '' : ' · '),
-                              style: AppTextStyles.caption.copyWith(
-                                color: AppColors.black70,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-
                             /// ACCURACY
                             accuracy == null
                                 ? SizedBox.shrink()

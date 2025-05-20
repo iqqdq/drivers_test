@@ -12,15 +12,18 @@ class CustomCloseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Row(
-        children: [
-          SvgPicture.asset(AppIcons.close),
-          const SizedBox(width: 4.0),
-          Text(
-            AppTitles.close,
-            style: AppTextStyles.textBody.copyWith(color: AppColors.blue100),
-          ),
-        ],
+      child: Container(
+        color: Colors.transparent,
+        child: Row(
+          children: [
+            SvgPicture.asset(AppIcons.close),
+            const SizedBox(width: 4.0),
+            Text(
+              AppTitles.close,
+              style: AppTextStyles.textBody.copyWith(color: AppColors.blue100),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -14,7 +14,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final icons = [
+  final _icons = [
     AppIcons.settingsNotifications,
     AppIcons.settingsState,
     AppIcons.settingsLicenseType,
@@ -23,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     AppIcons.settingsSupport,
     AppIcons.settingsShareApp,
   ];
-  final titles = [
+  final _titles = [
     AppTitles.pushNotification,
     AppTitles.selectYourState,
     AppTitles.selectLicenseType,
@@ -32,11 +32,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     AppTitles.support,
     AppTitles.shareApp,
   ];
-  late final SettingsChangeNotifier read;
+  late final SettingsChangeNotifier _read;
 
   @override
   void initState() {
-    read = context.read<SettingsChangeNotifier>();
+    _read = context.read<SettingsChangeNotifier>();
     super.initState();
   }
 
@@ -55,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                 ).copyWith(top: 16.0),
-                child: GetFullAccessCard(onTap: _onGetFullAccessPressed),
+                child: GetFullAccessCard(onTap: _onGetFullAccessTap),
               ),
 
               /// SETTING'S LIST VIEW
@@ -72,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.zero,
-                    itemCount: titles.length,
+                    itemCount: _titles.length,
                     separatorBuilder:
                         (context, index) => Divider(
                           color: AppColors.black10,
@@ -82,17 +82,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     itemBuilder: (context, index) {
                       return index == 0
                           ? SettingsSwitchTile(
-                            icon: icons[index],
-                            title: titles[index],
+                            icon: _icons[index],
+                            title: _titles[index],
                             value: watch.settings?.isPushEnabled ?? false,
                             onChanged: _onSwitchTap,
                           )
                           : SettingsTile(
-                            icon: icons[index],
-                            title: titles[index],
+                            icon: _icons[index],
+                            title: _titles[index],
                             value:
                                 index == 1
-                                    ? watch.settings?.state ?? ''
+                                    ? watch.settings?.state?.toState() ?? ''
                                     : index == 2
                                     ? watch.settings?.license ?? ''
                                     : '',
@@ -112,23 +112,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetFullAccessPressed() {
+  void _onGetFullAccessTap() {
     // TODO SHOW PAYWALL
   }
 
   void _onSwitchTap(bool value) async =>
-      await read.togglePushNotifications(value).then((isEnabled) {
+      await _read.togglePushNotifications(value).then((isEnabled) {
         if (!isEnabled && mounted) PushNotificationsAlert.show(context);
       });
 
   void _onSettingTap(int index) {
     if (index == 1 || index == 2) {
-      read.setSettingsMode(
+      _read.setSettingsMode(
         index == 1 ? SettingsMode.state : SettingsMode.license,
       );
-      Navigator.pushNamed(context, AppRoutes.settingsSelection);
+      router.push(AppRoutes.settingsSelection);
     } else {
-      read.openSettings(index);
+      _read.openSettings(index);
     }
   }
 }

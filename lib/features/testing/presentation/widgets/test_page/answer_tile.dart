@@ -62,12 +62,13 @@ class AnswerTile extends StatelessWidget {
 
               const SizedBox(width: 12.0),
 
+              /// TEXT
               Expanded(
-                child:
-                /// TEXT
-                Text(
+                child: Text(
                   text,
-                  style: AppTextStyles.headlineHeadline.copyWith(color: color),
+                  style: AppTextStyles.subheadlineRegular.copyWith(
+                    color: color,
+                  ),
                 ),
               ),
             ],

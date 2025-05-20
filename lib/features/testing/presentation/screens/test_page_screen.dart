@@ -14,42 +14,12 @@ class TestPageScreen extends StatefulWidget {
 
 class _TestPageScreenState extends State<TestPageScreen> {
   final PageController _pageController = PageController();
-  late final TestPageChangeNotifier read;
+  late final TestPageChangeNotifier _read;
 
   @override
   void initState() {
-    read = context.read<TestPageChangeNotifier>();
+    _read = context.read<TestPageChangeNotifier>();
     super.initState();
-
-    // TODO DELETE
-    read.setTest(
-      TestEntity(
-        category: 'null',
-        name: 'null',
-        questions: [
-          QuestionEntity(
-            question: 'Question 1',
-            answers: ['1', '2', '3'],
-            correct: 0,
-          ),
-          QuestionEntity(
-            question: 'Question 2',
-            answers: ['1', '2', '3'],
-            correct: 1,
-          ),
-          QuestionEntity(
-            question: 'Question 3',
-            answers: ['1', '2', '3'],
-            correct: 2,
-          ),
-          QuestionEntity(
-            question: 'Question 4',
-            answers: ['1', '2', '3'],
-            correct: 3,
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -64,15 +34,15 @@ class _TestPageScreenState extends State<TestPageScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: watch.test?.name,
-        leading: CustomCloseButton(onTap: () => Navigator.pop(context)),
+        title: watch.test.name,
+        leading: CustomCloseButton(onTap: () => router.pop()),
         actions:
-            watch.test == null
+            watch.questions == null
                 ? null
                 : [TimerAppBarAction(duration: watch.duration)],
       ),
       body:
-          watch.test == null
+          watch.questions == null
               /// LOADING INDICATOR
               ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -93,12 +63,14 @@ class _TestPageScreenState extends State<TestPageScreen> {
                   /// NUMBER LIST VIEW
                   SizedBox(
                     height: 46.0,
-                    child: ListView.builder(
+                    child: ListView.separated(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       scrollDirection: Axis.horizontal,
-                      itemCount: watch.test?.questions.length,
+                      itemCount: watch.test.amount,
+                      separatorBuilder:
+                          (context, index) => SizedBox(width: 4.0),
                       itemBuilder: (context, index) {
-                        final question = watch.test!.questions[index];
+                        final question = watch.questions![index];
 
                         return NumberTile(
                           number: '${index + 1}',
@@ -118,15 +90,15 @@ class _TestPageScreenState extends State<TestPageScreen> {
                   Expanded(
                     child: PageView.builder(
                       controller: _pageController,
-                      onPageChanged: (index) => read.selectQuestion(index),
+                      onPageChanged: (index) => _read.selectQuestion(index),
                       itemBuilder: (context, index) {
-                        final question = watch.test!.questions[index];
+                        final question = watch.questions![index];
 
                         return QuestionView(
                           question: question,
                           ingoreGesture: watch.isTestCompleted,
                           onTap:
-                              (index) => read.setQuestion(
+                              (index) => _read.setQuestion(
                                 question.copyWith(answer: index),
                               ),
                         );
@@ -153,17 +125,17 @@ class _TestPageScreenState extends State<TestPageScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onNumberTap(int index) {
-    read.selectQuestion(index);
-    _pageController.animateToPage(
+  void _onNumberTap(int index) async {
+    await _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+    _read.selectQuestion(index);
   }
 
   void _onCompleteTap() async {
-    await read.saveTest();
-    Navigator.pushReplacementNamed(context, AppRoutes.testResult);
+    await _read.saveTest();
+    router.replace('test_result');
   }
 }

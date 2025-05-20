@@ -1,11 +1,16 @@
 import 'dart:async';
 
+import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/testing/domain/domain.dart';
 import 'package:flutter/material.dart';
 
 enum TestMode { practice, exam }
 
 class TestPageChangeNotifier with ChangeNotifier {
+  final TestEntity test;
+
+  TestPageChangeNotifier({required this.test});
+
   late Timer _timer;
 
   late Duration _duration;
@@ -14,16 +19,16 @@ class TestPageChangeNotifier with ChangeNotifier {
   TestMode _testMode = TestMode.practice;
   TestMode get testMode => _testMode;
 
-  TestEntity? _test;
-  TestEntity? get test => _test;
+  List<QuestionEntity>? _questions;
+  List<QuestionEntity>? get questions => _questions;
 
   bool get isTimeUp => !_timer.isActive;
-  bool get isTestCompleted =>
-      _test == null
-          ? false
-          : _test!.questions.any((e) => e.answer == null)
-          ? false
-          : true;
+  bool get isTestCompleted => false;
+  // _test == null
+  //     ? false
+  //     : _test!.am.any((e) => e.answer == null)
+  //     ? false
+  //     : true; TODO
 
   int _index = 0;
   int get index => _index;
@@ -34,7 +39,16 @@ class TestPageChangeNotifier with ChangeNotifier {
     super.dispose();
   }
 
-  void setTestMode(TestMode testMode) => _testMode = testMode;
+  // void setTestMode(TestMode testMode) => _testMode = testMode; // TODO DELETE?
+
+  void getQuestions() async {
+    _questions = await sl.get<TestingRepository>().getQuestions(
+      state: test.state,
+      testId: test.id,
+    );
+
+    _startTimer();
+  }
 
   void _startTimer() {
     _duration =
@@ -55,17 +69,11 @@ class TestPageChangeNotifier with ChangeNotifier {
     });
   }
 
-  void setTest(TestEntity test) {
-    Future.delayed(Duration(seconds: 1), () => _test = test);
-    _startTimer();
-  }
-
   void setQuestion(QuestionEntity question) {
-    final index = _test!.questions.indexWhere(
+    final index = _questions!.indexWhere(
       (e) => e.question == question.question,
     );
-
-    _test!.questions[index] = question;
+    _questions![index] = question;
 
     if (isTestCompleted) _timer.cancel();
     notifyListeners();

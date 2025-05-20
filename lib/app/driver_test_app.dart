@@ -1,8 +1,7 @@
 import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/features/testing/presentation/providers/test_list_change_notifier.dart';
-import 'package:drivers_test/ui/theme/app_theme.dart';
+import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,15 +26,14 @@ class _AppState extends State<DriverTestApp> {
         ChangeNotifierProvider<SettingsChangeNotifier>(
           create: (_) => SettingsChangeNotifier()..getSettings(),
         ),
+        ChangeNotifierProvider<ReminderssChangeNotifier>(
+          create: (_) => ReminderssChangeNotifier(),
+        ),
         ChangeNotifierProvider<TestListChangeNotifier>(
-          create: (_) => TestListChangeNotifier()..getTests(category: null),
+          create: (_) => TestListChangeNotifier(),
         ),
       ],
-      child: MaterialApp(
-        theme: AppTheme.appTheme,
-        initialRoute: AppNavigation.initialRoute,
-        routes: AppNavigation.routes,
-      ),
+      child: MaterialApp.router(theme: AppTheme.appTheme, routerConfig: router),
     );
   }
 }

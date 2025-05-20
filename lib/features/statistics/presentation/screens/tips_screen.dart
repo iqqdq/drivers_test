@@ -30,7 +30,7 @@ class TipsScreen extends StatelessWidget {
       body: ListView.separated(
         padding: EdgeInsets.all(
           16.0,
-        ).copyWith(bottom: MediaQuery.of(context).padding.bottom + 16.0),
+        ).copyWith(bottom: getBottomPadding(context) + 16.0),
         itemCount: titles.length,
         separatorBuilder: (context, index) => const SizedBox(height: 24.0),
         itemBuilder: (context, index) {

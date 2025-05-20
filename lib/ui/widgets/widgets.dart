@@ -1,5 +1,6 @@
 export 'custom_app_bar.dart';
 export 'custom_app_bar_action.dart';
+export 'custom_app_bar_icon_action.dart';
 export 'custom_back_button.dart';
 export 'custom_close_button.dart';
 export 'primary_button.dart';
@@ -8,3 +9,5 @@ export 'test_tile.dart';
 export 'loading_indicator.dart';
 export 'get_premium_card.dart';
 export 'get_full_access_card.dart';
+export 'custom_segmented_control.dart';
+export 'custom_checkbox.dart';

@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  go_router: ^15.1.2
+  cached_network_image: ^3.4.1
   flutter_svg: 2.1.0
   provider: ^6.1.5
   share_plus: ^11.0.0
@@ -42,6 +44,7 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/icons/
+    - assets/json/
 
   fonts:
     - family: Urbanist

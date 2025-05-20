@@ -1,29 +1,6 @@
 abstract class AppTitles {
-  // Button's
-  static const back = 'Back';
-  static const close = 'Close';
-  static const continuee = 'Continue';
-  static const complete = 'Complete';
-  static const cancel = 'Cancel';
-
-  // Common
-  static const passingScore = 'Passing score';
-  static const examReadiness = 'Exam readiness';
-  static const correctAnswers = 'Correct answers';
-  static const getPremium = 'Get premium';
-  static const getUnlimitedNumberOfTests =
-      'Get unlimited number of tests, exams and stats';
-  static const thereAreOnly = 'There are only';
-  static const practicalTestsAvailableNow = 'practical tests available now';
-  static const unlockAccessToTheFullStatistics =
-      'Unlock access to the full statistics of your practice';
-  static const trackYourPassedTests =
-      'Track your passed tests and correct answers';
-  static const getFullAccessToTheApp = 'Get full access to the app';
-  static const unlimitedNumberOfTests = 'Unlimited number of tests';
-  static const fullStatistics = 'Full statistics';
-
-  // Home
+  // MARK: -
+  // MARK: - HOME
   static const practicalTests = 'Practical tests';
   static const testPassed = 'tests passed';
   static const exam = 'Exam';
@@ -31,11 +8,13 @@ abstract class AppTitles {
   static const correctAnswersToPass = 'correct answers to pass';
   static const minutesToCompleteTest = '30 minutes to complete test';
 
-  // Test list
+  // MARK: -
+  // MARK: - TEST LIST
   static const stateTestCatalog = 'state\ntest catalog';
   static const testAccuracy = 'Test accuracy';
 
-  // Test result
+  // MARK: -
+  // MARK: - TEST RESULT
   static const theTestWasSuccessfullyPassed =
       'The test was successfully\npassed!';
   static const theTestWasNotPassed = 'The test was not passed!';
@@ -49,7 +28,8 @@ abstract class AppTitles {
   static const reviewAnswers = 'Review answers';
   static const takeTheTestAgain = 'Take the test again';
 
-  // Statistics
+  // MARK: -
+  // MARK: - STATISCTIC'S
   static const statistics = 'Statistics';
   static const passedPracticalTests = 'Passed practical tests';
   static const theHistoryOfPracticalTests =
@@ -61,7 +41,8 @@ abstract class AppTitles {
   static const passed = 'Passed';
   static const failed = 'Failed';
 
-  // Tips
+  // MARK: -
+  // MARK: - TIP'S
   static const tipsForPractice = 'Tips for practice';
 
   static const takePracticeTests = 'Take practice tests';
@@ -89,7 +70,22 @@ abstract class AppTitles {
   static const pullingAnAllNighter =
       'Pulling an all-nighter before your written test can do more harm than good. Getting a full night’s sleep helps your brain retain what it learned that day.';
 
-  // Settings
+  // MARK: -
+  // MARK: - REMINDER'S
+  static const reminders = 'Reminders';
+  static const practiceReminder = 'Practice reminder';
+  static const examReminder = 'Exam reminder';
+  static const newReminder = 'New reminder';
+  static const setDaysAndTimeForPractice = 'Set the days and time for practice';
+  static const setTheDays = 'Set the days';
+  static const setTheDate = 'Set the date';
+  static const setTheTime = 'Set the time';
+  static const remindBeforeDays = 'Remind before, days';
+  static const everyday = 'Every day';
+  static const dayOfTheWeek = 'Day of the week';
+
+  // MARK: -
+  // MARK: - SETTING'S
   static const settings = 'Settings';
   static const pushNotification = 'Push Notification';
   static const selectYourState = 'Select your state';
@@ -103,7 +99,37 @@ abstract class AppTitles {
   static const settingLicenseDescription =
       'Select the type of vehicle you want a driver’s license\nfor';
 
-  // Alert's
+  // MARK: -
+  // MARK: - BUTTON'S
+  static const back = 'Back';
+  static const close = 'Close';
+  static const continuee = 'Continue';
+  static const complete = 'Complete';
+  static const cancel = 'Cancel';
+  static const apply = 'Apply';
+  static const reset = 'Reset';
+
+  // MARK: -
+  // MARK: - COMMON
+  static const practice = 'Practice';
+  static const passingScore = 'Passing score';
+  static const examReadiness = 'Exam readiness';
+  static const correctAnswers = 'Correct answers';
+  static const getPremium = 'Get premium';
+  static const getUnlimitedNumberOfTests =
+      'Get unlimited number of tests, exams and stats';
+  static const thereAreOnly = 'There are only';
+  static const practicalTestsAvailableNow = 'practical tests available now';
+  static const unlockAccessToTheFullStatistics =
+      'Unlock access to the full statistics of your practice';
+  static const trackYourPassedTests =
+      'Track your passed tests and correct answers';
+  static const getFullAccessToTheApp = 'Get full access to the app';
+  static const unlimitedNumberOfTests = 'Unlimited number of tests';
+  static const fullStatistics = 'Full statistics';
+
+  // MARK: -
+  // MARK: - ALERT'S
   static const pleaseWaitForTestToLoad = 'Please wait\nfor your test to load';
   static const pleaseWaitForTestsToLoad = 'Please wait\nfor your tests to load';
   static const pushNotificationsDisabled = 'Push Notifications Disabled';

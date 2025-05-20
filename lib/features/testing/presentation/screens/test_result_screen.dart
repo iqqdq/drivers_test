@@ -1,4 +1,4 @@
-import 'package:drivers_test/app/routes.dart';
+import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
 import 'package:drivers_test/ui/ui.dart';
@@ -18,7 +18,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
     final padding = EdgeInsets.all(16.0);
 
     return Scaffold(
-      appBar: CustomAppBar(leading: CustomCloseButton(onTap: _onClosePressed)),
+      appBar: CustomAppBar(leading: CustomCloseButton(onTap: _onCloseTap)),
       body: Column(
         children: [
           Expanded(
@@ -94,23 +94,21 @@ class _TestResultScreenState extends State<TestResultScreen> {
             ),
           ),
           Container(
-            padding: padding.copyWith(
-              bottom: MediaQuery.of(context).padding.bottom + 12.0,
-            ),
+            padding: padding.copyWith(bottom: getBottomPadding(context) + 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 /// REVIEW ANSWER'S BUTTON
                 PrimaryButton(
                   title: AppTitles.reviewAnswers,
-                  onTap: _onReviewAnswersPressed,
+                  onTap: _onReviewAnswersTap,
                 ),
                 const SizedBox(height: 8.0),
 
                 /// TAKE THE TEST AGAIN BUTTON
                 TransparentButton(
                   title: AppTitles.takeTheTestAgain,
-                  onTap: _onTakeTheTestAgainPressed,
+                  onTap: _onTakeTheTestAgainTap,
                 ),
               ],
             ),
@@ -123,10 +121,9 @@ class _TestResultScreenState extends State<TestResultScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onClosePressed() =>
-      Navigator.pushReplacementNamed(context, AppRoutes.testList);
+  void _onCloseTap() => router.replace('/test_catalog');
 
-  void _onReviewAnswersPressed() => Navigator.pop(context);
+  void _onReviewAnswersTap() => router.pop();
 
-  void _onTakeTheTestAgainPressed() => {};
+  void _onTakeTheTestAgainTap() => {};
 }

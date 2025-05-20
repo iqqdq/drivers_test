@@ -1,3 +1,4 @@
+import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,11 @@ class SettingsSelectionScreen extends StatefulWidget {
 }
 
 class _SettingsSelectionScreenState extends State<SettingsSelectionScreen> {
-  late final SettingsChangeNotifier read;
+  late final SettingsChangeNotifier _read;
 
   @override
   void initState() {
-    read = context.read<SettingsChangeNotifier>();
+    _read = context.read<SettingsChangeNotifier>();
     super.initState();
   }
 
@@ -72,7 +73,7 @@ class _SettingsSelectionScreenState extends State<SettingsSelectionScreen> {
                         Divider(color: AppColors.black10, height: 1.0),
                 itemBuilder: (context, index) {
                   return SettingsSelectionTile(
-                    title: items[index],
+                    title: items[index].toState(),
                     isSelected:
                         watch.settingsMode == SettingsMode.state
                             ? watch.settings?.state == items[index]
@@ -114,12 +115,12 @@ class _SettingsSelectionScreenState extends State<SettingsSelectionScreen> {
   // MARK: -
   // MARK: -
 
-  void _onStateTap(String state) => read.selectState(state);
+  void _onStateTap(String state) => _read.selectState(state);
 
-  void _onLicenseTap(String license) => read.selectLicense(license);
+  void _onLicenseTap(String license) => _read.selectLicense(license);
 
   void _onContinueTap() async {
-    await read.saveSettings();
-    if (mounted) Navigator.pop(context);
+    await _read.saveSettings();
+    if (mounted) router.pop();
   }
 }

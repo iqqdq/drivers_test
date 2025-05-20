@@ -1,4 +1,4 @@
-import 'package:drivers_test/app/routes.dart';
+import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -43,13 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
         false; // TODO CHECK IS ONBOARDING COMPLETED
 
     if (mounted) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        isOnboardingCompleted
-            ? AppRoutes.home
-            : AppRoutes.home, // TODO CHANGE ROUTE TO ONBOARDING
-        (Route<dynamic> route) => false,
-      );
+      router.go(isOnboardingCompleted ? '/home' : '/home');
     }
   }
 }

@@ -1,0 +1,932 @@
+{
+    "id": 2,
+    "state": "arizona",
+    "total": 30,
+    "min": 24,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.07-1.jpg",
+            "question": "Why should you avoid using your high-beam headlights when driving in fog?",
+            "choices": [
+                "Fog will reflect high beams back into your eyes",
+                "You cannot see approaching vehicles in time and might blind them",
+                "Approaching vehicles might not see you"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.18E-1.jpg",
+            "question": "When something obstructs your view, the law prohibits passing another vehicle:",
+            "choices": [
+                "Only within city limits",
+                "When there are two or more lanes",
+                "Within 100 feet of a tunnel"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.15B-1.jpg",
+            "question": "When should you stop on an interstate?",
+            "choices": [
+                "When signaled to stop by a police officer",
+                "When your cell phone rings",
+                "When you feel tired"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.10-1.jpg",
+            "question": "When entering a freeway:",
+            "choices": [
+                "Drive faster than the freeway traffic to find a gap",
+                "Always turn your head to look quickly to the side before changing lanes (merging)",
+                "Merge onto the freeway as quickly as possible, vehicles on the freeway must always yield the right-of-way"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.10B-1.gif",
+            "question": "When a traffic signal is showing a flashing red light, you must:",
+            "choices": [
+                "Slow down and proceed with caution",
+                "Slow down and stop, unless the way is clear",
+                "Stop completely, only proceed when safe and after observing right-of-way rules"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2021/01/US.22.22B.jpg",
+            "question": "Most accidents involving a car and a motorcycle are the result of:",
+            "choices": [
+                "The car driving too slowly",
+                "The car passing the motorcycle in the same lane",
+                "The car turning in front of the motorcycle."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.15-1.jpg",
+            "question": "This warning sign means:",
+            "choices": [
+                "Vehicles on this road travels in both directions",
+                "The one-way road widens into two lanes ahead",
+                "There is a divided highway ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.37.02-1.jpg",
+            "question": "What color is the flag a flagger in a construction zone would use to direct traffic?",
+            "choices": [
+                "Red",
+                "Yellow",
+                "Blue"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.10-1.jpg",
+            "question": "Always allow extra room in front of your vehicle when following:",
+            "choices": [
+                "A large truck",
+                "A police car",
+                "A passenger car"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.07-1.jpg",
+            "question": "If you are convicted of a first violation for knowingly purchasing for or providing spirituous liquor to a minor, your driving privilege will:",
+            "choices": [
+                "Be suspended up to 30 days",
+                "Be revoked",
+                "Not be affected"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.15A-1.jpg",
+            "question": "When you approach a roundabout, you should:",
+            "choices": [
+                "Keep your speed and enter a gap in traffic",
+                "Yield to pedestrians crossing the roadway",
+                "Activate turn signals when you enter the roundabout"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.13-1.jpg",
+            "question": "You should use extra caution when approaching a pedestrian using a white cane because:",
+            "choices": [
+                "He or she is visually impaired",
+                "He or she has a walking problem",
+                "He or she has impaired hearing"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.02F-1.jpg",
+            "question": "What should you check before you start driving?",
+            "choices": [
+                "That your rear-view and side mirrors are properly adjusted",
+                "That your seat is high enough for you to clearly see the road",
+                "Both A. and B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.24D-1.jpg",
+            "question": "Which lane should your vehicle be in after turning right into a two-lane, one-way street?",
+            "choices": [
+                "Lane A, closest to the left curb",
+                "Lane B, closest to the right-hand curb",
+                "Either lane, it doesn't matter"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.03-1.jpg",
+            "question": "If an advisory speed sign isn't posted before a curve:",
+            "choices": [
+                "It is always safe to keep the current speed",
+                "Slow down when you have entered the curve.",
+                "You must judge how sharp the curve is and change your speed accordingly"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.13-1.jpg",
+            "question": "Which of these vehicles must always stop at railroad crossings:",
+            "choices": [
+                "A truck with hazardous load",
+                "A passenger car with young children",
+                "A motorcycle"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.35-1.jpg",
+            "question": "What is a no-zone in terms of driving?",
+            "choices": [
+                "A no parking area",
+                "An area designated for pedestrians",
+                "Blind spots around large vehicles"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.15E-1.jpg",
+            "question": "If you are involved in a collision, you must show your driver's license to:",
+            "choices": [
+                "Any person involved in the collision",
+                "Security guards",
+                "All witnesses who ask for it"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.04-1.jpg",
+            "question": "This red and white sign means:",
+            "choices": [
+                "The road is closed to traffic in your direction",
+                "Do not enter unless it is safe to do so",
+                "You must stop ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.18-1.jpg",
+            "question": "You have given consent to take a test for determining the alcoholic level in your blood:",
+            "choices": [
+                "Whenever you drive a motor vehicle in the state",
+                "Only if you have been drinking alcohol",
+                "Only if you have been involved in an accident"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.17-1.jpg",
+            "question": "It is illegal to park if a crosswalk is within:",
+            "choices": [
+                "30 feet",
+                "20 feet",
+                "10 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.17-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Go left or straight ahead only",
+                "Side/Cross Road",
+                "Lane reduction ahead"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.25-1.jpg",
+            "question": "A school bus stops to drop off passengers in the far right lane on a four-lane street. The street does not have a barrier between lanes. Which traffic must stop?",
+            "choices": [
+                "Lanes going in the opposite direction of the bus",
+                "Lanes going in the same direction as the school bus",
+                "All lanes of traffic"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.14B-1.jpg",
+            "question": "A center lane with a solid yellow line and a broken yellow line on both sides:",
+            "choices": [
+                "Is used for making both right and left turns",
+                "Is used for making left turns",
+                "Is used for emergencies"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.10-1.jpg",
+            "question": "Which road signs have a black or white background?",
+            "choices": [
+                "For regulation signs",
+                "For stop or prohibition",
+                "For public recreation and scenic guidance"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.04-1.jpg",
+            "question": "What is the meaning of this sign?",
+            "choices": [
+                "There is a traffic signal ahead",
+                "The traffic signal ahead will show a red light",
+                "The traffic signal ahead is broken"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 27,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.26-1.jpg",
+            "question": "If you are convicted of driving in any part of a gore area, it will result in the following points on your driving record:",
+            "choices": [
+                "Two",
+                "Three",
+                "Four"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.05L-1.jpg",
+            "question": "The three-to-six-second rule helps a driver know:",
+            "choices": [
+                "How closely to follow another vehicle",
+                "How much time it takes to pass",
+                "When to turn on headlights"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.06D.jpg",
+            "question": "This hand signal means:",
+            "choices": [
+                "Left turn",
+                "Stopping or slowing down",
+                "Right turn"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.13-1.jpg",
+            "question": "A driver must wear his seat belt:",
+            "choices": [
+                "Even if the vehicle is equipped with airbags",
+                "Unless driving in inclement weather.",
+                "Only when driving 12 mph or faster"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.50B-1.jpg",
+            "question": "An applicant for a graduated license must have completed a driver education program or completed how many hours of supervised driving?",
+            "choices": [
+                "At least 50 hours",
+                "At least 30 hours",
+                "At least 12 hours"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.02-1.jpg",
+            "question": "When approaching an intersection where the traffic light changes from green to yellow, you should:",
+            "choices": [
+                "Keep speed and continue through the intersection",
+                "Speed up and enter the intersection before the red light comes on",
+                "Stop, unless you are too close to the intersection to stop safely"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.09B-1.jpg",
+            "question": "You approach a stopped school bus with flashing red lights on this roadway. You must:",
+            "choices": [
+                "Stop when approaching a bus from either the front or the rear",
+                "Stop only when approaching a bus from the front",
+                "Stop only when approaching a bus from the rear"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00B-1.jpg",
+            "question": "You may change lanes when it is safe, and the line dividing the two lanes is:",
+            "choices": [
+                "A broken white line",
+                "A double solid white line",
+                "Neither A. nor B."
+            ],
+            "correct": 0
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.09.21B-1.jpg",
+            "question": "What do these signs mean?",
+            "choices": [
+                "The speed shown is not in effect during the hours indicated",
+                "You must stop during the hours indicated",
+                "You may not drive faster than 15 mph during the hours indicated"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.23-1.jpg",
+            "question": "Using an unpaved shoulder to pass another vehicle on the right is:",
+            "choices": [
+                "Allowed if the other vehicle is turning left",
+                "Never allowed",
+                "Allowed if the other vehicle is occupying more than one lane"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.18-1.jpg",
+            "question": "Passing another vehicle is prohibited:",
+            "choices": [
+                "Within 100 feet of a railroad crossing",
+                "On roads without center lines",
+                "On one-way streets"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.10-1.jpg",
+            "question": "This yellow sign means:",
+            "choices": [
+                "Start of divided highway ahead",
+                "One-way traffic ahead",
+                "Highway tunnel ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.35-1.jpg",
+            "question": "Emotions affect your driving. If overly worried, excited, afraid, or angry, it is a good idea to:",
+            "choices": [
+                "Drive 5-10 mph slower than the speed limit",
+                "Take drugs to calm you down",
+                "Give yourself time to control these emotions before driving"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.02-1.jpg",
+            "question": "Your car must have a horn that others can hear from a distance of:",
+            "choices": [
+                "A horn is not a required equipment",
+                "At least 200 feet",
+                "At least 100 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.32.13-1.jpg",
+            "question": "When may you drive faster than the maximum speed limit?",
+            "choices": [
+                "When driving in the right lane",
+                "You may never drive faster than a posted maximum speed limit",
+                "When passing slower vehicles on a freeway"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.13-1.jpg",
+            "question": "When you want to exit a freeway, you should:",
+            "choices": [
+                "Plan ahead and give yourself plenty of time",
+                "Signal your intention of exiting approximately one or two seconds before exiting",
+                "Always keep your speed until you left the freeway"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.08D-1.jpg",
+            "question": "When you see this sign, how many curves should you expect close ahead?",
+            "choices": [
+                "Two",
+                "Just one",
+                "Three or more"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.03-1.jpg",
+            "question": "If you have a tire blowout while driving, you should:",
+            "choices": [
+                "Immediately step hard on the brakes",
+                "Immediately steer off the road",
+                "Steer straight ahead until your speed is safe for driving off the pavement"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.02-1.jpg",
+            "question": "Drinking just one drink of alcohol:",
+            "choices": [
+                "Helps you stay awake and alert",
+                "Makes you a more careful driver",
+                "Can affect your judgment and ability to drive"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.29A-1.jpg",
+            "question": "To be able to react in emergencies and avoid collisions, you should keep a cushion of space:",
+            "choices": [
+                "In front of your vehicle",
+                "Behind your vehicle",
+                "Both A. and B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.16-1.jpg",
+            "question": "At a fire hydrant, parking is not allowed:",
+            "choices": [
+                "Within 20 feet",
+                "Within 15 feet",
+                "Within 30 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.27A-1.jpg",
+            "question": "Where should children ages 12 and younger be placed in vehicles equipped with airbags?",
+            "choices": [
+                "In the front seat",
+                "In either front seat or back seat, it doesn't matter",
+                "In the back seat"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.06-1.jpg",
+            "question": "If a visible railroad signal tells you that a train is approaching a crossing:",
+            "choices": [
+                "Proceed through the crossing before the train is within fifteen hundred (1,500) feet of the crossing",
+                "Stop within fifty (50) feet but not less than fifteen (15) feet from the nearest rail",
+                "Stop within fifteen (15) feet from the nearest rail"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 50,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.01-1.jpg",
+            "question": "When making a left turn, you should:",
+            "choices": [
+                "Look in all directions before starting to turn",
+                "Keep close to the right pavement marking",
+                "Keep your wheels pointed to the left before starting to turn"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 51,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.16-1.jpg",
+            "question": "Bicyclists must always ride:",
+            "choices": [
+                "In the right-hand lane",
+                "On the shoulder",
+                "In the same direction as the flow of traffic"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 52,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.51-1.jpg",
+            "question": "When are you allowed to drink alcohol while driving?",
+            "choices": [
+                "When you are 21 years or older",
+                "When you drive outside city limits",
+                "In no situation"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 53,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.02C-1.jpg",
+            "question": "If you are stopped by a police officer and cited for a traffic law violation, you should avoid the following:",
+            "choices": [
+                "Accepting the ticket.",
+                "Making a note of all relevant facts",
+                "Arguing your case with the officer"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 54,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.27.03-1.jpg",
+            "question": "The minimum amount your insurance must cover for property damage is:",
+            "choices": [
+                "$25,000",
+                "$20,000",
+                "$15,000"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 55,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.07-1.jpg",
+            "question": "When entering or crossing a road from a driveway:",
+            "choices": [
+                "You can pass a sidewalk without stopping",
+                "You must yield the right-of-way to all approaching vehicles, but not to pedestrians",
+                "You must yield the right-of-way to all vehicles and pedestrians"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 56,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.08.00-1.jpg",
+            "question": "Road signs with the orange background are used:",
+            "choices": [
+                "In no passing zones",
+                "In school zones",
+                "In work zones"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 57,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.01-1.jpg",
+            "question": "How do you check your blind spots while driving?",
+            "choices": [
+                "By adjusting rear-view mirrors",
+                "By turning your head and looking over your shoulder",
+                "By adjusting side mirrors"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 58,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.03P-1.jpg",
+            "question": "When should you drive with your parking lights turned on?",
+            "choices": [
+                "When driving in fog",
+                "When it rains hard",
+                "Neither A. nor B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 59,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.13-1.jpg",
+            "question": "Night driving is more dangerous than daytime driving because:",
+            "choices": [
+                "Drivers tend to be more alert at night",
+                "It is harder to see at night",
+                "There is less traffic at night"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 60,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01-1.jpg",
+            "question": "What is helpful advice to fight off highway hypnosis and avoid getting tired on a long trip?",
+            "choices": [
+                "Take regular rest stops",
+                "Turn off radio",
+                "Try to think about something else than driving"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 61,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.38-1.jpg",
+            "question": "On cold, wet days, which of the following roadways is most likely to hide spots of ice?",
+            "choices": [
+                "Roadways on bridges and overpasses",
+                "Roadways paved with asphalt",
+                "Roadways on hilltops"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 62,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.AZ_.01-1.jpg",
+            "question": "To get an Arizona operator permit (Class D), you must be at least:",
+            "choices": [
+                "15 years and 6 months of age",
+                "16 years of age",
+                "18 years of age"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 63,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.06-1.jpg",
+            "question": "The three-sided pennant shape is used for which road signs?",
+            "choices": [
+                "Yield signs",
+                "Signs marking no-passing zones",
+                "Stop signs"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 64,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.09-1.jpg",
+            "question": "When approaching an uncontrolled T-intersection from a street ending at the intersection, you should:",
+            "choices": [
+                "Slow down and be prepared to stop",
+                "Yield to vehicles coming from any direction",
+                "Both A. and B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 65,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.12-1.jpg",
+            "question": "What is true about using high-beam headlights?",
+            "choices": [
+                "Use high beams whenever you are driving in residential areas",
+                "High beams are only recommended when it is raining or snowing",
+                "High beams should NOT be used when driving in fog"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 66,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.29-1.jpg",
+            "question": "Pavement markings with a white diamond mean:",
+            "choices": [
+                "HOV lane",
+                "Railroad crossing ahead",
+                "Emergency lane"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 67,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00-1.jpg",
+            "question": "Which pavement marking is on the right-hand side of a roadway?",
+            "choices": [
+                "Solid white line",
+                "Broken white line",
+                "Solid yellow line"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 68,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.10-1.jpg",
+            "question": "You can park your car:",
+            "choices": [
+                "30 feet from a railroad crossing",
+                "On an unmarked crosswalk",
+                "On a hill"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 69,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.01-1.jpg",
+            "question": "The following are true about large trucks except:",
+            "choices": [
+                "They need less room to maneuver",
+                "They have bigger blind spots than most cars",
+                "They have longer stopping distances than most cars"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 70,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.01-1.jpg",
+            "question": "When you approach a traffic signal with a steady red light:",
+            "choices": [
+                "You must always stop completely",
+                "After stopping, you may turn right, unless prohibited by signs",
+                "Both A. and B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 71,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.12-1.jpg",
+            "question": "After a minor accident, the most important thing you can do to reduce the chances of secondary crashes is:",
+            "choices": [
+                "Turn on your high beam headlights",
+                "Stand in the roadway and wave your arms",
+                "Move your vehicle off the roadway"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 72,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.09-1.jpg",
+            "question": "How can you warn drivers behind you if you see an accident ahead?",
+            "choices": [
+                "By slowing down and stopping",
+                "By driving in the middle of two lanes",
+                "By turning on your emergency flashers"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 73,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.01E-1.jpg",
+            "question": "Just when it starts to rain it may be a good idea to:",
+            "choices": [
+                "Decrease the distance between your vehicle and the vehicle ahead",
+                "Drive closer to the center of the road",
+                "Wait a short time before using your wipers"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 74,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.11B-1.jpg",
+            "question": "A rule of thumb is to leave a three-second gap between your vehicle and the one in front when road conditions are:",
+            "choices": [
+                "Dry",
+                "Wet",
+                "Icy"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 75,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.13-1.jpg",
+            "question": "You see this sign on a vehicle ahead. It means:",
+            "choices": [
+                "The vehicle is moving slower than normal traffic",
+                "The vehicle is carrying a load that is potentially dangerous",
+                "The vehicle is wider than normal"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 76,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.13B-1.jpg",
+            "question": "Driving at night is more hazardous than driving in the daytime:",
+            "choices": [
+                "Only when there are other vehicles on the road",
+                "Unless you drive with headlights on high beam",
+                "Because it is harder to see at night"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 77,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.20-1.jpg",
+            "question": "Going around a lowered gate at a railroad crossing is:",
+            "choices": [
+                "Permitted, if no red light is flashing",
+                "Permitted, if no gongs are sounding",
+                "Against the law"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 78,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.15-1.jpg",
+            "question": "When can you use a cell phone without a hands-free device while driving?",
+            "choices": [
+                "When temporarily stopped at a red light",
+                "When making a call for emergency assistance",
+                "When checking text messages or e-mails"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 79,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.02-1.jpg",
+            "question": "If a school bus is stopped on a four-lane road with its stop-sign arm extended, you must:",
+            "choices": [
+                "Stop if you are moving in the same direction of travel",
+                "Stop regardless of your direction of travel",
+                "Slow down and proceed with caution"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 80,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.12B-1.jpg",
+            "question": "Your total stopping distance is directly related to:",
+            "choices": [
+                "Your perception time",
+                "Your reaction time",
+                "Both A. and B."
+            ],
+            "correct": 2
+        },
+        {
+            "id": 81,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.06R-1.jpg",
+            "question": "You approach this sign. What should you expect ahead?",
+            "choices": [
+                "A sharp turn to the right",
+                "A detour",
+                "A winding road"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 82,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.31K-1.jpg",
+            "question": "Which statement is true about alcohol and driving?",
+            "choices": [
+                "Alcohol affects judgment and driving skills",
+                "If you can walk a straight line after drinking, it is safe to drive",
+                "If you are below the legal BAC limit, your driving is not impaired"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 83,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.20B-1.jpg",
+            "question": "What should you do if you approach a stopped police vehicle with activated emergency lights on a multi-lane roadway?",
+            "choices": [
+                "Move over and proceed with due caution",
+                "Keep your speed and avoid stopping",
+                "Turn on your headlights"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 84,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.27-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Cross Road",
+                "Cattle crossing ahead",
+                "Slow moving vehicles"
+            ],
+            "correct": 1
+        }
+    ]
+}

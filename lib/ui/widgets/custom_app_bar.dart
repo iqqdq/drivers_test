@@ -1,3 +1,4 @@
+import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actionsPadding: EdgeInsets.only(right: 12.0),
       leading: Padding(
         padding: EdgeInsets.only(left: 12.0),
-        child: leading ?? CustomBackButton(onTap: () => Navigator.pop(context)),
+        child: leading ?? CustomBackButton(onTap: () => router.pop()),
       ),
       leadingWidth: 90.0,
       title: Text(
