@@ -1,10 +1,11 @@
 import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/core/extensions/date_time_extensions.dart';
 import 'package:drivers_test/features/features.dart';
 import 'package:drivers_test/ui/ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class StatisticsScreen extends StatefulWidget {
   const StatisticsScreen({super.key});
@@ -14,8 +15,18 @@ class StatisticsScreen extends StatefulWidget {
 }
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
+  late final StatisticsChangeNotifier _read;
+
+  @override
+  void initState() {
+    _read = context.read<StatisticsChangeNotifier>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final watch = context.watch<StatisticsChangeNotifier>();
+
     final color = AppColors.white;
 
     final totalCoefficient = 1.0;
@@ -83,7 +94,12 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             : null;
 
                     return CustomProgressIndicator(
-                      progress: 1.0, // TODO CHANGE
+                      progress:
+                          watch.results == null
+                              ? 0.0
+                              : index == 2
+                              ? 0.5
+                              : 1.0, // TODO CHANGE
                       title:
                           index == 0
                               ? AppTitles.examReadiness
@@ -111,84 +127,119 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             maxChildSize: totalCoefficient - sheetTopPaddingCoefficient,
             snap: true,
             builder: (context, scrollController) {
-              return SingleChildScrollView(
-                controller: scrollController,
-                physics: const ClampingScrollPhysics(),
+              return Container(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(24.0),
+                  ),
+                ),
                 child: Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(24.0),
-                        ),
-                      ),
-                      child: Column(
+                    DragHandle(),
+                    // Expanded(
+                    //   child: EmptyListView(
+                    //     icon: AppIcons.info,
+                    //     title: AppTitles.theHistoryOfPracticalTests,
+                    //   ),
+                    // ),
+                    // TODO SHOW WHEN PRACTIAL TESTS COMPLETE
+
+                    /// TITLE
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
                         children: [
-                          DragHandle(),
-                          // Expanded(
-                          //   child: EmptyListView(
-                          //     icon: AppIcons.info,
-                          //     title: AppTitles.theHistoryOfPracticalTests,
-                          //   ),
-                          // ),
-                          // TODO SHOW WHEN PRACTIAL TESTS COMPLETE
-
-                          /// TITLE
-                          Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  AppTitles.practiceHistory,
-                                  style: AppTextStyles.headlineTitle2,
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          /// FILTER LIST VIEW
-                          SizedBox(
-                            height: 40.0,
-                            child: ListView.separated(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0),
-                              scrollDirection: Axis.horizontal,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              itemCount: 3,
-                              separatorBuilder:
-                                  (context, index) => SizedBox(width: 12.0),
-                              itemBuilder: (context, index) {
-                                return HorizontalFilterTile(
-                                  title:
-                                      index == 0
-                                          ? AppTitles.typeOfTest
-                                          : index == 1
-                                          ? AppTitles.testResult
-                                          : AppTitles.category,
-                                  isSelected: index == 0, // TODO REPLACE
-                                  onTap: () => _onFilterTap(index),
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 16.0),
-
-                          /// TEST LIST VIEW
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(
-                              bottom: getBottomPadding(context),
-                            ),
-
-                            itemCount: 20,
-                            itemBuilder:
-                                (context, index) =>
-                                    ListTile(title: Text("Элемент $index")),
+                          Text(
+                            AppTitles.practiceHistory,
+                            style: AppTextStyles.headlineTitle2,
                           ),
                         ],
                       ),
                     ),
+
+                    /// FILTER LIST VIEW
+                    SizedBox(
+                      height: 40.0,
+                      child: ListView.separated(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        scrollDirection: Axis.horizontal,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemCount: 3,
+                        separatorBuilder:
+                            (context, index) => SizedBox(width: 12.0),
+                        itemBuilder: (context, index) {
+                          return HorizontalFilterTile(
+                            title:
+                                index == 0
+                                    ? AppTitles.typeOfTest
+                                    : index == 1
+                                    ? AppTitles.testResult
+                                    : AppTitles.category,
+                            isSelected: false, // TODO REPLACE
+                            onTap: () => _onFilterTap(index),
+                          );
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 12.0),
+
+                    /// TEST LIST VIEW
+                    watch.results == null
+                        ? SizedBox.shrink()
+                        : Expanded(
+                          child: ListView.separated(
+                            controller: scrollController,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ).copyWith(bottom: getBottomPadding(context)),
+                            itemCount: watch.results!.length,
+                            separatorBuilder:
+                                (context, index) =>
+                                    const SizedBox(height: 12.0),
+                            itemBuilder: (context, index) {
+                              final result = watch.results![index];
+                              final next = index + 1;
+                              final nextIndex =
+                                  next < watch.results!.length ? next : index;
+                              final isDateHidden =
+                                  index == 0
+                                      ? false
+                                      : isSameDate(
+                                        result.completedAt,
+                                        watch.results![nextIndex].completedAt,
+                                      );
+
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  isDateHidden
+                                      ? SizedBox.shrink()
+                                      : Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 12.0,
+                                        ),
+                                        child: Text(
+                                          watch.results![index].completedAt
+                                              .toDateString(),
+                                          style: AppTextStyles.headlineHeadline,
+                                        ),
+                                      ),
+                                  TestTile(
+                                    index: result.testId,
+                                    name: result.testName,
+                                    accuracy: result.accuracy,
+                                    correct: result.correct,
+                                    total: result.testAmount,
+                                    onTap: () => _onTestTap(index),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
                   ],
                 ),
               );
@@ -257,4 +308,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
         ),
   );
+
+  void _onTestTap(int index) async {
+    final test = await _read.getTest(resultId: _read.results![index].id);
+    router.push(TestRoutes.testPage, extra: TestScreenRouteArgs(test: test));
+  }
 }

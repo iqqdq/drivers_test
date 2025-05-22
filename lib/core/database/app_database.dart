@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [TestTable, QuestionTable, SettingsTable])
+@DriftDatabase(tables: [TestTable, QuestionTable, ResultTable, SettingsTable])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
@@ -23,16 +23,34 @@ LazyDatabase _openConnection() {
   });
 }
 
-class ListConverter extends TypeConverter<List<String>, String> {
-  const ListConverter();
+class CommaSeparatedConverter<T> extends TypeConverter<List<T>, String> {
+  final T Function(String) parser;
+  final String Function(T) serializer;
+
+  const CommaSeparatedConverter({
+    required this.parser,
+    required this.serializer,
+  });
 
   @override
-  List<String> fromSql(String fromDb) {
-    return fromDb.split('||');
+  List<T> fromSql(String fromDb) {
+    return fromDb.split(',').map(parser).toList();
   }
 
   @override
-  String toSql(List<String> value) {
-    return value.join('||');
+  String toSql(List<T> value) {
+    return value.map(serializer).join(',');
   }
 }
+
+// Использование для int:
+final intConverter = CommaSeparatedConverter<int>(
+  parser: int.parse,
+  serializer: (i) => i.toString(),
+);
+
+// Использование для String:
+final stringConverter = CommaSeparatedConverter<String>(
+  parser: (s) => s,
+  serializer: (s) => s,
+);

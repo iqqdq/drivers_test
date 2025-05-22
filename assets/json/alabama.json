@@ -62,7 +62,7 @@
         {
             "id": 6,
             "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.18-1.jpg",
-            "question": "#6. When an emergency vehicle using flashing lights approaches you from behind, you must:",
+            "question": "When an emergency vehicle using flashing lights approaches you from behind, you must:",
             "choices": [
                 "Drive to the right edge of the road and slow down",
                 "Pull to the right and stop",
@@ -469,7 +469,7 @@
         {
             "id": 43,
             "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.01-1.jpg",
-            "question": "#43. You must obey an instruction from a school patrol member in a school crossing, even if the instruction conflicts with existing signals:",
+            "question": "You must obey an instruction from a school patrol member in a school crossing, even if the instruction conflicts with existing signals:",
             "choices": [
                 "True",
                 "False"

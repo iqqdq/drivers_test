@@ -7,7 +7,7 @@ class TestResultTable extends Table {
   TextColumn get testState => text()();
   TextColumn get testCategory => text()();
   TextColumn get testName => text()();
-  TextColumn get answers => text().map(const ListConverter())();
+  TextColumn get answers => text().map(stringConverter)();
   TextColumn get finishedAt => text()();
 
   @override

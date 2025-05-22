@@ -73,7 +73,7 @@ class _SettingsSelectionScreenState extends State<SettingsSelectionScreen> {
                         Divider(color: AppColors.black10, height: 1.0),
                 itemBuilder: (context, index) {
                   return SettingsSelectionTile(
-                    title: items[index].toState(),
+                    title: items[index].toStateName(),
                     isSelected:
                         watch.settingsMode == SettingsMode.state
                             ? watch.settings?.state == items[index]

@@ -2,13 +2,13 @@ import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class AnswerTile extends StatelessWidget {
+class QuestionTile extends StatelessWidget {
   final String text;
   final bool isSelected;
   final bool? isCorrect;
   final VoidCallback? onTap;
 
-  const AnswerTile({
+  const QuestionTile({
     super.key,
     required this.text,
     required this.isSelected,

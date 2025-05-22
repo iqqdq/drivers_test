@@ -8,6 +8,8 @@ extension DurationExtensions on Duration {
     final minutesStr = minutes.toString().padLeft(2, '0');
     final secondsStr = seconds.toString().padLeft(2, '0');
 
-    return '$hoursStr:$minutesStr:$secondsStr';
+    return hoursStr.isEmpty
+        ? '$minutesStr:$secondsStr'
+        : '$hoursStr:$minutesStr:$secondsStr';
   }
 }

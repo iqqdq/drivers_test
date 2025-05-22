@@ -7,16 +7,35 @@ class TestingRepositoryImpl implements TestingRepository {
   TestingRepositoryImpl(this.localDataSource);
 
   @override
-  Future<List<TestEntity>> getTests(state) async =>
-      await localDataSource.getTests(state);
+  Future<List<TestEntity>> getTests({required String state}) async =>
+      await localDataSource.getTests(state: state);
 
   @override
-  Future<List<QuestionEntity>> getQuestions({
-    required String state,
-    required int testId,
-  }) async => await localDataSource.getQuestionsForTest(state, testId);
+  Future<List<QuestionEntity>> getQuestions({required int testId}) async =>
+      await localDataSource.getQuestions(id: testId);
 
-  // @override
-  // Future saveTest({required TestEntity test}) async =>
-  //     await localDataSource.setTest(test); // TODO DELETE?
+  @override
+  Future<List<ResultEntity>?> getResults() async =>
+      await localDataSource.getResults();
+
+  @override
+  Future<ResultEntity> getResult({required int testId}) async =>
+      await localDataSource.getResult(id: testId);
+
+  @override
+  Future<int?> getResultBestTime({required int testId}) async =>
+      await localDataSource.getResultBestTime(id: testId);
+
+  @override
+  Future saveResult({
+    required int id,
+    required List<int> answers,
+    required int durationInSeconds,
+    required DateTime completedAt,
+  }) async => await localDataSource.saveResult(
+    id: id,
+    answers: answers,
+    durationInSeconds: durationInSeconds,
+    completedAt: completedAt,
+  );
 }

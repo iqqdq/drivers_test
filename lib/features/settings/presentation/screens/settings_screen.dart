@@ -92,7 +92,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             title: _titles[index],
                             value:
                                 index == 1
-                                    ? watch.settings?.state?.toState() ?? ''
+                                    ? watch.settings?.state?.toStateName() ?? ''
                                     : index == 2
                                     ? watch.settings?.license ?? ''
                                     : '',

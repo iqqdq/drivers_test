@@ -5,15 +5,9 @@ import 'package:flutter/material.dart';
 
 class QuestionView extends StatefulWidget {
   final QuestionEntity question;
-  final bool ingoreGesture;
   final Function(int answer) onTap;
 
-  const QuestionView({
-    super.key,
-    required this.question,
-    required this.ingoreGesture,
-    required this.onTap,
-  });
+  const QuestionView({super.key, required this.question, required this.onTap});
 
   @override
   State<QuestionView> createState() => _QuestionViewState();
@@ -25,6 +19,12 @@ class _QuestionViewState extends State<QuestionView>
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    _index = widget.question.answer;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,19 @@ class _QuestionViewState extends State<QuestionView>
         /// IMAGE
         widget.question.image == null
             ? SizedBox.shrink()
+            : widget.question.image!.isEmpty
+            ? SizedBox.shrink()
             : Container(
               margin: EdgeInsets.only(bottom: 24.0),
-              height: 248.0,
+
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0),
                 child: CachedNetworkImage(
                   imageUrl: widget.question.image!,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitWidth,
+                  progressIndicatorBuilder:
+                      (context, url, downloadProgress) =>
+                          LoadingIndicator(color: AppColors.black100),
                 ),
               ),
             ),
@@ -59,7 +64,7 @@ class _QuestionViewState extends State<QuestionView>
         ),
         const SizedBox(height: 24.0),
 
-        /// ANSWER'S
+        /// CHOISE'S
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -70,16 +75,11 @@ class _QuestionViewState extends State<QuestionView>
             bool? isCorrect =
                 _index == null ? null : index == widget.question.correct;
 
-            return AnswerTile(
+            return QuestionTile(
               text: widget.question.choices[index],
               isSelected: isSelected,
               isCorrect: isCorrect,
-              onTap:
-                  widget.ingoreGesture
-                      ? null
-                      : widget.question.answer == null
-                      ? () => _onAnswerTap(index)
-                      : null,
+              onTap: _index == null ? () => _onChioceTap(index) : null,
             );
           },
         ),
@@ -90,7 +90,7 @@ class _QuestionViewState extends State<QuestionView>
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onAnswerTap(int index) {
+  void _onChioceTap(int index) {
     _index = index;
     widget.onTap(index);
   }

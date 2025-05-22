@@ -29,8 +29,8 @@ class _AppState extends State<DriverTestApp> {
         ChangeNotifierProvider<ReminderssChangeNotifier>(
           create: (_) => ReminderssChangeNotifier(),
         ),
-        ChangeNotifierProvider<TestListChangeNotifier>(
-          create: (_) => TestListChangeNotifier(),
+        ChangeNotifierProvider<TestCatalogChangeNotifier>(
+          create: (_) => TestCatalogChangeNotifier(),
         ),
       ],
       child: MaterialApp.router(theme: AppTheme.appTheme, routerConfig: router),

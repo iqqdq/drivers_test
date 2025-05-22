@@ -1,5 +1,6 @@
+import 'package:drivers_test/core/di/di.dart';
+import 'package:drivers_test/features/testing/testing.dart';
 import 'package:flutter/foundation.dart';
-import 'package:drivers_test/features/statistics/domain/domain.dart';
 
 class StatisticsChangeNotifier with ChangeNotifier {
   String? _category;
@@ -11,8 +12,8 @@ class StatisticsChangeNotifier with ChangeNotifier {
   bool? _isPassed;
   bool? get isPassed => _isPassed;
 
-  List<TestResultEntity>? _results;
-  List<TestResultEntity>? get results => _results;
+  List<ResultEntity>? _results;
+  List<ResultEntity>? get results => _results;
 
   // void setTestMode(TestMode testMode) async {
   //   _testMode = testMode;
@@ -20,20 +21,23 @@ class StatisticsChangeNotifier with ChangeNotifier {
   //   await getTestResults();
   // }
 
+  Future getResults() async {
+    _results = await sl.get<TestingRepository>().getResults();
+    notifyListeners();
+  }
+
   void toogleTestResult(bool isPassed) async {
     _isPassed = isPassed;
     notifyListeners();
-    await getTestResults();
+    await getResults();
   }
 
   void setCategory(String category) async {
     _category = category;
     notifyListeners();
-    await getTestResults();
+    await getResults();
   }
 
-  Future getTestResults() async {
-    // _results = await sl.get<TestingRepository>().getTests(category);
-    // notifyListeners();
-  }
+  Future<TestEntity> getTest({required int resultId}) async =>
+      await sl.get<TestingRepository>().getTest(id: resultId);
 }

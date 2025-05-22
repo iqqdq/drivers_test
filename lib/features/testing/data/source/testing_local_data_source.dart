@@ -13,6 +13,7 @@ class TestingLocalDataSource {
     _initTests();
   }
 
+  // Метод получения всех вопросов из assets
   Future<List<JsonData>> _loadJsonData() async {
     final jsonDataList = <JsonData>[];
     for (var state in states) {
@@ -23,11 +24,11 @@ class TestingLocalDataSource {
     return jsonDataList;
   }
 
-  List<JsonQuestion> _loadJsonQuestions(JsonData jsonData, {int limit = 30}) {
+  // Метод генерации 30 вопросов штата
+  List<JsonQuestion> _loadJsonQuestions(JsonData jsonData, int limit) {
     // Создаем временный Set для хранения уникальных id
     final Set<int> idSet = {};
     final random = Random();
-
     // Фильтруем вопросы, оставляя только уникальные по id
     final uniqueQuestions =
         jsonData.questions.where((question) {
@@ -63,116 +64,141 @@ class TestingLocalDataSource {
   }
 
   Future _initTests() async {
-    // Проверяем, присутствуют ли тесты в бд, если да - выходим
+    // Проверяем, присутствуют ли тесты в базе данных, если да - выходим
     final query = await _db.select(_db.testTable).get();
     if (query.isNotEmpty) return;
-
-    // Подгружаем вопросы из каталога конкретного штата
+    // Получаем все вопросы из assets
     final jsonDataList = await _loadJsonData();
+    final total = 30;
 
-    // Сохраняем тесты в базу данных
+    // Сохраняем тесты в базу данных (30 тестов по 30 вопросов для каждого штата)
     for (final jsonData in jsonDataList) {
-      int count = 0;
-      int total = 30;
+      for (var i = 0; i < total; i++) {
+        // Сохраняем тест
+        final id = await _db
+            .into(_db.testTable)
+            .insert(
+              TestTableCompanion.insert(
+                state: jsonData.state,
+                name: 'Practical test',
+                amount: total,
+              ),
+            );
 
-      // Запоняем 30 тестов c 30 вопросами
-      while (count < total) {
-        // Инициализируем тест
-        final test = TestEntity(
-          id: count,
-          state: jsonData.state,
-          name: 'Practical test',
-          amount: total,
-        );
-        // Инициализируем 30 случайных вопросов из каталога конкретного штата
-        final jsonQuestions = _loadJsonQuestions(jsonData);
-        final questions = <QuestionEntity>[];
-
-        // Заполняем вопросы
-        for (var jsonQuestion in jsonQuestions) {
-          questions.add(
-            QuestionEntity(
-              state: test.state,
-              testId: count,
-              id: jsonQuestion.id,
-              image: jsonQuestion.image,
-              question: jsonQuestion.question,
-              choices: jsonQuestion.choices,
-              correct: jsonQuestion.correct,
-            ),
-          );
+        // Сохраняем вопросы для теста
+        for (var jsonQuestion in _loadJsonQuestions(jsonData, total)) {
+          await _db
+              .into(_db.questionTable)
+              .insert(
+                QuestionTableCompanion.insert(
+                  testId: id,
+                  image: Value(jsonQuestion.image),
+                  question: jsonQuestion.question,
+                  choices: jsonQuestion.choices,
+                  correct: jsonQuestion.correct,
+                ),
+              );
         }
-
-        // Сохраняем тест в бд
-        await setTest(test, questions);
-        count++;
       }
     }
   }
 
-  // Метод для получения всех тестов штата
-  Future<List<TestEntity>> getTests(String state) async {
+  // Метод получения всех тестов штата
+  Future<List<TestEntity>> getTests({required String state}) async {
     final query = _db.select(_db.testTable)
-      ..where((q) => q.state.equals(state));
+      ..where((e) => e.state.equals(state));
     final tests = await query.get();
+
+    // Для каждого теста получаем количество правильных ответов
+    for (var test in tests) {
+      final query =
+          _db.select(_db.resultTable)
+            ..where((e) => e.testId.equals(test.id))
+            ..orderBy([
+              (e) =>
+                  OrderingTerm(expression: e.correct, mode: OrderingMode.desc),
+            ])
+            ..limit(1);
+      final result = await query.getSingleOrNull();
+      test.result = result?.correct;
+    }
+
     return tests;
   }
 
-  // Метод для добавления теста
-  Future<void> setTest(TestEntity test, List<QuestionEntity> questions) async {
-    await _db
-        .into(_db.testTable)
-        .insert(
-          TestTableCompanion.insert(
-            id: test.id,
-            state: test.state,
-            name: test.name,
-            amount: test.amount,
-            result: Value(test.result),
-          ),
-        );
-
-    await _db.batch((batch) {
-      batch.insertAll(
-        _db.questionTable,
-        questions.map(
-          (e) => QuestionTableCompanion.insert(
-            state: e.state,
-            testId: e.testId,
-            id: e.id,
-            image: Value(e.image),
-            question: e.question,
-            choices: e.choices,
-            correct: e.correct,
-            answer: Value(e.answer),
-          ),
-        ),
-      );
-    });
-  }
-
-  // Метод для получения вопросов для конкретного теста
-  Future<List<QuestionEntity>> getQuestionsForTest(
-    String state,
-    int testId,
-  ) async {
+  // Метод получения вопросов
+  Future<List<QuestionEntity>> getQuestions({required int id}) async {
     final query = _db.select(_db.questionTable)
-      ..where((q) => q.state.equals(state) & q.testId.equals(testId));
+      ..where((e) => e.testId.equals(id));
     final questions = await query.get();
     return questions;
   }
 
-  // Метод для обновления ответа на вопрос
-  // Future<void> updateQuestionAnswer( // TODO DELETE?
-  //   QuestionEntity question,
-  //   String category,
-  //   String testName,
-  // ) async {
-  //   await (_db.update(_db.questionTable)..where(
-  //     (q) =>
-  //         q.testCategory.equals(category) &
-  //         q.testName.equals(testName) &
-  //         q.question.equals(question.question),
-  //   )).write(QuestionTableCompanion(answer: Value(question.answer)));
-  // }
+  // Метод сохранения результата
+  Future saveResult({
+    required int id,
+    required List<int> answers,
+    required int durationInSeconds,
+    required DateTime completedAt,
+  }) async {
+    final test =
+        await (_db.select(_db.testTable)
+          ..where((e) => e.id.equals(id))).getSingle();
+    final questions =
+        await (_db.select(_db.questionTable)
+          ..where((e) => e.testId.equals(id))).get();
+    final correct =
+        List.generate(
+          questions.length,
+          (i) => questions[i].correct == answers[i],
+        ).where((b) => b).length;
+
+    return await _db
+        .into(_db.resultTable)
+        .insertReturning(
+          ResultTableCompanion.insert(
+            testId: test.id,
+            testName: test.name,
+            testAmount: test.amount,
+            answers: answers,
+            correct: correct,
+            durationInSeconds: durationInSeconds,
+            completedAt: completedAt,
+          ),
+        );
+  }
+
+  // Метод получения всех результатов
+  Future<List<ResultEntity>?> getResults() async {
+    final query = _db.select(_db.resultTable);
+    final results = await query.get();
+    return results;
+  }
+
+  // Метод получения последнего результата
+  Future<ResultEntity> getResult({required int id}) async {
+    final query =
+        _db.select(_db.resultTable)
+          ..where((e) => e.testId.equals(id))
+          ..orderBy([(t) => OrderingTerm.desc(t.completedAt)])
+          ..limit(1);
+    final result = await query.getSingle();
+    return result;
+  }
+
+  // Метод получения наименьшего времени прохождения теста
+  Future<int?> getResultBestTime({required int id}) async {
+    final query =
+        _db.select(_db.resultTable)
+          ..where((e) => e.testId.equals(id))
+          ..orderBy([
+            (e) => OrderingTerm(
+              expression: e.durationInSeconds,
+              mode: OrderingMode.asc,
+            ),
+          ])
+          ..limit(1);
+    final result = await query.getSingleOrNull();
+    return result?.durationInSeconds;
+  }
 }

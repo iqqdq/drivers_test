@@ -3,3 +3,4 @@ export 'di/di.dart';
 export 'extensions/extensions.dart';
 export 'database/database.dart';
 export 'screens/screens.dart';
+export 'utils/utils.dart';

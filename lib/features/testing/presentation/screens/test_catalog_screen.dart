@@ -13,12 +13,12 @@ class TestCatalogScreen extends StatefulWidget {
 }
 
 class _TestCatalogScreenState extends State<TestCatalogScreen> {
-  late final TestListChangeNotifier _read;
+  late final TestCatalogChangeNotifier _read;
   late String _state;
 
   @override
   void initState() {
-    _read = context.read<TestListChangeNotifier>();
+    _read = context.read<TestCatalogChangeNotifier>();
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -28,7 +28,7 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<TestListChangeNotifier>();
+    final watch = context.watch<TestCatalogChangeNotifier>();
     _state = context.watch<SettingsChangeNotifier>().settings?.state ?? '';
 
     return Scaffold(
@@ -44,7 +44,7 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              '$_state ${AppTitles.stateTestCatalog}'.toState(),
+              '$_state ${AppTitles.stateTestCatalog}'.toStateName(),
               style: AppTextStyles.headlineTitle1,
             ),
           ),
@@ -69,23 +69,20 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
               ? SizedBox.shrink()
               : Expanded(
                 child: ListView.separated(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0).copyWith(
-                    top: 12.0,
-                    bottom: getBottomPadding(context) + 16.0,
-                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                  ).copyWith(top: 12.0, bottom: getBottomPadding(context)),
                   itemCount: watch.tests!.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 12.0),
+                  separatorBuilder:
+                      (context, index) => const SizedBox(height: 12.0),
                   itemBuilder: (context, index) {
                     final test = watch.tests![index];
-                    final correct = test.result ?? 0;
-                    final accuracy =
-                        correct == 0 ? null : (correct ~/ correct) * 100;
 
                     return TestTile(
-                      index: index,
+                      index: test.id,
                       name: test.name,
-                      accuracy: accuracy,
-                      correct: correct,
+                      accuracy: test.accuracy,
+                      correct: test.correct,
                       total: test.amount,
                       onTap: () => _onTestTap(index),
                     );
@@ -106,6 +103,8 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
 
   void _onStatisticsTap() => router.push(AppRoutes.statistics);
 
-  void _onTestTap(int index) =>
-      router.push(AppRoutes.testPage, extra: _read.tests![index]);
+  void _onTestTap(int index) => router.push(
+    TestRoutes.testPage,
+    extra: TestScreenRouteArgs(test: _read.tests![index]),
+  );
 }

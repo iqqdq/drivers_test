@@ -5,20 +5,21 @@ import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class TestPageScreen extends StatefulWidget {
-  const TestPageScreen({super.key});
+class TestScreen extends StatefulWidget {
+  const TestScreen({super.key});
 
   @override
-  State<TestPageScreen> createState() => _TestPageScreenState();
+  State<TestScreen> createState() => _TestScreenState();
 }
 
-class _TestPageScreenState extends State<TestPageScreen> {
+class _TestScreenState extends State<TestScreen> {
   final PageController _pageController = PageController();
-  late final TestPageChangeNotifier _read;
+  late List<GlobalKey> _numberKeys;
+  late final TestChangeNotifier _read;
 
   @override
   void initState() {
-    _read = context.read<TestPageChangeNotifier>();
+    _read = context.read<TestChangeNotifier>();
     super.initState();
   }
 
@@ -30,16 +31,17 @@ class _TestPageScreenState extends State<TestPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<TestPageChangeNotifier>();
+    final watch = context.watch<TestChangeNotifier>();
+    _numberKeys = List.generate(watch.test.amount, (i) => GlobalKey());
 
     return Scaffold(
       appBar: CustomAppBar(
         title: watch.test.name,
         leading: CustomCloseButton(onTap: () => router.pop()),
         actions:
-            watch.questions == null
+            watch.questions == null || watch.duration == null
                 ? null
-                : [TimerAppBarAction(duration: watch.duration)],
+                : [TimerAppBarAction(duration: watch.duration!)],
       ),
       body:
           watch.questions == null
@@ -71,14 +73,16 @@ class _TestPageScreenState extends State<TestPageScreen> {
                           (context, index) => SizedBox(width: 4.0),
                       itemBuilder: (context, index) {
                         final question = watch.questions![index];
+                        final isCorrect =
+                            question.answer == null
+                                ? null
+                                : question.answer == question.correct;
 
                         return NumberTile(
+                          key: _numberKeys[index],
                           number: '${index + 1}',
                           isSelected: index == watch.index,
-                          isCorrect:
-                              question.answer == null
-                                  ? null
-                                  : question.answer == question.correct,
+                          isCorrect: isCorrect,
                           onTap: () => _onNumberTap(index),
                         );
                       },
@@ -86,27 +90,35 @@ class _TestPageScreenState extends State<TestPageScreen> {
                   ),
                   const SizedBox(height: 16.0),
 
-                  /// QUESTION'S PAGE VIEW
+                  /// QUESTION PAGE VIEW
                   Expanded(
-                    child: PageView.builder(
-                      controller: _pageController,
-                      onPageChanged: (index) => _read.selectQuestion(index),
-                      itemBuilder: (context, index) {
-                        final question = watch.questions![index];
-
-                        return QuestionView(
-                          question: question,
-                          ingoreGesture: watch.isTestCompleted,
-                          onTap:
-                              (index) => _read.setQuestion(
-                                question.copyWith(answer: index),
-                              ),
-                        );
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (ScrollNotification notification) {
+                        if (notification is ScrollEndNotification) {
+                          _onNumberTap(_pageController.page!.toInt());
+                        }
+                        return false;
                       },
+                      child: PageView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        controller: _pageController,
+                        itemCount: watch.questions!.length,
+                        itemBuilder: (context, index) {
+                          final question = watch.questions![index];
+
+                          return QuestionView(
+                            question: question,
+                            onTap: (index) => _onChoiceTap(question, index),
+                          );
+                        },
+                      ),
                     ),
                   ),
 
-                  watch.isTimeUp || watch.isTestCompleted
+                  /// COMPLETE BUTTON
+                  _read.answers != null
+                      ? SizedBox.shrink()
+                      : watch.isTimeUp || watch.isTestCompleted
                       ? SafeArea(
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -125,17 +137,34 @@ class _TestPageScreenState extends State<TestPageScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onNumberTap(int index) async {
-    await _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
+  void _scrollToIndex(int index) {
+    final context = _numberKeys[index].currentContext;
+    if (context == null) return;
+    Scrollable.ensureVisible(
+      context,
+      duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
+      alignment: 0.5,
     );
-    _read.selectQuestion(index);
   }
 
+  void _onNumberTap(int index) async {
+    _read.selectQuestion(index);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _scrollToIndex(index);
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void _onChoiceTap(QuestionEntity question, int index) =>
+      _read.updateQuestion(question.copyWith(answer: index));
+
   void _onCompleteTap() async {
-    await _read.saveTest();
-    router.replace('test_result');
+    await _read.saveResult();
+    router.replace(TestRoutes.testResult, extra: _read.test);
   }
 }

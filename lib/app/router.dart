@@ -1,5 +1,6 @@
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
+import 'package:drivers_test/features/statistics/presentation/providers/statistics_change_notifier.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -7,9 +8,6 @@ const _splash = '/';
 // const _onboard = '/onboard';
 // const _paywall = '/paywall';
 const _home = '/home';
-const _testCatalog = '/test_catalog';
-const _testPage = '/test_page/:test';
-const _testResult = '/test_result';
 const _statistics = '/statistics';
 const _tips = '/tips';
 const _reminders = '/reminders';
@@ -22,9 +20,6 @@ abstract class AppRoutes {
   // static String get onboard => _onboard;
   // static String get paywall => _paywall;
   static String get home => _home;
-  static String get testCatalog => _testCatalog;
-  static String get testPage => _testPage;
-  static String get testResult => _testResult;
   static String get statistics => _statistics;
   static String get tips => _tips;
   static String get reminders => _reminders;
@@ -35,27 +30,24 @@ abstract class AppRoutes {
 
 final router = GoRouter(
   routes: [
-    GoRoute(path: _splash, builder: (context, state) => SplashScreen()),
-    GoRoute(path: _home, builder: (context, state) => HomeScreen()),
+    GoRoute(path: _splash, builder: (context, state) => const SplashScreen()),
+    GoRoute(path: _home, builder: (context, state) => const HomeScreen()),
+
+    ...TestRoutes.routes,
+
     GoRoute(
-      path: _testCatalog,
-      builder: (context, state) => TestCatalogScreen(),
-    ),
-    GoRoute(
-      path: _testPage,
+      path: _statistics,
       builder:
           (context, state) => ChangeNotifierProvider(
-            create:
-                (_) =>
-                    TestPageChangeNotifier(test: state.extra as TestEntity)
-                      ..getQuestions(),
-            child: TestPageScreen(),
+            create: (_) => StatisticsChangeNotifier()..getResults(),
+            child: const StatisticsScreen(),
           ),
     ),
-    GoRoute(path: _testResult, builder: (context, state) => TestResultScreen()),
-    GoRoute(path: _statistics, builder: (context, state) => StatisticsScreen()),
-    GoRoute(path: _tips, builder: (context, state) => TipsScreen()),
-    GoRoute(path: _reminders, builder: (context, state) => RemindersScreen()),
+    GoRoute(path: _tips, builder: (context, state) => const TipsScreen()),
+    GoRoute(
+      path: _reminders,
+      builder: (context, state) => const RemindersScreen(),
+    ),
     GoRoute(
       path: _reminderPage,
       builder:
@@ -64,10 +56,13 @@ final router = GoRouter(
             child: const ReminderPageScreen(),
           ),
     ),
-    GoRoute(path: _settings, builder: (context, state) => SettingsScreen()),
+    GoRoute(
+      path: _settings,
+      builder: (context, state) => const SettingsScreen(),
+    ),
     GoRoute(
       path: _settingsSelection,
-      builder: (context, state) => SettingsSelectionScreen(),
+      builder: (context, state) => const SettingsSelectionScreen(),
     ),
   ],
 );

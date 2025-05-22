@@ -27,7 +27,8 @@ class TestTile extends StatelessWidget {
     final accuracyColor =
         accuracy == null
             ? AppColors.black100
-            : accuracy! < 80
+            : accuracy! <
+                90 // TODO REPLACE FROM TEST
             ? AppColors.orange100
             : AppColors.green100;
 

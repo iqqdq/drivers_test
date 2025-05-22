@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // TODO CREATE TestChangeNotifier VARIABLE OR CRAETE GLOBAL NOTIFIER?
     final state =
-        context.watch<SettingsChangeNotifier>().settings?.state?.toState();
+        context.watch<SettingsChangeNotifier>().settings?.state?.toStateName();
 
     return Scaffold(
       appBar: HomeAppBar(
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         padding: EdgeInsets.all(
           16.0,
-        ).copyWith(bottom: getBottomPadding(context) + 16.0),
+        ).copyWith(bottom: getBottomPadding(context)),
         children: [
           /// TODO SHOW IF NOT SUBSCRIBED
           /// GET PREMIUM
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onNotificationsTap() => router.push(AppRoutes.reminders);
 
-  void _onTestsTap() => router.push(AppRoutes.testCatalog);
+  void _onTestsTap() => router.push(TestRoutes.testCatalog);
 
   // void _onExamTap() {
   //   // TODO CHECK IF SUBSCRIBED

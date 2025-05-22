@@ -1,18 +1,19 @@
 import 'package:drift/drift.dart';
 import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/features/testing/data/data.dart';
 import 'package:drivers_test/features/testing/domain/domain.dart';
 
 @UseRowClass(QuestionEntity, constructor: 'fromRow')
 class QuestionTable extends Table {
-  TextColumn get state => text()();
-  IntColumn get testId => integer()();
-  IntColumn get id => integer()();
+  IntColumn get testId => integer().references(TestTable, #id)();
+  IntColumn get id => integer().autoIncrement()();
   TextColumn get image => text().nullable()();
   TextColumn get question => text()();
-  TextColumn get choices => text().map(const ListConverter())();
+  TextColumn get choices => text().map(stringConverter)();
   IntColumn get correct => integer()();
-  IntColumn get answer => integer().nullable()();
 
   @override
-  Set<Column> get primaryKey => {state, testId, id};
+  List<Set<Column>> get uniqueKeys => [
+    {testId, id},
+  ];
 }

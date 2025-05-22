@@ -18,20 +18,9 @@ class TestEntity {
     required String state,
     required String name,
     required int amount,
-    required int? result,
-  }) => TestEntity(
-    id: id,
-    state: state,
-    name: name,
-    amount: amount,
-    result: result,
-  );
+  }) => TestEntity(id: id, state: state, name: name, amount: amount);
 
-  TestEntity copyWith({int? result}) => TestEntity(
-    id: id,
-    state: state,
-    name: name,
-    amount: amount,
-    result: result ?? this.result,
-  );
+  bool get isExam => name.toLowerCase() == 'exam';
+  int get correct => result ?? 0;
+  int? get accuracy => correct == 0 ? null : ((correct / amount) * 100).toInt();
 }

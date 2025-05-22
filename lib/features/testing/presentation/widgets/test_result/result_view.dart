@@ -17,16 +17,18 @@ class ResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = ((MediaQuery.of(context).size.width / 2.0) - 3.5) - 16.0;
     final padding = EdgeInsets.symmetric(horizontal: 16.0);
+    final borderRadius = BorderRadius.circular(32.0);
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(32.0),
-      child: Container(
-        width: width,
-        height: width,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          border: Border.all(width: 1.0, color: AppColors.border),
-        ),
+    return Container(
+      width: width,
+      height: width,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: borderRadius,
+        border: Border.all(width: 1.0, color: AppColors.border),
+      ),
+      child: ClipRRect(
+        borderRadius: borderRadius,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
