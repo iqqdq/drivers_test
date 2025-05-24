@@ -3,3 +3,5 @@ export 'empty_list_view.dart';
 export 'drag_handle.dart';
 export 'horizontal_filter_tile.dart';
 export 'filter_tile.dart';
+export 'filter_view.dart';
+export 'result_tile.dart';

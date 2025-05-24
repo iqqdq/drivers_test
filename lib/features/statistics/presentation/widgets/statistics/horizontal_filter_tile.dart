@@ -6,12 +6,14 @@ class HorizontalFilterTile extends StatelessWidget {
   final String title;
   final bool isSelected;
   final VoidCallback onTap;
+  final VoidCallback onClearTap;
 
   const HorizontalFilterTile({
     super.key,
     required this.title,
     required this.isSelected,
     required this.onTap,
+    required this.onClearTap,
   });
 
   @override
@@ -46,12 +48,15 @@ class HorizontalFilterTile extends StatelessWidget {
               ),
 
               /// BUTTON
-              SvgPicture.asset(
-                isSelected ? AppIcons.clear : AppIcons.arrowDown,
-                colorFilter:
-                    isSelected
-                        ? ColorFilter.mode(AppColors.white, BlendMode.srcIn)
-                        : null,
+              GestureDetector(
+                onTap: isSelected ? () => onClearTap() : null,
+                child: SvgPicture.asset(
+                  isSelected ? AppIcons.clear : AppIcons.arrowDown,
+                  colorFilter:
+                      isSelected
+                          ? ColorFilter.mode(AppColors.white, BlendMode.srcIn)
+                          : null,
+                ),
               ),
             ],
           ),

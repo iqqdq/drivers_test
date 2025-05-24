@@ -168,6 +168,22 @@ class TestingLocalDataSource {
         );
   }
 
+  // Метод получения наименьшего времени прохождения теста
+  Future<int?> getResultBestTime({required int id}) async {
+    final query =
+        _db.select(_db.resultTable)
+          ..where((e) => e.testId.equals(id))
+          ..orderBy([
+            (e) => OrderingTerm(
+              expression: e.durationInSeconds,
+              mode: OrderingMode.asc,
+            ),
+          ])
+          ..limit(1);
+    final result = await query.getSingleOrNull();
+    return result?.durationInSeconds;
+  }
+
   // Метод получения всех результатов
   Future<List<ResultEntity>?> getResults() async {
     final query = _db.select(_db.resultTable);
@@ -184,21 +200,5 @@ class TestingLocalDataSource {
           ..limit(1);
     final result = await query.getSingle();
     return result;
-  }
-
-  // Метод получения наименьшего времени прохождения теста
-  Future<int?> getResultBestTime({required int id}) async {
-    final query =
-        _db.select(_db.resultTable)
-          ..where((e) => e.testId.equals(id))
-          ..orderBy([
-            (e) => OrderingTerm(
-              expression: e.durationInSeconds,
-              mode: OrderingMode.asc,
-            ),
-          ])
-          ..limit(1);
-    final result = await query.getSingleOrNull();
-    return result?.durationInSeconds;
   }
 }

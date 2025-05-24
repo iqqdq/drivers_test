@@ -1,10 +1,10 @@
 abstract class AppImages {
   static const appIcon = 'assets/images/app_icon.png';
 
-  static const onboard1 = 'assets/images/onboard_1.png';
-  static const onboard2 = 'assets/images/onboard_2.png';
-  static const onboard3 = 'assets/images/onboard_3.png';
-  static const onboard4 = 'assets/images/onboard_4.png';
+  static const onboarding1 = 'assets/images/onboarding_1.png';
+  static const onboarding2 = 'assets/images/onboarding_2.png';
+  static const onboarding3 = 'assets/images/onboarding_3.png';
+  static const paywall = 'assets/images/paywall.png';
 
   static const ferrari = 'assets/images/ferrari.png';
 

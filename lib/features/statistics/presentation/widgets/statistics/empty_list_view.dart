@@ -11,7 +11,6 @@ class EmptyListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(icon),
         SizedBox(height: 12.0),

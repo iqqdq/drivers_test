@@ -23,4 +23,5 @@ class TestEntity {
   bool get isExam => name.toLowerCase() == 'exam';
   int get correct => result ?? 0;
   int? get accuracy => correct == 0 ? null : ((correct / amount) * 100).toInt();
+  bool get isPassed => accuracy == null ? false : accuracy! >= 90;
 }

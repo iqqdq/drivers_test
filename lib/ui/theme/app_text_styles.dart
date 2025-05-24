@@ -70,7 +70,11 @@ abstract class AppTextStyles {
   );
 
   // SF Pro Text Regular
-  static const caption1Regular = TextStyle(fontSize: 12.0, height: 16.0 / 12.0);
+  static const caption1Regular = TextStyle(
+    fontFamily: 'Urbanist',
+    fontSize: 12.0,
+    height: 16.0 / 12.0,
+  );
 
   static const caption2Regular = TextStyle(
     fontSize: 11.0,
@@ -85,6 +89,7 @@ abstract class AppTextStyles {
   );
 
   static const subheadlineRegular = TextStyle(
+    fontFamily: 'Urbanist',
     fontSize: 15.0,
     height: 20.0 / 15.0,
     letterSpacing: -0.24,

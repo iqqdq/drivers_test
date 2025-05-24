@@ -15,6 +15,19 @@ class TestingRepositoryImpl implements TestingRepository {
       await localDataSource.getQuestions(id: testId);
 
   @override
+  Future saveResult({
+    required int id,
+    required List<int> answers,
+    required int durationInSeconds,
+    required DateTime completedAt,
+  }) async => await localDataSource.saveResult(
+    id: id,
+    answers: answers,
+    durationInSeconds: durationInSeconds,
+    completedAt: completedAt,
+  );
+
+  @override
   Future<List<ResultEntity>?> getResults() async =>
       await localDataSource.getResults();
 
@@ -27,15 +40,23 @@ class TestingRepositoryImpl implements TestingRepository {
       await localDataSource.getResultBestTime(id: testId);
 
   @override
-  Future saveResult({
-    required int id,
-    required List<int> answers,
-    required int durationInSeconds,
-    required DateTime completedAt,
-  }) async => await localDataSource.saveResult(
-    id: id,
-    answers: answers,
-    durationInSeconds: durationInSeconds,
-    completedAt: completedAt,
-  );
+  Future<int> getTotalPassed({required String state}) async {
+    final tests = await getTests(state: state);
+    final totalPassed = tests.map((e) => e.isPassed).length;
+    return totalPassed;
+  }
+
+  @override
+  Future<int> getTotalAmount({required String state}) async {
+    final tests = await getTests(state: state);
+    final totalAmount = tests.fold(0, (prev, entity) => prev + entity.amount);
+    return totalAmount;
+  }
+
+  @override
+  Future<int> getTotalCorrect({required String state}) async {
+    final tests = await getTests(state: state);
+    final totalCorrect = tests.fold(0, (prev, entity) => prev + entity.correct);
+    return totalCorrect;
+  }
 }

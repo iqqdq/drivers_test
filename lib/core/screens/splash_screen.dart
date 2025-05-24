@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
         false; // TODO CHECK IS ONBOARDING COMPLETED
 
     if (mounted) {
-      router.go(isOnboardingCompleted ? '/home' : '/home');
+      router.go(isOnboardingCompleted ? AppRoutes.home : AppRoutes.onboarding);
     }
   }
 }

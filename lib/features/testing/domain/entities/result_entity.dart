@@ -39,6 +39,7 @@ class ResultEntity {
     completedAt: completedAt,
   );
 
+  bool get isExam => testName.toLowerCase() == 'exam';
   int get accuracy => ((correct / testAmount) * 100).toInt();
   bool get isPassed => accuracy >= 90; // TODO REPLACE 90 FROM JSONDATA
 }

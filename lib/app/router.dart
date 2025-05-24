@@ -1,11 +1,10 @@
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/features/statistics/presentation/providers/statistics_change_notifier.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 const _splash = '/';
-// const _onboard = '/onboard';
+const _onboarding = '/onboarding';
 // const _paywall = '/paywall';
 const _home = '/home';
 const _statistics = '/statistics';
@@ -17,6 +16,7 @@ const _settingsSelection = '/settings_selection';
 
 abstract class AppRoutes {
   static String get splash => _splash;
+  static String get onboarding => _onboarding;
   // static String get onboard => _onboard;
   // static String get paywall => _paywall;
   static String get home => _home;
@@ -31,6 +31,8 @@ abstract class AppRoutes {
 final router = GoRouter(
   routes: [
     GoRoute(path: _splash, builder: (context, state) => const SplashScreen()),
+    GoRoute(path: _onboarding, builder: (context, state) => OnboardingScreen()),
+
     GoRoute(path: _home, builder: (context, state) => const HomeScreen()),
 
     ...TestRoutes.routes,

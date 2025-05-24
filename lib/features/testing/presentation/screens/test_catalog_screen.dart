@@ -79,7 +79,7 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
                     final test = watch.tests![index];
 
                     return TestTile(
-                      index: test.id,
+                      index: normalizeTestId(test.id),
                       name: test.name,
                       accuracy: test.accuracy,
                       correct: test.correct,

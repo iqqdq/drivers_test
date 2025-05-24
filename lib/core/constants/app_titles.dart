@@ -1,5 +1,31 @@
 abstract class AppTitles {
   // MARK: -
+  // MARK: - ONBOARDING
+  static const prepareForTheTest =
+      'Preparing for the test is\nnow easier than ever';
+  static const practiceWithTests =
+      'Practice with tests and exams until you’re fully\nprepared for the real DMV test';
+  static const letUsKnowWhatDoYouThink =
+      'Let us know what do you\nthink about the app';
+  static const tellUsWhatYouThink =
+      'Tell us what you think and help us\nmake the app even better for you';
+  static const pickYourState =
+      'Pick your state to prepare\nwith the correct materials';
+  static const eachStateHasItsOwnRules =
+      'Each U.S. state has its own driving rules\nand DMV test';
+
+  // MARK: -
+  // MARK: - PAYWALL
+
+  static const unlockPremiumFeatures =
+      'Unlock premium features\nfor faster exam prep!';
+  static const unlimitedNumberOfTestsExamsAndStats =
+      'Unlimited number of tests, exams and full stats,\njust for';
+  static const enable = 'Enable a';
+  static const enabled = 'enabled';
+  static const restore = 'Restore';
+
+  // MARK: -
   // MARK: - HOME
   static const practicalTests = 'Practical tests';
   static const testPassed = 'tests passed';
@@ -31,6 +57,7 @@ abstract class AppTitles {
   // MARK: -
   // MARK: - STATISCTIC'S
   static const statistics = 'Statistics';
+  static const practicalTest = 'Practical test';
   static const passedPracticalTests = 'Passed practical tests';
   static const theHistoryOfPracticalTests =
       'The history of practical tests\nwill be displayed here';
