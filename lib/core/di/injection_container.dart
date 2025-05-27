@@ -1,46 +1,27 @@
-import 'di_container.dart';
-import 'package:drivers_test/core/database/database.dart';
-// import 'package:drivers_test/features/splash/splash.dart';
-import 'package:drivers_test/features/testing/testing.dart';
-import 'package:drivers_test/features/settings/settings.dart';
+import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/features/features.dart';
 
 final sl = DIContainer();
 
 Future<void> initInjections() async {
   // External
-  final db = AppDatabase();
+  final db = await AppDatabase.create();
   await db.customSelect('SELECT 1').get();
-
-  // MARK: -
-  // MARK: - SPLASH
-
-  // Data sources
-  // final splashLocalStorage = SplashLocalStorage(localStorage: localStorage);
 
   // Repositories
   // sl.registerLazySingleton<SplashRepository>(
   //   (container) => SplashRepositoryImpl(localStorage: splashLocalStorage),
   // );
-
-  // MARK: -
-  // MARK: - TESTING
-
-  // Data sources
-  final testingLocalDataSource = TestingLocalDataSource(db);
-
-  // Repositories
-  sl.registerLazySingleton<TestingRepository>(
-    (container) => TestingRepositoryImpl(testingLocalDataSource),
+  sl.registerLazySingleton<HomeRepository>(
+    (container) => HomeRepositoryImpl(db),
   );
-
-  // MARK: -
-  // MARK: - SETTING'S
-
-  // Data sources
-  final settingsLocalDataSource = SettingsLocalDataSource(db);
-
-  // Repositories
+  sl.registerLazySingleton<TestingRepository>(
+    (container) => TestingRepositoryImpl(db),
+  );
+  sl.registerLazySingleton<StatisticsRepository>(
+    (container) => StatisticsRepositoryImpl(db),
+  );
   sl.registerLazySingleton<SettingsRepository>(
-    (container) => SettingsRepositoryImpl(settingsLocalDataSource),
+    (container) => SettingsRepositoryImpl(db),
   );
 }

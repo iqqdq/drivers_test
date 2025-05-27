@@ -45,7 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
     <key>NSUserNotificationAlertStyle</key>
     <string>alert</string>
+    <!-- Для iOS 10+ -->
+    <key>UNUserNotificationCenterDelegate</key>
+    <string></string>
 </dict>
 </plist>

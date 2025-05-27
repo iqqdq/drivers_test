@@ -1,7 +1,7 @@
 {
     "id": 4,
     "state": "connecticut",
-    "total": 25,
+    "max": 25,
     "min": 20,
     "questions": [
         {

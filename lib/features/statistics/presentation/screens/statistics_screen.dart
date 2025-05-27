@@ -1,7 +1,5 @@
-import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +27,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     final totalCoefficient = 1.0;
     final screenHeightCoefficient =
         MediaQuery.of(context).size.height / totalCoefficient;
-    final progressHeight = 460.0; // TODO IF SUBSCRIBED 330.0;
+    final progressHeight = isSubscribed.value ? 330.0 : 460.0;
     final sheetCoefficient = progressHeight / screenHeightCoefficient;
     final initialChildSize = totalCoefficient - sheetCoefficient;
 
@@ -66,17 +64,18 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 height: progressHeight,
                 child: Column(
                   children: [
-                    /// TODO SHOW IF NOT SUBSCRIBED
                     /// GET PREMIUM
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.0),
-                      child: GetPremiumCard(
-                        subtitle: AppTitles.getUnlimitedNumberOfTests,
-                        secondSubtitle:
-                            '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
-                        onTap: _onGetPremiumTap,
-                      ),
-                    ),
+                    isSubscribed.value
+                        ? SizedBox.shrink()
+                        : Padding(
+                          padding: EdgeInsets.only(bottom: 12.0),
+                          child: GetPremiumCard(
+                            subtitle: AppTitles.getUnlimitedNumberOfTests,
+                            secondSubtitle:
+                                '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
+                            onTap: _onGetPremiumTap,
+                          ),
+                        ),
 
                     /// PROGRESS INDICATOR LIST VIEW
                     ListView.separated(
@@ -87,12 +86,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       separatorBuilder:
                           (context, index) => SizedBox(height: 12.0),
                       itemBuilder: (context, index) {
-                        final progress =
-                            index == 0
-                                ? watch.examReadiness
-                                : index == 1
-                                ? 0.0
-                                : watch.totalCorrect / watch.totalAmount;
+                        final progress = _read.progressValue(index);
                         final title =
                             index == 0
                                 ? AppTitles.examReadiness
@@ -107,10 +101,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                                 : null;
                         final value =
                             index == 0
-                                ? '${watch.examReadiness.toInt()}%'
+                                ? '${watch.examReadiness}%'
                                 : index == 1
-                                ? '${watch.totalPassedTest}/null'
-                                : '${watch.totalCorrect}/${watch.totalAmount}';
+                                ? '${watch.totalPassedTest}/${watch.totalTest}'
+                                : '${watch.totalCorrectAnswers}/${watch.totalQuestions}';
 
                         return CustomProgressIndicator(
                           duration: Duration(milliseconds: 500 * index),
@@ -126,127 +120,129 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
               ),
 
               /// DRAGGABLE SHEET
-              IgnorePointer(
-                ignoring: watch.results == null,
-                child: DraggableScrollableSheet(
-                  initialChildSize: initialChildSize,
-                  minChildSize: initialChildSize,
-                  snap: true,
-                  builder: (context, scrollController) {
-                    return Container(
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(24.0),
-                        ),
+              DraggableScrollableSheet(
+                initialChildSize: initialChildSize,
+                minChildSize: initialChildSize,
+                snap: true,
+                builder: (context, scrollController) {
+                  return Container(
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(24.0),
                       ),
-                      child: SingleChildScrollView(
-                        controller: scrollController,
-                        physics: const ClampingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            const DragHandle(),
+                    ),
+                    child: SingleChildScrollView(
+                      controller: scrollController,
+                      physics:
+                          watch.tests == null || watch.tests!.isEmpty
+                              ? const NeverScrollableScrollPhysics()
+                              : const ClampingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          const DragHandle(),
 
-                            /// TITLE
-                            watch.results == null
-                                ? SizedBox.shrink()
-                                : Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        AppTitles.practiceHistory,
-                                        style: AppTextStyles.headlineTitle2,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                            /// FILTER LIST VIEW
-                            watch.results == null
-                                ? SizedBox.shrink()
-                                : SizedBox(
-                                  height: 40.0,
-                                  child: ListView.separated(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 16.0,
+                          /// TITLE
+                          watch.tests == null
+                              ? SizedBox.shrink()
+                              : Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      AppTitles.practiceHistory,
+                                      style: AppTextStyles.headlineTitle2,
                                     ),
-                                    scrollDirection: Axis.horizontal,
-                                    physics:
-                                        const AlwaysScrollableScrollPhysics(),
-                                    itemCount: 2,
-                                    separatorBuilder:
-                                        (context, index) =>
-                                            SizedBox(width: 12.0),
-                                    itemBuilder: (context, index) {
-                                      return HorizontalFilterTile(
-                                        title:
-                                            index == 0
-                                                ? AppTitles.typeOfTest
-                                                : AppTitles.testResult,
-                                        isSelected:
-                                            index == 0
-                                                ? watch.type != null
-                                                : watch.resultType != null,
-                                        onTap: () => _onFilterTap(index),
-                                        onClearTap:
-                                            () => _onClearFilterTap(index),
-                                      );
-                                    },
-                                  ),
+                                  ],
                                 ),
+                              ),
 
-                            const SizedBox(height: 12.0),
-
-                            /// EMPTY VIEW
-                            watch.results == null
-                                ? EmptyListView(
-                                  icon: AppIcons.info,
-                                  title: AppTitles.theHistoryOfPracticalTests,
-                                )
-                                :
-                                /// TEST LIST VIEW
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
+                          /// FILTER LIST VIEW
+                          watch.tests == null
+                              ? SizedBox.shrink()
+                              : SizedBox(
+                                height: 40.0,
+                                child: ListView.separated(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 16.0,
-                                  ).copyWith(bottom: getBottomPadding(context)),
-                                  itemCount: watch.results!.length,
+                                  ),
+                                  scrollDirection: Axis.horizontal,
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
+                                  itemCount: 2,
                                   separatorBuilder:
-                                      (context, index) =>
-                                          const SizedBox(height: 12.0),
+                                      (context, index) => SizedBox(width: 12.0),
                                   itemBuilder: (context, index) {
-                                    final result = watch.results![index];
-                                    final next = index + 1;
-                                    final nextIndex =
-                                        next < watch.results!.length
-                                            ? next
-                                            : index;
-                                    final isDateHidden =
+                                    final isSelected =
                                         index == 0
-                                            ? false
-                                            : isSameDate(
-                                              result.completedAt,
-                                              watch
-                                                  .results![nextIndex]
-                                                  .completedAt,
-                                            );
-
-                                    return ResultTile(
-                                      result: result,
-                                      isDateHidden: isDateHidden,
-                                      onTap: () => _onResultTap(index),
+                                            ? watch.type != null
+                                            : watch.resultType != null;
+                                    return HorizontalFilterTile(
+                                      title: _read.filterValue(index),
+                                      isSelected: isSelected,
+                                      onTap: () => _onFilterTap(index),
+                                      onClearTap:
+                                          () => _onClearFilterTap(index),
                                     );
                                   },
                                 ),
-                          ],
-                        ),
+                              ),
+
+                          const SizedBox(height: 12.0),
+
+                          /// EMPTY VIEW
+                          watch.tests == null || watch.tests!.isEmpty
+                              ? EmptyListView(
+                                icon:
+                                    watch.tests == null
+                                        ? AppIcons.info
+                                        : AppIcons.folder,
+                                title:
+                                    watch.tests == null
+                                        ? AppTitles.theHistoryOfPracticalTests
+                                        : AppTitles.thereAreNoTests,
+                              )
+                              :
+                              /// TEST LIST VIEW
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0,
+                                ).copyWith(bottom: getBottomPadding(context)),
+                                itemCount: watch.tests!.length,
+                                separatorBuilder:
+                                    (context, index) =>
+                                        const SizedBox(height: 12.0),
+                                itemBuilder: (context, index) {
+                                  final test = watch.tests![index];
+                                  final next = index + 1;
+                                  final nextIndex =
+                                      next < watch.tests!.length ? next : index;
+                                  final isDateHidden =
+                                      index == 0
+                                          ? false
+                                          : isSameDate(
+                                            test.result!.completedAt,
+                                            watch
+                                                .tests![nextIndex]
+                                                .result!
+                                                .completedAt,
+                                          );
+
+                                  return ResultTile(
+                                    test: test,
+                                    isDateHidden: isDateHidden,
+                                    onTap: () => _onResultTap(index),
+                                  );
+                                },
+                              ),
+                        ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -258,11 +254,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetPremiumTap() {
-    // TODO SHOW PAYWALL
-  }
+  void _onGetPremiumTap() =>
+      router.push(OnboardingRoutes.onboarding, extra: true);
 
-  void _onTipTap() => router.push(AppRoutes.tips);
+  void _onTipTap() => router.push(StatisticsRoutes.tips);
 
   void _onFilterTap(int index) {
     final title = index == 0 ? AppTitles.typeOfTest : AppTitles.testResult;
@@ -309,8 +304,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ? _read.toogleTestType(null)
           : _read.toogleTestResultType(null);
 
-  void _onResultTap(int index) async {
-    // final test = await _read.getTest(resultId: _read.results![index].id);
-    // router.push(TestRoutes.testPage, extra: TestScreenRouteArgs(test: test));
-  }
+  void _onResultTap(int index) async => router.push(
+    TestingRoutes.testPage,
+    extra: TestScreenRouteArgs(
+      test: _read.tests![index],
+      answers: _read.tests![index].result!.answers,
+    ),
+  );
 }

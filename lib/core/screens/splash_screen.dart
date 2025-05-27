@@ -1,5 +1,7 @@
-import 'package:drivers_test/app/router.dart';
-import 'package:drivers_test/ui/theme/theme.dart';
+import 'package:drivers_test/core/di/injection_container.dart';
+import 'package:drivers_test/core/router.dart';
+import 'package:drivers_test/features/features.dart';
+import 'package:drivers_test/core/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,15 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
     final height = 163.0;
 
     return Scaffold(
-      body: Container(
-        color: AppColors.blue100,
-        child: Center(
-          child: Image.asset(
-            AppImages.appIcon,
-            width: height,
-            height: height,
-            fit: BoxFit.fitWidth,
-          ),
+      backgroundColor: AppColors.blue100,
+      body: Center(
+        child: Image.asset(
+          AppImages.appIcon,
+          width: height,
+          height: height,
+          fit: BoxFit.fitWidth,
         ),
       ),
     );
@@ -39,11 +39,15 @@ class _SplashScreenState extends State<SplashScreen> {
   // MARK: - FUNCTION'S
 
   void _defineRoute() async {
-    final bool isOnboardingCompleted =
-        false; // TODO CHECK IS ONBOARDING COMPLETED
-
     if (mounted) {
-      router.go(isOnboardingCompleted ? AppRoutes.home : AppRoutes.onboarding);
+      if (isSubscribed.value) {
+        router.go(HomeRoutes.home);
+      } else {
+        final settings = await sl.get<SettingsRepository>().getSettings();
+        final bool isOnboardingCompleted =
+            settings?.isOnboardingComplete ?? false;
+        router.go(OnboardingRoutes.onboarding, extra: isOnboardingCompleted);
+      }
     }
   }
 }

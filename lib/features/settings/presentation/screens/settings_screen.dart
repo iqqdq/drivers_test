@@ -1,10 +1,8 @@
-import 'package:drivers_test/app/app.dart';
-import 'package:drivers_test/ui/alerts/alerts.dart';
+import 'package:drivers_test/core/ui/alerts/alerts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -112,23 +110,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetFullAccessTap() {
-    // TODO SHOW PAYWALL
-  }
+  void _onGetFullAccessTap() =>
+      router.push(OnboardingRoutes.onboarding, extra: true);
 
   void _onSwitchTap(bool value) async =>
       await _read.togglePushNotifications(value).then((isEnabled) {
-        if (!isEnabled && mounted) PushNotificationsAlert.show(context);
+        if (!isEnabled && mounted) NotificationsAlert.show(context);
       });
 
   void _onSettingTap(int index) {
     if (index == 1 || index == 2) {
-      _read.setSettingsMode(
-        index == 1 ? SettingsMode.state : SettingsMode.license,
+      router.push(
+        SettingsRoutes.settingsSelection,
+        extra: index == 1 ? true : false,
       );
-      router.push(AppRoutes.settingsSelection);
+    } else if (index == 6) {
+      _read.share();
     } else {
-      _read.openSettings(index);
+      _read.openWebView(index);
     }
   }
 }

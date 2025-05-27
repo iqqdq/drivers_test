@@ -1,5 +1,4 @@
-import 'package:drivers_test/ui/theme/app_text_styles.dart';
-import 'package:drivers_test/ui/ui.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 
 class TipTile extends StatelessWidget {

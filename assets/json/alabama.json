@@ -1,7 +1,7 @@
 {
     "id": 1,
     "state": "alabama",
-    "total": 30,
+    "max": 30,
     "min": 24,
     "questions": [
         {

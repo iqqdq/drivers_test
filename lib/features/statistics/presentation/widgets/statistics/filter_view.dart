@@ -1,5 +1,4 @@
 import 'package:drivers_test/core/core.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 import 'drag_handle.dart';

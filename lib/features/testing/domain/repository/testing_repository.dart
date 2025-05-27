@@ -1,4 +1,4 @@
-import 'package:drivers_test/features/testing/domain/domain.dart';
+import 'package:drivers_test/core/core.dart';
 
 abstract interface class TestingRepository {
   // TEST
@@ -12,10 +12,5 @@ abstract interface class TestingRepository {
     required DateTime completedAt,
   });
   Future<ResultEntity> getResult({required int testId});
-  Future<List<ResultEntity>?> getResults();
   Future<int?> getResultBestTime({required int testId});
-  // STATISTIC'S
-  Future<int> getTotalPassed({required String state});
-  Future<int> getTotalAmount({required String state});
-  Future<int> getTotalCorrect({required String state});
 }

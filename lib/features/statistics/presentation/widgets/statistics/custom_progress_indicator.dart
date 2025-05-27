@@ -1,4 +1,4 @@
-import 'package:drivers_test/ui/theme/theme.dart';
+import 'package:drivers_test/core/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomProgressIndicator extends StatefulWidget {

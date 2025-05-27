@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 
 class QuestionView extends StatefulWidget {

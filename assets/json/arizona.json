@@ -1,7 +1,7 @@
 {
     "id": 2,
     "state": "arizona",
-    "total": 30,
+    "max": 30,
     "min": 24,
     "questions": [
         {
@@ -592,9 +592,9 @@
             "image": "https://driversprep.com/wp-content/uploads/2020/12/US.27.03-1.jpg",
             "question": "The minimum amount your insurance must cover for property damage is:",
             "choices": [
-                "$25,000",
-                "$20,000",
-                "$15,000"
+                "$25 000",
+                "$20 000",
+                "$15 000"
             ],
             "correct": 2
         },
@@ -876,7 +876,7 @@
         {
             "id": 80,
             "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.12B-1.jpg",
-            "question": "Your total stopping distance is directly related to:",
+            "question": "Your max stopping distance is directly related to:",
             "choices": [
                 "Your perception time",
                 "Your reaction time",

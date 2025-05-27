@@ -1,7 +1,5 @@
-import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +28,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
     return Scaffold(
       appBar: CustomAppBar(leading: CustomCloseButton(onTap: _onCloseTap)),
       body:
-          watch.result == null && watch.bestTime == null
+          watch.test.result == null && watch.bestTime == null
               ? LoadingIndicator(color: AppColors.black100)
               : Column(
                 children: [
@@ -43,7 +41,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
                           children: [
                             /// IMAGE
                             SvgPicture.asset(
-                              watch.result!.isPassed
+                              watch.test.isPassed
                                   ? AppIcons.correct
                                   : AppIcons.incorrect,
                               height: 72.0,
@@ -53,12 +51,12 @@ class _TestResultScreenState extends State<TestResultScreen> {
                             /// TITLE
                             Expanded(
                               child: Text(
-                                watch.test.isExam
-                                    ? watch.result!.isPassed
+                                watch.test.isPassed
+                                    ? watch.test.isExam
                                         ? AppTitles.theExamWasSuccessfullyPassed
-                                        : AppTitles.theExamWasNotPassed
-                                    : watch.result!.isPassed
-                                    ? AppTitles.theTestWasSuccessfullyPassed
+                                        : AppTitles.theTestWasSuccessfullyPassed
+                                    : watch.test.isExam
+                                    ? AppTitles.theExamWasNotPassed
                                     : AppTitles.theTestWasNotPassed,
                                 style: AppTextStyles.headlineTitle2,
                               ),
@@ -80,12 +78,12 @@ class _TestResultScreenState extends State<TestResultScreen> {
                           children: [
                             ResultView(
                               title:
-                                  '${watch.result!.correct}/${watch.test.amount}',
+                                  '${watch.test.result!.correctAnswerAmount}/${watch.test.questionIds.length}',
                               subtitle: AppTitles.correctAnswers,
                               image: AppImages.correctAnswers,
                             ),
                             ResultView(
-                              title: '${watch.result!.accuracy}%',
+                              title: '${watch.test.accuracy}%',
                               subtitle: AppTitles.passingScore,
                               image: AppImages.passingScore,
                             ),
@@ -108,7 +106,8 @@ class _TestResultScreenState extends State<TestResultScreen> {
                             ResultView(
                               title:
                                   Duration(
-                                    seconds: watch.result!.durationInSeconds,
+                                    seconds:
+                                        watch.test.result!.durationInSeconds,
                                   ).toHmsString(),
                               subtitle: AppTitles.currentTime,
                               image: AppImages.currentTime,
@@ -117,9 +116,11 @@ class _TestResultScreenState extends State<TestResultScreen> {
                             /// BEST TIME
                             ResultView(
                               title:
-                                  Duration(
-                                    seconds: watch.bestTime!,
-                                  ).toHmsString(),
+                                  watch.bestTime == null
+                                      ? ''
+                                      : Duration(
+                                        seconds: watch.bestTime!,
+                                      ).toHmsString(),
                               subtitle: AppTitles.bestTime,
                               image: AppImages.bestTime,
                             ),
@@ -144,7 +145,10 @@ class _TestResultScreenState extends State<TestResultScreen> {
 
                         /// TAKE THE TEST AGAIN BUTTON
                         TransparentButton(
-                          title: AppTitles.takeTheTestAgain,
+                          title:
+                              watch.test.isExam
+                                  ? AppTitles.takeTheExamAgain
+                                  : AppTitles.takeTheTestAgain,
                           onTap: _onTakeTheTestAgainTap,
                         ),
                       ],
@@ -158,18 +162,18 @@ class _TestResultScreenState extends State<TestResultScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onCloseTap() => router.replace(TestRoutes.testCatalog);
+  void _onCloseTap() => router.replace(TestingRoutes.testCatalog);
 
   void _onReviewAnswersTap() => router.push(
-    TestRoutes.testPage,
+    TestingRoutes.testPage,
     extra: TestScreenRouteArgs(
       test: _read.test,
-      answers: _read.result?.answers,
+      answers: _read.test.result!.answers,
     ),
   );
 
   void _onTakeTheTestAgainTap() => router.replace(
-    TestRoutes.testPage,
+    TestingRoutes.testPage,
     extra: TestScreenRouteArgs(test: _read.test),
   );
 }

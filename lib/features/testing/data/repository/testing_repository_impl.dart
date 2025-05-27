@@ -1,62 +1,102 @@
-import 'package:drivers_test/features/testing/data/data.dart';
+import 'package:drift/drift.dart';
 import 'package:drivers_test/features/testing/domain/domain.dart';
+import 'package:drivers_test/core/core.dart';
 
 class TestingRepositoryImpl implements TestingRepository {
-  final TestingLocalDataSource localDataSource;
+  TestingRepositoryImpl(this._db);
 
-  TestingRepositoryImpl(this.localDataSource);
+  final AppDatabase _db;
 
+  // Метод получения всех тестов штата
   @override
-  Future<List<TestEntity>> getTests({required String state}) async =>
-      await localDataSource.getTests(state: state);
+  Future<List<TestEntity>> getTests({required String state}) async {
+    final tests =
+        await (_db.select(_db.tests)
+          ..where((e) => e.state.equals(state) & e.isExam.equals(false))).get();
+    // Для каждого теста получаем количество правильных ответов
+    for (var test in tests) {
+      final result =
+          await (_db.select(_db.results)
+                ..where((e) => e.testId.equals(test.id))
+                ..orderBy([
+                  (e) => OrderingTerm(
+                    expression: e.correctAnswerAmount,
+                    mode: OrderingMode.desc,
+                  ),
+                ])
+                ..limit(1))
+              .getSingleOrNull();
+      test.result = result;
+    }
 
+    return tests;
+  }
+
+  // Метод получения вопросов теста
   @override
-  Future<List<QuestionEntity>> getQuestions({required int testId}) async =>
-      await localDataSource.getQuestions(id: testId);
+  Future<List<QuestionEntity>> getQuestions({required int testId}) async {
+    final test =
+        await (_db.select(_db.tests)
+          ..where((e) => e.id.equals(testId))).getSingle();
+    final questions =
+        await (_db.select(_db.questions)
+          ..where((e) => e.id.isIn(test.questionIds))).get();
+    return questions;
+  }
 
+  // Метод сохранения результата
   @override
   Future saveResult({
     required int id,
     required List<int> answers,
     required int durationInSeconds,
     required DateTime completedAt,
-  }) async => await localDataSource.saveResult(
-    id: id,
-    answers: answers,
-    durationInSeconds: durationInSeconds,
-    completedAt: completedAt,
-  );
+  }) async {
+    final questions = await getQuestions(testId: id);
+    final correctAnswerAmount =
+        List.generate(
+          questions.length,
+          (i) => questions[i].correct == answers[i],
+        ).where((b) => b).length;
 
-  @override
-  Future<List<ResultEntity>?> getResults() async =>
-      await localDataSource.getResults();
-
-  @override
-  Future<ResultEntity> getResult({required int testId}) async =>
-      await localDataSource.getResult(id: testId);
-
-  @override
-  Future<int?> getResultBestTime({required int testId}) async =>
-      await localDataSource.getResultBestTime(id: testId);
-
-  @override
-  Future<int> getTotalPassed({required String state}) async {
-    final tests = await getTests(state: state);
-    final totalPassed = tests.map((e) => e.isPassed).length;
-    return totalPassed;
+    return await _db
+        .into(_db.results)
+        .insertReturning(
+          ResultsCompanion.insert(
+            testId: id,
+            answers: answers,
+            correctAnswerAmount: correctAnswerAmount,
+            durationInSeconds: durationInSeconds,
+            completedAt: completedAt,
+          ),
+        );
   }
 
+  // Метод получения наименьшего времени среди всех результатов
   @override
-  Future<int> getTotalAmount({required String state}) async {
-    final tests = await getTests(state: state);
-    final totalAmount = tests.fold(0, (prev, entity) => prev + entity.amount);
-    return totalAmount;
+  Future<int?> getResultBestTime({required int testId}) async {
+    final query =
+        _db.select(_db.results)
+          ..where((e) => e.testId.equals(testId))
+          ..orderBy([
+            (e) => OrderingTerm(
+              expression: e.durationInSeconds,
+              mode: OrderingMode.asc,
+            ),
+          ])
+          ..limit(1);
+    final result = await query.getSingleOrNull();
+    return result?.durationInSeconds;
   }
 
+  // Метод получения последнего результата
   @override
-  Future<int> getTotalCorrect({required String state}) async {
-    final tests = await getTests(state: state);
-    final totalCorrect = tests.fold(0, (prev, entity) => prev + entity.correct);
-    return totalCorrect;
+  Future<ResultEntity> getResult({required int testId}) async {
+    final query =
+        _db.select(_db.results)
+          ..where((e) => e.testId.equals(testId))
+          ..orderBy([(t) => OrderingTerm.desc(t.completedAt)])
+          ..limit(1);
+    return await query.getSingle();
   }
 }

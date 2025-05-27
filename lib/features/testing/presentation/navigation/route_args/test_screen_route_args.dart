@@ -1,4 +1,4 @@
-import 'package:drivers_test/features/testing/domain/domain.dart';
+import 'package:drivers_test/core/core.dart';
 
 class TestScreenRouteArgs {
   final TestEntity test;

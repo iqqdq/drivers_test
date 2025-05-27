@@ -1,7 +1,5 @@
-import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +30,10 @@ class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
     final watch = context.watch<TestChangeNotifier>();
-    _numberKeys = List.generate(watch.test.amount, (i) => GlobalKey());
+    _numberKeys = List.generate(
+      watch.test.questionIds.length,
+      (i) => GlobalKey(),
+    );
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -68,7 +69,7 @@ class _TestScreenState extends State<TestScreen> {
                     child: ListView.separated(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       scrollDirection: Axis.horizontal,
-                      itemCount: watch.test.amount,
+                      itemCount: watch.test.questionIds.length,
                       separatorBuilder:
                           (context, index) => SizedBox(width: 4.0),
                       itemBuilder: (context, index) {
@@ -108,7 +109,12 @@ class _TestScreenState extends State<TestScreen> {
 
                           return QuestionView(
                             question: question,
-                            onTap: (index) => _onChoiceTap(question, index),
+                            onTap:
+                                (index) => _onChoiceTap(
+                                  question,
+                                  index,
+                                  watch.questions!.length - 1,
+                                ),
                           );
                         },
                       ),
@@ -160,11 +166,15 @@ class _TestScreenState extends State<TestScreen> {
     });
   }
 
-  void _onChoiceTap(QuestionEntity question, int index) =>
-      _read.updateQuestion(question.copyWith(answer: index));
+  void _onChoiceTap(QuestionEntity question, int index, int lenght) {
+    _read.updateQuestion(question.copyWith(answer: index));
+    if (question.correct == index && _pageController.page! < lenght) {
+      _onNumberTap(_pageController.page!.toInt() + 1);
+    }
+  }
 
   void _onCompleteTap() async {
     await _read.saveResult();
-    router.replace(TestRoutes.testResult, extra: _read.test);
+    router.go(TestingRoutes.testResult, extra: _read.test);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:drivers_test/ui/ui.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SettingsSwitchTile extends StatelessWidget {

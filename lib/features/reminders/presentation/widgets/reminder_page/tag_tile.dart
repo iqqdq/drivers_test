@@ -1,5 +1,5 @@
-import 'package:drivers_test/ui/theme/app_colors.dart';
-import 'package:drivers_test/ui/theme/app_text_styles.dart';
+import 'package:drivers_test/core/ui/theme/app_colors.dart';
+import 'package:drivers_test/core/ui/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class TagTile extends StatelessWidget {

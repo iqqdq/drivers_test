@@ -5,10 +5,10 @@ import 'package:drivers_test/features/testing/domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class TestChangeNotifier with ChangeNotifier {
+  TestChangeNotifier({required this.test, this.answers});
+
   final TestEntity test;
   final List<int>? answers;
-
-  TestChangeNotifier({required this.test, this.answers});
 
   late Timer _timer;
 

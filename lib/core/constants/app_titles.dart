@@ -32,7 +32,7 @@ abstract class AppTitles {
   static const exam = 'Exam';
   static const questions = 'questions';
   static const correctAnswersToPass = 'correct answers to pass';
-  static const minutesToCompleteTest = '30 minutes to complete test';
+  static const minutesToCompleteTest = 'minutes to complete test';
 
   // MARK: -
   // MARK: - TEST LIST
@@ -53,6 +53,7 @@ abstract class AppTitles {
   static const bestTime = 'Best time';
   static const reviewAnswers = 'Review answers';
   static const takeTheTestAgain = 'Take the test again';
+  static const takeTheExamAgain = 'Take the exam again';
 
   // MARK: -
   // MARK: - STATISCTIC'S
@@ -61,6 +62,8 @@ abstract class AppTitles {
   static const passedPracticalTests = 'Passed practical tests';
   static const theHistoryOfPracticalTests =
       'The history of practical tests\nwill be displayed here';
+  static const thereAreNoTests =
+      'There are no tests for the\nspecified filters in the history';
   static const practiceHistory = 'Practice history';
   static const typeOfTest = 'Type of test';
   static const testResult = 'Test result';

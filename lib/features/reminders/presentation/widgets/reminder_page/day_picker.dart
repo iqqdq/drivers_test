@@ -1,6 +1,5 @@
-import 'package:drivers_test/core/constants/app_titles.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

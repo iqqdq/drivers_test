@@ -1,7 +1,7 @@
 {
     "id": 7,
     "state": "florida",
-    "total": 50,
+    "max": 50,
     "min": 40,
     "questions": [
         {

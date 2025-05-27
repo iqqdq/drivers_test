@@ -1,7 +1,7 @@
 {
     "id": 6,
     "state": "district_of_columbia",
-    "total": 40,
+    "max": 40,
     "min": 32,
     "questions": [
         {

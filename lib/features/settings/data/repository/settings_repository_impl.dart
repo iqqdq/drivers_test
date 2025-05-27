@@ -1,27 +1,37 @@
-import 'package:drivers_test/features/settings/data/data.dart';
+import 'package:drift/drift.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/settings/domain/domain.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
-  final SettingsLocalDataSource localDataSource;
+  SettingsRepositoryImpl(this._db);
 
-  SettingsRepositoryImpl(this.localDataSource);
+  final AppDatabase _db;
 
   @override
   Future<SettingsEntity?> getSettings() async {
     try {
-      final settings = await localDataSource.getSettings();
+      final settings = await _db.select(_db.settings).getSingleOrNull();
       return settings;
     } catch (e) {
-      throw Exception('Failed to get settings');
+      return null;
     }
   }
 
   @override
-  Future updateSettings(SettingsEntity settings) async {
-    try {
-      await localDataSource.setSettings(settings);
-    } catch (e) {
-      throw Exception('Failed to set settings');
-    }
+  Future setSettings(SettingsEntity settings) async {
+    final current = await getSettings();
+    await _db
+        .into(_db.settings)
+        .insertOnConflictUpdate(
+          SettingsCompanion.insert(
+            id: const Value(0),
+            isPushEnabled: Value(
+              settings.isPushEnabled ?? current?.isPushEnabled,
+            ),
+            state: Value(settings.state ?? current?.state),
+            license: Value(settings.license ?? current?.license),
+            isOnboardingComplete: Value(settings.isOnboardingComplete),
+          ),
+        );
   }
 }

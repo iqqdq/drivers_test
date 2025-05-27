@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:drivers_test/ui/ui.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SettingsTile extends StatelessWidget {

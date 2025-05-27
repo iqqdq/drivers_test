@@ -1,26 +1,31 @@
-import 'package:drivers_test/core/di/di.dart';
 import 'package:drivers_test/features/features.dart';
 import 'package:flutter/foundation.dart';
+import 'package:drivers_test/core/core.dart';
 
 enum TestType { exam, test }
 
 enum TestResultType { passed, failed }
 
 class StatisticsChangeNotifier with ChangeNotifier {
-  List<ResultEntity>? _results;
-  List<ResultEntity>? get results => _results;
+  late String _state;
 
-  int _totalCorrect = 0;
-  int get totalCorrect => _totalCorrect;
+  List<TestEntity>? _tests;
+  List<TestEntity>? get tests => _tests;
 
-  int _totalAmount = 0;
-  int get totalAmount => _totalAmount;
+  int _totalCorrectAnswers = 0;
+  int get totalCorrectAnswers => _totalCorrectAnswers;
+
+  int _totalQuestions = 0;
+  int get totalQuestions => _totalQuestions;
 
   int _totalPassedTest = 0;
   int get totalPassedTest => _totalPassedTest;
 
-  double _examReadiness = 0.0;
-  double get examReadiness => _examReadiness;
+  int _totalTest = 0;
+  int get totalTest => _totalTest;
+
+  int _examReadiness = 0;
+  int get examReadiness => _examReadiness;
 
   TestType? _type;
   TestType? get type => _type;
@@ -28,53 +33,85 @@ class StatisticsChangeNotifier with ChangeNotifier {
   TestResultType? _resultType;
   TestResultType? get resultType => _resultType;
 
-  Future _getPassedTests() async {
-    final state = (await sl.get<SettingsRepository>().getSettings())!.state!;
-
-    _totalPassedTest = await sl.get<TestingRepository>().getTotalPassed(
-      state: state,
+  Future _getTests() async {
+    _tests = await sl.get<StatisticsRepository>().getTestWithResults(
+      state: _state,
     );
 
-    _totalCorrect = await sl.get<TestingRepository>().getTotalCorrect(
-      state: state,
-    );
-    _totalAmount = await sl.get<TestingRepository>().getTotalAmount(
-      state: state,
-    );
+    if (type != null) {
+      _tests?.removeWhere((e) => type == TestType.test ? e.isExam : !e.isExam);
+    }
 
-    // _examReadiness = _totalCorrect == 0 ? 0.0 : _totalCorrect / _totalAmount;
+    if (resultType != null) {
+      _tests?.removeWhere(
+        (e) => resultType == TestResultType.failed ? e.isPassed : !e.isPassed,
+      );
+    }
+
     notifyListeners();
   }
 
-  Future getResults() async {
-    _results = await sl.get<TestingRepository>().getResults();
-    _getPassedTests();
+  double progressValue(int index) {
+    switch (index) {
+      case 1:
+        return totalPassedTest == 0.0 || totalTest == 0.0
+            ? 0.0
+            : totalPassedTest / totalTest;
+      case 2:
+        return totalCorrectAnswers == 0.0 || totalQuestions == 0.0
+            ? 0.0
+            : totalCorrectAnswers / totalQuestions;
+      default:
+        return examReadiness.toInt().toDouble();
+    }
+  }
+
+  String filterValue(int index) =>
+      index == 0
+          ? type == null
+              ? AppTitles.typeOfTest
+              : type == TestType.exam
+              ? AppTitles.exam
+              : AppTitles.practicalTest
+          : resultType == null
+          ? AppTitles.testResult
+          : resultType == TestResultType.passed
+          ? AppTitles.passed
+          : AppTitles.failed;
+
+  Future getStatistics() async {
+    _state = (await sl.get<SettingsRepository>().getSettings())!.state!;
+
+    _totalPassedTest = await sl.get<StatisticsRepository>().getTotalPassedTests(
+      state: _state,
+    );
+
+    _totalTest =
+        isSubscribed.value
+            ? await sl.get<StatisticsRepository>().getTotalTests(state: _state)
+            : 3;
+
+    _totalQuestions = await sl.get<StatisticsRepository>().getTotalQuestions(
+      state: _state,
+    );
+
+    _totalCorrectAnswers = await sl
+        .get<StatisticsRepository>()
+        .getTotalCorrectAnswers(state: _state);
+
+    _examReadiness =
+        _totalCorrectAnswers == 0 ? 0 : _totalCorrectAnswers ~/ _totalQuestions;
+
+    _getTests();
   }
 
   void toogleTestType(TestType? type) {
     _type = type;
-
-    if (_type == null) {
-      getResults();
-    } else {
-      final isExam = _type == TestType.test;
-      _results!.removeWhere((e) => e.isExam == isExam);
-      notifyListeners();
-    }
+    _getTests();
   }
 
   void toogleTestResultType(TestResultType? resultType) {
     _resultType = resultType;
-
-    if (resultType == null) {
-      getResults();
-    } else {
-      final isPassed = resultType == TestResultType.failed;
-      _results!.removeWhere((e) => e.isPassed == isPassed);
-      notifyListeners();
-    }
+    _getTests();
   }
-
-  // Future<TestEntity> getTest({required int resultId}) async =>
-  // await sl.get<TestingRepository>().getTest(id: resultId);
 }

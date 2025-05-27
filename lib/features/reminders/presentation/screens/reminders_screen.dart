@@ -1,7 +1,5 @@
-import 'package:drivers_test/app/app.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +49,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onReminderTap(int index) => router.push(AppRoutes.reminderPage);
+  void _onReminderTap(int index) => router.push(RemindersRoutes.reminderPage);
 
   void _onSwitchTap(int index, bool value) =>
       index == 0

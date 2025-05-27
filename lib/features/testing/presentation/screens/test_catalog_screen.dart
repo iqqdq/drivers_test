@@ -1,7 +1,5 @@
-import 'package:drivers_test/app/router.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,74 +35,79 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
           CustomAppBarIconAction(icon: AppIcons.stats, onTap: _onStatisticsTap),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// TITLE
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              '$_state ${AppTitles.stateTestCatalog}'.toStateName(),
-              style: AppTextStyles.headlineTitle1,
-            ),
-          ),
-          const SizedBox(height: 24.0),
-
-          /// TODO SHOW IF NOT SUBSCRIBED
-          /// GET PREMIUM
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: GetPremiumCard(
-              subtitle: AppTitles.getUnlimitedNumberOfTests,
-              secondSubtitle:
-                  '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
-              onTap: _onGetPremiumTap,
-            ),
-          ),
-
-          const SizedBox(height: 12.0),
-
-          /// TEST LIST VIEW
+      body:
           watch.tests == null
-              ? SizedBox.shrink()
-              : Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ).copyWith(top: 12.0, bottom: getBottomPadding(context)),
-                  itemCount: watch.tests!.length,
-                  separatorBuilder:
-                      (context, index) => const SizedBox(height: 12.0),
-                  itemBuilder: (context, index) {
-                    final test = watch.tests![index];
+              ? const Center(child: LoadingIndicator(color: AppColors.black100))
+              : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// TITLE
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      '$_state ${AppTitles.stateTestCatalog}'.toStateName(),
+                      style: AppTextStyles.headlineTitle1,
+                    ),
+                  ),
+                  const SizedBox(height: 24.0),
 
-                    return TestTile(
-                      index: normalizeTestId(test.id),
-                      name: test.name,
-                      accuracy: test.accuracy,
-                      correct: test.correct,
-                      total: test.amount,
-                      onTap: () => _onTestTap(index),
-                    );
-                  },
-                ),
+                  /// GET PREMIUM
+                  isSubscribed.value
+                      ? SizedBox.shrink()
+                      : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: GetPremiumCard(
+                          subtitle: AppTitles.getUnlimitedNumberOfTests,
+                          secondSubtitle:
+                              '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
+                          onTap: _onGetPremiumTap,
+                        ),
+                      ),
+
+                  const SizedBox(height: 12.0),
+
+                  /// TEST LIST VIEW
+                  watch.tests == null
+                      ? SizedBox.shrink()
+                      : Expanded(
+                        child: ListView.separated(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ).copyWith(
+                            top: 12.0,
+                            bottom: getBottomPadding(context),
+                          ),
+                          itemCount: watch.tests!.length,
+                          separatorBuilder:
+                              (context, index) => const SizedBox(height: 12.0),
+                          itemBuilder: (context, index) {
+                            final test = watch.tests![index];
+
+                            return test.isExam
+                                ? const SizedBox.shrink()
+                                : TestTile(
+                                  index: normalizeTestId(test.id),
+                                  test: test,
+                                  onTap: () => _onTestTap(index),
+                                );
+                          },
+                        ),
+                      ),
+                ],
               ),
-        ],
-      ),
     );
   }
 
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetPremiumTap() {
-    // TODO SHOW PAYWALL
-  }
+  void _onGetPremiumTap() =>
+      router.push(OnboardingRoutes.onboarding, extra: true);
 
-  void _onStatisticsTap() => router.push(AppRoutes.statistics);
+  void _onStatisticsTap() => router.push(StatisticsRoutes.statistics);
 
   void _onTestTap(int index) => router.push(
-    TestRoutes.testPage,
+    TestingRoutes.testPage,
     extra: TestScreenRouteArgs(test: _read.tests![index]),
   );
 }
