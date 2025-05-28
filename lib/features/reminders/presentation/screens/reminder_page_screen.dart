@@ -11,17 +11,17 @@ class ReminderPageScreen extends StatefulWidget {
 }
 
 class _ReminderPageScreenState extends State<ReminderPageScreen> {
-  late final ReminderPageChangeNotifier _read;
+  late final RemindersChangeNotifier _read;
 
   @override
   void initState() {
-    _read = context.read<ReminderPageChangeNotifier>();
+    _read = context.read<RemindersChangeNotifier>();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<ReminderPageChangeNotifier>();
+    final watch = context.watch<RemindersChangeNotifier>();
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -29,7 +29,7 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
         actions: [
           CustomAppBarAction(
             title: AppTitles.reset,
-            onTap: watch.isCanReset, // TODO CHECK IF REMINDER IS NULL
+            onTap: watch.isCanReset ? _onResetTap : null,
           ),
         ],
       ),
@@ -64,7 +64,10 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
                 watch.type == ReminderType.practice
                     ? TitleContainer(
                       title: AppTitles.setTheDays,
-                      child: DayPicker(days: watch.days, onTap: _onDayNameTap),
+                      child: DayPicker(
+                        days: watch.daysOfWeek,
+                        onTap: _onDayNameTap,
+                      ),
                     )
                     :
                     /// DATE PICKER
@@ -93,13 +96,15 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
                 const SizedBox(height: 16.0),
 
                 /// WEEKDAY LIST VIEW
-                TitleContainer(
-                  title: AppTitles.remindBeforeDays,
-                  child: WeekdayListView(
-                    selected: watch.dayAmount,
-                    onTap: _onDayAmountTap,
-                  ),
-                ),
+                watch.type == ReminderType.practice
+                    ? SizedBox.shrink()
+                    : TitleContainer(
+                      title: AppTitles.remindBeforeDays,
+                      child: WeekdayListView(
+                        selected: watch.daysUntilRemind,
+                        onTap: _onDayAmountTap,
+                      ),
+                    ),
               ],
             ),
           ),
@@ -111,7 +116,7 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
             ).copyWith(bottom: getBottomPadding(context)),
             child: PrimaryButton(
               title: AppTitles.apply,
-              onTap: watch.isValid() ? () {} : null,
+              onTap: watch.isValid ? _onApplyTap : null,
             ),
           ),
         ],
@@ -133,4 +138,11 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
   void _setTime(int hour, int minute) => _read.setTime(hour, minute);
 
   void _onDayAmountTap(int index) => _read.setRemindBefore(index);
+
+  void _onResetTap() => _read.reset();
+
+  void _onApplyTap() async {
+    await _read.addReminder();
+    router.pop();
+  }
 }

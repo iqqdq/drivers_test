@@ -1,6 +1,21 @@
 class PracticeReminderEntity {
-  List<int>? days;
-  int? daysUntilRemind;
+  List<int> daysOfWeek;
+  int hour;
+  int minute;
 
-  PracticeReminderEntity({this.days, this.daysUntilRemind});
+  PracticeReminderEntity({
+    required this.daysOfWeek,
+    required this.hour,
+    required this.minute,
+  });
+
+  factory PracticeReminderEntity.fromRow({
+    required List<int> daysOfWeek,
+    required int hour,
+    required int minute,
+  }) => PracticeReminderEntity(
+    daysOfWeek: daysOfWeek,
+    hour: hour,
+    minute: minute,
+  );
 }

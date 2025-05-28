@@ -15,7 +15,7 @@ class DayPicker extends StatefulWidget {
 
 class _DayPickerState extends State<DayPicker>
     with AutomaticKeepAliveClientMixin {
-  bool isEveryday = true;
+  bool _isEveryday = true;
 
   @override
   bool get wantKeepAlive => true;
@@ -34,14 +34,14 @@ class _DayPickerState extends State<DayPicker>
       children: [
         /// EVERYDAY CHECKBOX
         GestureDetector(
-          onTap: () => setState(() => isEveryday = true),
+          onTap: () => setState(() => _isEveryday = true),
           child: Row(
             children: [
               Expanded(
                 child: Text(AppTitles.everyday, style: AppTextStyles.textBody),
               ),
               const SizedBox(width: 12.0),
-              CustomCheckbox(isSelected: isEveryday),
+              CustomCheckbox(isSelected: _isEveryday),
             ],
           ),
         ),
@@ -49,7 +49,7 @@ class _DayPickerState extends State<DayPicker>
 
         /// DAY OF THE WEEK SELECTION
         GestureDetector(
-          onTap: () => setState(() => isEveryday = !isEveryday),
+          onTap: () => setState(() => _isEveryday = !_isEveryday),
           child: Row(
             children: [
               Expanded(
@@ -60,15 +60,15 @@ class _DayPickerState extends State<DayPicker>
               ),
               const SizedBox(width: 12.0),
               SvgPicture.asset(
-                isEveryday ? AppIcons.arrowDown : AppIcons.arrowUp,
+                _isEveryday ? AppIcons.arrowDown : AppIcons.arrowUp,
               ),
             ],
           ),
         ),
-        SizedBox(height: isEveryday ? 0.0 : 16.0),
+        SizedBox(height: _isEveryday ? 0.0 : 16.0),
 
         /// DAY LIST VIEW
-        isEveryday
+        _isEveryday
             ? SizedBox.shrink()
             : SizedBox(
               height: width * 0.9,

@@ -15,17 +15,6 @@ class _DatePickerState extends State<DatePicker> {
   late DateTime _currentMonth;
   DateTime? _currentDate;
 
-  @override
-  void initState() {
-    super.initState();
-    _currentDate = widget.dateTime;
-    _currentMonth = DateTime(
-      _currentDate?.year ?? DateTime.now().year,
-      _currentDate?.month ?? DateTime.now().month,
-      1,
-    );
-  }
-
   void _goToMonth(DateTime month) {
     setState(() {
       _currentMonth = DateTime(month.year, month.month, 1);
@@ -54,6 +43,13 @@ class _DatePickerState extends State<DatePicker> {
 
   @override
   Widget build(BuildContext context) {
+    _currentDate = widget.dateTime;
+    _currentMonth = DateTime(
+      _currentDate?.year ?? DateTime.now().year,
+      _currentDate?.month ?? DateTime.now().month,
+      1,
+    );
+
     return Column(
       children: [
         _buildHeader(),

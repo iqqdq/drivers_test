@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? title;
+  final String title;
   final VoidCallback onStateTap;
   final VoidCallback onNotificationsTap;
   final VoidCallback onSettingsTap;
 
   const HomeAppBar({
     super.key,
-    this.title,
+    required this.title,
     required this.onStateTap,
     required this.onNotificationsTap,
     required this.onSettingsTap,
@@ -28,12 +28,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: onStateTap,
         child: Row(
           children: [
-            Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.6,
-              ),
+            Flexible(
               child: Text(
-                title ?? '',
+                title,
                 style: AppTextStyles.headlineTitle1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: HomeAppBar(
-        title: state?.toStateName(),
+        title: state?.toStateName() ?? '',
         onStateTap: _onStateTap,
         onNotificationsTap: _onNotificationsTap,
         onSettingsTap: _onSettingsTap,
@@ -89,8 +89,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onGetPremiumTap() =>
       router.push(OnboardingRoutes.onboarding, extra: true);
 
-  void _onStateTap() =>
-      router.push(SettingsRoutes.settingsSelection, extra: true);
+  void _onStateTap() async {
+    await router.push(SettingsRoutes.settingsSelection, extra: true);
+    await _read.getExam();
+  }
 
   void _onSettingsTap() => router.push(SettingsRoutes.settings);
 

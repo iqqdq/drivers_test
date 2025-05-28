@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/features/features.dart';
 
 @UseRowClass(ResultEntity, constructor: 'fromRow')
 class Results extends Table {

@@ -1067,6 +1067,359 @@ class SettingsCompanion extends UpdateCompanion<SettingsEntity> {
   }
 }
 
+class $PracticeRemindersTable extends PracticeReminders
+    with TableInfo<$PracticeRemindersTable, PracticeReminderEntity> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PracticeRemindersTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<List<int>, String> daysOfWeek =
+      GeneratedColumn<String>(
+        'days_of_week',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<List<int>>($PracticeRemindersTable.$converterdaysOfWeek);
+  static const VerificationMeta _hourMeta = const VerificationMeta('hour');
+  @override
+  late final GeneratedColumn<int> hour = GeneratedColumn<int>(
+    'hour',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _minuteMeta = const VerificationMeta('minute');
+  @override
+  late final GeneratedColumn<int> minute = GeneratedColumn<int>(
+    'minute',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, daysOfWeek, hour, minute];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'practice_reminders';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PracticeReminderEntity> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('hour')) {
+      context.handle(
+        _hourMeta,
+        hour.isAcceptableOrUnknown(data['hour']!, _hourMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_hourMeta);
+    }
+    if (data.containsKey('minute')) {
+      context.handle(
+        _minuteMeta,
+        minute.isAcceptableOrUnknown(data['minute']!, _minuteMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_minuteMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PracticeReminderEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PracticeReminderEntity.fromRow(
+      daysOfWeek: $PracticeRemindersTable.$converterdaysOfWeek.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}days_of_week'],
+        )!,
+      ),
+      hour:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}hour'],
+          )!,
+      minute:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}minute'],
+          )!,
+    );
+  }
+
+  @override
+  $PracticeRemindersTable createAlias(String alias) {
+    return $PracticeRemindersTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<List<int>, String> $converterdaysOfWeek = intConverter;
+}
+
+class PracticeRemindersCompanion
+    extends UpdateCompanion<PracticeReminderEntity> {
+  final Value<int> id;
+  final Value<List<int>> daysOfWeek;
+  final Value<int> hour;
+  final Value<int> minute;
+  const PracticeRemindersCompanion({
+    this.id = const Value.absent(),
+    this.daysOfWeek = const Value.absent(),
+    this.hour = const Value.absent(),
+    this.minute = const Value.absent(),
+  });
+  PracticeRemindersCompanion.insert({
+    this.id = const Value.absent(),
+    required List<int> daysOfWeek,
+    required int hour,
+    required int minute,
+  }) : daysOfWeek = Value(daysOfWeek),
+       hour = Value(hour),
+       minute = Value(minute);
+  static Insertable<PracticeReminderEntity> custom({
+    Expression<int>? id,
+    Expression<String>? daysOfWeek,
+    Expression<int>? hour,
+    Expression<int>? minute,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (daysOfWeek != null) 'days_of_week': daysOfWeek,
+      if (hour != null) 'hour': hour,
+      if (minute != null) 'minute': minute,
+    });
+  }
+
+  PracticeRemindersCompanion copyWith({
+    Value<int>? id,
+    Value<List<int>>? daysOfWeek,
+    Value<int>? hour,
+    Value<int>? minute,
+  }) {
+    return PracticeRemindersCompanion(
+      id: id ?? this.id,
+      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
+      hour: hour ?? this.hour,
+      minute: minute ?? this.minute,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (daysOfWeek.present) {
+      map['days_of_week'] = Variable<String>(
+        $PracticeRemindersTable.$converterdaysOfWeek.toSql(daysOfWeek.value),
+      );
+    }
+    if (hour.present) {
+      map['hour'] = Variable<int>(hour.value);
+    }
+    if (minute.present) {
+      map['minute'] = Variable<int>(minute.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PracticeRemindersCompanion(')
+          ..write('id: $id, ')
+          ..write('daysOfWeek: $daysOfWeek, ')
+          ..write('hour: $hour, ')
+          ..write('minute: $minute')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ExamRemindersTable extends ExamReminders
+    with TableInfo<$ExamRemindersTable, ExamReminderEnity> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ExamRemindersTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _daysUntilRemindMeta = const VerificationMeta(
+    'daysUntilRemind',
+  );
+  @override
+  late final GeneratedColumn<int> daysUntilRemind = GeneratedColumn<int>(
+    'days_until_remind',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, date, daysUntilRemind];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'exam_reminders';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ExamReminderEnity> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('days_until_remind')) {
+      context.handle(
+        _daysUntilRemindMeta,
+        daysUntilRemind.isAcceptableOrUnknown(
+          data['days_until_remind']!,
+          _daysUntilRemindMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ExamReminderEnity map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ExamReminderEnity.fromRow(
+      date:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}date'],
+          )!,
+      daysUntilRemind: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}days_until_remind'],
+      ),
+    );
+  }
+
+  @override
+  $ExamRemindersTable createAlias(String alias) {
+    return $ExamRemindersTable(attachedDatabase, alias);
+  }
+}
+
+class ExamRemindersCompanion extends UpdateCompanion<ExamReminderEnity> {
+  final Value<int> id;
+  final Value<DateTime> date;
+  final Value<int?> daysUntilRemind;
+  const ExamRemindersCompanion({
+    this.id = const Value.absent(),
+    this.date = const Value.absent(),
+    this.daysUntilRemind = const Value.absent(),
+  });
+  ExamRemindersCompanion.insert({
+    this.id = const Value.absent(),
+    required DateTime date,
+    this.daysUntilRemind = const Value.absent(),
+  }) : date = Value(date);
+  static Insertable<ExamReminderEnity> custom({
+    Expression<int>? id,
+    Expression<DateTime>? date,
+    Expression<int>? daysUntilRemind,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (date != null) 'date': date,
+      if (daysUntilRemind != null) 'days_until_remind': daysUntilRemind,
+    });
+  }
+
+  ExamRemindersCompanion copyWith({
+    Value<int>? id,
+    Value<DateTime>? date,
+    Value<int?>? daysUntilRemind,
+  }) {
+    return ExamRemindersCompanion(
+      id: id ?? this.id,
+      date: date ?? this.date,
+      daysUntilRemind: daysUntilRemind ?? this.daysUntilRemind,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    if (daysUntilRemind.present) {
+      map['days_until_remind'] = Variable<int>(daysUntilRemind.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ExamRemindersCompanion(')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('daysUntilRemind: $daysUntilRemind')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -1074,6 +1427,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $QuestionsTable questions = $QuestionsTable(this);
   late final $ResultsTable results = $ResultsTable(this);
   late final $SettingsTable settings = $SettingsTable(this);
+  late final $PracticeRemindersTable practiceReminders =
+      $PracticeRemindersTable(this);
+  late final $ExamRemindersTable examReminders = $ExamRemindersTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1083,6 +1439,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     questions,
     results,
     settings,
+    practiceReminders,
+    examReminders,
   ];
 }
 
@@ -2154,6 +2512,384 @@ typedef $$SettingsTableProcessedTableManager =
       SettingsEntity,
       PrefetchHooks Function()
     >;
+typedef $$PracticeRemindersTableCreateCompanionBuilder =
+    PracticeRemindersCompanion Function({
+      Value<int> id,
+      required List<int> daysOfWeek,
+      required int hour,
+      required int minute,
+    });
+typedef $$PracticeRemindersTableUpdateCompanionBuilder =
+    PracticeRemindersCompanion Function({
+      Value<int> id,
+      Value<List<int>> daysOfWeek,
+      Value<int> hour,
+      Value<int> minute,
+    });
+
+class $$PracticeRemindersTableFilterComposer
+    extends Composer<_$AppDatabase, $PracticeRemindersTable> {
+  $$PracticeRemindersTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<List<int>, List<int>, String> get daysOfWeek =>
+      $composableBuilder(
+        column: $table.daysOfWeek,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
+
+  ColumnFilters<int> get hour => $composableBuilder(
+    column: $table.hour,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get minute => $composableBuilder(
+    column: $table.minute,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$PracticeRemindersTableOrderingComposer
+    extends Composer<_$AppDatabase, $PracticeRemindersTable> {
+  $$PracticeRemindersTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get daysOfWeek => $composableBuilder(
+    column: $table.daysOfWeek,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get hour => $composableBuilder(
+    column: $table.hour,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get minute => $composableBuilder(
+    column: $table.minute,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$PracticeRemindersTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PracticeRemindersTable> {
+  $$PracticeRemindersTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<List<int>, String> get daysOfWeek =>
+      $composableBuilder(
+        column: $table.daysOfWeek,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<int> get hour =>
+      $composableBuilder(column: $table.hour, builder: (column) => column);
+
+  GeneratedColumn<int> get minute =>
+      $composableBuilder(column: $table.minute, builder: (column) => column);
+}
+
+class $$PracticeRemindersTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PracticeRemindersTable,
+          PracticeReminderEntity,
+          $$PracticeRemindersTableFilterComposer,
+          $$PracticeRemindersTableOrderingComposer,
+          $$PracticeRemindersTableAnnotationComposer,
+          $$PracticeRemindersTableCreateCompanionBuilder,
+          $$PracticeRemindersTableUpdateCompanionBuilder,
+          (
+            PracticeReminderEntity,
+            BaseReferences<
+              _$AppDatabase,
+              $PracticeRemindersTable,
+              PracticeReminderEntity
+            >,
+          ),
+          PracticeReminderEntity,
+          PrefetchHooks Function()
+        > {
+  $$PracticeRemindersTableTableManager(
+    _$AppDatabase db,
+    $PracticeRemindersTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$PracticeRemindersTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer:
+              () => $$PracticeRemindersTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$PracticeRemindersTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<List<int>> daysOfWeek = const Value.absent(),
+                Value<int> hour = const Value.absent(),
+                Value<int> minute = const Value.absent(),
+              }) => PracticeRemindersCompanion(
+                id: id,
+                daysOfWeek: daysOfWeek,
+                hour: hour,
+                minute: minute,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required List<int> daysOfWeek,
+                required int hour,
+                required int minute,
+              }) => PracticeRemindersCompanion.insert(
+                id: id,
+                daysOfWeek: daysOfWeek,
+                hour: hour,
+                minute: minute,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$PracticeRemindersTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PracticeRemindersTable,
+      PracticeReminderEntity,
+      $$PracticeRemindersTableFilterComposer,
+      $$PracticeRemindersTableOrderingComposer,
+      $$PracticeRemindersTableAnnotationComposer,
+      $$PracticeRemindersTableCreateCompanionBuilder,
+      $$PracticeRemindersTableUpdateCompanionBuilder,
+      (
+        PracticeReminderEntity,
+        BaseReferences<
+          _$AppDatabase,
+          $PracticeRemindersTable,
+          PracticeReminderEntity
+        >,
+      ),
+      PracticeReminderEntity,
+      PrefetchHooks Function()
+    >;
+typedef $$ExamRemindersTableCreateCompanionBuilder =
+    ExamRemindersCompanion Function({
+      Value<int> id,
+      required DateTime date,
+      Value<int?> daysUntilRemind,
+    });
+typedef $$ExamRemindersTableUpdateCompanionBuilder =
+    ExamRemindersCompanion Function({
+      Value<int> id,
+      Value<DateTime> date,
+      Value<int?> daysUntilRemind,
+    });
+
+class $$ExamRemindersTableFilterComposer
+    extends Composer<_$AppDatabase, $ExamRemindersTable> {
+  $$ExamRemindersTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get daysUntilRemind => $composableBuilder(
+    column: $table.daysUntilRemind,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ExamRemindersTableOrderingComposer
+    extends Composer<_$AppDatabase, $ExamRemindersTable> {
+  $$ExamRemindersTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get daysUntilRemind => $composableBuilder(
+    column: $table.daysUntilRemind,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ExamRemindersTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ExamRemindersTable> {
+  $$ExamRemindersTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<int> get daysUntilRemind => $composableBuilder(
+    column: $table.daysUntilRemind,
+    builder: (column) => column,
+  );
+}
+
+class $$ExamRemindersTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ExamRemindersTable,
+          ExamReminderEnity,
+          $$ExamRemindersTableFilterComposer,
+          $$ExamRemindersTableOrderingComposer,
+          $$ExamRemindersTableAnnotationComposer,
+          $$ExamRemindersTableCreateCompanionBuilder,
+          $$ExamRemindersTableUpdateCompanionBuilder,
+          (
+            ExamReminderEnity,
+            BaseReferences<
+              _$AppDatabase,
+              $ExamRemindersTable,
+              ExamReminderEnity
+            >,
+          ),
+          ExamReminderEnity,
+          PrefetchHooks Function()
+        > {
+  $$ExamRemindersTableTableManager(_$AppDatabase db, $ExamRemindersTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$ExamRemindersTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$ExamRemindersTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$ExamRemindersTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<int?> daysUntilRemind = const Value.absent(),
+              }) => ExamRemindersCompanion(
+                id: id,
+                date: date,
+                daysUntilRemind: daysUntilRemind,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required DateTime date,
+                Value<int?> daysUntilRemind = const Value.absent(),
+              }) => ExamRemindersCompanion.insert(
+                id: id,
+                date: date,
+                daysUntilRemind: daysUntilRemind,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ExamRemindersTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ExamRemindersTable,
+      ExamReminderEnity,
+      $$ExamRemindersTableFilterComposer,
+      $$ExamRemindersTableOrderingComposer,
+      $$ExamRemindersTableAnnotationComposer,
+      $$ExamRemindersTableCreateCompanionBuilder,
+      $$ExamRemindersTableUpdateCompanionBuilder,
+      (
+        ExamReminderEnity,
+        BaseReferences<_$AppDatabase, $ExamRemindersTable, ExamReminderEnity>,
+      ),
+      ExamReminderEnity,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -2166,4 +2902,8 @@ class $AppDatabaseManager {
       $$ResultsTableTableManager(_db, _db.results);
   $$SettingsTableTableManager get settings =>
       $$SettingsTableTableManager(_db, _db.settings);
+  $$PracticeRemindersTableTableManager get practiceReminders =>
+      $$PracticeRemindersTableTableManager(_db, _db.practiceReminders);
+  $$ExamRemindersTableTableManager get examReminders =>
+      $$ExamRemindersTableTableManager(_db, _db.examReminders);
 }

@@ -1,23 +1,80 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz; // Для инициализации
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  Future<void> requestNotificationPermission() async {
-    final permission = Permission.notification;
-    if (await permission.isDenied) {
-      await permission.request();
+  final NotificationDetails notificationDetails = NotificationDetails(
+    android: AndroidNotificationDetails(
+      'schedule_channel_id',
+      'Scheduled Notifications',
+      importance: Importance.max,
+      priority: Priority.high,
+    ),
+    iOS: DarwinNotificationDetails(),
+  );
+
+  // Инициализация часового пояса
+  Future _initTimeZone() async {
+    try {
+      final timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+      tz.initializeTimeZones();
+      tz.setLocalLocation(tz.getLocation(timeZoneName));
+    } catch (e) {
+      debugPrint('Ошибка установки часового пояса: $e');
+      tz.setLocalLocation(tz.getLocation('UTC')); // Запасной вариант
     }
   }
 
-  Future<bool> checkNotificationPermission() async =>
-      await Permission.notification.status.isGranted;
+  // Инициализация отложенных даты и времени
+  tz.TZDateTime _nextInstanceOfDaysAndTime({
+    required List<int> daysOfWeek,
+    required int hour,
+    int minute = 0,
+  }) {
+    final now = tz.TZDateTime.now(tz.local);
 
-  Future<void> init() async {
+    // Сортируем дни недели по порядку (от ближайшего)
+    daysOfWeek.sort((a, b) {
+      final aDiff = (a - now.weekday) % 7;
+      final bDiff = (b - now.weekday) % 7;
+      return aDiff.compareTo(bDiff);
+    });
+
+    // Проверяем каждый день на возможность использования сегодня
+    for (final day in daysOfWeek) {
+      final scheduledDate = tz.TZDateTime(
+        tz.local,
+        now.year,
+        now.month,
+        now.day,
+        hour,
+        minute,
+      ).add(Duration(days: (day - now.weekday) % 7));
+
+      // Если время ещё не наступило сегодня/в этот день
+      if (scheduledDate.isAfter(now)) {
+        return scheduledDate;
+      }
+    }
+
+    // Если все варианты прошли, берём первый день следующей недели
+    return tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    ).add(Duration(days: (daysOfWeek.first - now.weekday) % 7 + 7));
+  }
+
+  Future init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -41,31 +98,27 @@ class NotificationService {
         debugPrint('Notification tapped: ${response.payload}');
       },
     );
+
+    await _initTimeZone();
   }
 
-  // Показать простое уведомление
-  Future<void> showNotification({
+  Future requestNotificationPermission() async {
+    final permission = Permission.notification;
+    if (await permission.isDenied) {
+      await permission.request();
+    }
+  }
+
+  Future<bool> checkNotificationPermission() async =>
+      await Permission.notification.status.isGranted;
+
+  // Простое уведомление
+  Future showNotification({
     required int id,
     required String title,
     required String body,
     String? payload,
   }) async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-          'channel_id',
-          'channel_name',
-          importance: Importance.max,
-          priority: Priority.high,
-        );
-
-    const DarwinNotificationDetails darwinNotificationDetails =
-        DarwinNotificationDetails();
-
-    const NotificationDetails notificationDetails = NotificationDetails(
-      android: androidNotificationDetails,
-      iOS: darwinNotificationDetails,
-    );
-
     await _notificationsPlugin.show(
       id,
       title,
@@ -75,35 +128,48 @@ class NotificationService {
     );
   }
 
+  // Отложенное уведомление с повтором в указанные дни
+  Future scheduleRepeatingNotification({
+    required int id,
+    required String title,
+    required String body,
+    required List<int> daysOfWeek,
+    required int hour,
+    required int minute,
+    String? payload,
+  }) async {
+    await _notificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      _nextInstanceOfDaysAndTime(
+        daysOfWeek: daysOfWeek,
+        hour: hour,
+        minute: minute,
+      ),
+      notificationDetails,
+      payload: payload,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+    );
+  }
+
   // Отложенное уведомление
-  Future<void> scheduleNotification({
+  Future scheduleNotification({
     required int id,
     required String title,
     required String body,
     required Duration delay,
     String? payload,
   }) async {
-    final AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-          'schedule_channel_id',
-          'Scheduled Notifications',
-          importance: Importance.max,
-          priority: Priority.high,
-        );
-
-    final DarwinNotificationDetails darwinNotificationDetails =
-        DarwinNotificationDetails();
-
-    final NotificationDetails notificationDetails = NotificationDetails(
-      android: androidNotificationDetails,
-      iOS: darwinNotificationDetails,
-    );
+    final scheduledDate = tz.TZDateTime.now(tz.local).add(delay);
+    debugPrint('Scheduling notification at $scheduledDate');
 
     await _notificationsPlugin.zonedSchedule(
       id,
       title,
       body,
-      tz.TZDateTime.now(tz.local).add(delay),
+      scheduledDate,
       notificationDetails,
       payload: payload,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -111,12 +177,12 @@ class NotificationService {
   }
 
   // Удалить уведомление по ID
-  Future<void> cancelNotification(int id) async {
+  Future cancelNotification(int id) async {
     await _notificationsPlugin.cancel(id);
   }
 
   // Удалить все уведомления
-  Future<void> cancelAllNotifications() async {
+  Future cancelAllNotifications() async {
     await _notificationsPlugin.cancelAll();
   }
 }

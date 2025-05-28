@@ -53,7 +53,9 @@ class _TestScreenState extends State<TestScreen> {
                   LoadingIndicator(color: AppColors.black100),
                   const SizedBox(height: 40.0),
                   Text(
-                    AppTitles.pleaseWaitForTestToLoad,
+                    _read.test.isExam
+                        ? AppTitles.pleaseWaitForExamToLoad
+                        : AppTitles.pleaseWaitForTestToLoad,
                     textAlign: TextAlign.center,
                     style: AppTextStyles.headlineTitle2,
                   ),
@@ -127,7 +129,9 @@ class _TestScreenState extends State<TestScreen> {
                       : watch.isTimeUp || watch.isTestCompleted
                       ? SafeArea(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ).copyWith(top: 16.0),
                           child: PrimaryButton(
                             title: AppTitles.complete,
                             onTap: _onCompleteTap,
@@ -175,6 +179,6 @@ class _TestScreenState extends State<TestScreen> {
 
   void _onCompleteTap() async {
     await _read.saveResult();
-    router.go(TestingRoutes.testResult, extra: _read.test);
+    router.pushReplacement(TestingRoutes.testResult, extra: _read.test);
   }
 }

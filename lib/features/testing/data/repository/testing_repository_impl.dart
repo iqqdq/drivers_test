@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:drivers_test/features/testing/domain/domain.dart';
+import 'package:drivers_test/features/features.dart';
 import 'package:drivers_test/core/core.dart';
 
 class TestingRepositoryImpl implements TestingRepository {

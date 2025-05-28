@@ -1,4 +1,4 @@
-import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/core/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 class CustomCheckbox extends StatelessWidget {

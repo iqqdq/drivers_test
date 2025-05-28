@@ -12,17 +12,17 @@ class RemindersScreen extends StatefulWidget {
 
 class _RemindersScreenState extends State<RemindersScreen> {
   final _titles = [AppTitles.practiceReminder, AppTitles.examReminder];
-  late final ReminderssChangeNotifier _read;
+  late final RemindersChangeNotifier _read;
 
   @override
   void initState() {
-    _read = context.read<ReminderssChangeNotifier>();
+    _read = context.read<RemindersChangeNotifier>();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<ReminderssChangeNotifier>();
+    final watch = context.watch<RemindersChangeNotifier>();
 
     return Scaffold(
       appBar: CustomAppBar(title: AppTitles.reminders),
@@ -34,6 +34,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
         itemBuilder: (context, index) {
           return ReminderTile(
             title: _titles[index],
+            tags: index == 0 ? _read.getReminderTags() : _read.getExamTags(),
             value:
                 index == 0
                     ? watch.isPracticeReminderEnabled

@@ -1,0 +1,557 @@
+{
+    "id": 13,
+    "state": "Louisiana",
+    "total": 30,
+    "min": 24,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.13-1.jpg",
+            "question": "If there is an oncoming vehicle approaching head-on in your lane, your escape path from a collision is:",
+            "choices": [
+                "To your right-hand side",
+                "To your left-hand side",
+                "To either side, it doesn't matter"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.05-1.jpg",
+            "question": "What does Louisiana's general speed law mean?",
+            "choices": [
+                "You must keep a speed that is reasonable and cautious considering conditions",
+                "You must drive at the same speed as the rest of the traffic",
+                "You must not drive slower than 15 mph"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.22-1.jpg",
+            "question": "When following a large truck that blocks your view ahead, you should:",
+            "choices": [
+                "Turn on your headlights",
+                "Drive up as closely as possible",
+                "Increase your following distance"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.01-1.jpg",
+            "question": "The following are true about large trucks except:",
+            "choices": [
+                "They have longer stopping distances than most cars",
+                "They have bigger blind spots than most cars",
+                "The driver of a truck can see the road better than the driver of a car"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.10B-1.jpg",
+            "question": "Louisiana law prohibits any driver from using a cell or mobile phone while driving.",
+            "choices": [
+                "False",
+                "True"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.03-1.jpg",
+            "question": "When you proceed straight ahead on a solid green light, you must:",
+            "choices": [
+                "Not enter the intersection if you cannot get completely across before the light turns red",
+                "Not drive faster than 25 mph.",
+                "Insist on the right-of-way"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.14-1.jpg",
+            "question": "On a multi-lane highway like this, you should use the far-left lane for:",
+            "choices": [
+                "Faster traffic",
+                "Slower traffic",
+                "Trucks and vehicles over ten thousand pounds"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.31-1.jpg",
+            "question": "Whenever you stop your car and go into a store to make a quick purchase, you:",
+            "choices": [
+                "Can leave the engine running but must set the parking brake",
+                "Must stop the engine, but don't need to set the parking brake",
+                "Must stop the engine, set the parking brake, and remove the key"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.14-1.jpg",
+            "question": "What is the best advice for a driver who has been drinking alcohol?",
+            "choices": [
+                "To arrange for a designated driver, use public transportation or call a cab",
+                "To drink black coffee",
+                "To drink less than an hour before the drive"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.03-1.jpg",
+            "question": "When are broken white lines used as pavement marking between lanes?",
+            "choices": [
+                "When traffic is flowing in opposite directions",
+                "When changing lanes is prohibited",
+                "When changing lane is permitted"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.17A-1.jpg",
+            "question": "Assuming you are traveling 65 mph and suddenly need to stop. How far will your car usually go before you react and start braking (0.75 seconds)?",
+            "choices": [
+                "71 feet",
+                "27 feet",
+                "305 feet"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.28-1.jpg",
+            "question": "What can you do to avoid carbon monoxide poisoning?",
+            "choices": [
+                "Leave vents open when following closely behind another car",
+                "Make sure you get plenty of fresh air",
+                "Leave the motor running and windows closed when parked"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.13B-1.jpg",
+            "question": "When stopped and approached by a law enforcement officer, you should:",
+            "choices": [
+                "Keep your hands still and visible",
+                "Start searching for necessary documents",
+                "Exit your vehicle"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.21B-1.jpg",
+            "question": "This sign means that:",
+            "choices": [
+                "Vehicles traveling from opposite direction must yield to you",
+                "You may turn left only on a green arrow",
+                "You may turn left on a green light when it is safe"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.16-1.jpg",
+            "question": "When you see this sign, you should:",
+            "choices": [
+                "Slow down and be prepared to yield",
+                "Slow down and be prepared to merge",
+                "Slow down and always stop ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.27.04ALL-1.jpg",
+            "question": "You must always keep proof of your liability insurance:",
+            "choices": [
+                "In a safety deposit box",
+                "In your home or at work",
+                "In your vehicle whenever it is being operated"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.26-1.jpg",
+            "question": "You approach this road sign. It tells you to be particularly alert and watch for:",
+            "choices": [
+                "Wild animals that can cross the road",
+                "An upcoming speed limit change",
+                "Traffic entering or exiting a state park area"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.21-1.jpg",
+            "question": "Which road signs have a horizontal rectangular shape?",
+            "choices": [
+                "Guide signs",
+                "Warning signs",
+                "School crossing signs"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.08.04B-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Road is closed ahead",
+                "There is a detour ahead",
+                "There are workers in or near the roadway ahead"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.05-1.jpg",
+            "question": "When you are required to stop at a railroad crossing, you must keep the following minimum distance to the nearest rail:",
+            "choices": [
+                "20 feet",
+                "7.5 feet",
+                "15 feet"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.11-1.jpg",
+            "question": "To avoid glare from the high-beam headlights of an approaching car:",
+            "choices": [
+                "Adjust your instrument lights so they are brighter",
+                "Focus on the center line on the road",
+                "Look to the right-hand edge of the road"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.17-1.jpg",
+            "question": "Louisiana law requires you have your headlights on (low beam) when your windshield wipers are required.",
+            "choices": [
+                "True",
+                "False (only parking lights are required)",
+                "False (high beams must be used)"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.03-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Yield ahead",
+                "Stop ahead",
+                "Merge ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01-1.jpg",
+            "question": "To avoid getting tired on a long trip, you should:",
+            "choices": [
+                "Always keep your car windows closed",
+                "Take regular rest stops, even if you are not tired",
+                "Turn off radio and avoid other irregular sounds"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.08C-1.jpg",
+            "question": "You should adjust your rear-view and side mirrors:",
+            "choices": [
+                "After you start driving",
+                "Before you get into your vehicle",
+                "Before you start driving"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.10-1.jpg",
+            "question": "If your vehicle breaks down on a highway:",
+            "choices": [
+                "Have all passengers stay in the car",
+                "Turn on your headlights",
+                "Get your vehicle off the road"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 27,
+            "image": "",
+            "question": "A decision to register as an organ and tissue donor may interfere with your life-saving medical care in case of an accident.",
+            "choices": [
+                "True",
+                "False"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.02-1.jpg",
+            "question": "When driving in fog, you should:",
+            "choices": [
+                "Turn on your vehicle's parking lights.",
+                "Use your low-beam headlights",
+                "Use your high-beam headlights"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.40-1.jpg",
+            "question": "Worn tires can cause:",
+            "choices": [
+                "Hydroplaning",
+                "Increased stopping distance",
+                "Increased risk of a flat tire",
+                "All of the above"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.23-1.jpg",
+            "question": "Sharing a lane with a motorcyclist:",
+            "choices": [
+                "Is permitted in business and residential districts",
+                "Is permitted if you keep a distance of three feet or more",
+                "Is against the law"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.08-1.jpg",
+            "question": "Which distance should you keep from an emergency vehicle on its way to an emergency?",
+            "choices": [
+                "100 feet or more",
+                "More than 500 feet",
+                "At least 50 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.04A-1.jpg",
+            "question": "The driver in front of you signals (left arm extended, with elbow bent upward, at about a 90-degree angle):",
+            "choices": [
+                "That he is preparing to slow down or stop",
+                "That he plans to turn right",
+                "That he plans to turn left"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.01-1.jpg",
+            "question": "When making a left turn, you should:",
+            "choices": [
+                "Turn as soon as possible and try to cut the corner",
+                "While waiting to turn, keep your wheels pointed to the left",
+                "Signal at least 100 feet before the turn"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.03-1.jpg",
+            "question": "When approaching a stopped school bus with flashing red lights traveling in the opposite direction on an undivided roadway with two lanes, you must:",
+            "choices": [
+                "Slow down and pass carefully",
+                "Always stop",
+                "Stop only when the bus has stopped in a loading zone."
+            ],
+            "correct": 1
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.21-1.jpg",
+            "question": "Lane-hopping or weaving in and out of traffic is an example of:",
+            "choices": [
+                "Dangerous driving",
+                "Defensive driving",
+                "Recommended driving in congested traffic"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.10-1.jpg",
+            "question": "Always allow extra room in front of your vehicle when following:",
+            "choices": [
+                "A pizza delivery car",
+                "A motorcycle",
+                "A taxicab"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.24-1.jpg",
+            "question": "If smoke comes from under the hood and there is a small fire, you should not try to fight the fire with:",
+            "choices": [
+                "A fire extinguisher",
+                "Water",
+                "Dirt, mud, or sand"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.05-1.jpg",
+            "question": "If the pavement is wet as you approach this sign, it is dangerous to:",
+            "choices": [
+                "Brake hard",
+                "Change direction slowly and carefully",
+                "Slow down"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.19B-1.jpg",
+            "question": "Which of the following is the best method to improve safety when driving at night?",
+            "choices": [
+                "Keep your eyes focused to the right side of the road",
+                "Always use your high beam headlights",
+                "Reduce speed"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.09-1.jpg",
+            "question": "This sign tells you that the center lane is used for:",
+            "choices": [
+                "Left turns only",
+                "Right turns only",
+                "Passing slow traffic"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.01-1.jpg",
+            "question": "A right turn against a red light is:",
+            "choices": [
+                "Always illegal",
+                "Permitted after a complete stop and if no sign prohibits turning",
+                "Always legal"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.13D-1.jpg",
+            "question": "When you parallel park next to a curb in the space between two parked cars, the distance between the parked cars and your front and rear bumpers should be:",
+            "choices": [
+                "Between five and ten feet",
+                "At least two feet",
+                "No more than three feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.52-1.jpg",
+            "question": "When you see this sign, you are approaching:",
+            "choices": [
+                "A tunnel with two-way traffic",
+                "A narrow bridge",
+                "A place with low clearance"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.04-1.jpg",
+            "question": "If you drive past this sign:",
+            "choices": [
+                "You are going against traffic",
+                "You must not stop",
+                "You should continue to the next exit"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.11C-1.jpg",
+            "question": "A regulation sign usually is:",
+            "choices": [
+                "Four-sided diamond",
+                "Vertical rectangular",
+                "Round"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.04-1.jpg",
+            "question": "Why should you be prepared to stop when approaching a railroad crossing and there is a truck with a hazardous load ahead?",
+            "choices": [
+                "You should never cross within 500 feet of the truck.",
+                "The truck will stop at the crossing.",
+                "The truck will drive slower when crossing the railroad"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.77-1.jpg",
+            "question": "You should be especially alert for wildlife on the road at",
+            "choices": [
+                "Dusk and dawn",
+                "Noon",
+                "Midnight"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.01-1.jpg",
+            "question": "Which road signs have an eight-sided shape?",
+            "choices": [
+                "Direction guidance signs",
+                "Yield signs",
+                "Stop signs"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.09B-1.jpg",
+            "question": "Smoking one marijuana cigarette:",
+            "choices": [
+                "Does not affect your driving skills at all",
+                "Will keep you awake and alert for long periods",
+                "Will impair your judgment and eyesight"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 50,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.14-1.jpg",
+            "question": "When stopping and yielding to a blind pedestrian in a crosswalk, you should keep a distance of:",
+            "choices": [
+                "At least 50 feet",
+                "No more than five feet",
+                "30 feet or more"
+            ],
+            "correct": 1
+        }
+    ]
+}

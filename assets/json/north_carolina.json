@@ -1,0 +1,823 @@
+{
+    "id": 22,
+    "state": "North Carolina",
+    "total": 25,
+    "min": 20,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.37.08B-1.jpg",
+            "question": "If you see orange construction signs and cones on a highway, you should always:",
+            "choices": [
+                "Change lanes and maintain speed",
+                "Closely follow the vehicles ahead",
+                "Slow down to watch the ongoing work",
+                "Stay alert and be prepared for the unexpected"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.31H1-1.jpg",
+            "question": "What is the only effective way to remove alcohol from the body?",
+            "choices": [
+                "Exercise",
+                "Anti-alcohol pills",
+                "Food",
+                "Time"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.07BC-1.jpg",
+            "question": "When driving forward out of a private driveway, you must:",
+            "choices": [
+                "Proceed slowly without stopping",
+                "Tap your horn",
+                "Come to a full stop before crossing the sidewalk",
+                "Always turn right onto the roadway"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.14F-1.jpg",
+            "question": "A two-way left-turn lane must be used for:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.02-1.jpg",
+            "question": "While driving on a public street or highway, it is illegal to:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.10-1.jpg",
+            "question": "Which is true about Anti-Lock Brakes (ABS)?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.01-1.jpg",
+            "question": "If you are in an intersection to make a turn when the light changes to red, you should:",
+            "choices": [
+                "Change direction and go straight ahead",
+                "Complete the turn when safe",
+                "Stay where you are",
+                "Back up"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.16B-1.jpg",
+            "question": "Why should you pay special attention to bicyclists as you approach an intersection?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.02E-1.jpg",
+            "question": "If your vehicle starts to skid or hydroplane, you should:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.03C-1.jpg",
+            "question": "When you wish to pass another vehicle on a two-lane road, you must:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.32.29-1.jpg",
+            "question": "When is it recommended that you adjust your speed to a crawl?",
+            "choices": [
+                "When you drive at night with only your parking lights",
+                "When you drive on ice",
+                "When you have difficulty focusing or keeping your eyes open"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.20-1.jpg",
+            "question": "Going around a lowered gate at a railroad crossing is:",
+            "choices": [
+                "Against the law",
+                "Permitted, if no red light is flashing",
+                "Permitted after a train has passed",
+                "Permitted, if there is only one track"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.02-1.jpg",
+            "question": "Before turning left or right on a city street without posted speed limit, you should signal during the last:",
+            "choices": [
+                "25 feet",
+                "100 feet",
+                "200 feet",
+                "50 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.16-1.jpg",
+            "question": "If a school bus with flashing red lights has stopped on your side of an undivided highway with two lanes, you must:",
+            "choices": [
+                "Slow down and proceed with caution",
+                "Stop only if children are crossing the street",
+                "Stop",
+                "Pass quickly without stopping"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.12-1.jpg",
+            "question": "You should use your high-beam headlights:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.46-1.jpg",
+            "question": "If you hold a driver's license and move, you must report your new address within:",
+            "choices": [
+                "45 days",
+                "90 days",
+                "60 days",
+                "5 days"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.11.52D-1.jpg",
+            "question": "When driving on the interstate it is best to:",
+            "choices": [
+                "Follow the flow of traffic without speeding",
+                "Stay in the left lane except when exiting",
+                "Follow other vehicles more closely",
+                "Drive slightly faster than the speed limit"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.08-1.jpg",
+            "question": "You should check your rear-view mirrors:",
+            "choices": [
+                "Only when changing lanes",
+                "Only when you are slowing down or preparing to stop",
+                "When looking for vehicles in your blind spot",
+                "About every 10 seconds"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.35.02B-1.jpg",
+            "question": "When stopped by a law enforcement officer at night, it is a good idea to:",
+            "choices": [
+                "Exit the vehicle so the officer can see you",
+                "Stop on the travel portion of the highway",
+                "Activate the vehicle's interior lights",
+                "Get your license and insurance card ready"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.27F-1.jpg",
+            "question": "If a vehicle ahead is pulling out from a parallel parking space, you should:",
+            "choices": [
+                "Slow down and be prepared to stop",
+                "Flash headlights as a warning",
+                "Keep speed and move over to the opposite side of the street",
+                "Keep speed as you have the right-of-way"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.19-1.jpg",
+            "question": "In general, children are prohibited from riding in the open bed of a pick-up truck, unless they are:",
+            "choices": [
+                "At least 21 years",
+                "Under 14 years",
+                "At least 16 years",
+                "Under 8 years"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.07-1.jpg",
+            "question": "An underage person who attempts to purchase alcohol will face a license revocation for:",
+            "choices": [
+                "60 days",
+                "One year",
+                "Six months",
+                "30 days"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.11-1.jpg",
+            "question": "How can you avoid glare from the high-beam headlights of an approaching car at night?",
+            "choices": [
+                "Turn on your high beams",
+                "Look straight ahead until your eyes recover from the glare",
+                "Use sunglasses or colored glasses",
+                "Use the right edge of the road as a guide"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.29-1.jpg",
+            "question": "A trucker's ability to take evasive action to avoid a dangerous situation is hampered by:",
+            "choices": [
+                "Drivers passing the truck quickly on the left side",
+                "Drivers using their horn before passing",
+                "Drivers lingering in the trucker's blind spots",
+                "Drivers using low beam headlights in bad weather"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.08BA-1.jpg",
+            "question": "Which is true about child passenger restraint systems?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.20-1.jpg",
+            "question": "Leaving a sleeping baby inside a car is reasonable:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 27,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.02-1.jpg",
+            "question": "What should you do at the first sign of rain or snow?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.01-1.jpg",
+            "question": "Which of the following is an acceptable reason for not wearing safety belts?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.43-1.jpg",
+            "question": "It is a good idea always to increase your following distance when:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.14-1.jpg",
+            "question": "Unauthorized windshield stickers may:",
+            "choices": [
+                "Improve night visibility",
+                "Improve safe driving",
+                "Help your concentration",
+                "Restrict your view"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.18B-1.jpg",
+            "question": "To be arrested and convicted of DWI when driving a non-commercial vehicle your BAC level:",
+            "choices": [
+                "Must be  0.08 percent",
+                "Must be at least 0.04 percent",
+                "Can be lower than 0.08 percent",
+                "Must be higher than 0.08 percent"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.17-1.jpg",
+            "question": "What happens if a driver refuses to take a legal chemical test?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.14-1.jpg",
+            "question": "If you drive slower than the flow of traffic on an interstate you must:",
+            "choices": [
+                "Use the extreme left lane",
+                "Use the middle lane",
+                "Use the right lane",
+                "Exit the highway"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.09C-1.jpg",
+            "question": "The maximum speed limit for a school bus in North Carolina is:",
+            "choices": [
+                "25 mph",
+                "35 mph",
+                "45 mph",
+                "55 mph"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.03-1.jpg",
+            "question": "You must use your headlights:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.36MA2B-1.jpg",
+            "question": "If you stay in a trucker's blind spots, you:",
+            "choices": [
+                "Have a better view of the road",
+                "Hamper the trucker's ability to take evasive action to avoid a danger",
+                "Help improve traffic flow and road safety",
+                "Improve fuel economy"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.23H-1.jpg",
+            "question": "Because motorcycles are smaller and more difficult to see than cars:",
+            "choices": [
+                "They may exceed the speed limit when passing other vehicles",
+                "They are easily hidden in a car's blind spot",
+                "They always have the right-of-way at intersections",
+                "They must share lanes with you"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.03G-1.jpg",
+            "question": "If you have a tire blowout while driving, you should:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.48-1.jpg",
+            "question": "Where is it illegal to park a vehicle?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.28-1.jpg",
+            "question": "Why can it be dangerous to drive with a leak in the exhaust system?",
+            "choices": [
+                "It is bad fuel economy",
+                "Your motor is likely to stall",
+                "It causes the engine to run hot",
+                "You can be a victim of carbon monoxide poisoning"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00-1.jpg",
+            "question": "Traffic lanes going in the same direction are separated by:",
+            "choices": [
+                "Red solid lines",
+                "Solid yellow lines",
+                "Yellow broken lines",
+                "White lines"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.37.01H-1.jpg",
+            "question": "This flag person signals you to:",
+            "choices": [
+                "Proceed slowly",
+                "Make a detour",
+                "Be prepared for a stop sign ahead",
+                "Stop"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.36-1.jpg",
+            "question": "Backing a vehicle on freeways with limited access:",
+            "choices": [
+                "Is illegal and unsafe",
+                "Is safe if you use the shoulder",
+                "Is allowed in all emergencies",
+                "Is only allowed in the right-hand lane"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.07B-1.jpg",
+            "question": "When entering a street from a private driveway:",
+            "choices": [
+                "Proceed slowly without stopping",
+                "Always turn right onto the roadway",
+                "Tap your horn",
+                "Come to full stop before entering"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.12-1.jpg",
+            "question": "If your car breaks down on a highway and you need help, you should:",
+            "choices": [
+                "Raise the hood",
+                "Tie a white cloth to the front of your car",
+                "Turn on headlights",
+                "Stay on the roadway, behind your vehicle"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.NC_.01S-1.jpg",
+            "question": "Your driver's license will be taken for 60 days if you are convicted of:",
+            "choices": [
+                "Driving without a vehicle insurance",
+                "Passing a stopped school bus when children are present",
+                "Speeding plus reckless driving on the same occasion",
+                "Running a red light"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.14B-1.jpg",
+            "question": "You must always stop before railroad tracks:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.32B-1.jpg",
+            "question": "What should you do if there is a fire scene and an unprotected fire hose on the road?",
+            "choices": [
+                "Cross the hose only if you think it is not in use",
+                "Cross the hose at 25 mph or less",
+                "Slow to a crawl before you cross the hose",
+                "Stop or drive around the hose"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.32.13-1.jpg",
+            "question": "A posted speed limit like this indicates:",
+            "choices": [
+                "Your minimum speed under any conditions",
+                "The suggested speed for passenger vehicles only",
+                "The recommended speed under any conditions",
+                "Your maximum speed under ideal conditions"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 50,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.45-1.jpg",
+            "question": "A driver who is temporarily blinded by glare from the headlights of other vehicles should:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 51,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.01-1.jpg",
+            "question": "There is an oncoming car to your left and a child on a bicycle to your right. What should you do?",
+            "choices": [
+                "Drive between the oncoming car and the bicyclist",
+                "Stay close behind the bicyclist until the way is clear",
+                "Speed up and quickly complete the pass",
+                "Wait until there is no oncoming traffic"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 52,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.05-1.jpg",
+            "question": "In winter, roads freeze more quickly when they are:",
+            "choices": [
+                "Curvy",
+                "Flat",
+                "Shaded",
+                "Frequently used"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 53,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.13-1.jpg",
+            "question": "Who is exempt from the North Carolina seat belt law?",
+            "choices": [
+                "A driver with impaired hearing",
+                "A driver  who is 70 years or older",
+                "A rural letter carrier of the United States Postal Service",
+                "A driver who makes frequent stops"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 54,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.03-1.jpg",
+            "question": "You should stop before railroad tracks and not cross them if:",
+            "choices": [
+                "There is a blue emergency sign at the crossing",
+                "You cannot cross and completely clear the tracks",
+                "The crossing is marked with a crossbuck sign",
+                "You cannot see clearly for at least 1,000 feet down the tracks"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 55,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01E-1.jpg",
+            "question": "If you have difficulty focusing or keeping your eyes open while driving, you should:",
+            "choices": [
+                "Keep your eyes still and play loud music",
+                "Drive faster and avoid distractions",
+                "Stop and rest",
+                "Turn on the vehicle's hazard lights"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 56,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.27-1.jpg",
+            "question": "A school bus ahead of you in your lane is stopped with red lights flashing. You should:",
+            "choices": [
+                "Slow to 15 mph and pass with care",
+                "Stop as long as the red lights are flashing",
+                "Stop and then proceed when all children have cleared the roadway",
+                "Pass quickly unless children enter the roadway"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 57,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.09.12G-1.jpg",
+            "question": "This road sign indicates that:",
+            "choices": [
+                "Parking is reserved for people with a handicap license plate or placard",
+                "Parking is prohibited for people in wheelchairs",
+                "You cannot park here for more than 15 minutes",
+                "There is a hospital nearby"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 58,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.02C-1.jpg",
+            "question": "When can you disregard a signal given by a police officer directing traffic?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 59,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.13-1.jpg",
+            "question": "If you are younger than 18 years, you may use a cell phone while driving on a public road:",
+            "choices": [
+                "When making a call for emergency assistance",
+                "Only when checking texts or e-mails",
+                "Whenever it seems safe to do so",
+                "In no situation"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 60,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.25G2-1.jpg",
+            "question": "Defensive drivers try to:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 61,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.19-1.jpg",
+            "question": "You should expect to be in a trucker's blind spot if you:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 62,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.16-1.jpg",
+            "question": "A bicycle rider on public streets and highways:",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 63,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.02C-1.jpg",
+            "question": "If a yellow center line is solid on your side of the road, it means:",
+            "choices": [
+                "Merge",
+                "Slow down",
+                "Do not pass",
+                "Pass carefully"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 64,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.03D-1.jpg",
+            "question": "Right turns against a traffic light showing a red arrow:",
+            "choices": [
+                "Can only be made after a full stop",
+                "Are not allowed in North Carolina",
+                "Can only be made if a sign permits turning",
+                "Can only be made from one-way streets"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 65,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.05C-1.jpg",
+            "question": "If you must drive during a snowstorm, you should use:",
+            "choices": [
+                "Parking lights",
+                "Low-beam headlights",
+                "High beam headlights",
+                "Four-way flashers"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 66,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.02C-1.jpg",
+            "question": "You are driving on a highway when it starts to rain. You should:",
+            "choices": [
+                "Slow down and turn on headlights and windshield wipers",
+                "Drive at least the speed limit",
+                "Drive faster to avoid stalling",
+                "Drive close behind any vehicle ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 67,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.38F-1.jpg",
+            "question": "Under the North Carolina point system, which violation will result in the highest point value?",
+            "choices": [
+                "Speeding 30 mph over the posted limit",
+                "Impeding traffic, driving too slowly",
+                "Failure to dim headlights",
+                "Aggressive driving"
+            ],
+            "correct": 3
+        },
+        {
+            "id": 68,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.33-1.jpg",
+            "question": "Which of the following is true about car tires with low air pressure?",
+            "choices": [
+                "I only",
+                "II only",
+                "Both I and II",
+                "Neither I nor II"
+            ],
+            "correct": 1
+        }
+    ]
+}

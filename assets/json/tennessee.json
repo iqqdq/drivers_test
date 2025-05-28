@@ -1,0 +1,624 @@
+{
+    "id": 27,
+    "state": "Tennessee",
+    "total": 30,
+    "min": 24,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.03-1.jpg",
+            "question": "If you run off the pavement, it is often dangerous to:",
+            "choices": [
+                "Take your foot off the gas pedal",
+                "Use your brakes carefully",
+                "Swing back onto the pavement as quickly as possible"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.27-1.jpg",
+            "question": "What are the chances the average American will be involved in an alcohol-related crash at some time in their lives?",
+            "choices": [
+                "About 10%",
+                "About 90%",
+                "About 40%"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.08-1.jpg",
+            "question": "At this intersection, traffic in the right lane:",
+            "choices": [
+                "Must turn left",
+                "May proceed straight ahead or turn left",
+                "Must proceed straight"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.04B-1.jpg",
+            "question": "What does a solid yellow line on a two-lane road indicate?",
+            "choices": [
+                "A no turn zone",
+                "A no passing zone",
+                "A railroad crossing"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.55.02A-1.jpg",
+            "question": "If you park on a road or shoulder when limited visibility conditions exist, you must:",
+            "choices": [
+                "Turn on high beam headlights",
+                "Warn others by standing behind your vehicle",
+                "Turn on parking lights"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.10B-1.gif",
+            "question": "A traffic light with a flashing red signal means:",
+            "choices": [
+                "Yield",
+                "Stop",
+                "Slow down"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.31-1.jpg",
+            "question": "When you park and leave your car, you must:",
+            "choices": [
+                "Set the parking brake, but can leave your keys in the ignition",
+                "Turn off the engine, set the parking brake and remove the key",
+                "Set the parking brake, but can leave the motor running"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.42-1.jpg",
+            "question": "You approach this sign. What should you do?",
+            "choices": [
+                "Be prepared to stop ahead",
+                "Make sure you are not driving faster than 45 mph",
+                "Be prepared to comply with the new speed limit ahead"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.82-1.jpg",
+            "question": "With a valid class D driver's license, you may:",
+            "choices": [
+                "Tow a farm trailer weighing 26,000 lbs",
+                "Drive a single unit vehicle weighing 26,001 lbs",
+                "Tow a trailer vehicle weighing 10,000 lbs"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.05-1.jpg",
+            "question": "The Implied Consent Law means that you:",
+            "choices": [
+                "Are protected from uninsured motorists",
+                "Can refuse state administered chemical tests",
+                "Have agreed to be tested for alcohol or drugs in your blood"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.28-1.jpg",
+            "question": "Your car's exhaust contains carbon monoxide, which:",
+            "choices": [
+                "Is poisonous, even deadly",
+                "Is easy to detect",
+                "Has a strong smell"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.21-1.jpg",
+            "question": "Car tires are worn-out and unsafe if the remaining tread depth is:",
+            "choices": [
+                "1/16 of an inch",
+                "1/12 of an inch",
+                "1/32 of an inch"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.01F-1.jpg",
+            "question": "You take an over-the-counter cough medicine. What should you do before driving?",
+            "choices": [
+                "Ask your friend for advice",
+                "Check the label",
+                "Drink strong coffee"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.14-1.jpg",
+            "question": "Penalties for a first conviction of DUI include a revocation of your driver's license for:",
+            "choices": [
+                "Six months",
+                "45 days",
+                "One year"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.21-1.jpg",
+            "question": "A truck driver's blind spots are more significant on:",
+            "choices": [
+                "Left and right are equally large",
+                "The left side of the truck",
+                "The right side of the truck"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.03-1.jpg",
+            "question": "When approaching a stopped school bus with flashing red lights traveling in the opposite direction on an undivided roadway with two lanes, you must:",
+            "choices": [
+                "Always stop",
+                "Slow down and pass carefully",
+                "Stop only when the bus has stopped in a loading zone"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.13-1.jpg",
+            "question": "Even if you do not see a train coming at a railroad crossing:",
+            "choices": [
+                "Always come to a complete stop at the stop line",
+                "Always sound your horn as a warning",
+                "Never drive around a lowered gate or ignore the flashing lights"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.03C-1.jpg",
+            "question": "When overtaking another vehicle on a two-lane road, you must:",
+            "choices": [
+                "Signal the intent to pass with your turn signal",
+                "Exceed the speed limit to pass quickly",
+                "Alert other drivers by using your headlights"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.02.02B-1.jpg",
+            "question": "This is the shape and color of a:",
+            "choices": [
+                "Wrong way sign",
+                "Stop sign",
+                "Yield sign"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.23-1.jpg",
+            "question": "Which is usually the first thing to be affected by drinking alcohol?",
+            "choices": [
+                "Hearing",
+                "Judgment",
+                "Balance"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.10B-1.jpg",
+            "question": "A white cloth tied to a radio antenna or a door handle indicates:",
+            "choices": [
+                "Slow moving vehicle",
+                "A vehicle breakdown",
+                "Hazardous load"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.07A-1.jpg",
+            "question": "What is true about signaling before suddenly reducing speed?",
+            "choices": [
+                "You may use hand-and-arm signals",
+                "You must always use the vehicle's emergency lights",
+                "It is not necessary to signal when you suddenly reduce speed"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.14-1.jpg",
+            "question": "The law requires headlights that will enable you to clearly see any person on the highway at least:",
+            "choices": [
+                "200 feet ahead",
+                "1,000 feet ahead",
+                "100 feet ahead"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.12-1.jpg",
+            "question": "Juvenile drivers (less than 18 years of age) will receive a notice of proposed suspension if they within one year accumulate the following number of points their driving record:",
+            "choices": [
+                "12 or more points",
+                "Six or more points",
+                "18 or more points"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.09B-1.jpg",
+            "question": "You are on an undivided highway. You meet a school bus on which the red stop warning signal lights are flashing. You must stop and remain stopped until:",
+            "choices": [
+                "You have a clear view of the road and can proceed safely",
+                "The stop arm is pulled back and the bus resumes motion",
+                "The bus driver activates yellow lights on the front and back of the bus"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.14-1.jpg",
+            "question": "When you meet a truck coming from the opposite direction, you should:",
+            "choices": [
+                "Keep in the middle of your lane",
+                "Keep as far as possible to the right",
+                "Keep close to the center of the road, to minimize turbulence"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 27,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.18-1.jpg",
+            "question": "The blood alcohol concentration (BAC) level at which it is illegal for any person under 21 years to drive is:",
+            "choices": [
+                "0.02 percent",
+                "0.06 percent",
+                "0.08 percent"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.10-1.jpg",
+            "question": "This road sign means:",
+            "choices": [
+                "Turn left to avoid oncoming traffic",
+                "Two-way left turn only",
+                "One-way right turn only"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.31G2-1.jpg",
+            "question": "If you drink one drink, about how long will it take for the alcohol to leave your bloodstream?",
+            "choices": [
+                "Three hours",
+                "One hour",
+                "20 minutes"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.09B-1.gif",
+            "question": "When a traffic signal is showing a flashing yellow light, you must:",
+            "choices": [
+                "Slow down and be especially alert",
+                "Proceed as normal, crossing traffic must always stop",
+                "Stop and proceed when you can do so safely"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.04-1.jpg",
+            "question": "The following equipment must be in proper working order for your car to be safe:",
+            "choices": [
+                "A red light showing from the front",
+                "Windshield wipers",
+                "Running board courtesy lights"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.02-1.jpg",
+            "question": "Which is true about alcohol?",
+            "choices": [
+                "It helps you to stay awake and alert for a long time",
+                "Alcohol is a depressant drug",
+                "It improves judgment and how you react"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.18-1.jpg",
+            "question": "It is illegal to park a vehicle if a traffic signal is within:",
+            "choices": [
+                "50 feet",
+                "30 feet",
+                "100 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.39-1.jpg",
+            "question": "One of the most frequent causes of collisions between motorcycles and other motor vehicles is:",
+            "choices": [
+                "Drivers passing to the right of a motorcycle",
+                "Motorcyclists passing to the right of another vehicle",
+                "Drivers turning in front of a motorcycle"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.78E-1.jpg",
+            "question": "When you see a wild animal standing near the roadway:",
+            "choices": [
+                "Speed up to scare the animal away",
+                "Keep speed unless the animal starts to move",
+                "Slow down and use caution"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.16-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Side road",
+                "Sharp turn",
+                "Cross road"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.06-1.jpg",
+            "question": "Driving while under the influence of drugs carries:",
+            "choices": [
+                "More severe penalties than for alcohol",
+                "Lesser penalties than for alcohol",
+                "The same penalties as for alcohol"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.04-1.jpg",
+            "question": "What is the meaning of this sign?",
+            "choices": [
+                "There is a traffic signal ahead",
+                "The traffic signal ahead is broken",
+                "The traffic signal ahead will show a red light"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.04F-1.jpg",
+            "question": "Under Tennessee's DUI Law, a second conviction of DUI will result in jail time of not less than:",
+            "choices": [
+                "One year",
+                "45 days",
+                "180 days"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.24-1.jpg",
+            "question": "When following a fire truck using sirens and flashing red lights, you must:",
+            "choices": [
+                "Stay well behind",
+                "Use your emergency flashers",
+                "Slow down to 25 mph or less"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.46B-1.jpg",
+            "question": "If you have a Tennessee driver's license, you must report a change of address within:",
+            "choices": [
+                "30 days",
+                "10 days",
+                "60 days"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.09-1.jpg",
+            "question": "Typical use of marijuana:",
+            "choices": [
+                "Does not affect your driving skills at all",
+                "Will keep you awake and alert for long periods",
+                "Will impair your judgment and motor skills"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.23H-1.jpg",
+            "question": "Why should you allow extra room when passing a motorcyclist on a windy day?",
+            "choices": [
+                "The rider may stop suddenly",
+                "The rider is likely to be travelling faster than normal",
+                "Winds can move the motorcycle out of its lane of travel"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.20C4A-1.jpg",
+            "question": "You approach an intersection with a stop sign and a stop line painted across the pavement. You must:",
+            "choices": [
+                "Stop at a point where it is possible to see clearly in all directions",
+                "Stop at the stop sign",
+                "Stop at the line"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.08C-1.jpg",
+            "question": "You should adjust your rear-view and side mirrors:",
+            "choices": [
+                "Before you get into your vehicle",
+                "After you start driving",
+                "Before you start driving"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.05-1.jpg",
+            "question": "If a traffic signal light is not working, you should proceed as if the intersection is controlled by:",
+            "choices": [
+                "A yield sign",
+                "A flashing yellow light",
+                "A stop sign"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.29-1.jpg",
+            "question": "If you eat before and while you drink alcohol:",
+            "choices": [
+                "It helps you sober up quicker",
+                "It stops alcohol from getting into your blood",
+                "It takes longer for the alcohol to affect you"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.27B-1.jpg",
+            "question": "The areas around trucks where vehicles disappear into blind spots are often called no-zones. These areas include:",
+            "choices": [
+                "The front and rear of the truck only",
+                "The sides of the truck only",
+                "Both sides, rear, and front of the truck"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.04.02-1.jpg",
+            "question": "A warning sign with these symbols has this shape:",
+            "choices": [
+                "Vertical rectangular",
+                "Four-sided diamond",
+                "Round"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 50,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.07-1.jpg",
+            "question": "If you turn on high-beam headlights when driving in thick fog:",
+            "choices": [
+                "Your lights can reflect off the fog and cause glare",
+                "You will be able to see farther down the road",
+                "Oncoming vehicles will not be able to see you"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 51,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.20-1.jpg",
+            "question": "Leaving a sleeping baby inside a car is:",
+            "choices": [
+                "Never advisable",
+                "Reasonable if the child cannot set the vehicle in motion",
+                "Reasonable if you leave the car for less than 30 minutes"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 52,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.02R-1.jpg",
+            "question": "Lanes where the direction of the flow of traffic changes during the day is indicated by:",
+            "choices": [
+                "Red pavement markings",
+                "Lane control signals",
+                "Diamond-shaped traffic signs"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 53,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.13-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Lane reduction ahead",
+                "Divided highway ends",
+                "Left lane ends"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 54,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.41-1.jpg",
+            "question": "Drinking alcohol, even a little:",
+            "choices": [
+                "Speeds up your reactions",
+                "Helps you stay awake and alert",
+                "Can affect your judgment and ability to drive"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 55,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.36-1.jpg",
+            "question": "The percentage of alcohol in your bloodstream is generally known as:",
+            "choices": [
+                "BCD and as it increases you become more alert and coordinated",
+                "AIB and as it increases your judgment and vision is improved",
+                "BAC and as it increases you become more impaired"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 56,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.21B-1.jpg",
+            "question": "When approaching a stopped school bus with flashing red lights at a four-way intersection, which car or cars must stop in this situation?",
+            "choices": [
+                "Cars approaching from behind or the opposite direction (A and D)",
+                "Cars approaching from any direction (A, B, C and D)",
+                "Cars approaching from behind or from the left (D and C)"
+            ],
+            "correct": 1
+        }
+    ]
+}

@@ -1,0 +1,798 @@
+{
+    "id": 9,
+    "state": "Hawaii",
+    "total": 30,
+    "min": 24,
+    "questions": [
+        [
+            {
+                "id": 1,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.11-1.jpg",
+                "question": "Which car or cars have the position for a right turn on this one-way street?",
+                "choices": [
+                    "The car in the extreme right lane (marked A)",
+                    "Any of the cars in the two upper lanes (marked A and B).",
+                    "The car in the extreme left lane (marked D)"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 2,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.22-1.jpg",
+                "question": "When you see a truck preparing for a right turn ahead, you should:",
+                "choices": [
+                    "Stay behind",
+                    "Pass on the left",
+                    "Pass on the right before the truck has completed the turn"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 3,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.07-1.jpg",
+                "question": "The law requires a person that is 16 years to wear a safety belt:",
+                "choices": [
+                    "When sitting in either the front or back seat",
+                    "Only when sitting in the back seat",
+                    "Only when sitting in the front seat"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 4,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.05-1.jpg",
+                "question": "When a vehicle comes toward you at night, at what distance must you dim your headlights?",
+                "choices": [
+                    "400 feet",
+                    "500 feet",
+                    "200 feet"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 5,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.13-1.jpg",
+                "question": "When you plan to exit an expressway, you should:",
+                "choices": [
+                    "Drive faster than expressway traffic to find a gap in your exit lane",
+                    "Not use your turn signal until you exit",
+                    "Start slowing down in the deceleration lane"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 6,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.10-1.jpg",
+                "question": "To better prepare for the constant decisions necessary for safe, defensive driving, you must:",
+                "choices": [
+                    "Know what is happening around your vehicle",
+                    "Drive at least 10 mph below the posted speed limit",
+                    "Follow other vehicles closely"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 7,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.01-1.jpg",
+                "question": "A school bus ahead of you displays yellow flashing lights at the top. It means:",
+                "choices": [
+                    "You should try to pass as soon as possible",
+                    "The bus is about to stop",
+                    "You must come to complete stop"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 8,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.09-1.jpg",
+                "question": "When approaching a stopped emergency vehicle with activated lights on a multi-lane roadway, you must:",
+                "choices": [
+                    "Vacate the lane closest to the emergency vehicle, if safe to do so",
+                    "Keep your speed and avoid stopping",
+                    "Turn on your headlights"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 9,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01D-1.jpg",
+                "question": "A condition known as highway hypnosis is often brought on by:",
+                "choices": [
+                    "Warning signs in work zones",
+                    "Monotony",
+                    "Heavy city traffic"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 10,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.03-1.jpg",
+                "question": "Do not enter a railroad crossing, if:",
+                "choices": [
+                    "The crossing is marked with a crossbuck sign",
+                    "You cannot see the tracks for 500 feet in both directions",
+                    "You cannot drive completely through without stopping on tracks"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 11,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.24-1.jpg",
+                "question": "Unless otherwise posted, the general maximum speed limit on a rural interstate is:",
+                "choices": [
+                    "75 mph",
+                    "65 mph",
+                    "70 mph"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 12,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.23-1.gif",
+                "question": "A HAWK signal is showing alternating flashing red lights. What will follow next?",
+                "choices": [
+                    "A steady yellow light",
+                    "A steady red light",
+                    "A deactivated (dark) signal"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 13,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.14IA-1.jpg",
+                "question": "If two vehicles reach an intersection with 4-way stops at approximately the same time:",
+                "choices": [
+                    "The vehicle that accelerate faster should go first",
+                    "The vehicle on the right should yield to the vehicle on the left",
+                    "The vehicle on the left should yield to the vehicle on the right"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 14,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.02-1.jpg",
+                "question": "If it feels like your tires have lost traction with the surface of the road, you should:",
+                "choices": [
+                    "Keep speed and go straight",
+                    "Ease your foot off the gas pedal",
+                    "Brake and turn off the road"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 15,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.11-1.jpg",
+                "question": "Unless there is an emergency, it is illegal to use a cell phone for text messaging while driving:",
+                "choices": [
+                    "False",
+                    "True"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 16,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.06-1.jpg",
+                "question": "Which is the most crucial driving technique on icy or snowy roads?",
+                "choices": [
+                    "Use a higher gear",
+                    "Add extra weight to the vehicle to improve traction",
+                    "Reduce speed and increase following distance"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 17,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00-1.jpg",
+                "question": "The road edge on the right side is marked by a:",
+                "choices": [
+                    "Solid white line",
+                    "Broken white line",
+                    "Solid yellow line"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 18,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.16-1.jpg",
+                "question": "At a fire hydrant, parking and leaving your car is not allowed:",
+                "choices": [
+                    "Within 30 feet",
+                    "Within 15 feet",
+                    "Within 20 feet"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 19,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.13-1.jpg",
+                "question": "After violating the Hands-Free GA Law, a driver will accumulate at least one point on their record.",
+                "choices": [
+                    "False",
+                    "True"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 20,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.14-1.jpg",
+                "question": "If you strike an unattended vehicle and cannot find the owner, you must:",
+                "choices": [
+                    "Call a lawyer",
+                    "Return to the scene later",
+                    "Leave a note that identifies you as the person who hit the vehicle"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 21,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.76C-1.jpg",
+                "question": "You are stopped with your engine on and feel symptoms like dizziness, nausea, and headache. What is the best thing to do?",
+                "choices": [
+                    "Turn on emergency flashers, lock your car and rest with windows closed",
+                    "Stop your engine and open the windows",
+                    "Immediately drive to a garage"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 22,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.01-1.jpg",
+                "question": "What do the light gray areas in the picture mark?",
+                "choices": [
+                    "Blind spot",
+                    "Passing zone",
+                    "Safety maneuver angle"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 23,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.07-1.jpg",
+                "question": "During foggy weather, a driver should turn on the vehicle's high-beam headlights to increase the field of vision.",
+                "choices": [
+                    "False",
+                    "True"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 24,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.13-1.jpg",
+                "question": "You see this sign on a vehicle ahead. It means:",
+                "choices": [
+                    "The vehicle is carrying a load that is potentially dangerous",
+                    "The vehicle is moving slower than normal traffic",
+                    "The vehicle is wider than normal"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 25,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.31LT.jpg",
+                "question": "Once you have entered an intersection to make a left turn, and it is safe, you should move to the right lane on the street you are turning onto.",
+                "choices": [
+                    "True",
+                    "False"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 26,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.33.10B-1.jpg",
+                "question": "Georgia state law prohibits all drivers from using a cell or mobile phone while driving.",
+                "choices": [
+                    "True",
+                    "False"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 27,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.24-1.jpg",
+                "question": "Parking a car in a bicycle lane is allowed:",
+                "choices": [
+                    "If between 10 p.m. and 6 a.m",
+                    "If more than 200 feet from a no-parking sign",
+                    "Under no circumstances"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 28,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.12-1.jpg",
+                "question": "A pedestrian is crossing your lane at an intersection, but there is no marked crosswalk. You should:",
+                "choices": [
+                    "Stop and let the pedestrian cross",
+                    "Make the pedestrian aware that he is not using a marked crosswalk",
+                    "Carefully drive around the pedestrian"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 29,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.09-1.jpg",
+                "question": "Which of the following must you obey over the other two?",
+                "choices": [
+                    "A flashing red light",
+                    "A stop sign",
+                    "A flagger"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 30,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01-1.jpg",
+                "question": "To avoid getting tired on a long trip, you should:",
+                "choices": [
+                    "Keep your eyes still",
+                    "Turn off radio and avoid other sounds",
+                    "Stop and take regular breaks"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 31,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.35-1.jpg",
+                "question": "Passing another vehicle by driving on the left side on a two-lane road is not allowed:",
+                "choices": [
+                    "On one-way streets",
+                    "Where the posted speed limit is 30 mph or less",
+                    "Within 100 feet of a tunnel"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 32,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.05-1.jpg",
+                "question": "When may you drive at the maximum speed indicated by a speed limit sign?",
+                "choices": [
+                    "When conditions permit you to drive at such a speed safely",
+                    "Only in the daytime",
+                    "Only on divided highways, or highways designed for one-way traffic"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 33,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.36B-1.jpg",
+                "question": "Rubbing tires against a curb might help in which situation?",
+                "choices": [
+                    "When running off the pavement",
+                    "When brakes fail",
+                    "When headlights fail"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 34,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.10B-1.gif",
+                "question": "When a traffic signal is showing a flashing red light, you must:",
+                "choices": [
+                    "Stop completely and remain stopped until a green signal appears",
+                    "Stop completely, only proceed when you can do so safely",
+                    "Proceed as normal, crossing traffic must always stop"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 35,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.02X3-1.jpg",
+                "question": "What is the safest thing to do if a heavy fog is on the road?",
+                "choices": [
+                    "Slow down and turn on hazard lights",
+                    "Drive slowly with parking lights on",
+                    "Pull over into a parking area and stop driving"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 36,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.35-1.jpg",
+                "question": "You may drive across a gore area bounded by solid white lines:",
+                "choices": [
+                    "In no situation",
+                    "To make a left turn into an alley, private road, or driveway",
+                    "To pass slower vehicles"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 37,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.89IP-1.jpg",
+                "question": "With an instructional permit, you may drive alone:",
+                "choices": [
+                    "Any time, except between 11:00 p.m. and 5:00 a.m",
+                    "In no situation",
+                    "To a license office for the purpose of taking a test"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 38,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.16-1.jpg",
+                "question": "When approaching a stopped school bus with flashing red lights traveling on your side of a divided highway, you must:",
+                "choices": [
+                    "Stop only if children are crossing the street",
+                    "Stop",
+                    "Pass as quickly as possible"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 39,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.12-1.jpg",
+                "question": "If you are involved in a traffic crash, you must always:",
+                "choices": [
+                    "File an accident report with Georgia Department of Driver Services",
+                    "Immediately move injured people out of the traffic lane",
+                    "Stop at the scene."
+                ],
+                "correct": 2
+            },
+            {
+                "id": 40,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.23H-1.jpg",
+                "question": "When passing a motorcycle driving in your lane, you must:",
+                "choices": [
+                    "Share the same lane only if the speed limit is 35 mph or less",
+                    "Keep no more than three feet between your car and the motorcycle",
+                    "Signal and change lanes completely"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 41,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.21C-1.jpg",
+                "question": "What is true about bald or badly worn tires?",
+                "choices": [
+                    "They save money in fuel consumption",
+                    "They help to avoid skids on gravel roads",
+                    "They increase the chance of hydroplaning on wet road surfaces"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 42,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.03B-1.jpg",
+                "question": "When must you use your headlights?",
+                "choices": [
+                    "A half-hour after sunrise",
+                    "Any time in open country with a clear road ahead",
+                    "When it is snowing heavily"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 43,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.19C-1.jpg",
+                "question": "Which is true about excessive speed at night?",
+                "choices": [
+                    "It is more dangerous because of limited visibility",
+                    "It is less dangerous because of limited traffic",
+                    "It is less dangerous because you tend to more alert"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 44,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.05B-1.jpg",
+                "question": "You should never make a U-turn:",
+                "choices": [
+                    "Before a curve where you cannot be seen for a great distance",
+                    "In front of a police station",
+                    "On a two-way road"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 45,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.03-1.jpg",
+                "question": "If you have a tire blowout, you should:",
+                "choices": [
+                    "Let the car slow to a low speed or a stop",
+                    "Allow the steering wheel to move freely",
+                    "Brake hard to bring your car to an immediate stop"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 46,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.02Q-1.jpg",
+                "question": "On a multi-lane, two-way highway, you must never drive to the left of the center line except:",
+                "choices": [
+                    "When there is a broken white line on your right",
+                    "When making a left turn",
+                    "When passing slower vehicles"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 47,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.18IAC-1.jpg",
+                "question": "Who should have the right-of-way at a roundabout?",
+                "choices": [
+                    "Any driver approaching from the right",
+                    "A driver entering the roundabout",
+                    "A driver already in the roundabout"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 48,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01B-1.jpg",
+                "question": "If you feel drowsy on a long trip, you should:",
+                "choices": [
+                    "Drive faster",
+                    "Turn off radio and avoid other sounds",
+                    "Pull off the road and rest"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 49,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.09B-1.gif",
+                "question": "When a traffic signal is showing a flashing yellow light, you must:",
+                "choices": [
+                    "Stop and proceed when you can do so safely",
+                    "Slow down and be especially alert",
+                    "Proceed as normal, crossing traffic must always stop"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 50,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.76-1.jpg",
+                "question": "Which of the following increases the risk of carbon monoxide poisoning?",
+                "choices": [
+                    "Driving too fast for conditions",
+                    "Keeping an unsafe following distance on high-speed roadways",
+                    "Running the motor in a closed garage"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 51,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.41-1.jpg",
+                "question": "The law allows parking in all of the following places except:",
+                "choices": [
+                    "25 feet from a fire hydrant",
+                    "On a hill",
+                    "Within 30 feet of a stop sign"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 52,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.38-1.jpg",
+                "question": "A conviction of aggressive driving will result in the following number of points on your driving record:",
+                "choices": [
+                    "Six points",
+                    "Four points",
+                    "Three points"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 53,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.09.09B-1.jpg",
+                "question": "If you are unable to drive at a posted minimum speed under normal driving conditions, you should:",
+                "choices": [
+                    "Drive on the shoulder",
+                    "Keep as far to the right as possible",
+                    "Seek an alternate route"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 54,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.10-1.jpg",
+                "question": "When required to stop at a railroad crossing, you must stop and keep this distance from the nearest rail:",
+                "choices": [
+                    "No more than 15 feet",
+                    "No closer than 15 feet and no more than 50 feet",
+                    "No closer than 50 feet"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 55,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.09G-1.jpg",
+                "question": "How is driving affected by acute marijuana use?",
+                "choices": [
+                    "It improves night vision",
+                    "It impairs driving by affecting critical thinking and motor skills",
+                    "It makes it easier for a driver to stay alert on long trips"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 56,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.02-1.jpg",
+                "question": "When a traffic officer is directing you to drive against a red light, you should:",
+                "choices": [
+                    "Drive against the red light",
+                    "Obey existing signs and signals",
+                    "Wait for verbal directions"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 57,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.02-1.jpg",
+                "question": "You may continue carefully against a yellow light if:",
+                "choices": [
+                    "There is an emergency vehicle crossing your lane",
+                    "You cannot stop safely",
+                    "There are no pedestrians crossing"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 58,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.28-1.jpg",
+                "question": "Which of the following is generally illegal when driving on an expressway?",
+                "choices": [
+                    "Keeping to the right when driving slower than other vehicles",
+                    "Stopping",
+                    "Going to the next exit when you miss your exit"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 59,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.04-1.jpg",
+                "question": "Which is one factor that significantly affects your stopping distance?",
+                "choices": [
+                    "Type and condition of the pavement",
+                    "Steering ability",
+                    "Posted speed limit"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 60,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.12A-1.jpg",
+                "question": "When a school bus with flashing red lights stops on the other side of a highway divided by a median, you should:",
+                "choices": [
+                    "Proceed with caution",
+                    "Always stop",
+                    "Stop only when the bus has stopped in a loading zone."
+                ],
+                "correct": 0
+            },
+            {
+                "id": 61,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.03-1.jpg",
+                "question": "In lanes separated by white lines:",
+                "choices": [
+                    "Traffic flows in one direction only",
+                    "Crossing the white lines is prohibited",
+                    "Traffic flows in two (opposite) directions"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 62,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.15.02-1.jpg",
+                "question": "When driving in foggy conditions, high beams will:",
+                "choices": [
+                    "Reduce glare",
+                    "Make it more difficult to see",
+                    "Improve your ability to see ahead"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 63,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.14-1.jpg",
+                "question": "When driving near a pedestrian who is carrying a white cane and using a guide dog, you must:",
+                "choices": [
+                    "Slow down and be prepared to stop",
+                    "Proceed normally",
+                    "Honk your horn"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 64,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.42.05C-1.jpg",
+                "question": "Hitting the ground from a four-story building has the same force of impact as striking something at:",
+                "choices": [
+                    "10 mph",
+                    "40 mph",
+                    "60 mph"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 65,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.02-1.jpg",
+                "question": "The following practices are dangerous while driving. Which is also always illegal?",
+                "choices": [
+                    "Using your cell phone with hands-free devices",
+                    "Having an unrestrained dog inside the car",
+                    "Listening to music through headphones that cover both ears"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 66,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.18-1.jpg",
+                "question": "The blood alcohol concentration (BAC) level at which it is illegal for any person under 21 years to drive is:",
+                "choices": [
+                    "0.08 percent",
+                    "0.06 percent",
+                    "0.02 percent"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 67,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.24C-1.jpg",
+                "question": "You have just gone through deep water. What is the first thing you should do?",
+                "choices": [
+                    "Check your exhaust",
+                    "Turn on your headlights",
+                    "Test your brakes"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 68,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.60U21-1.jpg",
+                "question": "A class D driver's license:",
+                "choices": [
+                    "Is a non-commercial license for drivers age 18 and older",
+                    "Is a provisional license issued to drivers ages 16 and 17",
+                    "Is a non-commercial license for drivers who operate commercial motor vehicles"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 69,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.31.jpg",
+                "question": "This picture illustrates:",
+                "choices": [
+                    "Correct turns",
+                    "A proper right turn, but a wrong left turn",
+                    "Drivers turning into wrong lanes"
+                ],
+                "correct": 2
+            },
+            {
+                "id": 70,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.05E-1.jpg",
+                "question": "If bad weather makes it hard for you to see, you should:",
+                "choices": [
+                    "Speed up to get off the road quickly",
+                    "Increase your following distance",
+                    "Drive in the lane closest to oncoming traffic"
+                ],
+                "correct": 1
+            },
+            {
+                "id": 71,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.13-1.jpg",
+                "question": "Night driving is more dangerous than daytime driving because:",
+                "choices": [
+                    "It is harder to see at night",
+                    "Drivers tend to be more alert at night",
+                    "There is less traffic at night",
+                    "All of the above"
+                ],
+                "correct": 0
+            },
+            {
+                "id": 72,
+                "image": "https://driversprep.com/wp-content/uploads/2020/12/US.04.01-1.jpg",
+                "question": "After a train has passed a railroad crossing with more than one track, you should:",
+                "choices": [
+                    "Pass the first track and stop before crossing the second",
+                    "Wait until you are sure all tracks are clear",
+                    "Move forward as soon as the train passes"
+                ],
+                "correct": 1
+            }
+        ]
+    ]
+}

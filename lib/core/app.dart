@@ -21,9 +21,13 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<RemindersChangeNotifier>(
+          create: (_) => RemindersChangeNotifier(),
+        ),
         ChangeNotifierProvider<SettingsChangeNotifier>(
           create: (_) => SettingsChangeNotifier()..getSettings(),
         ),
+
         ChangeNotifierProvider<StatisticsChangeNotifier>(
           create: (_) => StatisticsChangeNotifier()..getStatistics(),
         ),

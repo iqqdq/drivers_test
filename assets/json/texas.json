@@ -1,0 +1,602 @@
+{
+    "id": 28,
+    "state": "Texas",
+    "total": 30,
+    "min": 21,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.04-1.jpg",
+            "question": "After passing another vehicle and before returning to the proper lane, it is best to:",
+            "choices": [
+                "Flash your headlights",
+                "Wait until you are within 200 feet of any oncoming vehicle",
+                "Look for the other vehicle's front in your rear-view mirror"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.40.14-1.jpg",
+            "question": "If you strike an unattended vehicle, you must:",
+            "choices": [
+                "Always file a crash report with Department of Transportation",
+                "Return to the scene later",
+                "Stop and try to locate the owner"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.26-1.jpg",
+            "question": "Trucks and buses have:",
+            "choices": [
+                "Much larger blind spots than cars",
+                "Blind spots the same size as cars",
+                "Mirrors that eliminate blind spots"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.37.04B-1.jpg",
+            "question": "You will typically see a barricade like this:",
+            "choices": [
+                "Near highway rest areas",
+                "In work zones",
+                "To mark roadway detours"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.01B-1.jpg",
+            "question": "A blind spot is the area of the road:",
+            "choices": [
+                "You see in your side mirror",
+                "You cannot see without looking over your shoulder",
+                "You cannot see beyond the area lighted by your headlights"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.08.00-1.jpg",
+            "question": "You see an orange road sign from a distance. What should you expect ahead?",
+            "choices": [
+                "Road works",
+                "A railroad crossing",
+                "School children"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.36-1.jpg",
+            "question": "What does this sign tell you?",
+            "choices": [
+                "Trucks are not allowed on the highway",
+                "The right lane is reserved for trucks and large vehicles",
+                "You should watch for trucks entering or crossing the highway"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.14H-1.jpg",
+            "question": "When are you allowed to use a shared left-turn lane for passing or as a regular through-traffic lane?",
+            "choices": [
+                "In no situation",
+                "If the vehicle ahead of you is preparing for a right turn",
+                "If the vehicle you ahead of you has stopped"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.23E-1.jpg",
+            "question": "Always turn your front wheels away from the curb when you are parked on a grade and facing:",
+            "choices": [
+                "Uphill only",
+                "Downhill only",
+                "Both uphill and downhill"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.18IAC-1.jpg",
+            "question": "Who must yield to other vehicles at a roundabout?",
+            "choices": [
+                "A driver exiting the roundabout",
+                "A driver already in the roundabout",
+                "A driver entering the roundabout"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.05E.jpg",
+            "question": "This hand signal means:",
+            "choices": [
+                "Stopping or slowing down",
+                "Left turn",
+                "Right turn"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.31B-1.jpg",
+            "question": "What should you do when following a motorcycle on gravel roads?",
+            "choices": [
+                "Allow less following distance to be seen",
+                "Pass closely",
+                "Allow extra following distance"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.37-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Sharp turn",
+                "Low shoulder",
+                "Soft shoulder"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01H-1.jpg",
+            "question": "Which of the following can help you fight drowsy driving and highway hypnosis?",
+            "choices": [
+                "Turn off radio and avoid other irregular sounds",
+                "Keep shifting your eyes",
+                "Always keep your eyes focused straight ahead"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.06-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Detour ahead",
+                "Road curves ahead",
+                "Sharp turn ahead"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00-1.jpg",
+            "question": "Which pavement marking separates traffic traveling in opposite directions?",
+            "choices": [
+                "White solid lines",
+                "Yellow lines",
+                "Red lines"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.05-1.jpg",
+            "question": "If you are in a roundabout when an emergency vehicle with flashing lights approaches from behind, you should:",
+            "choices": [
+                "Proceed through the roundabout and continue driving",
+                "Move to the right in the roundabout and stop",
+                "Proceed through the roundabout before stopping"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.46-1.jpg",
+            "question": "Driving with a red light showing from the front of your motor vehicle is allowed:",
+            "choices": [
+                "Under no circumstances",
+                "When driving at night on divided highways",
+                "When driving on a highway shoulder"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.01D-1.jpg",
+            "question": "You have been taking medicine for a few days. You are not sure how the medicine will affect your driving. What is the best thing to do?",
+            "choices": [
+                "Ask your doctor or pharmacist",
+                "Try driving for a short distance",
+                "Ask a friend or relative for advice"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.19-1.jpg",
+            "question": "When you park your car on the same side as an entrance to a fire station, the law requires you to keep this distance from the driveway entrance:",
+            "choices": [
+                "More than 50 feet",
+                "More than 30 feet",
+                "More than 20 feet"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.08-1.jpg",
+            "question": "Yellow lines on the road separate:",
+            "choices": [
+                "All carpool lanes from regular lanes",
+                "Traffic moving in opposite directions on a two-way road",
+                "Traffic lanes on one-way streets"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.16-1.jpg",
+            "question": "When driving on multi-lane roads with other vehicles:",
+            "choices": [
+                "It is safest to always drive in the lane closest to the center line",
+                "You should drive ahead of or behind other vehicles",
+                "You should drive alongside other vehicles so drivers can see you"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.31D-1.jpg",
+            "question": "This sign shows:",
+            "choices": [
+                "How sharp the curve is",
+                "The safe speed to use around the curve",
+                "That there is a speed limit ahead"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.04-1.jpg",
+            "question": "Which of the following vehicle equipment is prohibited?",
+            "choices": [
+                "Backup lights",
+                "A radar interference device (laser jammer)",
+                "Window tinting"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.38-1.jpg",
+            "question": "It is illegal to park a vehicle if a stop sign is within:",
+            "choices": [
+                "30 feet",
+                "35 feet",
+                "50 feet"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.12-1.jpg",
+            "question": "When approaching another vehicle from behind at night, at what distance should you dim your headlights?",
+            "choices": [
+                "1,000 feet",
+                "300 feet",
+                "500 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 27,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.02-1.jpg",
+            "question": "When driving on slick roads, you should:",
+            "choices": [
+                "Brake firm and hard",
+                "Change lanes quickly",
+                "Turn slowly"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.02.02-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Do not enter",
+                "Always stop completely and yield to other traffic",
+                "Yield the right-of-way to other traffic"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.13-1.jpg",
+            "question": "When displayed on the rear of a vehicle, this sign indicates:",
+            "choices": [
+                "The vehicle is being drawn by an animal",
+                "The vehicle must be granted the right-of-way",
+                "The vehicle is traveling 25 mph or less"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.22B-1.jpg",
+            "question": "When passing a tractor-trailer, you should avoid the following:",
+            "choices": [
+                "Passing quickly on the left side",
+                "Moving completely into the left lane before passing",
+                "Lingering alongside and cutting in too soon"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.05-1.jpg",
+            "question": "What is the meaning of this sign?",
+            "choices": [
+                "Soft shoulder",
+                "Winding road",
+                "Slippery when wet"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.10-1.jpg",
+            "question": "What is the best way to see trouble spots early and avoid last-minute moves when driving?",
+            "choices": [
+                "Always know what is happening around your vehicle",
+                "Always keep your eyes focused ahead of your car",
+                "Keep your radio turned off"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.04-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "You must stop ahead",
+                "You are not allowed to travel in this direction",
+                "All turns are prohibited"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.04-1.jpg",
+            "question": "A car passenger five years of age and less than four feet and nine inches tall must:",
+            "choices": [
+                "Be properly restrained in an appropriate child-restraint system",
+                "Always wear a seat belt",
+                "Be in a child booster seat when riding in the front seat only"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.30-1.jpg",
+            "question": "Penalties for driving around a barricade that has been placed at a location where water is over any portion of a road include:",
+            "choices": [
+                "A fine of no more than $200",
+                "180 days in jail",
+                "A community service of 40 to 60 hours"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.42.22-1.jpg",
+            "question": "Shared lane markings (sharrows) mark:",
+            "choices": [
+                "Lanes reserved for bicycles",
+                "Lanes shared by bicyclists and motorists",
+                "Lanes reserved for left turns only"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.01-1.jpg",
+            "question": "When a traffic signal is showing a steady red light:",
+            "choices": [
+                "After stopping, you may turn left on any street unless prohibited by signs",
+                "After stopping, you may turn right, unless prohibited by signs or signals",
+                "You must slow down before entering the intersection"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.31-1.jpg",
+            "question": "How can you increase your field of vision when driving?",
+            "choices": [
+                "By reducing speed",
+                "By always driving in the right lane",
+                "By increasing speed"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.16A-1.jpg",
+            "question": "You are driving on a four-lane highway with no signs or markings to control turning. From which lane should you make a right turn?",
+            "choices": [
+                "Any lane if the cross street also has four lanes",
+                "Any of the two lanes to your right",
+                "The lane closest to the right edge of the road"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.32.01-1.jpg",
+            "question": "Unless otherwise posted, what is the speed limit on an interstate highway outside an urban district?",
+            "choices": [
+                "70 mph",
+                "60 mph",
+                "55 mph"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.01.05-1.jpg",
+            "question": "A yellow and black circular sign indicates that you are approaching:",
+            "choices": [
+                "A railroad crossing",
+                "A road where you may not enter",
+                "A one-way road"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.12-1.jpg",
+            "question": "What does this sign mean?",
+            "choices": [
+                "Keep left",
+                "Left turns only",
+                "Divided highway"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.06-1.jpg",
+            "question": "Motor vehicles registered in Texas must be inspected by an official motor vehicle inspection station:",
+            "choices": [
+                "Every year",
+                "Every six months",
+                "Every third year"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.02E-1.jpg",
+            "question": "When stopped, you should keep your front wheels pointing straight unless you are:",
+            "choices": [
+                "Waiting to make a left turn at an intersection",
+                "Parked on a hill or sloping driveway",
+                "Parked on a level roadway and there is no curb"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.43C-1.jpg",
+            "question": "Taking a cold shower after drinking alcohol:",
+            "choices": [
+                "Helps you to sober up more quickly",
+                "Cancels the effect of the alcohol",
+                "Has no effect on your blood alcohol concentration"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.17-1.jpg",
+            "question": "At a crosswalk at an intersection, parking is not allowed within the following limit:",
+            "choices": [
+                "10 feet",
+                "20 feet",
+                "30 feet"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.44.02C2-1.jpg",
+            "question": "When driving at speeds above 30 mph, which method helps you determine a safe following distance between you and a vehicle ahead?",
+            "choices": [
+                "Using a four-second rule",
+                "Flashing your headlights",
+                "Using a 2-car-length rule"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.03-1.jpg",
+            "question": "If you run off the pavement, you should:",
+            "choices": [
+                "Swing back onto the pavement as quickly as possible",
+                "Grip the steering wheel firmly and take your foot off the gas pedal",
+                "Hit the brakes as quickly as possible"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.14C-1.jpg",
+            "question": "Which is true about the right of way at a 4-way stop?",
+            "choices": [
+                "The vehicle to the left always has the right of way",
+                "The first vehicle to reach the stop is the first to go",
+                "The vehicle to the right always has the right of way"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 50,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.09Y-1.gif",
+            "question": "You are coming to an intersection with a yellow flashing light. You should:",
+            "choices": [
+                "Stop and wait for the light to change",
+                "Make a U-turn since the intersection is closed",
+                "Drive carefully through the intersection"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 51,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.05.04-1.jpg",
+            "question": "What is this an example of?",
+            "choices": [
+                "A construction and maintenance sign",
+                "A regulatory sign",
+                "A warning sign"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 52,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.20.10E-1.jpg",
+            "question": "When merging onto a freeway or controlled-access highway, it is usually best to:",
+            "choices": [
+                "Increase your speed to the speed of highway traffic",
+                "Accelerate to a speed that is faster than the highway traffic",
+                "Proceed slowly while waiting for an opening"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 53,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.04-1.jpg",
+            "question": "The blood alcohol concentration (BAC) level at which it is illegal for any person 21 years or older to drive is:",
+            "choices": [
+                "0.08 percent",
+                "0.02 percent",
+                "0.04 percent"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 54,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.07.21B-1.jpg",
+            "question": "This sign means:",
+            "choices": [
+                "Drivers approaching from the opposite direction go first",
+                "Make a complete stop before turning",
+                "You must wait for a green arrow before turning"
+            ],
+            "correct": 0
+        }
+    ]
+}

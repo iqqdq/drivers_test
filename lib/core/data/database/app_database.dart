@@ -11,7 +11,16 @@ import 'package:drivers_test/core/core.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [Tests, Questions, Results, Settings])
+@DriftDatabase(
+  tables: [
+    Tests,
+    Questions,
+    Results,
+    Settings,
+    PracticeReminders,
+    ExamReminders,
+  ],
+)
 class AppDatabase extends _$AppDatabase {
   static Future<AppDatabase> create() async {
     final db = AppDatabase._internal();
@@ -79,7 +88,7 @@ class AppDatabase extends _$AppDatabase {
   }
 
   // Метод получения списка id тридцати случайных вопросов штата
-  Future<List<int>> getRandomUniqueQuestionIds() async {
+  Future<List<int>> getRandomUniqueQuestionIds({int limit = 30}) async {
     // Создаем подзапрос для получения уникальных id
     final query =
         selectOnly(questions)
@@ -88,7 +97,7 @@ class AppDatabase extends _$AppDatabase {
           ..orderBy([
             OrderingTerm(expression: FunctionCallExpression('RANDOM', [])),
           ])
-          ..limit(30);
+          ..limit(limit);
     // Выполняем запрос и преобразуем результат
     final result = await query.map((row) => row.read(questions.id)!).get();
     return result;

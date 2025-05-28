@@ -1,4 +1,3 @@
-import 'package:drivers_test/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,7 +12,7 @@ class SettingsChangeNotifier with ChangeNotifier {
     _settings =
         await sl.get<SettingsRepository>().getSettings() ?? SettingsEntity();
     _settings?.isPushEnabled ??=
-        await notificationService.checkNotificationPermission();
+        await sl.get<NotificationService>().checkNotificationPermission();
     notifyListeners();
   }
 
@@ -23,10 +22,15 @@ class SettingsChangeNotifier with ChangeNotifier {
   }
 
   Future<bool> togglePushNotifications(bool value) async {
-    if (!await notificationService.checkNotificationPermission()) return false;
-    _settings?.isPushEnabled = value;
-    await saveSettings();
-    return true;
+    final isGranted =
+        await sl.get<NotificationService>().checkNotificationPermission();
+
+    if (isGranted) {
+      _settings?.isPushEnabled = value;
+      await saveSettings();
+    }
+
+    return isGranted;
   }
 
   void openWebView(int index) => launchUrl(

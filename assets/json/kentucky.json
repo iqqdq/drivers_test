@@ -1,0 +1,547 @@
+{
+    "id": 12,
+    "state": "Kentucky",
+    "total": 30,
+    "min": 24,
+    "questions": [
+        {
+            "id": 1,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.03-1.jpg",
+            "question": "A solid green signal means:",
+            "choices": [
+                "You may proceed if the intersection is clear",
+                "You always have the right-of-way",
+                "You may not remain stopped at a green signal"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 2,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.01-1.jpg",
+            "question": "What do the light gray areas in the picture mark?",
+            "choices": [
+                "Passing zones",
+                "Blind spots",
+                "Safety maneuver angles"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 3,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.13-1.jpg",
+            "question": "If there is an oncoming vehicle approaching head-on in your lane, you should:",
+            "choices": [
+                "Brake sharply and drive to the left of the oncoming vehicle",
+                "Make an emergency stop and back up, if necessary",
+                "Brake sharply and drive to the right of the oncoming vehicle"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 4,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.21.19-1.jpg",
+            "question": "The following are true about large trucks except:",
+            "choices": [
+                "They have bigger blind spots than most cars",
+                "They require more room to maneuver",
+                "They need shorter stopping distance"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 5,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.01C-1.jpg",
+            "question": "When are you most at risk of drowsy driving?",
+            "choices": [
+                "When driving long distances without rest breaks",
+                "When driving in heavy city traffic",
+                "When getting plenty of quality sleep before the trip"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 6,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.12-1.jpg",
+            "question": "At an uncontrolled intersection, a pedestrian has entered the crosswalk. In this situation, you should:",
+            "choices": [
+                "Give the pedestrian the right-of-way",
+                "Change lane so you do not have to slow down",
+                "Make the pedestrian aware that you are approaching"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 7,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.13-1.jpg",
+            "question": "Which of the following vehicles must always stop before crossing railroad tracks?",
+            "choices": [
+                "A motorhome longer than 40 feet",
+                "A school bus",
+                "A motorcycle"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 8,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.05C-1.jpg",
+            "question": "When oncoming traffic prevents you from making an immediate left turn, you should:",
+            "choices": [
+                "Alert oncoming traffic by using horn or headlights",
+                "Start turning, oncoming traffic will always stop",
+                "Slow down and stop if necessary"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 9,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.03B-1.jpg",
+            "question": "When should you turn on your headlights?",
+            "choices": [
+                "Any time in open country with a clear road ahead",
+                "During twilight hours",
+                "After sunrise"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 10,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.28.04-1.jpg",
+            "question": "Your car must have the following equipment in proper working order:",
+            "choices": [
+                "Two red brake lights",
+                "Side cowl or fender light",
+                "A bell, siren, or exhaust whistle"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 11,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.12A-1.jpg",
+            "question": "When you park on a hill headed downhill, and there is no curb, you should turn your front wheels:",
+            "choices": [
+                "Parallel to and by the side of the road",
+                "Parallel to and at least 12 inches away from the side of the road",
+                "Toward the side of the road"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 12,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.65P2-1.jpg",
+            "question": "The program that gradually phases in driving privileges for new teen drivers is known as:",
+            "choices": [
+                "The Implied Consent (IMC) program",
+                "The Graduated Licensing Program",
+                "The Public Safety (PS) program"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 13,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.04-1.jpg",
+            "question": "When passing another vehicle on a two-lane road, you must:",
+            "choices": [
+                "Alert other drivers by using your headlights",
+                "Exceed the speed limit to pass quickly",
+                "Return before an approaching vehicle comes within 100 feet"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 14,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.04-1.jpg",
+            "question": "The blood alcohol level at which it is illegal for any person 21 years or older to drive is:",
+            "choices": [
+                "0.08 percent",
+                "0.12 percent",
+                "0.02 percent"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 15,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.05-1.jpg",
+            "question": "If you are in an intersection when an emergency vehicle with flashing lights approaches from behind, you should:",
+            "choices": [
+                "Move to the right in the intersection and stop",
+                "Proceed through the intersection and continue driving",
+                "Proceed through the intersection before stopping"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 16,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.13-1.jpg",
+            "question": "When you stop and yield to a blind pedestrian in a crosswalk, the blind pedestrian will use what as a guide?",
+            "choices": [
+                "The sound of your horn",
+                "The sound of your engine",
+                "Your verbal instruction"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 17,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.02E-1.jpg",
+            "question": "Which is true about giving your horn a sharp blast?",
+            "choices": [
+                "Never blast your horn if you have lost control of your vehicle",
+                "Do this only to apprise other drivers of an error",
+                "Do this if there is an immediate danger"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 18,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.13-1.jpg",
+            "question": "When leaving a limited-access highway with a deceleration lane:",
+            "choices": [
+                "Avoid signaling until you are leaving the deceleration lane",
+                "Do not slow down until you move into the deceleration lane",
+                "Slow down well ahead of the deceleration lane"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 19,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.10-1.jpg",
+            "question": "If you have been drinking alcohol, what will help you to sober up?",
+            "choices": [
+                "A short nap",
+                "Time",
+                "A cold shower"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 20,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.00-1.jpg",
+            "question": "Which pavement marking separates traffic traveling in opposite directions?",
+            "choices": [
+                "Red lines",
+                "Yellow lines",
+                "White solid lines"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 21,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.23.31-1.jpg",
+            "question": "When you park and leave your car, you must:",
+            "choices": [
+                "Turn off the engine, set the parking brake and remove the key",
+                "Set the parking brake, but can leave your keys in the ignition",
+                "Set the parking brake, but can leave the motor running"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 22,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.08-1.jpg",
+            "question": "When facing a traffic signal showing a steady green arrow in your lane, you:",
+            "choices": [
+                "May turn only in the direction of the arrow",
+                "Should insist on the right-of-way",
+                "Must change lane"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 23,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.31.16-1.jpg",
+            "question": "If a school bus with flashing red lights has stopped on your side of a divided highway, you must:",
+            "choices": [
+                "Stop",
+                "Slow down and proceed with caution",
+                "Pass as quickly as possible"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 24,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.05H-1.jpg",
+            "question": "Following closely behind another vehicle:",
+            "choices": [
+                "Is the cause of most rear-end accidents",
+                "Improves fuel economy",
+                "Helps traffic flow smoothly"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 25,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.38-1.jpg",
+            "question": "Which of the following traffic violations will add more than four points to your driver's record?",
+            "choices": [
+                "Speeding 15 mph over the limit resulting in a collision",
+                "Following too closely",
+                "Failure to dim headlights"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 26,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.39.29-1.jpg",
+            "question": "If you stay inside the protection of your vehicle, your chances of surviving a crash are:",
+            "choices": [
+                "Two times greater",
+                "Five times greater",
+                "Ten times greater"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 27,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.24-1.jpg",
+            "question": "When following an emergency vehicle using sirens and flashing red lights, you must:",
+            "choices": [
+                "Stay more than 500 feet behind",
+                "Slow down to 25 mph or less",
+                "Use your emergency flashers"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 28,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.14C-1.jpg",
+            "question": "Which is true about the right of way at a 4-way stop?",
+            "choices": [
+                "The first vehicle to reach the stop is the first to go",
+                "The vehicle to the left always has the right of way",
+                "The vehicle to the right always has the right of way"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 29,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.17.03-1.jpg",
+            "question": "Can you drive with just your parking lights on when headlights are required?",
+            "choices": [
+                "Yes, when there are no other vehicles around",
+                "Yes, when driving slower than 25 mph",
+                "No"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 30,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.19.10-1.jpg",
+            "question": "When entering an expressway or a limited-access highway, it is wrong to:",
+            "choices": [
+                "Enter at or near the speed of traffic",
+                "Insist on the right-of-way",
+                "Turn your head to look quickly to the side before changing lanes"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 31,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.10-1.jpg",
+            "question": "Always allow extra room in front of your vehicle when:",
+            "choices": [
+                "Driving at low speed",
+                "Towing a trailer",
+                "Following a station wagon"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 32,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.02-1.jpg",
+            "question": "If you are going to drive in heavy rain and want to avoid hydroplaning, the most important thing to check before getting behind the wheel is your:",
+            "choices": [
+                "Tires",
+                "Brakes",
+                "Emergency lights"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 33,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.26.05-1.jpg",
+            "question": "When can you drive at the maximum speed indicated by a speed limit sign?",
+            "choices": [
+                "Only in the daytime",
+                "When conditions permit you to drive at such a speed safely",
+                "Only on divided highways, or highways designed for one-way traffic"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 34,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.34.02-1.jpg",
+            "question": "The most effective means of reducing serious injuries in a traffic crash is:",
+            "choices": [
+                "Combination lap/shoulder belt and airbag",
+                "Sitting close to the steering wheel",
+                "Lap and shoulder belt only"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 35,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.02-1.jpg",
+            "question": "When you approach a traffic signal displaying a steady yellow light, you must:",
+            "choices": [
+                "Proceed quickly through the intersection",
+                "Slow down and proceed with caution",
+                "Stop if you can stop safely"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 36,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.42.04A-1.jpg",
+            "question": "Of all traffic collisions in which a driver is killed, alcohol is involved in approximately:",
+            "choices": [
+                "60 percent",
+                "40 percent",
+                "10 percent"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 37,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.46C-1.jpg",
+            "question": "If you have a Kentucky driver's license, you must report a change of address within:",
+            "choices": [
+                "30 days",
+                "10 days",
+                "One week"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 38,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.14.08C-1.jpg",
+            "question": "You should adjust your seat and mirrors:",
+            "choices": [
+                "Before you get into your vehicle",
+                "After you start driving",
+                "Before you start driving"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 39,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.12.23-1.jpg",
+            "question": "Where is the pavement marked with the letter R on each side of a large X?",
+            "choices": [
+                "At railroad crossings",
+                "Before a school zone",
+                "Where parking is not allowed"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 40,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.30.11-1.jpg",
+            "question": "A Crossbuck sign at a railroad crossing means:",
+            "choices": [
+                "Yield",
+                "Go",
+                "Stop"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 41,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.13.01-1.jpg",
+            "question": "When should you proceed straight ahead against a red light?",
+            "choices": [
+                "When directed by a police officer",
+                "When the way is clear",
+                "When you hear an emergency vehicle approaching"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 42,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.32.01-1.jpg",
+            "question": "If not posted otherwise, what is the speed limit on rural highways with limited access?",
+            "choices": [
+                "65 mph",
+                "55 mph",
+                "60 mph"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 43,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.36.43C-1.jpg",
+            "question": "Taking a cold shower after drinking alcohol:",
+            "choices": [
+                "Has no effect on your blood alcohol concentration",
+                "Helps you to sober up more quickly",
+                "Cancels the effect of the alcohol"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 44,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.22.33D-1.jpg",
+            "question": "If you suddenly rear-end the car in front of you, you were most likely:",
+            "choices": [
+                "Running a red light",
+                "Following too closely",
+                "Weaving in and out of traffic"
+            ],
+            "correct": 1
+        },
+        {
+            "id": 45,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.18.13-1.jpg",
+            "question": "You are driving on a road with few streetlights on a clear night. If you cannot see well with your low-beam headlights, which of these actions would help?",
+            "choices": [
+                "Adjusting your instrument lights so they are brighter",
+                "Turning on your vehicle's parking lights",
+                "Using your high beams"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 46,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.29.14-1.jpg",
+            "question": "If you see a pedestrian with a white cane at a crosswalk, you must:",
+            "choices": [
+                "Honk your horn",
+                "Stop and turn off your engine, so it is clear that you have stopped",
+                "Stop and give the pedestrian the right of way at all times"
+            ],
+            "correct": 2
+        },
+        {
+            "id": 47,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.25.38H-1.jpg",
+            "question": "Under Kentucky point system your driving privilege will be suspended if you accumulate 12 points within:",
+            "choices": [
+                "Two years",
+                "Five years",
+                "18 months"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 48,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.16.29A-1.jpg",
+            "question": "When turning left from the lane closest to the center of a street, you should:",
+            "choices": [
+                "Complete the turn in the closest lane going in your direction",
+                "Complete the turn in either lane going in your direction",
+                "Complete the turn in the right-hand lane of the cross street"
+            ],
+            "correct": 0
+        },
+        {
+            "id": 49,
+            "image": "https://driversprep.com/wp-content/uploads/2020/12/US.24.03-1.jpg",
+            "question": "If you have a tire blowout while driving, you should:",
+            "choices": [
+                "Ease off the gas pedal and steer straight ahead until you have full control",
+                "Immediately steer off the pavement",
+                "Use your horn"
+            ],
+            "correct": 0
+        }
+    ]
+}

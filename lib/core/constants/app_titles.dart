@@ -113,6 +113,16 @@ abstract class AppTitles {
   static const remindBeforeDays = 'Remind before, days';
   static const everyday = 'Every day';
   static const dayOfTheWeek = 'Day of the week';
+  static const remindBefore = 'Remind before';
+  static const day = 'day';
+  static const days = 'days';
+
+  // MARK: -
+  // MARK: - NOTIFICATION'S
+  static const practiceNotificationTitle = 'Practice reminder';
+  static const practiceNotificationBody = '🚀 Boost your progress now!';
+  static const examNotificationTitle = 'Exam reminder';
+  static const examNotificationBody = '⏳ Test your knowledge at';
 
   // MARK: -
   // MARK: - SETTING'S
@@ -161,7 +171,7 @@ abstract class AppTitles {
   // MARK: -
   // MARK: - ALERT'S
   static const pleaseWaitForTestToLoad = 'Please wait\nfor your test to load';
-  static const pleaseWaitForTestsToLoad = 'Please wait\nfor your tests to load';
+  static const pleaseWaitForExamToLoad = 'Please wait\nfor your exam to load';
   static const pushNotificationsDisabled = 'Push Notifications Disabled';
   static const pleaseEnablePushNotifications =
       'To receive important updates and alerts, please enable push notifications in your settings';

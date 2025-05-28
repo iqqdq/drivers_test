@@ -1,4 +1,5 @@
 import 'package:drivers_test/core/core.dart';
+import 'package:drivers_test/features/features.dart';
 
 class TestEntity {
   final String state;

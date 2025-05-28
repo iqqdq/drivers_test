@@ -1,6 +1,11 @@
 class ExamReminderEnity {
-  final DateTime? dateTime;
+  final DateTime dateTime;
   final int? daysUntilRemind;
 
-  ExamReminderEnity({this.dateTime, this.daysUntilRemind});
+  ExamReminderEnity({required this.dateTime, this.daysUntilRemind});
+
+  factory ExamReminderEnity.fromRow({
+    required DateTime date,
+    required int? daysUntilRemind,
+  }) => ExamReminderEnity(dateTime: date, daysUntilRemind: daysUntilRemind);
 }
