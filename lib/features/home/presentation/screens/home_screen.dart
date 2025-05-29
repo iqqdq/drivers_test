@@ -51,9 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
               : Padding(
                 padding: EdgeInsets.only(bottom: 12.0),
                 child: GetPremiumCard(
-                  subtitle: AppTitles.getUnlimitedNumberOfTests,
-                  secondSubtitle:
-                      '${AppTitles.thereAreOnly} $totalPassedTest/$totalTest ${AppTitles.practicalTestsAvailableNow}',
+                  totalPassedTest: totalPassedTest,
+                  totalTest: totalTest,
                   onTap: _onGetPremiumTap,
                 ),
               ),

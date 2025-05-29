@@ -49,12 +49,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ).copyWith(top: 16.0),
-                child: GetFullAccessCard(onTap: _onGetFullAccessTap),
-              ),
+              isSubscribed.value
+                  ? SizedBox.shrink()
+                  : Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                    ).copyWith(top: 16.0),
+                    child: GetFullAccessCard(onTap: _onGetFullAccessTap),
+                  ),
 
               /// SETTING'S LIST VIEW
               Container(
@@ -72,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     padding: EdgeInsets.zero,
                     itemCount: _titles.length,
                     separatorBuilder:
-                        (context, index) => Divider(
+                        (context, index) => const Divider(
                           color: AppColors.black10,
                           indent: 72.0,
                           height: 1.0,
@@ -110,8 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetFullAccessTap() =>
-      router.push(OnboardingRoutes.onboarding, extra: true);
+  void _onGetFullAccessTap() => router.push(AppRoutes.subscriptions);
 
   void _onSwitchTap(bool value) async =>
       await _read.togglePushNotifications(value).then((isEnabled) {

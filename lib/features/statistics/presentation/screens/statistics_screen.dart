@@ -70,9 +70,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                         : Padding(
                           padding: EdgeInsets.only(bottom: 12.0),
                           child: GetPremiumCard(
-                            subtitle: AppTitles.getUnlimitedNumberOfTests,
-                            secondSubtitle:
-                                '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
+                            totalPassedTest: watch.totalPassedTest,
+                            totalTest: watch.totalTest,
                             onTap: _onGetPremiumTap,
                           ),
                         ),

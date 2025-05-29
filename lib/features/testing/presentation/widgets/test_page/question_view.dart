@@ -30,6 +30,8 @@ class _QuestionViewState extends State<QuestionView>
   Widget build(BuildContext context) {
     super.build(context);
 
+    final borderRadius = BorderRadius.circular(16.0);
+
     return ListView(
       padding: EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -43,12 +45,17 @@ class _QuestionViewState extends State<QuestionView>
             ? SizedBox.shrink()
             : Container(
               margin: EdgeInsets.only(bottom: 24.0),
-
+              constraints: BoxConstraints(minHeight: 248.0),
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0, color: AppColors.border),
+                borderRadius: borderRadius,
+                color: AppColors.card,
+              ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.0),
+                borderRadius: borderRadius,
                 child: CachedNetworkImage(
                   imageUrl: widget.question.image!,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                   progressIndicatorBuilder:
                       (context, url, downloadProgress) =>
                           LoadingIndicator(color: AppColors.black100),

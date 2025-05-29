@@ -19,14 +19,17 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
     _read = context.read<TestCatalogChangeNotifier>();
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _read.getTests(state: _state);
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _read.getTests(state: _state),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final watch = context.watch<TestCatalogChangeNotifier>();
+    final totalPassedTest =
+        context.watch<StatisticsChangeNotifier>().totalPassedTest;
+    final totalTest = context.watch<StatisticsChangeNotifier>().totalTest;
     _state = context.watch<SettingsChangeNotifier>().settings?.state ?? '';
 
     return Scaffold(
@@ -57,9 +60,8 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
                       : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: GetPremiumCard(
-                          subtitle: AppTitles.getUnlimitedNumberOfTests,
-                          secondSubtitle:
-                              '${AppTitles.thereAreOnly} null/null ${AppTitles.practicalTestsAvailableNow}', // TODO SHOW COMPLETED/AVAILABLE TEST COUNT
+                          totalPassedTest: totalPassedTest,
+                          totalTest: totalTest,
                           onTap: _onGetPremiumTap,
                         ),
                       ),
@@ -88,7 +90,12 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
                                 : TestTile(
                                   index: normalizeTestId(test.id),
                                   test: test,
-                                  onTap: () => _onTestTap(index),
+                                  onTap:
+                                      () =>
+                                          !isSubscribed.value &&
+                                                  totalPassedTest == 3
+                                              ? _onGetPremiumTap()
+                                              : _onTestTap(index),
                                 );
                           },
                         ),

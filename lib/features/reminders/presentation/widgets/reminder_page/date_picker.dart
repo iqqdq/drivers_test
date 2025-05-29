@@ -14,18 +14,49 @@ class DatePicker extends StatefulWidget {
 class _DatePickerState extends State<DatePicker> {
   late DateTime _currentMonth;
   DateTime? _currentDate;
+  late DateTime _today;
+
+  @override
+  void initState() {
+    super.initState();
+    _today = DateTime.now();
+    _currentDate = widget.dateTime;
+    _currentMonth = DateTime(
+      _currentDate?.year ?? _today.year,
+      _currentDate?.month ?? _today.month,
+      1,
+    );
+  }
+
+  @override
+  void didUpdateWidget(DatePicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.dateTime != oldWidget.dateTime) {
+      _currentDate = widget.dateTime;
+      _currentMonth = DateTime(
+        _currentDate?.year ?? _today.year,
+        _currentDate?.month ?? _today.month,
+        1,
+      );
+    }
+  }
 
   void _goToMonth(DateTime month) {
     setState(() {
       _currentMonth = DateTime(month.year, month.month, 1);
-      _currentDate = DateTime(month.year, month.month, month.day);
+      // Не изменяем _currentDate при переходе между месяцами
     });
   }
 
   void _previousMonth() {
-    setState(() {
-      _currentMonth = DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
-    });
+    final prevMonth = DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
+    // Проверяем, что месяц не раньше текущего (год и месяц)
+    if (!(prevMonth.year < _today.year ||
+        (prevMonth.year == _today.year && prevMonth.month < _today.month))) {
+      setState(() {
+        _currentMonth = prevMonth;
+      });
+    }
   }
 
   void _nextMonth() {
@@ -35,21 +66,27 @@ class _DatePickerState extends State<DatePicker> {
   }
 
   void _onDateSelected(DateTime dateTime) {
-    setState(() {
-      _currentDate = dateTime;
-    });
-    widget.onDateSelected(dateTime);
+    // Проверяем, что выбранная дата не раньше сегодняшней
+    if (!_isDateBeforeToday(dateTime)) {
+      setState(() {
+        _currentDate = dateTime;
+      });
+      widget.onDateSelected(dateTime);
+    }
+  }
+
+  bool _isDateBeforeToday(DateTime date) {
+    final today = DateTime(_today.year, _today.month, _today.day);
+    final inputDate = DateTime(date.year, date.month, date.day);
+    return inputDate.isBefore(today);
+  }
+
+  bool _isDateSelectable(DateTime date) {
+    return !_isDateBeforeToday(date);
   }
 
   @override
   Widget build(BuildContext context) {
-    _currentDate = widget.dateTime;
-    _currentMonth = DateTime(
-      _currentDate?.year ?? DateTime.now().year,
-      _currentDate?.month ?? DateTime.now().month,
-      1,
-    );
-
     return Column(
       children: [
         _buildHeader(),
@@ -91,18 +128,20 @@ class _DatePickerState extends State<DatePicker> {
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     return Row(
       children:
-          weekDays.map((day) {
-            return Expanded(
-              child: Center(
-                child: Text(
-                  day,
-                  style: AppTextStyles.footnoteRegular.copyWith(
-                    color: AppColors.black70,
+          weekDays
+              .map(
+                (day) => Expanded(
+                  child: Center(
+                    child: Text(
+                      day,
+                      style: AppTextStyles.footnoteRegular.copyWith(
+                        color: AppColors.black70,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            );
-          }).toList(),
+              )
+              .toList(),
     );
   }
 
@@ -171,20 +210,30 @@ class _DatePickerState extends State<DatePicker> {
                 _currentDate?.month == date.month &&
                 _currentDate?.day == date.day;
 
+            final isSelectable = _isDateSelectable(date);
+
             return Expanded(
               child: GestureDetector(
-                onTap: () {
-                  if (isPrevMonth || isNextMonth) {
-                    _goToMonth(date);
-                  } else {
-                    _onDateSelected(date);
-                  }
-                },
+                onTap:
+                    isSelectable
+                        ? () {
+                          if (isPrevMonth || isNextMonth) {
+                            _goToMonth(date);
+                          } else {
+                            _onDateSelected(date);
+                          }
+                        }
+                        : null,
                 child: Container(
                   height: 40.0,
                   width: 40.0,
                   decoration: BoxDecoration(
-                    color: isSelected ? AppColors.blue100 : Colors.transparent,
+                    color:
+                        isSelected
+                            ? AppColors.blue100
+                            : !isSelectable
+                            ? AppColors.black10.withValues(alpha: 0.1)
+                            : Colors.transparent,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -194,6 +243,8 @@ class _DatePickerState extends State<DatePicker> {
                         color:
                             isSelected
                                 ? AppColors.white
+                                : !isSelectable
+                                ? AppColors.black20
                                 : isCurrentMonth
                                 ? AppColors.black100
                                 : AppColors.black20,

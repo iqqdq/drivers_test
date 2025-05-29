@@ -1,4 +1,8 @@
 PODS:
+  - apphud (2.7.0):
+    - ApphudSDK (= 3.6.2)
+    - Flutter
+  - ApphudSDK (3.6.2)
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
@@ -42,6 +46,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - apphud (from `.symlinks/plugins/apphud/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
@@ -55,9 +60,12 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - ApphudSDK
     - sqlite3
 
 EXTERNAL SOURCES:
+  apphud:
+    :path: ".symlinks/plugins/apphud/ios"
   Flutter:
     :path: Flutter
   flutter_local_notifications:
@@ -80,6 +88,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  apphud: ff991d5fc641410c7f4453a0ac215e0a2e2627ca
+  ApphudSDK: 787b3f4f41427a07f4f8d02590470f31f567cfdf
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_local_notifications: a5a732f069baa862e728d839dd2ebb904737effb
   flutter_native_timezone: 5fe32678d72d1894880e94303ef41c2919f014e5
@@ -92,6 +102,6 @@ SPEC CHECKSUMS:
   sqlite3_flutter_libs: f6acaa2172e6bb3e2e70c771661905080e8ebcf2
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
-PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
+PODFILE CHECKSUM: 3d68f7cb47d5f2fb7765407f663653c9b51100f3
 
 COCOAPODS: 1.16.2

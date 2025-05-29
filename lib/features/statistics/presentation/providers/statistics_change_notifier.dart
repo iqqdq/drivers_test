@@ -34,7 +34,7 @@ class StatisticsChangeNotifier with ChangeNotifier {
   TestResultType? get resultType => _resultType;
 
   Future _getTests() async {
-    _tests = await sl.get<StatisticsRepository>().getTestWithResults(
+    _tests = await sl.get<StatisticsRepository>().getTestWithResult(
       state: _state,
     );
 

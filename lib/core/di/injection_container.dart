@@ -11,6 +11,7 @@ Future<void> initInjections() async {
 
   // MARK: -
   // MARK: -SERVICE'S
+  sl.registerLazySingleton((container) => PurchaseService());
   sl.registerLazySingleton((container) => NotificationService());
 
   // MARK: -

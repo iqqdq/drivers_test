@@ -4,8 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final ValueNotifier<bool> isSubscribed = ValueNotifier(false);
-
 class OnboardingChangeNotifier with ChangeNotifier {
   final images = [
     AppImages.onboarding1,
@@ -48,8 +46,7 @@ class OnboardingChangeNotifier with ChangeNotifier {
     if (_page == 2 && await _inAppReview.isAvailable()) {
       await _inAppReview.requestReview();
     } else if (_page == 3) {
-      _setOnboardingComplete();
-      // TODO CALL APPHUD
+      await _setOnboardingComplete();
     }
   }
 

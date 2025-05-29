@@ -4,7 +4,7 @@ export 'ui/ui.dart';
 export 'constants/constants.dart';
 export 'di/di.dart';
 export 'extensions/extensions.dart';
-export 'screens/screens.dart';
+export 'presentation/presentation.dart';
 export 'utils/utils.dart';
 export 'data/data.dart';
 export 'domain/domain.dart';

@@ -34,7 +34,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
         itemBuilder: (context, index) {
           return ReminderTile(
             title: _titles[index],
-            tags: index == 0 ? _read.getReminderTags() : _read.getExamTags(),
+            tags: index == 0 ? _read.getPracticeTags() : _read.getExamTags(),
             value:
                 index == 0
                     ? watch.isPracticeReminderEnabled
@@ -50,7 +50,9 @@ class _RemindersScreenState extends State<RemindersScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onReminderTap(int index) => router.push(RemindersRoutes.reminderPage);
+  void _onReminderTap(int index) => router
+      .push(RemindersRoutes.reminderSettings)
+      .whenComplete(() => _read.getReminders());
 
   void _onSwitchTap(int index, bool value) =>
       index == 0

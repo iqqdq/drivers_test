@@ -31,7 +31,9 @@ class ReminderTile extends StatelessWidget {
         borderRadius: borderRadius,
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.5),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+          ).copyWith(top: 12.5, bottom: 16.0),
           decoration: BoxDecoration(
             border: Border.all(width: 1.0, color: AppColors.border),
             borderRadius: borderRadius,
@@ -60,6 +62,16 @@ class ReminderTile extends StatelessWidget {
                   ),
                 ],
               ),
+
+              tags == null
+                  ? SizedBox.shrink()
+                  : Column(
+                    children: [
+                      const SizedBox(height: 16.0),
+                      const Divider(height: 1.0, color: AppColors.border),
+                      const SizedBox(height: 16.0),
+                    ],
+                  ),
 
               /// TAG'S
               Wrap(

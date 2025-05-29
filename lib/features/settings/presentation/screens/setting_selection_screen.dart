@@ -71,7 +71,7 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
                 itemCount: items.length,
                 separatorBuilder:
                     (context, index) =>
-                        Divider(color: AppColors.black10, height: 1.0),
+                        const Divider(color: AppColors.black10, height: 1.0),
                 itemBuilder: (context, index) {
                   return SettingsSelectionTile(
                     title: items[index].toStateName(),

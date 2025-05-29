@@ -28,7 +28,7 @@ class TitleContainer extends StatelessWidget {
         children: [
           Text(title, style: AppTextStyles.headlineHeadline),
           const SizedBox(height: 16.0),
-          Divider(height: 1.0, color: AppColors.border),
+          const Divider(height: 1.0, color: AppColors.border),
           SizedBox(height: spacing),
           child,
         ],

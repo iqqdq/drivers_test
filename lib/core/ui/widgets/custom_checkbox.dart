@@ -2,7 +2,7 @@ import 'package:drivers_test/core/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 class CustomCheckbox extends StatelessWidget {
-  final bool isSelected;
+  final bool? isSelected;
 
   const CustomCheckbox({super.key, required this.isSelected});
 
@@ -12,10 +12,25 @@ class CustomCheckbox extends StatelessWidget {
       width: 24.0,
       height: 24.0,
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.white : null,
+        color:
+            isSelected == null
+                ? null
+                : isSelected!
+                ? AppColors.white
+                : null,
         border: Border.all(
-          width: isSelected ? 6.0 : 1.0,
-          color: isSelected ? AppColors.blue100 : AppColors.blue30,
+          width:
+              isSelected == null
+                  ? 1.0
+                  : isSelected!
+                  ? 6.0
+                  : 1.0,
+          color:
+              isSelected == null
+                  ? AppColors.blue30
+                  : isSelected!
+                  ? AppColors.blue100
+                  : AppColors.blue30,
         ),
         borderRadius: BorderRadius.circular(12.0),
       ),

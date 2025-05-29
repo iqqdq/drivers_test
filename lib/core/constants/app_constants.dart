@@ -4,6 +4,7 @@ abstract class AppConstants {
 
   static const weekSubID = "driver_test_week";
   static const weekTrialSubID = "driver_test_trial_week";
+  static const lifeTimeSubID = "one_time_purchase";
 
   static const termsOfUse =
       "https://docs.google.com/document/d/1J7hgske8T9km3vKS1fMTsPXUaNaW-Zc1A1-PCTNA6G8/edit?usp=sharing";

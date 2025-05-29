@@ -26,6 +26,13 @@ class _PaywallPageState extends State<PaywallPage> {
 
   @override
   Widget build(BuildContext context) {
+    final subtitle =
+        '${widget.subtitle} ${weekTrialProduct.getPriceAndDurationPlus()}';
+    final switchTitle =
+        _value
+            ? '${weekTrialProduct.getTrialPeriod()} ${AppTitles.freeTrial} ${AppTitles.enabled}'
+            : '${AppTitles.enable} ${weekTrialProduct.getTrialPeriod()} ${AppTitles.freeTrial}';
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -43,7 +50,7 @@ class _PaywallPageState extends State<PaywallPage> {
 
           /// SUBTITLE
           Text(
-            widget.subtitle,
+            subtitle,
             style: AppTextStyles.subheadlineRegular,
             textAlign: TextAlign.center,
           ),
@@ -51,7 +58,7 @@ class _PaywallPageState extends State<PaywallPage> {
 
           /// SWITCH
           PaywallSwitch(
-            title: _value ? '${AppTitles.enabled}' : '${AppTitles.enable}',
+            title: switchTitle,
             value: _value,
             onChanged: _onSwitchTap,
           ),

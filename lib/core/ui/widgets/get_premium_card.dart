@@ -2,14 +2,14 @@ import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 
 class GetPremiumCard extends StatelessWidget {
-  final String subtitle;
-  final String secondSubtitle;
+  final int totalPassedTest;
+  final int totalTest;
   final VoidCallback onTap;
 
   const GetPremiumCard({
     super.key,
-    required this.subtitle,
-    required this.secondSubtitle,
+    required this.totalPassedTest,
+    required this.totalTest,
     required this.onTap,
   });
 
@@ -64,7 +64,7 @@ class GetPremiumCard extends StatelessWidget {
 
                     /// SUBTITLE
                     Text(
-                      subtitle,
+                      AppTitles.getUnlimitedNumberOfTests,
                       style: AppTextStyles.caption.copyWith(
                         color: AppColors.white,
                       ),
@@ -73,7 +73,7 @@ class GetPremiumCard extends StatelessWidget {
 
                     /// SECOND SUBTITLE
                     Text(
-                      secondSubtitle,
+                      '${AppTitles.thereAreOnly} $totalPassedTest/$totalTest ${AppTitles.practicalTestsAvailableNow}',
                       style: AppTextStyles.caption.copyWith(
                         color: AppColors.white,
                       ),

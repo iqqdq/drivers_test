@@ -23,6 +23,7 @@ abstract class AppTitles {
       'Unlimited number of tests, exams and full stats,\njust for';
   static const enable = 'Enable a';
   static const enabled = 'enabled';
+  static const freeTrial = 'free trial';
   static const restore = 'Restore';
 
   // MARK: -
@@ -140,6 +141,10 @@ abstract class AppTitles {
       'Select the type of vehicle you want a driver’s license\nfor';
 
   // MARK: -
+  // MARK: - SUBSCRIPTION'S
+  static const unlockFullAccess = 'and unlock full access to the app';
+
+  // MARK: -
   // MARK: - BUTTON'S
   static const back = 'Back';
   static const close = 'Close';
@@ -151,6 +156,7 @@ abstract class AppTitles {
 
   // MARK: -
   // MARK: - COMMON
+  static const warning = 'Warning';
   static const practice = 'Practice';
   static const passingScore = 'Passing score';
   static const examReadiness = 'Exam readiness';

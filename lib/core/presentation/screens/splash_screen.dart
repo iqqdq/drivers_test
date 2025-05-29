@@ -1,7 +1,5 @@
-import 'package:drivers_test/core/di/injection_container.dart';
-import 'package:drivers_test/core/router.dart';
+import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
-import 'package:drivers_test/core/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -22,7 +22,7 @@ class _AppState extends State<App> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<RemindersChangeNotifier>(
-          create: (_) => RemindersChangeNotifier(),
+          create: (_) => RemindersChangeNotifier()..getReminders(),
         ),
         ChangeNotifierProvider<SettingsChangeNotifier>(
           create: (_) => SettingsChangeNotifier()..getSettings(),

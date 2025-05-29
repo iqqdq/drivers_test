@@ -3,14 +3,14 @@ import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ReminderPageScreen extends StatefulWidget {
-  const ReminderPageScreen({super.key});
+class ReminderSettingsScreen extends StatefulWidget {
+  const ReminderSettingsScreen({super.key});
 
   @override
-  State<ReminderPageScreen> createState() => _ReminderPageScreenState();
+  State<ReminderSettingsScreen> createState() => _ReminderPageScreenState();
 }
 
-class _ReminderPageScreenState extends State<ReminderPageScreen> {
+class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
   late final RemindersChangeNotifier _read;
 
   @override
@@ -98,9 +98,14 @@ class _ReminderPageScreenState extends State<ReminderPageScreen> {
                 /// WEEKDAY LIST VIEW
                 watch.type == ReminderType.practice
                     ? SizedBox.shrink()
+                    : watch.dateTime == null
+                    ? SizedBox.shrink()
+                    : watch.dateTime!.difference(DateTime.now()).inDays == 0
+                    ? SizedBox.shrink()
                     : TitleContainer(
                       title: AppTitles.remindBeforeDays,
                       child: WeekdayListView(
+                        targetDate: watch.dateTime!,
                         selected: watch.daysUntilRemind,
                         onTap: _onDayAmountTap,
                       ),

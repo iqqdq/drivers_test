@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
@@ -134,8 +135,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _onContinueTap() async {
     if (_pageController.page! == 3) {
-      // TODO CALL APPHUD
-      router.go(HomeRoutes.home);
+      final error = await sl.get<PurchaseService>().purchase(
+        priceProductService: _read.isTrial ? weekTrialProduct : weekProduct,
+      );
+      if (mounted) {
+        error == null && isSubscribed.value
+            ? router.go(HomeRoutes.home)
+            : showOkAlertDialog(
+              context: context,
+              title: AppTitles.warning,
+              message: error,
+            );
+      }
     } else {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -144,5 +155,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  void _onFooterButtonTap(int index) => _read.openWebView(index);
+  void _onFooterButtonTap(int index) async {
+    if (index == 0 || index == 2) {
+      _read.openWebView(index);
+    } else {
+      final error = await sl.get<PurchaseService>().restore();
+      if (mounted) {
+        error == null
+            ? router.go(HomeRoutes.home)
+            : showAlertDialog(
+              context: context,
+              title: AppTitles.warning,
+              message: error,
+            ).whenComplete(() {});
+      }
+    }
+  }
 }

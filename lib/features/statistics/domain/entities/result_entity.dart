@@ -30,4 +30,11 @@ class ResultEntity {
     durationInSeconds: durationInSeconds,
     completedAt: completedAt,
   );
+
+  @override
+  bool operator ==(Object other) =>
+      other is ResultEntity && testId == other.testId;
+
+  @override
+  int get hashCode => testId.hashCode;
 }

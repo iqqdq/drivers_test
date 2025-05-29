@@ -8,28 +8,7 @@ class RemindersRepositoryImpl implements RemindersRepository {
   final AppDatabase _db;
 
   @override
-  Future<ExamReminderEnity?> getExamRepository() async {
-    try {
-      final examReminder =
-          await _db.select(_db.examReminders).getSingleOrNull();
-      return examReminder;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  @override
-  Future setExamRepository(ExamReminderEnity examReminder) async => await _db
-      .into(_db.examReminders)
-      .insertOnConflictUpdate(
-        ExamRemindersCompanion.insert(
-          date: examReminder.dateTime,
-          daysUntilRemind: Value(examReminder.daysUntilRemind),
-        ),
-      );
-
-  @override
-  Future<PracticeReminderEntity?> getPracticeRepository() async {
+  Future<PracticeReminderEntity?> getPracticeReminder() async {
     try {
       final examReminder =
           await _db.select(_db.practiceReminders).getSingleOrNull();
@@ -40,14 +19,37 @@ class RemindersRepositoryImpl implements RemindersRepository {
   }
 
   @override
-  Future setPracticeRepository(PracticeReminderEntity practiceReminder) async =>
+  Future setPracticeReminder(PracticeReminderEntity practiceReminder) async =>
       await _db
           .into(_db.practiceReminders)
           .insertOnConflictUpdate(
             PracticeRemindersCompanion.insert(
+              id: Value(0),
               daysOfWeek: practiceReminder.daysOfWeek,
               hour: practiceReminder.hour,
               minute: practiceReminder.minute,
             ),
           );
+
+  @override
+  Future<ExamReminderEnity?> getExamReminder() async {
+    try {
+      final examReminder =
+          await _db.select(_db.examReminders).getSingleOrNull();
+      return examReminder;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Future setExamReminder(ExamReminderEnity examReminder) async => await _db
+      .into(_db.examReminders)
+      .insertOnConflictUpdate(
+        ExamRemindersCompanion.insert(
+          id: Value(0),
+          date: examReminder.dateTime,
+          daysUntilRemind: Value(examReminder.daysUntilRemind),
+        ),
+      );
 }

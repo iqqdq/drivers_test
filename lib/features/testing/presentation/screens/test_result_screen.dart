@@ -162,7 +162,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onCloseTap() => router.replace(TestingRoutes.testCatalog);
+  void _onCloseTap() => router.pop();
 
   void _onReviewAnswersTap() => router.push(
     TestingRoutes.testPage,
@@ -172,7 +172,7 @@ class _TestResultScreenState extends State<TestResultScreen> {
     ),
   );
 
-  void _onTakeTheTestAgainTap() => router.replace(
+  void _onTakeTheTestAgainTap() => router.pushReplacement(
     TestingRoutes.testPage,
     extra: TestScreenRouteArgs(test: _read.test),
   );
