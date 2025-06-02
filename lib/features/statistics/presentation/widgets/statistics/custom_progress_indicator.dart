@@ -70,7 +70,6 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
         (widget.progress <= 0.9 ? AppColors.orange100 : AppColors.green100);
 
     return Container(
-      height: 72.0,
       decoration: BoxDecoration(
         color: AppColors.white.withValues(alpha: 0.12),
         border: Border.all(width: 1.0, color: AppColors.border),
@@ -92,7 +91,7 @@ class _CustomProgressIndicatorState extends State<CustomProgressIndicator>
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 25.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
               child: Row(
                 children: [
                   /// TITLE

@@ -1,7 +1,7 @@
 {
     "id": 20,
     "state": "New Jersey",
-    "total": 50,
+    "max": 50,
     "min": 40,
     "questions": [
         {

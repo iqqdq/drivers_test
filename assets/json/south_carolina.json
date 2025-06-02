@@ -1,7 +1,7 @@
 {
     "id": 26,
     "state": "South Carolina",
-    "total": 30,
+    "max": 30,
     "min": 24,
     "questions": [
         {

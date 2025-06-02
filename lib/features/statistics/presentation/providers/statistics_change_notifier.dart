@@ -37,17 +37,14 @@ class StatisticsChangeNotifier with ChangeNotifier {
     _tests = await sl.get<StatisticsRepository>().getTestWithResult(
       state: _state,
     );
-
     if (type != null) {
       _tests?.removeWhere((e) => type == TestType.test ? e.isExam : !e.isExam);
     }
-
     if (resultType != null) {
       _tests?.removeWhere(
         (e) => resultType == TestResultType.failed ? e.isPassed : !e.isPassed,
       );
     }
-
     notifyListeners();
   }
 
@@ -81,27 +78,21 @@ class StatisticsChangeNotifier with ChangeNotifier {
 
   Future getStatistics() async {
     _state = (await sl.get<SettingsRepository>().getSettings())!.state!;
-
     _totalPassedTest = await sl.get<StatisticsRepository>().getTotalPassedTests(
       state: _state,
     );
-
     _totalTest =
         isSubscribed.value
             ? await sl.get<StatisticsRepository>().getTotalTests(state: _state)
             : 3;
-
     _totalQuestions = await sl.get<StatisticsRepository>().getTotalQuestions(
       state: _state,
     );
-
     _totalCorrectAnswers = await sl
         .get<StatisticsRepository>()
         .getTotalCorrectAnswers(state: _state);
-
     _examReadiness =
         _totalCorrectAnswers == 0 ? 0 : _totalCorrectAnswers ~/ _totalQuestions;
-
     _getTests();
   }
 

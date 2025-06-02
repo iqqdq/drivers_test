@@ -10,10 +10,9 @@ class EmptyListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.only(top: 40.0),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SvgPicture.asset(icon),
         SizedBox(height: 12.0),

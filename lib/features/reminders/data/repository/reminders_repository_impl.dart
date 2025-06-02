@@ -28,6 +28,7 @@ class RemindersRepositoryImpl implements RemindersRepository {
               daysOfWeek: practiceReminder.daysOfWeek,
               hour: practiceReminder.hour,
               minute: practiceReminder.minute,
+              isEnabled: Value(practiceReminder.isEnabled),
             ),
           );
 
@@ -36,6 +37,14 @@ class RemindersRepositoryImpl implements RemindersRepository {
     try {
       final examReminder =
           await _db.select(_db.examReminders).getSingleOrNull();
+      if (examReminder != null) {
+        if (examReminder.dateTime != null) {
+          if (examReminder.dateTime!.isBefore(DateTime.now())) {
+            return null;
+          }
+        }
+      }
+
       return examReminder;
     } catch (e) {
       return null;
@@ -48,8 +57,11 @@ class RemindersRepositoryImpl implements RemindersRepository {
       .insertOnConflictUpdate(
         ExamRemindersCompanion.insert(
           id: Value(0),
-          date: examReminder.dateTime,
-          daysUntilRemind: Value(examReminder.daysUntilRemind),
+          date: Value(examReminder.dateTime),
+          hour: examReminder.hour,
+          minute: examReminder.minute,
+          daysUntilRemind: examReminder.daysUntilRemind,
+          isEnabled: Value(examReminder.isEnabled),
         ),
       );
 }

@@ -1,7 +1,7 @@
 {
     "id": 19,
     "state": "New Hampshire",
-    "total": 40,
+    "max": 40,
     "min": 32,
     "questions": [
         {

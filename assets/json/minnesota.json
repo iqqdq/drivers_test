@@ -1,7 +1,7 @@
 {
     "id": 17,
     "state": "Minnesota",
-    "total": 40,
+    "max": 40,
     "min": 32,
     "questions": [
         {

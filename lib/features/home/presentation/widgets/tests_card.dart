@@ -30,10 +30,12 @@ class TestsCard extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: borderRadius),
           child: Column(
             children: [
-              Image.asset(AppImages.cardPracticalTests),
+              // IMAGE
+              Image.asset(AppImages.cardPracticalTests, height: 140.0),
               const SizedBox(height: 30.0),
               Column(
                 children: [
+                  /// TITLE
                   Text(
                     AppTitles.practicalTests,
                     textAlign: TextAlign.center,
@@ -42,6 +44,8 @@ class TestsCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16.0),
+
+                  /// PASSED / TOTAL TEST
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 16.0,

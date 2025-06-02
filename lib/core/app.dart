@@ -27,7 +27,6 @@ class _AppState extends State<App> {
         ChangeNotifierProvider<SettingsChangeNotifier>(
           create: (_) => SettingsChangeNotifier()..getSettings(),
         ),
-
         ChangeNotifierProvider<StatisticsChangeNotifier>(
           create: (_) => StatisticsChangeNotifier()..getStatistics(),
         ),

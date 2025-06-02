@@ -29,13 +29,15 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
     final items = widget.isStateSelection ? states : licenses;
 
     return Scaffold(
-      appBar: _state == null ? AppBar(toolbarHeight: 24.0) : CustomAppBar(),
+      appBar: _state == null ? null : CustomAppBar(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ).copyWith(top: _state == null ? 24.0 : 0.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

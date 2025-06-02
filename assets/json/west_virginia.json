@@ -1,7 +1,7 @@
 {
     "id": 32,
     "state": "West Virginia",
-    "total": 25,
+    "max": 25,
     "min": 19,
     "questions": [
         {
@@ -903,7 +903,8 @@
                 "About the same",
                 "Shorter",
                 "Longer"
-            ]
+            ],
+            "correct": 1
         }
     ]
 }

@@ -114,10 +114,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _onGetFullAccessTap() => router.push(AppRoutes.subscriptions);
 
-  void _onSwitchTap(bool value) async =>
-      await _read.togglePushNotifications(value).then((isEnabled) {
-        if (!isEnabled && mounted) NotificationsAlert.show(context);
-      });
+  void _onSwitchTap(bool value) async {
+    final isGranted = await _read.togglePushNotifications(value);
+    if (mounted) {
+      if (isGranted) {
+        if (!value) {
+          // Переключаем свитч в экране уведомлений
+          context.read<RemindersChangeNotifier>().tooglePracticeReminder(false);
+          context.read<RemindersChangeNotifier>().toogleExamReminder(false);
+        }
+      } else {
+        NotificationsAlert.show(context);
+      }
+    }
+  }
 
   void _onSettingTap(int index) {
     if (index == 1 || index == 2) {

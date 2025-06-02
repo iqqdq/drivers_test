@@ -1,12 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz; // Для инициализации
 
 class NotificationService {
-  final FlutterLocalNotificationsPlugin _notificationsPlugin =
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   final NotificationDetails notificationDetails = NotificationDetails(
@@ -32,46 +31,37 @@ class NotificationService {
   }
 
   // Инициализация отложенных даты и времени
-  tz.TZDateTime _nextInstanceOfDaysAndTime({
+  List<tz.TZDateTime> _nextInstancesOfDaysAndTime({
     required List<int> daysOfWeek,
     required int hour,
     int minute = 0,
   }) {
     final now = tz.TZDateTime.now(tz.local);
+    final List<tz.TZDateTime> scheduledDates = [];
 
-    // Сортируем дни недели по порядку (от ближайшего)
-    daysOfWeek.sort((a, b) {
-      final aDiff = (a - now.weekday) % 7;
-      final bDiff = (b - now.weekday) % 7;
-      return aDiff.compareTo(bDiff);
-    });
-
-    // Проверяем каждый день на возможность использования сегодня
     for (final day in daysOfWeek) {
+      // Вычисляем разницу дней до следующего указанного дня недели
+      final daysToAdd = (day - now.weekday) % 7;
+      // Создаём дату с указанным временем
       final scheduledDate = tz.TZDateTime(
         tz.local,
         now.year,
         now.month,
-        now.day,
+        now.day + (daysToAdd == 0 ? 0 : daysToAdd),
         hour,
         minute,
-      ).add(Duration(days: (day - now.weekday) % 7));
-
-      // Если время ещё не наступило сегодня/в этот день
-      if (scheduledDate.isAfter(now)) {
-        return scheduledDate;
+      );
+      // Если время уже прошло сегодня, добавляем 7 дней
+      if (scheduledDate.isBefore(now)) {
+        scheduledDates.add(scheduledDate.add(const Duration(days: 7)));
+      } else {
+        scheduledDates.add(scheduledDate);
       }
     }
 
-    // Если все варианты прошли, берём первый день следующей недели
-    return tz.TZDateTime(
-      tz.local,
-      now.year,
-      now.month,
-      now.day,
-      hour,
-      minute,
-    ).add(Duration(days: (daysOfWeek.first - now.weekday) % 7 + 7));
+    // Сортируем даты по возрастанию (ближайшие сначала)
+    scheduledDates.sort((a, b) => a.compareTo(b));
+    return scheduledDates;
   }
 
   Future init() async {
@@ -91,7 +81,7 @@ class NotificationService {
           iOS: initializationSettingsIOS,
         );
 
-    await _notificationsPlugin.initialize(
+    await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
         // Обработка нажатия на уведомление
@@ -102,15 +92,15 @@ class NotificationService {
     await _initTimeZone();
   }
 
-  Future requestNotificationPermission() async {
-    final permission = Permission.notification;
-    if (await permission.isDenied) {
-      await permission.request();
-    }
+  // Проверяем разрешены ли уведомления
+  Future<bool> checkNotificationPermission() async {
+    final result = await _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+          IOSFlutterLocalNotificationsPlugin
+        >()
+        ?.requestPermissions(alert: true, badge: true, sound: true);
+    return result ?? false;
   }
-
-  Future<bool> checkNotificationPermission() async =>
-      await Permission.notification.status.isGranted;
 
   // Простое уведомление
   Future showNotification({
@@ -119,7 +109,7 @@ class NotificationService {
     required String body,
     String? payload,
   }) async {
-    await _notificationsPlugin.show(
+    await _flutterLocalNotificationsPlugin.show(
       id,
       title,
       body,
@@ -138,20 +128,30 @@ class NotificationService {
     required int minute,
     String? payload,
   }) async {
-    await _notificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      _nextInstanceOfDaysAndTime(
-        daysOfWeek: daysOfWeek,
-        hour: hour,
-        minute: minute,
-      ),
-      notificationDetails,
-      payload: payload,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+    final scheduledDates = _nextInstancesOfDaysAndTime(
+      daysOfWeek: daysOfWeek,
+      hour: hour,
+      minute: minute,
     );
+
+    for (final scheduledDate in scheduledDates) {
+      final notificationId = id + scheduledDate.weekday;
+
+      await _flutterLocalNotificationsPlugin.zonedSchedule(
+        notificationId,
+        title,
+        body,
+        scheduledDate,
+        notificationDetails,
+        payload: payload,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+      );
+
+      debugPrint(
+        'Scheduling repeating notification with id: $notificationId at $scheduledDate',
+      );
+    }
   }
 
   // Отложенное уведомление
@@ -162,10 +162,11 @@ class NotificationService {
     required Duration delay,
     String? payload,
   }) async {
-    final scheduledDate = tz.TZDateTime.now(tz.local).add(delay);
-    debugPrint('Scheduling notification at $scheduledDate');
+    cancelNotification(id);
 
-    await _notificationsPlugin.zonedSchedule(
+    final scheduledDate = tz.TZDateTime.now(tz.local).add(delay);
+
+    await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
       body,
@@ -174,15 +175,19 @@ class NotificationService {
       payload: payload,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
+
+    debugPrint('Scheduling notification with id: $id  at $scheduledDate');
   }
 
   // Удалить уведомление по ID
   Future cancelNotification(int id) async {
-    await _notificationsPlugin.cancel(id);
+    debugPrint('Notification with id:$id canceled');
+    await _flutterLocalNotificationsPlugin.cancel(id);
   }
 
   // Удалить все уведомления
   Future cancelAllNotifications() async {
-    await _notificationsPlugin.cancelAll();
+    debugPrint('All notifications are canceled');
+    await _flutterLocalNotificationsPlugin.cancelAll();
   }
 }

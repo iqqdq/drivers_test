@@ -1,7 +1,7 @@
 {
     "id": 8,
     "state": "Georgia",
-    "total": 40,
+    "max": 40,
     "min": 30,
     "questions": [
         {

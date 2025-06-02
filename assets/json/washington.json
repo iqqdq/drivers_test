@@ -1,7 +1,7 @@
 {
     "id": 31,
     "state": "Washington",
-    "total": 40,
+    "max": 40,
     "min": 32,
     "questions": [
         {

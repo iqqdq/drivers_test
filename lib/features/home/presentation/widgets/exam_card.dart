@@ -29,60 +29,70 @@ class ExamCard extends StatelessWidget {
         borderRadius: borderRadius,
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: 24.0,
+            vertical: 32.0,
+          ).copyWith(top: 16.0),
           height: 201.0,
           decoration: BoxDecoration(borderRadius: borderRadius),
-          child: Stack(
+          child: Row(
             children: [
-              /// IMAGE
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset(AppImages.cardExam, fit: BoxFit.fitHeight),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 16.0),
+
+                    /// TITLE
+                    Text(
+                      AppTitles.exam,
+                      style: AppTextStyles.headlineLargeTitle.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Spacer(),
+
+                    /// QUESTION'S
+                    Text(
+                      '$questions ${AppTitles.questions}',
+                      style: AppTextStyles.subheadlineRegular.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+
+                    /// PASSING SCORE
+                    Text(
+                      '$passing% ${AppTitles.passingScore.toLowerCase()}',
+                      style: AppTextStyles.subheadlineRegular.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+
+                    /// CORRECT ANSWER'S
+                    Text(
+                      '$correct ${AppTitles.correctAnswersToPass}',
+                      style: AppTextStyles.subheadlineRegular.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+
+                    /// MINUTE'S TO COMPLETE TEST'S
+                    Text(
+                      '$minutes ${AppTitles.minutesToCompleteTest}',
+                      style: AppTextStyles.subheadlineRegular.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+              /// IMAGE
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// TITLE
-                  Text(
-                    AppTitles.exam,
-                    style: AppTextStyles.headlineLargeTitle.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-                  Spacer(),
-
-                  /// QUESTION'S
-                  Text(
-                    '$questions ${AppTitles.questions}',
-                    style: AppTextStyles.subheadlineRegular.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-
-                  /// PASSING SCORE
-                  Text(
-                    '$passing% ${AppTitles.passingScore.toLowerCase()}',
-                    style: AppTextStyles.subheadlineRegular.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-
-                  /// CORRECT ANSWER'S
-                  Text(
-                    '$correct ${AppTitles.correctAnswersToPass}',
-                    style: AppTextStyles.subheadlineRegular.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-
-                  /// MINUTE'S TO COMPLETE TEST'S
-                  Text(
-                    '$minutes ${AppTitles.minutesToCompleteTest}',
-                    style: AppTextStyles.subheadlineRegular.copyWith(
-                      color: AppColors.white,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [Image.asset(AppImages.cardExam, height: 120.0)],
                   ),
                 ],
               ),

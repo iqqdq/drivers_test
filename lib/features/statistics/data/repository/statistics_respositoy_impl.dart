@@ -84,13 +84,15 @@ class StatisticsRepositoryImpl implements StatisticsRepository {
     final results = await (_db.select(_db.results)).get();
     // Заполняем тесты результатами
     final testsWithResult =
-        results
-            .expand(
-              (r) => tests
-                  .where((t) => r.testId == t.id)
-                  .map((t) => t.copyWith(result: r)),
-            )
-            .toList();
+        results.isEmpty
+            ? null
+            : results
+                .expand(
+                  (r) => tests
+                      .where((t) => r.testId == t.id)
+                      .map((t) => t.copyWith(result: r)),
+                )
+                .toList();
     return testsWithResult;
   }
 }

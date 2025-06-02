@@ -1110,8 +1110,28 @@ class $PracticeRemindersTable extends PracticeReminders
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _isEnabledMeta = const VerificationMeta(
+    'isEnabled',
+  );
   @override
-  List<GeneratedColumn> get $columns => [id, daysOfWeek, hour, minute];
+  late final GeneratedColumn<bool> isEnabled = GeneratedColumn<bool>(
+    'is_enabled',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_enabled" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    daysOfWeek,
+    hour,
+    minute,
+    isEnabled,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -1143,6 +1163,12 @@ class $PracticeRemindersTable extends PracticeReminders
     } else if (isInserting) {
       context.missing(_minuteMeta);
     }
+    if (data.containsKey('is_enabled')) {
+      context.handle(
+        _isEnabledMeta,
+        isEnabled.isAcceptableOrUnknown(data['is_enabled']!, _isEnabledMeta),
+      );
+    }
     return context;
   }
 
@@ -1168,6 +1194,10 @@ class $PracticeRemindersTable extends PracticeReminders
             DriftSqlType.int,
             data['${effectivePrefix}minute'],
           )!,
+      isEnabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_enabled'],
+      ),
     );
   }
 
@@ -1185,17 +1215,20 @@ class PracticeRemindersCompanion
   final Value<List<int>> daysOfWeek;
   final Value<int> hour;
   final Value<int> minute;
+  final Value<bool?> isEnabled;
   const PracticeRemindersCompanion({
     this.id = const Value.absent(),
     this.daysOfWeek = const Value.absent(),
     this.hour = const Value.absent(),
     this.minute = const Value.absent(),
+    this.isEnabled = const Value.absent(),
   });
   PracticeRemindersCompanion.insert({
     this.id = const Value.absent(),
     required List<int> daysOfWeek,
     required int hour,
     required int minute,
+    this.isEnabled = const Value.absent(),
   }) : daysOfWeek = Value(daysOfWeek),
        hour = Value(hour),
        minute = Value(minute);
@@ -1204,12 +1237,14 @@ class PracticeRemindersCompanion
     Expression<String>? daysOfWeek,
     Expression<int>? hour,
     Expression<int>? minute,
+    Expression<bool>? isEnabled,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (daysOfWeek != null) 'days_of_week': daysOfWeek,
       if (hour != null) 'hour': hour,
       if (minute != null) 'minute': minute,
+      if (isEnabled != null) 'is_enabled': isEnabled,
     });
   }
 
@@ -1218,12 +1253,14 @@ class PracticeRemindersCompanion
     Value<List<int>>? daysOfWeek,
     Value<int>? hour,
     Value<int>? minute,
+    Value<bool?>? isEnabled,
   }) {
     return PracticeRemindersCompanion(
       id: id ?? this.id,
       daysOfWeek: daysOfWeek ?? this.daysOfWeek,
       hour: hour ?? this.hour,
       minute: minute ?? this.minute,
+      isEnabled: isEnabled ?? this.isEnabled,
     );
   }
 
@@ -1244,6 +1281,9 @@ class PracticeRemindersCompanion
     if (minute.present) {
       map['minute'] = Variable<int>(minute.value);
     }
+    if (isEnabled.present) {
+      map['is_enabled'] = Variable<bool>(isEnabled.value);
+    }
     return map;
   }
 
@@ -1253,7 +1293,8 @@ class PracticeRemindersCompanion
           ..write('id: $id, ')
           ..write('daysOfWeek: $daysOfWeek, ')
           ..write('hour: $hour, ')
-          ..write('minute: $minute')
+          ..write('minute: $minute, ')
+          ..write('isEnabled: $isEnabled')
           ..write(')'))
         .toString();
   }
@@ -1280,8 +1321,26 @@ class $ExamRemindersTable extends ExamReminders
   late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
     'date',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hourMeta = const VerificationMeta('hour');
+  @override
+  late final GeneratedColumn<int> hour = GeneratedColumn<int>(
+    'hour',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _minuteMeta = const VerificationMeta('minute');
+  @override
+  late final GeneratedColumn<int> minute = GeneratedColumn<int>(
+    'minute',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
   static const VerificationMeta _daysUntilRemindMeta = const VerificationMeta(
@@ -1291,12 +1350,33 @@ class $ExamRemindersTable extends ExamReminders
   late final GeneratedColumn<int> daysUntilRemind = GeneratedColumn<int>(
     'days_until_remind',
     aliasedName,
-    true,
+    false,
     type: DriftSqlType.int,
-    requiredDuringInsert: false,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _isEnabledMeta = const VerificationMeta(
+    'isEnabled',
   );
   @override
-  List<GeneratedColumn> get $columns => [id, date, daysUntilRemind];
+  late final GeneratedColumn<bool> isEnabled = GeneratedColumn<bool>(
+    'is_enabled',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_enabled" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    date,
+    hour,
+    minute,
+    daysUntilRemind,
+    isEnabled,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -1317,8 +1397,22 @@ class $ExamRemindersTable extends ExamReminders
         _dateMeta,
         date.isAcceptableOrUnknown(data['date']!, _dateMeta),
       );
+    }
+    if (data.containsKey('hour')) {
+      context.handle(
+        _hourMeta,
+        hour.isAcceptableOrUnknown(data['hour']!, _hourMeta),
+      );
     } else if (isInserting) {
-      context.missing(_dateMeta);
+      context.missing(_hourMeta);
+    }
+    if (data.containsKey('minute')) {
+      context.handle(
+        _minuteMeta,
+        minute.isAcceptableOrUnknown(data['minute']!, _minuteMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_minuteMeta);
     }
     if (data.containsKey('days_until_remind')) {
       context.handle(
@@ -1327,6 +1421,14 @@ class $ExamRemindersTable extends ExamReminders
           data['days_until_remind']!,
           _daysUntilRemindMeta,
         ),
+      );
+    } else if (isInserting) {
+      context.missing(_daysUntilRemindMeta);
+    }
+    if (data.containsKey('is_enabled')) {
+      context.handle(
+        _isEnabledMeta,
+        isEnabled.isAcceptableOrUnknown(data['is_enabled']!, _isEnabledMeta),
       );
     }
     return context;
@@ -1338,14 +1440,28 @@ class $ExamRemindersTable extends ExamReminders
   ExamReminderEnity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ExamReminderEnity.fromRow(
-      date:
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}date'],
+      ),
+      hour:
           attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}date'],
+            DriftSqlType.int,
+            data['${effectivePrefix}hour'],
           )!,
-      daysUntilRemind: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}days_until_remind'],
+      minute:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}minute'],
+          )!,
+      daysUntilRemind:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}days_until_remind'],
+          )!,
+      isEnabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_enabled'],
       ),
     );
   }
@@ -1358,39 +1474,62 @@ class $ExamRemindersTable extends ExamReminders
 
 class ExamRemindersCompanion extends UpdateCompanion<ExamReminderEnity> {
   final Value<int> id;
-  final Value<DateTime> date;
-  final Value<int?> daysUntilRemind;
+  final Value<DateTime?> date;
+  final Value<int> hour;
+  final Value<int> minute;
+  final Value<int> daysUntilRemind;
+  final Value<bool?> isEnabled;
   const ExamRemindersCompanion({
     this.id = const Value.absent(),
     this.date = const Value.absent(),
+    this.hour = const Value.absent(),
+    this.minute = const Value.absent(),
     this.daysUntilRemind = const Value.absent(),
+    this.isEnabled = const Value.absent(),
   });
   ExamRemindersCompanion.insert({
     this.id = const Value.absent(),
-    required DateTime date,
-    this.daysUntilRemind = const Value.absent(),
-  }) : date = Value(date);
+    this.date = const Value.absent(),
+    required int hour,
+    required int minute,
+    required int daysUntilRemind,
+    this.isEnabled = const Value.absent(),
+  }) : hour = Value(hour),
+       minute = Value(minute),
+       daysUntilRemind = Value(daysUntilRemind);
   static Insertable<ExamReminderEnity> custom({
     Expression<int>? id,
     Expression<DateTime>? date,
+    Expression<int>? hour,
+    Expression<int>? minute,
     Expression<int>? daysUntilRemind,
+    Expression<bool>? isEnabled,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (date != null) 'date': date,
+      if (hour != null) 'hour': hour,
+      if (minute != null) 'minute': minute,
       if (daysUntilRemind != null) 'days_until_remind': daysUntilRemind,
+      if (isEnabled != null) 'is_enabled': isEnabled,
     });
   }
 
   ExamRemindersCompanion copyWith({
     Value<int>? id,
-    Value<DateTime>? date,
-    Value<int?>? daysUntilRemind,
+    Value<DateTime?>? date,
+    Value<int>? hour,
+    Value<int>? minute,
+    Value<int>? daysUntilRemind,
+    Value<bool?>? isEnabled,
   }) {
     return ExamRemindersCompanion(
       id: id ?? this.id,
       date: date ?? this.date,
+      hour: hour ?? this.hour,
+      minute: minute ?? this.minute,
       daysUntilRemind: daysUntilRemind ?? this.daysUntilRemind,
+      isEnabled: isEnabled ?? this.isEnabled,
     );
   }
 
@@ -1403,8 +1542,17 @@ class ExamRemindersCompanion extends UpdateCompanion<ExamReminderEnity> {
     if (date.present) {
       map['date'] = Variable<DateTime>(date.value);
     }
+    if (hour.present) {
+      map['hour'] = Variable<int>(hour.value);
+    }
+    if (minute.present) {
+      map['minute'] = Variable<int>(minute.value);
+    }
     if (daysUntilRemind.present) {
       map['days_until_remind'] = Variable<int>(daysUntilRemind.value);
+    }
+    if (isEnabled.present) {
+      map['is_enabled'] = Variable<bool>(isEnabled.value);
     }
     return map;
   }
@@ -1414,7 +1562,10 @@ class ExamRemindersCompanion extends UpdateCompanion<ExamReminderEnity> {
     return (StringBuffer('ExamRemindersCompanion(')
           ..write('id: $id, ')
           ..write('date: $date, ')
-          ..write('daysUntilRemind: $daysUntilRemind')
+          ..write('hour: $hour, ')
+          ..write('minute: $minute, ')
+          ..write('daysUntilRemind: $daysUntilRemind, ')
+          ..write('isEnabled: $isEnabled')
           ..write(')'))
         .toString();
   }
@@ -2518,6 +2669,7 @@ typedef $$PracticeRemindersTableCreateCompanionBuilder =
       required List<int> daysOfWeek,
       required int hour,
       required int minute,
+      Value<bool?> isEnabled,
     });
 typedef $$PracticeRemindersTableUpdateCompanionBuilder =
     PracticeRemindersCompanion Function({
@@ -2525,6 +2677,7 @@ typedef $$PracticeRemindersTableUpdateCompanionBuilder =
       Value<List<int>> daysOfWeek,
       Value<int> hour,
       Value<int> minute,
+      Value<bool?> isEnabled,
     });
 
 class $$PracticeRemindersTableFilterComposer
@@ -2554,6 +2707,11 @@ class $$PracticeRemindersTableFilterComposer
 
   ColumnFilters<int> get minute => $composableBuilder(
     column: $table.minute,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isEnabled => $composableBuilder(
+    column: $table.isEnabled,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2586,6 +2744,11 @@ class $$PracticeRemindersTableOrderingComposer
     column: $table.minute,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get isEnabled => $composableBuilder(
+    column: $table.isEnabled,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$PracticeRemindersTableAnnotationComposer
@@ -2611,6 +2774,9 @@ class $$PracticeRemindersTableAnnotationComposer
 
   GeneratedColumn<int> get minute =>
       $composableBuilder(column: $table.minute, builder: (column) => column);
+
+  GeneratedColumn<bool> get isEnabled =>
+      $composableBuilder(column: $table.isEnabled, builder: (column) => column);
 }
 
 class $$PracticeRemindersTableTableManager
@@ -2663,11 +2829,13 @@ class $$PracticeRemindersTableTableManager
                 Value<List<int>> daysOfWeek = const Value.absent(),
                 Value<int> hour = const Value.absent(),
                 Value<int> minute = const Value.absent(),
+                Value<bool?> isEnabled = const Value.absent(),
               }) => PracticeRemindersCompanion(
                 id: id,
                 daysOfWeek: daysOfWeek,
                 hour: hour,
                 minute: minute,
+                isEnabled: isEnabled,
               ),
           createCompanionCallback:
               ({
@@ -2675,11 +2843,13 @@ class $$PracticeRemindersTableTableManager
                 required List<int> daysOfWeek,
                 required int hour,
                 required int minute,
+                Value<bool?> isEnabled = const Value.absent(),
               }) => PracticeRemindersCompanion.insert(
                 id: id,
                 daysOfWeek: daysOfWeek,
                 hour: hour,
                 minute: minute,
+                isEnabled: isEnabled,
               ),
           withReferenceMapper:
               (p0) =>
@@ -2720,14 +2890,20 @@ typedef $$PracticeRemindersTableProcessedTableManager =
 typedef $$ExamRemindersTableCreateCompanionBuilder =
     ExamRemindersCompanion Function({
       Value<int> id,
-      required DateTime date,
-      Value<int?> daysUntilRemind,
+      Value<DateTime?> date,
+      required int hour,
+      required int minute,
+      required int daysUntilRemind,
+      Value<bool?> isEnabled,
     });
 typedef $$ExamRemindersTableUpdateCompanionBuilder =
     ExamRemindersCompanion Function({
       Value<int> id,
-      Value<DateTime> date,
-      Value<int?> daysUntilRemind,
+      Value<DateTime?> date,
+      Value<int> hour,
+      Value<int> minute,
+      Value<int> daysUntilRemind,
+      Value<bool?> isEnabled,
     });
 
 class $$ExamRemindersTableFilterComposer
@@ -2749,8 +2925,23 @@ class $$ExamRemindersTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<int> get hour => $composableBuilder(
+    column: $table.hour,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get minute => $composableBuilder(
+    column: $table.minute,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<int> get daysUntilRemind => $composableBuilder(
     column: $table.daysUntilRemind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isEnabled => $composableBuilder(
+    column: $table.isEnabled,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2774,8 +2965,23 @@ class $$ExamRemindersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get hour => $composableBuilder(
+    column: $table.hour,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get minute => $composableBuilder(
+    column: $table.minute,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get daysUntilRemind => $composableBuilder(
     column: $table.daysUntilRemind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isEnabled => $composableBuilder(
+    column: $table.isEnabled,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -2795,10 +3001,19 @@ class $$ExamRemindersTableAnnotationComposer
   GeneratedColumn<DateTime> get date =>
       $composableBuilder(column: $table.date, builder: (column) => column);
 
+  GeneratedColumn<int> get hour =>
+      $composableBuilder(column: $table.hour, builder: (column) => column);
+
+  GeneratedColumn<int> get minute =>
+      $composableBuilder(column: $table.minute, builder: (column) => column);
+
   GeneratedColumn<int> get daysUntilRemind => $composableBuilder(
     column: $table.daysUntilRemind,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get isEnabled =>
+      $composableBuilder(column: $table.isEnabled, builder: (column) => column);
 }
 
 class $$ExamRemindersTableTableManager
@@ -2841,22 +3056,34 @@ class $$ExamRemindersTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<DateTime> date = const Value.absent(),
-                Value<int?> daysUntilRemind = const Value.absent(),
+                Value<DateTime?> date = const Value.absent(),
+                Value<int> hour = const Value.absent(),
+                Value<int> minute = const Value.absent(),
+                Value<int> daysUntilRemind = const Value.absent(),
+                Value<bool?> isEnabled = const Value.absent(),
               }) => ExamRemindersCompanion(
                 id: id,
                 date: date,
+                hour: hour,
+                minute: minute,
                 daysUntilRemind: daysUntilRemind,
+                isEnabled: isEnabled,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                required DateTime date,
-                Value<int?> daysUntilRemind = const Value.absent(),
+                Value<DateTime?> date = const Value.absent(),
+                required int hour,
+                required int minute,
+                required int daysUntilRemind,
+                Value<bool?> isEnabled = const Value.absent(),
               }) => ExamRemindersCompanion.insert(
                 id: id,
                 date: date,
+                hour: hour,
+                minute: minute,
                 daysUntilRemind: daysUntilRemind,
+                isEnabled: isEnabled,
               ),
           withReferenceMapper:
               (p0) =>

@@ -8,6 +8,7 @@ class PracticeReminders extends Table {
   TextColumn get daysOfWeek => text().map(intConverter)();
   IntColumn get hour => integer()();
   IntColumn get minute => integer()();
+  BoolColumn get isEnabled => boolean().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};

@@ -21,7 +21,6 @@ class WeekdayListView extends StatelessWidget {
 
     final now = DateTime.now();
     final difference = targetDate.difference(now).inDays;
-    final dayCount = difference >= 0 ? difference : 0;
 
     return SizedBox(
       height: width * 0.9,
@@ -30,14 +29,20 @@ class WeekdayListView extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: dayCount,
+        itemCount: 7,
         separatorBuilder: (context, index) => SizedBox(width: spacing),
         itemBuilder: (context, index) {
-          return OvalTile(
-            height: width - spacing,
-            title: '${index + 1}',
-            isSelected: selected == index,
-            onTap: () => onTap(index),
+          return IgnorePointer(
+            ignoring: index >= difference,
+            child: Opacity(
+              opacity: index >= difference ? 0.5 : 1.0,
+              child: OvalTile(
+                height: width - spacing,
+                title: '${index + 1}',
+                isSelected: index >= difference ? false : selected == index,
+                onTap: () => onTap(index),
+              ),
+            ),
           );
         },
       ),

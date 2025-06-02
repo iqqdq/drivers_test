@@ -33,10 +33,7 @@ class _QuestionViewState extends State<QuestionView>
     final borderRadius = BorderRadius.circular(16.0);
 
     return ListView(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 16.0,
-      ).copyWith(bottom: getBottomPadding(context)),
+      padding: EdgeInsets.all(16.0),
       children: [
         /// IMAGE
         widget.question.image == null

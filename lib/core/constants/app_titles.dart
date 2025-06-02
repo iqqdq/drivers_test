@@ -120,10 +120,10 @@ abstract class AppTitles {
 
   // MARK: -
   // MARK: - NOTIFICATION'S
-  static const practiceNotificationTitle = 'Practice reminder';
-  static const practiceNotificationBody = '🚀 Boost your progress now!';
-  static const examNotificationTitle = 'Exam reminder';
-  static const examNotificationBody = '⏳ Test your knowledge at';
+  static const practiceNotificationTitle = 'Practice reminder ⏰';
+  static const practiceNotificationBody = 'Boost your progress now!';
+  static const examNotificationTitle = 'Exam reminder ⏰';
+  static const examNotificationBody = 'Test your knowledge at';
 
   // MARK: -
   // MARK: - SETTING'S

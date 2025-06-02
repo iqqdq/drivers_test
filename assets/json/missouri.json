@@ -1,7 +1,7 @@
 {
     "id": 18,
     "state": "Missouri",
-    "total": 25,
+    "max": 25,
     "min": 20,
     "questions": [
         {

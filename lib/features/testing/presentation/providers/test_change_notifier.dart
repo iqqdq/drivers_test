@@ -35,13 +35,11 @@ class TestChangeNotifier with ChangeNotifier {
     if (answers == null) {
       _timer.cancel();
     }
-
     super.dispose();
   }
 
   void _startTimer() {
     _duration = test.isExam ? Duration(minutes: 30) : Duration.zero;
-
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (test.isExam) {
         _duration!.inSeconds > 0 || !isTestCompleted
@@ -52,7 +50,6 @@ class TestChangeNotifier with ChangeNotifier {
             ? _duration = _duration! + Duration(seconds: 1)
             : timer.cancel();
       }
-
       notifyListeners();
     });
   }
@@ -77,7 +74,6 @@ class TestChangeNotifier with ChangeNotifier {
   void updateQuestion(QuestionEntity question) {
     final index = _questions!.indexWhere((e) => e.id == question.id);
     _questions![index] = question;
-
     if (isTestCompleted) _timer.cancel();
     notifyListeners();
   }

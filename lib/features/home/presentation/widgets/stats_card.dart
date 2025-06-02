@@ -22,40 +22,41 @@ class StatsCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24.0).copyWith(top: 16.0),
           height: 141.0,
           decoration: BoxDecoration(borderRadius: borderRadius),
-          child: Stack(
+          child: Row(
             children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 32.0,
+                  ).copyWith(top: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /// PERCENT
+                      Text(
+                        '$percent%',
+                        style: AppTextStyles.headlineLargeTitle.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                      Spacer(),
+
+                      /// QUESTION'S
+                      Text(
+                        AppTitles.examReadiness,
+                        style: AppTextStyles.subheadlineRegular.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
               /// IMAGE
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset(AppImages.cardStats, fit: BoxFit.fitHeight),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 32.0,
-                ).copyWith(top: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// PERCENT
-                    Text(
-                      '$percent%',
-                      style: AppTextStyles.headlineLargeTitle.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
-                    Spacer(),
-
-                    /// QUESTION'S
-                    Text(
-                      AppTitles.examReadiness,
-                      style: AppTextStyles.subheadlineRegular.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                children: [Image.asset(AppImages.cardStats, height: 120.0)],
               ),
             ],
           ),

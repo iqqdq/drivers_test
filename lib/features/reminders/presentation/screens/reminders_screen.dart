@@ -37,8 +37,8 @@ class _RemindersScreenState extends State<RemindersScreen> {
             tags: index == 0 ? _read.getPracticeTags() : _read.getExamTags(),
             value:
                 index == 0
-                    ? watch.isPracticeReminderEnabled
-                    : watch.isExamReminderEnabled,
+                    ? watch.practiceReminder.isEnabled ?? false
+                    : watch.examReminder.isEnabled ?? false,
             onTap: () => _onReminderTap(index),
             onChanged: (value) => _onSwitchTap(index, value),
           );
@@ -50,12 +50,18 @@ class _RemindersScreenState extends State<RemindersScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onReminderTap(int index) => router
-      .push(RemindersRoutes.reminderSettings)
-      .whenComplete(() => _read.getReminders());
+  void _onReminderTap(int index) =>
+      router.push(RemindersRoutes.reminderSettings);
 
-  void _onSwitchTap(int index, bool value) =>
-      index == 0
-          ? _read.tooglePracticeReminder(value)
+  void _onSwitchTap(int index, bool value) {
+    if (index == 0) {
+      _read.practiceReminder.daysOfWeek.isEmpty
+          ? _onReminderTap(index)
+          : _read.tooglePracticeReminder(value);
+    } else {
+      _read.examReminder.dateTime == null
+          ? _onReminderTap(index)
           : _read.toogleExamReminder(value);
+    }
+  }
 }

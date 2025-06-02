@@ -3,27 +3,35 @@ import 'package:flutter/material.dart';
 
 class DatePicker extends StatefulWidget {
   final DateTime? dateTime;
-  final Function(DateTime dateTime) onDateSelected;
+  final Function(DateTime dateTime) onChange;
 
-  const DatePicker({super.key, this.dateTime, required this.onDateSelected});
+  const DatePicker({super.key, this.dateTime, required this.onChange});
 
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
+  late DateTime _today;
+  late DateTime _tomorrow; // Добавлено поле для завтрашней даты
   late DateTime _currentMonth;
   DateTime? _currentDate;
-  late DateTime _today;
 
   @override
   void initState() {
     super.initState();
     _today = DateTime.now();
+    _tomorrow = DateTime(
+      _today.year,
+      _today.month,
+      _today.day + 1,
+    ); // Инициализация завтрашней даты
+
     _currentDate = widget.dateTime;
     _currentMonth = DateTime(
-      _currentDate?.year ?? _today.year,
-      _currentDate?.month ?? _today.month,
+      _currentDate?.year ??
+          _tomorrow.year, // Используем завтрашнюю дату как минимальную
+      _currentDate?.month ?? _tomorrow.month,
       1,
     );
   }
@@ -34,55 +42,48 @@ class _DatePickerState extends State<DatePicker> {
     if (widget.dateTime != oldWidget.dateTime) {
       _currentDate = widget.dateTime;
       _currentMonth = DateTime(
-        _currentDate?.year ?? _today.year,
-        _currentDate?.month ?? _today.month,
+        _currentDate?.year ??
+            _tomorrow.year, // Используем завтрашнюю дату как минимальную
+        _currentDate?.month ?? _tomorrow.month,
         1,
       );
     }
   }
 
-  void _goToMonth(DateTime month) {
-    setState(() {
-      _currentMonth = DateTime(month.year, month.month, 1);
-      // Не изменяем _currentDate при переходе между месяцами
-    });
-  }
+  void _goToMonth(DateTime month) =>
+      setState(() => _currentMonth = DateTime(month.year, month.month, 1));
 
   void _previousMonth() {
     final prevMonth = DateTime(_currentMonth.year, _currentMonth.month - 1, 1);
-    // Проверяем, что месяц не раньше текущего (год и месяц)
-    if (!(prevMonth.year < _today.year ||
-        (prevMonth.year == _today.year && prevMonth.month < _today.month))) {
-      setState(() {
-        _currentMonth = prevMonth;
-      });
-    }
+    setState(() => _currentMonth = prevMonth);
   }
 
-  void _nextMonth() {
-    setState(() {
-      _currentMonth = DateTime(_currentMonth.year, _currentMonth.month + 1, 1);
-    });
-  }
+  void _nextMonth() => setState(
+    () =>
+        _currentMonth = DateTime(
+          _currentMonth.year,
+          _currentMonth.month + 1,
+          1,
+        ),
+  );
 
   void _onDateSelected(DateTime dateTime) {
-    // Проверяем, что выбранная дата не раньше сегодняшней
-    if (!_isDateBeforeToday(dateTime)) {
-      setState(() {
-        _currentDate = dateTime;
-      });
-      widget.onDateSelected(dateTime);
+    if (!_isDateBeforeTomorrow(dateTime)) {
+      // Изменено на проверку "до завтра"
+      setState(() => _currentDate = dateTime);
+      widget.onChange(dateTime);
     }
   }
 
-  bool _isDateBeforeToday(DateTime date) {
-    final today = DateTime(_today.year, _today.month, _today.day);
+  bool _isDateBeforeTomorrow(DateTime date) {
+    // Новая функция проверки
+    final tomorrow = DateTime(_tomorrow.year, _tomorrow.month, _tomorrow.day);
     final inputDate = DateTime(date.year, date.month, date.day);
-    return inputDate.isBefore(today);
+    return inputDate.isBefore(tomorrow);
   }
 
   bool _isDateSelectable(DateTime date) {
-    return !_isDateBeforeToday(date);
+    return !_isDateBeforeTomorrow(date); // Используем новую функцию проверки
   }
 
   @override
@@ -124,26 +125,23 @@ class _DatePickerState extends State<DatePicker> {
     );
   }
 
-  Widget _buildWeekDays() {
-    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    return Row(
-      children:
-          weekDays
-              .map(
-                (day) => Expanded(
-                  child: Center(
-                    child: Text(
-                      day,
-                      style: AppTextStyles.footnoteRegular.copyWith(
-                        color: AppColors.black70,
-                      ),
+  Widget _buildWeekDays() => Row(
+    children:
+        weekDays
+            .map(
+              (day) => Expanded(
+                child: Center(
+                  child: Text(
+                    day,
+                    style: AppTextStyles.footnoteRegular.copyWith(
+                      color: AppColors.black70,
                     ),
                   ),
                 ),
-              )
-              .toList(),
-    );
-  }
+              ),
+            )
+            .toList(),
+  );
 
   Widget _buildCalendarGrid() {
     final firstDayOfMonth = _currentMonth;
@@ -151,14 +149,12 @@ class _DatePickerState extends State<DatePicker> {
         DateTime(_currentMonth.year, _currentMonth.month + 1, 0).day;
     final firstWeekdayOfMonth = firstDayOfMonth.weekday;
     final daysFromPrevMonth = firstWeekdayOfMonth - 1;
-
     final lastDayOfMonth = DateTime(
       _currentMonth.year,
       _currentMonth.month + 1,
       0,
     );
     final daysFromNextMonth = 7 - lastDayOfMonth.weekday;
-
     final totalDays = daysFromPrevMonth + daysInMonth + daysFromNextMonth;
     final weeks = (totalDays / 7).ceil();
 
@@ -209,7 +205,6 @@ class _DatePickerState extends State<DatePicker> {
                 _currentDate?.year == date.year &&
                 _currentDate?.month == date.month &&
                 _currentDate?.day == date.day;
-
             final isSelectable = _isDateSelectable(date);
 
             return Expanded(

@@ -1,7 +1,7 @@
 {
     "id": 21,
     "state": "New York",
-    "total": 20,
+    "max": 20,
     "min": 14,
     "questions": [
         {

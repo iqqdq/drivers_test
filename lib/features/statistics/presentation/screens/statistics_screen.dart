@@ -25,10 +25,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     final watch = context.watch<StatisticsChangeNotifier>();
 
     final totalCoefficient = 1.0;
-    final screenHeightCoefficient =
-        MediaQuery.of(context).size.height / totalCoefficient;
-    final progressHeight = isSubscribed.value ? 330.0 : 460.0;
-    final sheetCoefficient = progressHeight / screenHeightCoefficient;
+    final progressHeight = isSubscribed.value ? 260.0 : 386.0;
+    final sheetCoefficient =
+        progressHeight / MediaQuery.of(context).size.height;
     final initialChildSize = totalCoefficient - sheetCoefficient;
 
     return Stack(
@@ -60,7 +59,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
               Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
-                ).copyWith(top: 16.0),
+                ).copyWith(top: 12.0),
                 height: progressHeight,
                 child: Column(
                   children: [
@@ -188,7 +187,14 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                                 ),
                               ),
 
-                          const SizedBox(height: 12.0),
+                          SizedBox(
+                            height:
+                                watch.tests == null
+                                    ? MediaQuery.of(context).size.height * 0.15
+                                    : watch.tests!.isEmpty
+                                    ? MediaQuery.of(context).size.height * 0.08
+                                    : 12.0,
+                          ),
 
                           /// EMPTY VIEW
                           watch.tests == null || watch.tests!.isEmpty
@@ -202,9 +208,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                                         ? AppTitles.theHistoryOfPracticalTests
                                         : AppTitles.thereAreNoTests,
                               )
-                              :
                               /// TEST LIST VIEW
-                              ListView.separated(
+                              : ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 padding: EdgeInsets.symmetric(

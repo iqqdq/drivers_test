@@ -1,7 +1,7 @@
 {
     "id": 30,
     "state": "Virginia",
-    "total": 35,
+    "max": 35,
     "min": 30,
     "questions": [
         {

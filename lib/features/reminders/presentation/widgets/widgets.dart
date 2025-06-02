@@ -1,2 +1,2 @@
-export 'reminder_page/reminder_page.dart';
+export 'reminder_settings/reminder_settings.dart';
 export 'reminders/reminders.dart';

@@ -29,7 +29,7 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
         actions: [
           CustomAppBarAction(
             title: AppTitles.reset,
-            onTap: watch.isCanReset ? _onResetTap : null,
+            onTap: watch.isValid ? _onResetTap : null,
           ),
         ],
       ),
@@ -65,7 +65,7 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
                     ? TitleContainer(
                       title: AppTitles.setTheDays,
                       child: DayPicker(
-                        days: watch.daysOfWeek,
+                        daysOfWeek: watch.practiceReminder.daysOfWeek,
                         onTap: _onDayNameTap,
                       ),
                     )
@@ -75,8 +75,8 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
                       title: AppTitles.setTheDate,
                       spacing: 8.0,
                       child: DatePicker(
-                        dateTime: watch.dateTime,
-                        onDateSelected: _onDateSelect,
+                        dateTime: watch.examReminder.dateTime,
+                        onChange: _onDateSelect,
                       ),
                     ),
                 const SizedBox(height: 16.0),
@@ -98,15 +98,13 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
                 /// WEEKDAY LIST VIEW
                 watch.type == ReminderType.practice
                     ? SizedBox.shrink()
-                    : watch.dateTime == null
-                    ? SizedBox.shrink()
-                    : watch.dateTime!.difference(DateTime.now()).inDays == 0
+                    : watch.examReminder.dateTime == null
                     ? SizedBox.shrink()
                     : TitleContainer(
                       title: AppTitles.remindBeforeDays,
                       child: WeekdayListView(
-                        targetDate: watch.dateTime!,
-                        selected: watch.daysUntilRemind,
+                        targetDate: watch.examReminder.dateTime!,
+                        selected: watch.examReminder.daysUntilRemind,
                         onTap: _onDayAmountTap,
                       ),
                     ),
@@ -136,9 +134,9 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
     index == 0 ? ReminderType.practice : ReminderType.exam,
   );
 
-  void _onDayNameTap(int day) => _read.setDay(day);
+  void _onDayNameTap(List<int> daysOfWeek) => _read.setDaysOfWeek(daysOfWeek);
 
-  void _onDateSelect(DateTime dateTime) => _read.setDateTime(dateTime);
+  void _onDateSelect(DateTime dateTime) => _read.setDate(dateTime);
 
   void _setTime(int hour, int minute) => _read.setTime(hour, minute);
 
@@ -147,7 +145,9 @@ class _ReminderPageScreenState extends State<ReminderSettingsScreen> {
   void _onResetTap() => _read.reset();
 
   void _onApplyTap() async {
-    await _read.addReminder();
+    _read.type == ReminderType.practice
+        ? await _read.tooglePracticeReminder(true)
+        : await _read.toogleExamReminder(true);
     router.pop();
   }
 }

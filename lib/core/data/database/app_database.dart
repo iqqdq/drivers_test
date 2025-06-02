@@ -35,13 +35,8 @@ class AppDatabase extends _$AppDatabase {
 
   // Метод получения всех вопросов из assets
   Future<List<JsonData>> loadJsonData({String? state}) async {
-    if (state != null) {
-      // Загрузка данных для конкретного штата
-      final json = await rootBundle.loadString('assets/json/$state.json');
-      final data = jsonDecode(json);
-      return [JsonData.fromJson(data)];
-    } else {
-      // Загрузка данных для всех штатов
+    if (state == null) {
+      // Загрузка данных всех штатов
       final jsonDataList = <JsonData>[];
       for (var state in states) {
         final json = await rootBundle.loadString('assets/json/$state.json');
@@ -49,6 +44,11 @@ class AppDatabase extends _$AppDatabase {
         jsonDataList.add(JsonData.fromJson(data));
       }
       return jsonDataList;
+    } else {
+      // Загрузка данных конкретного штата
+      final json = await rootBundle.loadString('assets/json/$state.json');
+      final data = jsonDecode(json);
+      return [JsonData.fromJson(data)];
     }
   }
 

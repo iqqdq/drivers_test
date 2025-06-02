@@ -1,7 +1,7 @@
 {
     "id": 29,
     "state": "Vermont",
-    "total": 20,
+    "max": 20,
     "min": 16,
     "questions": [
         {

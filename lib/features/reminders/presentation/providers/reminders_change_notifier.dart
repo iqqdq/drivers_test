@@ -8,133 +8,121 @@ class RemindersChangeNotifier with ChangeNotifier {
   ReminderType _type = ReminderType.practice;
   ReminderType get type => _type;
 
-  bool _isPracticeReminderEnabled = false;
-  bool get isPracticeReminderEnabled => _isPracticeReminderEnabled;
+  PracticeReminderEntity _practiceReminder = PracticeReminderEntity();
+  PracticeReminderEntity get practiceReminder => _practiceReminder;
 
-  bool _isExamReminderEnabled = false;
-  bool get isExamReminderEnabled => _isExamReminderEnabled;
-
-  PracticeReminderEntity? _practiceReminder;
-  PracticeReminderEntity? get practiceReminder => _practiceReminder;
-
-  ExamReminderEnity? _examReminder;
-  ExamReminderEnity? get examReminder => _examReminder;
-
-  final List<int> _daysOfWeek = [];
-  List<int> get daysOfWeek => _daysOfWeek;
-
-  int _practiceHour = DateTime.now().hour;
-  int get practiceHour => _practiceHour;
-
-  int _practiceMinute = DateTime.now().minute;
-  int get practiceMinute => _practiceMinute;
-
-  int _examHour = DateTime.now().hour;
-  int get examHour => _examHour;
-
-  int _examMinute = DateTime.now().minute;
-  int get examMinute => _examMinute;
-
-  DateTime? _dateTime;
-  DateTime? get dateTime => _dateTime;
-
-  int? _daysUntilRemind;
-  int? get daysUntilRemind => _daysUntilRemind;
-
-  bool get isCanReset =>
-      _type == ReminderType.practice
-          ? _daysOfWeek.isNotEmpty || _daysUntilRemind == null
-          : _dateTime != null;
+  ExamReminderEnity _examReminder = ExamReminderEnity();
+  ExamReminderEnity get examReminder => _examReminder;
 
   bool get isValid =>
       _type == ReminderType.practice
-          ? _daysOfWeek.isNotEmpty
-          : _dateTime != null;
+          ? _practiceReminder.daysOfWeek.isNotEmpty
+          : _examReminder.dateTime != null;
 
-  void _requestPermission() async {
-    await sl.get<NotificationService>().requestNotificationPermission();
-  }
+  Future _savePracticeReminder() async => await sl
+      .get<RemindersRepository>()
+      .setPracticeReminder(_practiceReminder);
+
+  Future _saveExamReminder() async =>
+      await sl.get<RemindersRepository>().setExamReminder(_examReminder);
 
   Future getReminders() async {
     _practiceReminder =
-        await sl.get<RemindersRepository>().getPracticeReminder();
-    _examReminder = await sl.get<RemindersRepository>().getExamReminder();
+        await sl.get<RemindersRepository>().getPracticeReminder() ??
+        PracticeReminderEntity();
+    _examReminder =
+        await sl.get<RemindersRepository>().getExamReminder() ??
+        ExamReminderEnity();
+
+    // Проверяем, если уведомление устарело - удаляем
+    if (_examReminder.dateTime != null) {
+      if (_examReminder.dateTime!.isBefore(DateTime.now())) {
+        _examReminder = ExamReminderEnity();
+        _saveExamReminder();
+      }
+    }
+
     notifyListeners();
   }
 
   List<String>? getPracticeTags() {
-    if (practiceReminder == null) return null;
-    final dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    final days = _daysOfWeek
-        .map((index) => dayNames[index])
-        .toList()
-        .join(', ');
+    final days =
+        _practiceReminder.daysOfWeek.length == 7
+            ? AppTitles.everyday
+            : _practiceReminder.daysOfWeek
+                .map((index) => weekDays[index])
+                .toList()
+                .join(', ');
     final time =
-        '${practiceReminder!.hour.toTimeUnit()}:${practiceReminder!.minute.toTimeUnit()}';
-    return days.isEmpty ? [] : [days, time];
+        '${_practiceReminder.hour.toTimeUnit()}:${_practiceReminder.minute.toTimeUnit()}';
+    return days.isEmpty ? null : [days, time];
   }
 
   List<String>? getExamTags() {
-    if (examReminder == null) return null;
-    final date = examReminder!.dateTime.toDateString();
+    final date = _examReminder.dateTime?.toDateString();
     final time =
-        '${examReminder!.dateTime.hour.toTimeUnit()}:${examReminder!.dateTime.minute.toTimeUnit()}';
+        '${_examReminder.hour.toTimeUnit()}:${_examReminder.minute.toTimeUnit()}';
     final remind =
-        examReminder!.daysUntilRemind == null
+        _examReminder.daysUntilRemind == 0
             ? null
-            : '${AppTitles.remindBefore} ${examReminder!.daysUntilRemind! + 1} ${AppTitles.days}';
-    return remind == null ? [date, time] : [date, time, remind];
+            : '${AppTitles.remindBefore} ${_examReminder.daysUntilRemind + 1} ${AppTitles.days}';
+    return date == null
+        ? null
+        : remind == null
+        ? [date, time]
+        : [date, time, remind];
   }
 
   Future tooglePracticeReminder(bool value) async {
-    _requestPermission();
-    _isPracticeReminderEnabled = value;
+    if (_practiceReminder.daysOfWeek.isEmpty) return;
+
+    _practiceReminder.isEnabled = value;
     notifyListeners();
 
-    if (_practiceReminder != null) {
+    await _savePracticeReminder().whenComplete(() async {
       if (value) {
         await sl.get<NotificationService>().scheduleRepeatingNotification(
           id: 0,
           title: AppTitles.practiceNotificationTitle,
           body: AppTitles.practiceNotificationBody,
-          daysOfWeek: _practiceReminder!.daysOfWeek,
-          hour: _practiceReminder!.hour,
-          minute: _practiceReminder!.minute,
+          daysOfWeek: _practiceReminder.daysOfWeek,
+          hour: _practiceReminder.hour,
+          minute: _practiceReminder.minute,
+        );
+      } else {
+        await Future.wait(
+          practiceReminder.daysOfWeek.map(
+            (e) => sl.get<NotificationService>().cancelNotification(1 + e),
+          ),
+        );
+      }
+    });
+  }
+
+  Future toogleExamReminder(bool value) async {
+    if (_examReminder.dateTime == null) return;
+
+    _examReminder.isEnabled = value;
+    notifyListeners();
+
+    await _saveExamReminder().whenComplete(() async {
+      if (value) {
+        final notificationDateTime = _examReminder.dateTime!
+            .copyWith(hour: _examReminder.hour, minute: _examReminder.minute)
+            .add(Duration(days: _examReminder.daysUntilRemind));
+        final difference = notificationDateTime.difference(DateTime.now());
+
+        await sl.get<NotificationService>().scheduleNotification(
+          id: 0,
+          title: AppTitles.examNotificationTitle,
+          body:
+              '${AppTitles.examNotificationBody} ${_examReminder.dateTime!.toDateString()}',
+          delay: difference,
         );
       } else {
         await sl.get<NotificationService>().cancelNotification(0);
       }
-    }
-  }
-
-  Future toogleExamReminder(bool value) async {
-    _requestPermission();
-    _isExamReminderEnabled = value;
-    notifyListeners();
-
-    if (_examReminder != null) {
-      if (value) {
-        final daysUntilRemind = _examReminder!.daysUntilRemind ?? 0;
-        final delay = DateTime.now().difference(
-          _examReminder!.dateTime.subtract(Duration(days: daysUntilRemind)),
-        );
-
-        await sl.get<NotificationService>().scheduleNotification(
-          id: 1,
-          title: AppTitles.examNotificationTitle,
-          body:
-              '${AppTitles.examNotificationBody} ${_examReminder!.dateTime.toDateString()}',
-          delay: delay.isNegative ? -delay : delay,
-        );
-      } else {
-        await sl.get<NotificationService>().cancelNotification(1);
-      }
-    }
-  }
-
-  void setIsEveryday(bool value) {
-    _daysOfWeek.addAll([1, 2, 3, 4, 5, 6, 7]);
-    notifyListeners();
+    });
   }
 
   void setReminderType(ReminderType type) {
@@ -142,64 +130,53 @@ class RemindersChangeNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  void setDay(int value) {
-    _daysOfWeek.contains(value)
-        ? _daysOfWeek.removeWhere((e) => e == value)
-        : _daysOfWeek.add(value);
-    _daysOfWeek.sort();
+  void setDaysOfWeek(List<int> daysOfWeek) {
+    if (daysOfWeek.isEmpty) {
+      _practiceReminder.daysOfWeek.clear();
+    } else {
+      if (daysOfWeek.length == 1) {
+        final day = daysOfWeek.first;
+        _practiceReminder.daysOfWeek.contains(day)
+            ? _practiceReminder.daysOfWeek.remove(day)
+            : _practiceReminder.daysOfWeek.add(day);
+      } else {
+        _practiceReminder.daysOfWeek.addAll(daysOfWeek);
+        _practiceReminder.daysOfWeek =
+            _practiceReminder.daysOfWeek.toSet().toList();
+      }
+      _practiceReminder.daysOfWeek.sort();
+    }
     notifyListeners();
   }
 
   void setTime(int hour, int minute) {
     if (_type == ReminderType.practice) {
-      _practiceHour = hour;
-      _practiceMinute = minute;
+      _practiceReminder.hour = hour;
+      _practiceReminder.minute = minute;
     } else {
-      _examHour = hour;
-      _examMinute = minute;
+      _examReminder.hour = hour;
+      _examReminder.minute = minute;
     }
-
     notifyListeners();
   }
 
-  void setDateTime(DateTime dateTime) {
-    _dateTime = dateTime;
+  void setDate(DateTime dateTime) {
+    _examReminder.dateTime = dateTime;
     notifyListeners();
   }
 
   void setRemindBefore(int value) {
-    _daysUntilRemind = value;
+    _examReminder.daysUntilRemind = value;
     notifyListeners();
   }
 
   void reset() {
-    _type == ReminderType.practice
-        ? {_daysOfWeek.clear(), _daysUntilRemind = null}
-        : {_dateTime = null, _daysUntilRemind = null};
-    _dateTime = null;
-    notifyListeners();
-  }
-
-  Future addReminder() async {
     if (_type == ReminderType.practice) {
-      await sl.get<RemindersRepository>().setPracticeReminder(
-        PracticeReminderEntity(
-          daysOfWeek: _daysOfWeek,
-          hour: _practiceHour,
-          minute: _practiceMinute,
-        ),
-      );
-      tooglePracticeReminder(true);
+      _practiceReminder.daysOfWeek.clear();
     } else {
-      await sl.get<RemindersRepository>().setExamReminder(
-        ExamReminderEnity(
-          dateTime: _dateTime!.copyWith(hour: _examHour, minute: _examMinute),
-          daysUntilRemind: daysUntilRemind,
-        ),
-      );
-      toogleExamReminder(true);
+      _examReminder.dateTime = null;
+      _examReminder.daysUntilRemind = 0;
     }
-
     notifyListeners();
   }
 }

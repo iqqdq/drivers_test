@@ -131,7 +131,7 @@ class _TestScreenState extends State<TestScreen> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 16.0,
-                          ).copyWith(top: 16.0),
+                          ).copyWith(top: 12.0),
                           child: PrimaryButton(
                             title: AppTitles.complete,
                             onTap: _onCompleteTap,
@@ -179,6 +179,7 @@ class _TestScreenState extends State<TestScreen> {
 
   void _onCompleteTap() async {
     await _read.saveResult();
+    // TODO UPDATE TEST CATALOG
     router.pushReplacement(TestingRoutes.testResult, extra: _read.test);
   }
 }
