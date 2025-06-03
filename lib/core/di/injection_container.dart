@@ -16,7 +16,7 @@ Future<void> initInjections() async {
 
   // MARK: -
   // MARK: - REPOSITORIE'S
-  sl.registerLazySingleton<HomeRepository>((_) => HomeRepositoryImpl(db));
+  sl.registerLazySingleton<TestingRepository>((_) => TestingRepositoryImpl(db));
   sl.registerLazySingleton<TestingRepository>((_) => TestingRepositoryImpl(db));
   sl.registerLazySingleton<StatisticsRepository>(
     (_) => StatisticsRepositoryImpl(db),

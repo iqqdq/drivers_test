@@ -10,12 +10,13 @@ class TimerAppBarAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         SvgPicture.asset(AppIcons.timer),
         const SizedBox(width: 4.0),
         Container(
           constraints: BoxConstraints(
-            minWidth: duration.inHours == 0 ? 50.0 : 62.0,
+            minWidth: duration.inHours == 0 ? 44.0 : 62.0,
           ),
           child: Text(
             duration.toHmsString(),

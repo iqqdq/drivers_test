@@ -1,18 +1,20 @@
 import 'package:drivers_test/core/core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class OnboardingFooterView extends StatelessWidget {
-  final List<String> titles;
-  final Function(int index) onTap;
+class RestoreFooterView extends StatelessWidget {
+  final VoidCallback onTap;
 
-  const OnboardingFooterView({
-    super.key,
-    required this.titles,
-    required this.onTap,
-  });
+  const RestoreFooterView({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    final titles = [
+      AppTitles.termsOfUse,
+      AppTitles.restore,
+      AppTitles.privacyPolicy,
+    ];
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(titles.length, (index) {
@@ -26,11 +28,24 @@ class OnboardingFooterView extends StatelessWidget {
                   color: AppColors.black50,
                 ),
               ),
-              onPressed: () => onTap(index),
+              onPressed: () => _onTap(index),
             ),
           ),
         );
       }),
     );
+  }
+
+  // MARK: -
+  // MARK: - FUNCTION'S
+
+  void _onTap(int index) {
+    index == 1
+        ? onTap()
+        : launchUrl(
+          Uri.parse(
+            index == 0 ? AppConstants.termsOfUse : AppConstants.privacyUrl,
+          ),
+        );
   }
 }

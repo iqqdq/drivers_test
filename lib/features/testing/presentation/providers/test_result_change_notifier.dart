@@ -3,9 +3,9 @@ import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
 
 class TestResultChangeNotifier with ChangeNotifier {
-  TestResultChangeNotifier({required this.test});
-
   final TestEntity test;
+
+  TestResultChangeNotifier({required this.test});
 
   int? _bestTime;
   int? get bestTime => _bestTime;

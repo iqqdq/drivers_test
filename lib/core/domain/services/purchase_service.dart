@@ -70,8 +70,7 @@ class PurchaseService {
     final result = await Apphud.restorePurchases();
 
     if (result.subscriptions.any((element) => element.isActive) ||
-        result.purchases.any((element) => element.isActive) ||
-        kDebugMode) {
+        result.purchases.any((element) => element.isActive)) {
       isSubscribed.value = true;
     }
 

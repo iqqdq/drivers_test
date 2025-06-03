@@ -2,10 +2,10 @@ import 'package:drivers_test/features/features.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-const _statistics = '/statistics';
-const _tips = '/tips';
-
 abstract class StatisticsRoutes {
+  static const _statistics = '/statistics';
+  static const _tips = '/tips';
+
   static String get statistics => _statistics;
   static String get tips => _tips;
 

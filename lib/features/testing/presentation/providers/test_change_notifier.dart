@@ -5,10 +5,10 @@ import 'package:drivers_test/features/testing/domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class TestChangeNotifier with ChangeNotifier {
-  TestChangeNotifier({required this.test, this.answers});
-
   final TestEntity test;
   final List<int>? answers;
+
+  TestChangeNotifier({required this.test, this.answers});
 
   late Timer _timer;
 
@@ -39,7 +39,10 @@ class TestChangeNotifier with ChangeNotifier {
   }
 
   void _startTimer() {
-    _duration = test.isExam ? Duration(minutes: 30) : Duration.zero;
+    _duration =
+        test.isExam
+            ? Duration(minutes: test.questionIds.length)
+            : Duration.zero;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (test.isExam) {
         _duration!.inSeconds > 0 || !isTestCompleted
@@ -85,7 +88,7 @@ class TestChangeNotifier with ChangeNotifier {
 
   Future saveResult() async {
     final answers = questions!.map((e) => e.answer!).toList();
-    return await sl.get<TestingRepository>().saveResult(
+    await sl.get<TestingRepository>().saveResult(
       id: test.id,
       answers: answers,
       durationInSeconds: _duration!.inSeconds,

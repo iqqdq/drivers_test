@@ -8,6 +8,35 @@ class StatisticsRepositoryImpl implements StatisticsRepository {
   final AppDatabase _db;
 
   @override
+  Future<int> getTotalTests({required String state}) async {
+    final tests =
+        await (_db.select(_db.tests)..where(
+          (e) => e.state.equals(state) & e.isExam.isNotValue(true),
+        )).get();
+    return tests.length;
+  }
+
+  @override
+  Future<List<TestEntity>?> getTestWithResult({required String state}) async {
+    final tests =
+        await (_db.select(_db.tests)
+          ..where((e) => e.state.equals(state))).get();
+    final results = await (_db.select(_db.results)).get();
+    // Заполняем тесты результатами
+    final testsWithResult =
+        results.isEmpty
+            ? null
+            : results
+                .expand(
+                  (r) => tests
+                      .where((t) => r.testId == t.id)
+                      .map((t) => t.copyWith(result: r)),
+                )
+                .toList();
+    return testsWithResult;
+  }
+
+  @override
   Future<int> getTotalPassedTests({required String state}) async {
     final tests = await getTestWithResult(state: state);
     tests?.removeWhere((e) => e.isExam);
@@ -16,12 +45,19 @@ class StatisticsRepositoryImpl implements StatisticsRepository {
   }
 
   @override
-  Future<int> getTotalTests({required String state}) async {
-    final tests =
-        await (_db.select(_db.tests)..where(
-          (e) => e.state.equals(state) & e.isExam.isNotValue(true),
-        )).get();
-    return tests.length;
+  Future<int> getTotalCompletedTests({required String state}) async {
+    final tests = await getTestWithResult(state: state);
+    tests?.removeWhere((e) => e.isExam);
+    final total =
+        tests
+            ?.fold(<int, TestEntity>{}, (map, test) {
+              map.putIfAbsent(test.id, () => test);
+              return map;
+            })
+            .values
+            .toList()
+            .length;
+    return total ?? 0;
   }
 
   @override
@@ -74,25 +110,5 @@ class StatisticsRepositoryImpl implements StatisticsRepository {
       (sum, e) => sum + e.correctAnswerAmount,
     );
     return totalCorrectAnswers;
-  }
-
-  @override
-  Future<List<TestEntity>?> getTestWithResult({required String state}) async {
-    final tests =
-        await (_db.select(_db.tests)
-          ..where((e) => e.state.equals(state))).get();
-    final results = await (_db.select(_db.results)).get();
-    // Заполняем тесты результатами
-    final testsWithResult =
-        results.isEmpty
-            ? null
-            : results
-                .expand(
-                  (r) => tests
-                      .where((t) => r.testId == t.id)
-                      .map((t) => t.copyWith(result: r)),
-                )
-                .toList();
-    return testsWithResult;
   }
 }

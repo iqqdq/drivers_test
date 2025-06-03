@@ -8,15 +8,26 @@ class SettingsChangeNotifier with ChangeNotifier {
   SettingsEntity? _settings;
   SettingsEntity? get settings => _settings;
 
+  String? _state;
+  String? get state => _state;
+
+  String? _license;
+  String? get license => _license;
+
   Future getSettings() async {
     _settings =
         await sl.get<SettingsRepository>().getSettings() ?? SettingsEntity();
     _settings?.isPushEnabled ??=
         await sl.get<NotificationService>().checkNotificationPermission();
+
+    _state = _settings?.state;
+    _license = _settings?.license;
+
     notifyListeners();
   }
 
   Future saveSettings() async {
+    _settings = _settings!.copyWith(state: _state, license: _license);
     await sl.get<SettingsRepository>().setSettings(_settings!);
     notifyListeners();
   }
@@ -48,12 +59,12 @@ class SettingsChangeNotifier with ChangeNotifier {
   );
 
   void selectState(String state) {
-    _settings?.state = state;
+    _state = state;
     notifyListeners();
   }
 
-  void selectLicense(String type) {
-    _settings?.license = type;
+  void selectLicense(String license) {
+    _license = license;
     notifyListeners();
   }
 }

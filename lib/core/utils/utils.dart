@@ -1,2 +1,2 @@
-export 'date_utils.dart';
-export 'num_utils.dart';
+export 'date_util.dart';
+export 'num_util.dart';

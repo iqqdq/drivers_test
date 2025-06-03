@@ -13,3 +13,4 @@ export 'custom_segmented_control.dart';
 export 'custom_checkbox.dart';
 export 'number_view.dart';
 export 'exam_view.dart';
+export 'restore_footer_view.dart';

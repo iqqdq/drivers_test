@@ -22,13 +22,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<StatisticsChangeNotifier>();
-
-    final totalCoefficient = 1.0;
     final progressHeight = isSubscribed.value ? 260.0 : 386.0;
     final sheetCoefficient =
-        progressHeight / MediaQuery.of(context).size.height;
-    final initialChildSize = totalCoefficient - sheetCoefficient;
+        1.0 - progressHeight / MediaQuery.of(context).size.height;
+    final watch = context.watch<StatisticsChangeNotifier>();
 
     return Stack(
       children: [
@@ -76,177 +73,26 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                         ),
 
                     /// PROGRESS INDICATOR LIST VIEW
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 3,
-                      padding: EdgeInsets.zero,
-                      separatorBuilder:
-                          (context, index) => SizedBox(height: 12.0),
-                      itemBuilder: (context, index) {
-                        final progress = _read.progressValue(index);
-                        final title =
-                            index == 0
-                                ? AppTitles.examReadiness
-                                : index == 1
-                                ? AppTitles.passedPracticalTests
-                                : AppTitles.correctAnswers;
-                        final color =
-                            index == 0
-                                ? AppColors.yellow
-                                : index == 2
-                                ? AppColors.blue100
-                                : null;
-                        final value =
-                            index == 0
-                                ? '${watch.examReadiness}%'
-                                : index == 1
-                                ? '${watch.totalPassedTest}/${watch.totalTest}'
-                                : '${watch.totalCorrectAnswers}/${watch.totalQuestions}';
-
-                        return CustomProgressIndicator(
-                          duration: Duration(milliseconds: 500 * index),
-                          progress: progress,
-                          title: title,
-                          value: value,
-                          color: color,
-                        );
-                      },
+                    ProgressIndicatorListView(
+                      examReadiness: watch.examReadiness,
+                      totalPassedTest: watch.totalPassedTest,
+                      totalTest: watch.totalTest,
+                      totalCorrectAnswers: watch.totalCorrectAnswers,
+                      totalQuestions: watch.totalQuestions,
                     ),
                   ],
                 ),
               ),
 
-              /// DRAGGABLE SHEET
-              DraggableScrollableSheet(
-                initialChildSize: initialChildSize,
-                minChildSize: initialChildSize,
-                snap: true,
-                builder: (context, scrollController) {
-                  return Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(24.0),
-                      ),
-                    ),
-                    child: SingleChildScrollView(
-                      controller: scrollController,
-                      physics:
-                          watch.tests == null || watch.tests!.isEmpty
-                              ? const NeverScrollableScrollPhysics()
-                              : const ClampingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          const DragHandle(),
-
-                          /// TITLE
-                          watch.tests == null
-                              ? SizedBox.shrink()
-                              : Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      AppTitles.practiceHistory,
-                                      style: AppTextStyles.headlineTitle2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                          /// FILTER LIST VIEW
-                          watch.tests == null
-                              ? SizedBox.shrink()
-                              : SizedBox(
-                                height: 40.0,
-                                child: ListView.separated(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0,
-                                  ),
-                                  scrollDirection: Axis.horizontal,
-                                  physics:
-                                      const AlwaysScrollableScrollPhysics(),
-                                  itemCount: 2,
-                                  separatorBuilder:
-                                      (context, index) => SizedBox(width: 12.0),
-                                  itemBuilder: (context, index) {
-                                    final isSelected =
-                                        index == 0
-                                            ? watch.type != null
-                                            : watch.resultType != null;
-                                    return HorizontalFilterTile(
-                                      title: _read.filterValue(index),
-                                      isSelected: isSelected,
-                                      onTap: () => _onFilterTap(index),
-                                      onClearTap:
-                                          () => _onClearFilterTap(index),
-                                    );
-                                  },
-                                ),
-                              ),
-
-                          SizedBox(
-                            height:
-                                watch.tests == null
-                                    ? MediaQuery.of(context).size.height * 0.15
-                                    : watch.tests!.isEmpty
-                                    ? MediaQuery.of(context).size.height * 0.08
-                                    : 12.0,
-                          ),
-
-                          /// EMPTY VIEW
-                          watch.tests == null || watch.tests!.isEmpty
-                              ? EmptyListView(
-                                icon:
-                                    watch.tests == null
-                                        ? AppIcons.info
-                                        : AppIcons.folder,
-                                title:
-                                    watch.tests == null
-                                        ? AppTitles.theHistoryOfPracticalTests
-                                        : AppTitles.thereAreNoTests,
-                              )
-                              /// TEST LIST VIEW
-                              : ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0,
-                                ).copyWith(bottom: getBottomPadding(context)),
-                                itemCount: watch.tests!.length,
-                                separatorBuilder:
-                                    (context, index) =>
-                                        const SizedBox(height: 12.0),
-                                itemBuilder: (context, index) {
-                                  final test = watch.tests![index];
-                                  final next = index + 1;
-                                  final nextIndex =
-                                      next < watch.tests!.length ? next : index;
-                                  final isDateHidden =
-                                      index == 0
-                                          ? false
-                                          : isSameDate(
-                                            test.result!.completedAt,
-                                            watch
-                                                .tests![nextIndex]
-                                                .result!
-                                                .completedAt,
-                                          );
-
-                                  return ResultTile(
-                                    test: test,
-                                    isDateHidden: isDateHidden,
-                                    onTap: () => _onResultTap(index),
-                                  );
-                                },
-                              ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+              /// RESULT LIST DRAGGABLE SHEET
+              ResultListDraggableSheet(
+                initialChildSize: sheetCoefficient,
+                tests: watch.tests,
+                testType: watch.testType,
+                resultType: watch.resultType,
+                onFilterTap: _onFilterTap,
+                onClearFilterTap: _onClearFilterTap,
+                onResultTap: _onResultTap,
               ),
             ],
           ),
@@ -259,7 +105,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   // MARK: - FUNCTION'S
 
   void _onGetPremiumTap() =>
-      router.push(OnboardingRoutes.onboarding, extra: true);
+      router.push(PaywallRoutes.paywall, extra: PaywallType.week);
 
   void _onTipTap() => router.push(StatisticsRoutes.tips);
 
@@ -269,11 +115,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         index == 0
             ? [AppTitles.exam, AppTitles.practicalTest]
             : [AppTitles.passed, AppTitles.failed];
-    var action =
+    final action =
         index == 0
-            ? _read.type == null
+            ? _read.testType == null
                 ? null
-                : _read.type == TestType.exam
+                : _read.testType == TestType.exam
                 ? 0
                 : 1
             : _read.resultType == null
@@ -308,11 +154,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ? _read.toogleTestType(null)
           : _read.toogleTestResultType(null);
 
-  void _onResultTap(int index) async => router.push(
-    TestingRoutes.testPage,
-    extra: TestScreenRouteArgs(
-      test: _read.tests![index],
-      answers: _read.tests![index].result!.answers,
-    ),
-  );
+  void _onResultTap(int index) async =>
+      router.push(TestingRoutes.testResult, extra: _read.tests![index]);
 }

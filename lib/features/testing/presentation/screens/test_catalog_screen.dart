@@ -27,8 +27,8 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
   @override
   Widget build(BuildContext context) {
     final watch = context.watch<TestCatalogChangeNotifier>();
-    final totalPassedTest =
-        context.watch<StatisticsChangeNotifier>().totalPassedTest;
+    final totalCompletedTest =
+        context.watch<StatisticsChangeNotifier>().totalCompletedTest;
     final totalTest = context.watch<StatisticsChangeNotifier>().totalTest;
     _state = context.watch<SettingsChangeNotifier>().settings?.state ?? '';
 
@@ -60,7 +60,7 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
                       : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: GetPremiumCard(
-                          totalPassedTest: totalPassedTest,
+                          totalPassedTest: totalCompletedTest,
                           totalTest: totalTest,
                           onTap: _onGetPremiumTap,
                         ),
@@ -93,7 +93,8 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
                                   onTap:
                                       () =>
                                           !isSubscribed.value &&
-                                                  totalPassedTest == 3
+                                                  totalCompletedTest ==
+                                                      totalTest
                                               ? _onGetPremiumTap()
                                               : _onTestTap(index),
                                 );
@@ -109,7 +110,7 @@ class _TestCatalogScreenState extends State<TestCatalogScreen> {
   // MARK: - FUNCTION'S
 
   void _onGetPremiumTap() =>
-      router.push(OnboardingRoutes.onboarding, extra: true);
+      router.push(PaywallRoutes.paywall, extra: PaywallType.week);
 
   void _onStatisticsTap() => router.push(StatisticsRoutes.statistics);
 

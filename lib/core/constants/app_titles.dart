@@ -25,10 +25,12 @@ abstract class AppTitles {
   static const enabled = 'enabled';
   static const freeTrial = 'free trial';
   static const restore = 'Restore';
+  static const lifetime = 'lifetime';
 
   // MARK: -
   // MARK: - HOME
   static const practicalTests = 'Practical tests';
+  static const ofTestsAreAvailable = 'of the tests are available';
   static const testPassed = 'tests passed';
   static const exam = 'Exam';
   static const questions = 'questions';
@@ -153,6 +155,7 @@ abstract class AppTitles {
   static const cancel = 'Cancel';
   static const apply = 'Apply';
   static const reset = 'Reset';
+  static const ok = 'Ok';
 
   // MARK: -
   // MARK: - COMMON

@@ -12,8 +12,26 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  static const _images = [
+    AppImages.onboarding1,
+    AppImages.onboarding2,
+    AppImages.onboarding3,
+  ];
+
+  static const _titles = [
+    AppTitles.prepareForTheTest,
+    AppTitles.letUsKnowWhatDoYouThink,
+    AppTitles.pickYourState,
+  ];
+
+  static const _subtitles = [
+    AppTitles.practiceWithTests,
+    AppTitles.tellUsWhatYouThink,
+    AppTitles.eachStateHasItsOwnRules,
+  ];
+
   late final OnboardingChangeNotifier _read;
-  late PageController _pageController;
+  late final PageController _pageController;
 
   @override
   void initState() {
@@ -34,57 +52,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 /// PAGE VIEW
                 PageView.builder(
-                  physics:
-                      _pageController.initialPage == 3
-                          ? const NeverScrollableScrollPhysics()
-                          : const ClampingScrollPhysics(),
+                  physics: ClampingScrollPhysics(),
                   controller: _pageController,
-                  itemCount: _read.images.length,
+                  itemCount: _images.length,
                   onPageChanged: (value) => _read.changePage(value),
                   itemBuilder: (context, index) {
-                    return index == 3
-                        ? PaywallPage(
-                          image: _read.images[index],
-                          title: _read.titles[index],
-                          subtitle: _read.subtitles[index],
-                          onChanged: _onSwitchChanged,
-                        )
-                        : OnboardingPage(
-                          image: _read.images[index],
-                          title: _read.titles[index],
-                          subtitle: _read.subtitles[index],
-                        );
+                    return OnboardingPage(
+                      image: _images[index],
+                      title: _titles[index],
+                      subtitle: _subtitles[index],
+                    );
                   },
                 ),
 
+                /// STEP INDICATOR
                 SafeArea(
-                  child: Stack(
-                    children: [
-                      // CLOSE BUTTON
-                      watch.page == 3
-                          ? Row(
-                            children: [
-                              CloseButton(
-                                color: AppColors.black100,
-                                onPressed: _onCloseTap,
-                              ),
-                            ],
-                          )
-                          : SizedBox(),
-
-                      /// STEP INDICATOR
-                      _pageController.initialPage == 3
-                          ? SizedBox.shrink()
-                          : SizedBox(
-                            height: 56.0,
-                            child: Center(
-                              child: StepIndicator(
-                                lenght: 4,
-                                index: watch.page,
-                              ),
-                            ),
-                          ),
-                    ],
+                  child: SizedBox(
+                    height: 56.0,
+                    child: Center(
+                      child: StepIndicator(
+                        lenght: _images.length,
+                        index: watch.page,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -105,14 +95,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             padding: EdgeInsets.symmetric(
               horizontal: 16.0,
             ).copyWith(top: 4.0, bottom: getBottomPadding(context) * 0.6),
-            child: OnboardingFooterView(
-              titles: [
-                AppTitles.termsOfUse,
-                AppTitles.restore,
-                AppTitles.privacyPolicy,
-              ],
-              onTap: _onFooterButtonTap,
-            ),
+            child: RestoreFooterView(onTap: _onRestoreTap),
           ),
         ],
       ),
@@ -122,31 +105,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onCloseTap() async {
-    final state = (await sl.get<SettingsRepository>().getSettings())?.state;
-    state == null
-        ? router.go(SettingsRoutes.settingsSelection, extra: true)
-        : router.canPop()
-        ? router.pop()
-        : router.go(HomeRoutes.home);
-  }
-
-  void _onSwitchChanged(bool value) => _read.toogleTrialPeriod(value);
-
   void _onContinueTap() async {
-    if (_pageController.page! == 3) {
-      final error = await sl.get<PurchaseService>().purchase(
-        priceProductService: _read.isTrial ? weekTrialProduct : weekProduct,
-      );
-      if (mounted) {
-        error == null && isSubscribed.value
-            ? router.go(HomeRoutes.home)
-            : showOkAlertDialog(
-              context: context,
-              title: AppTitles.warning,
-              message: error,
-            );
-      }
+    if (_pageController.page! == 2) {
+      await _setOnboardingComplete();
+      router.pushReplacement(PaywallRoutes.paywall, extra: PaywallType.week);
     } else {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -155,20 +117,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  void _onFooterButtonTap(int index) async {
-    if (index == 0 || index == 2) {
-      _read.openWebView(index);
-    } else {
-      final error = await sl.get<PurchaseService>().restore();
-      if (mounted) {
-        error == null
-            ? router.go(HomeRoutes.home)
-            : showAlertDialog(
-              context: context,
-              title: AppTitles.warning,
-              message: error,
-            ).whenComplete(() {});
+  void _onRestoreTap() async {
+    final error = await sl.get<PurchaseService>().restore();
+    if (mounted) {
+      if (error == null) {
+        await _setOnboardingComplete();
+        final state = (await sl.get<SettingsRepository>().getSettings())?.state;
+        state == null
+            ? router.pushReplacement(
+              SettingsRoutes.settingsSelection,
+              extra: true,
+            )
+            : router.pushReplacement(TestingRoutes.home);
+      } else {
+        showAlertDialog(
+          context: context,
+          title: AppTitles.warning,
+          message: error,
+          actions: [
+            AlertDialogAction(
+              key: 0,
+              label: AppTitles.ok,
+              textStyle: TextStyle(color: AppColors.blue100),
+            ),
+          ],
+        ).whenComplete(() {});
       }
     }
+  }
+
+  Future _setOnboardingComplete() async {
+    final settings = SettingsEntity(isOnboardingComplete: true);
+    await sl.get<SettingsRepository>().setSettings(settings);
   }
 }

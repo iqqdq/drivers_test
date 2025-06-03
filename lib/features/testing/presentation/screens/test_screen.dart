@@ -3,6 +3,22 @@ import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+class CustomPageScrollPhysics extends ScrollPhysics {
+  const CustomPageScrollPhysics({super.parent});
+
+  @override
+  CustomPageScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomPageScrollPhysics(parent: buildParent(ancestor));
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+    mass: 80, // Уменьшаем массу для более быстрого отклика
+    stiffness: 100, // Жесткость пружины
+    damping: 0.8, // Демпфирование
+  );
+}
+
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
 
@@ -76,16 +92,14 @@ class _TestScreenState extends State<TestScreen> {
                           (context, index) => SizedBox(width: 4.0),
                       itemBuilder: (context, index) {
                         final question = watch.questions![index];
-                        final isCorrect =
-                            question.answer == null
-                                ? null
-                                : question.answer == question.correct;
 
                         return NumberTile(
                           key: _numberKeys[index],
                           number: '${index + 1}',
                           isSelected: index == watch.index,
-                          isCorrect: isCorrect,
+                          isExam: _read.test.isExam,
+                          correct: question.correct,
+                          answer: question.answer,
                           onTap: () => _onNumberTap(index),
                         );
                       },
@@ -95,31 +109,28 @@ class _TestScreenState extends State<TestScreen> {
 
                   /// QUESTION PAGE VIEW
                   Expanded(
-                    child: NotificationListener<ScrollNotification>(
-                      onNotification: (ScrollNotification notification) {
-                        if (notification is ScrollEndNotification) {
-                          _onNumberTap(_pageController.page!.toInt());
-                        }
-                        return false;
-                      },
-                      child: PageView.builder(
-                        physics: const ClampingScrollPhysics(),
-                        controller: _pageController,
-                        itemCount: watch.questions!.length,
-                        itemBuilder: (context, index) {
-                          final question = watch.questions![index];
-
-                          return QuestionView(
-                            question: question,
-                            onTap:
-                                (index) => _onChoiceTap(
-                                  question,
-                                  index,
-                                  watch.questions!.length - 1,
-                                ),
-                          );
-                        },
+                    child: PageView.builder(
+                      physics: const ClampingScrollPhysics(
+                        parent: CustomPageScrollPhysics(),
                       ),
+                      controller: _pageController,
+                      itemCount: watch.questions!.length,
+                      itemBuilder: (context, index) {
+                        final question = watch.questions![index];
+                        final isExam =
+                            watch.test.isExam && watch.test.result == null;
+
+                        return QuestionView(
+                          isExam: isExam,
+                          question: question,
+                          onTap:
+                              (index) => _onChoiceTap(
+                                question,
+                                index,
+                                watch.questions!.length - 1,
+                              ),
+                        );
+                      },
                     ),
                   ),
 
@@ -150,6 +161,7 @@ class _TestScreenState extends State<TestScreen> {
   void _scrollToIndex(int index) {
     final context = _numberKeys[index].currentContext;
     if (context == null) return;
+
     Scrollable.ensureVisible(
       context,
       duration: Duration(milliseconds: 300),
@@ -172,14 +184,22 @@ class _TestScreenState extends State<TestScreen> {
 
   void _onChoiceTap(QuestionEntity question, int index, int lenght) {
     _read.updateQuestion(question.copyWith(answer: index));
-    if (question.correct == index && _pageController.page! < lenght) {
+
+    if ((_read.test.isExam || question.correct == index) &&
+        _pageController.page! < lenght) {
       _onNumberTap(_pageController.page!.toInt() + 1);
     }
   }
 
   void _onCompleteTap() async {
+    // Записываем результат
     await _read.saveResult();
-    // TODO UPDATE TEST CATALOG
-    router.pushReplacement(TestingRoutes.testResult, extra: _read.test);
+    // Обновляем статистику
+    Provider.of<StatisticsChangeNotifier>(
+      context,
+      listen: false,
+    ).getStatistics();
+    // Переходим на окно результата
+    router.go(TestingRoutes.testResult, extra: _read.test);
   }
 }

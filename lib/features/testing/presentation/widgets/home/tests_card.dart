@@ -26,7 +26,6 @@ class TestsCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 6.0).copyWith(bottom: 32.0),
-          height: 300.0,
           decoration: BoxDecoration(borderRadius: borderRadius),
           child: Column(
             children: [
@@ -63,7 +62,10 @@ class TestsCard extends StatelessWidget {
                             style: AppTextStyles.headlineHeadline,
                           ),
                           TextSpan(
-                            text: '/$total ${AppTitles.testPassed}',
+                            text:
+                                isSubscribed.value
+                                    ? '/$total ${AppTitles.testPassed}'
+                                    : '/$total ${AppTitles.ofTestsAreAvailable}',
                             style: AppTextStyles.textSubheadline.copyWith(
                               color: AppColors.black90,
                             ),

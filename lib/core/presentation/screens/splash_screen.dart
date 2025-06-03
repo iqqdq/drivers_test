@@ -39,12 +39,22 @@ class _SplashScreenState extends State<SplashScreen> {
   void _defineRoute() async {
     if (mounted) {
       if (isSubscribed.value) {
-        router.go(HomeRoutes.home);
+        router.pushReplacement(TestingRoutes.home);
       } else {
         final settings = await sl.get<SettingsRepository>().getSettings();
         final bool isOnboardingCompleted =
             settings?.isOnboardingComplete ?? false;
-        router.go(OnboardingRoutes.onboarding, extra: isOnboardingCompleted);
+
+        if (isOnboardingCompleted) {
+          isSubscribed.value
+              ? router.pushReplacement(TestingRoutes.home)
+              : router.pushReplacement(
+                PaywallRoutes.paywall,
+                extra: PaywallType.week,
+              );
+        } else {
+          router.pushReplacement(OnboardingRoutes.onboarding);
+        }
       }
     }
   }

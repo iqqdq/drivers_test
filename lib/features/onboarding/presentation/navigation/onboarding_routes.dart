@@ -11,10 +11,8 @@ abstract class OnboardingRoutes {
     GoRoute(
       path: _onboarding,
       builder: (context, state) {
-        bool isPaywall = state.extra == null ? false : state.extra as bool;
         return ChangeNotifierProvider<OnboardingChangeNotifier>(
-          create:
-              (_) => OnboardingChangeNotifier()..changePage(isPaywall ? 3 : 0),
+          create: (_) => OnboardingChangeNotifier(),
           child: const OnboardingScreen(),
         );
       },

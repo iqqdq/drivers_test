@@ -112,7 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onGetFullAccessTap() => router.push(AppRoutes.subscriptions);
+  void _onGetFullAccessTap() => router.push(AppRoutes.getPremium);
 
   void _onSwitchTap(bool value) async {
     final isGranted = await _read.togglePushNotifications(value);

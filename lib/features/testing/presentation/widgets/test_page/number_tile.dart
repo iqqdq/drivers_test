@@ -4,14 +4,18 @@ import 'package:flutter/material.dart';
 class NumberTile extends StatelessWidget {
   final String number;
   final bool isSelected;
-  final bool? isCorrect;
+  final bool isExam;
+  final int correct;
+  final int? answer;
   final VoidCallback onTap;
 
   const NumberTile({
     super.key,
     required this.number,
     required this.isSelected,
-    this.isCorrect,
+    required this.isExam,
+    required this.correct,
+    this.answer,
     required this.onTap,
   });
 
@@ -21,15 +25,19 @@ class NumberTile extends StatelessWidget {
     final color = AppColors.card;
     final borderRadius = BorderRadius.circular(12.0);
 
+    final isCorrect = answer == null ? null : answer == correct;
+
     return Column(
       children: [
         /// NUMBER TILE
         GestureDetector(
           child: Material(
             color:
-                isCorrect == null
+                isExam && answer != null
+                    ? AppColors.blue100
+                    : isCorrect == null
                     ? color
-                    : isCorrect!
+                    : isCorrect
                     ? AppColors.green100
                     : AppColors.orange100,
             borderRadius: borderRadius,

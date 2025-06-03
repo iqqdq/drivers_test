@@ -1,16 +1,10 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:drivers_test/core/core.dart';
-import 'package:drivers_test/features/home/home.dart';
+import 'package:drivers_test/features/features.dart';
 import 'package:flutter/material.dart';
 
-class SubscriptionsScreen extends StatefulWidget {
-  const SubscriptionsScreen({super.key});
+class GetPremiumScreen extends StatelessWidget {
+  const GetPremiumScreen({super.key});
 
-  @override
-  State<SubscriptionsScreen> createState() => _SubscriptionsScreenState();
-}
-
-class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,22 +74,12 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
   // MARK: - FUNCTION'S
 
   void _onSubscriptionTap(int index) async {
-    final error = await sl.get<PurchaseService>().purchase(
-      priceProductService:
-          index == 0
-              ? weekProduct
-              : index == 1
-              ? weekTrialProduct
-              : lifeTimeProduct,
-    );
-    if (mounted) {
-      error == null && isSubscribed.value
-          ? router.go(HomeRoutes.home)
-          : showOkAlertDialog(
-            context: context,
-            title: AppTitles.warning,
-            message: error,
-          );
-    }
+    final type =
+        index == 0
+            ? PaywallType.week
+            : index == 1
+            ? PaywallType.weektrial
+            : PaywallType.lifetime;
+    router.push(PaywallRoutes.paywall, extra: type);
   }
 }

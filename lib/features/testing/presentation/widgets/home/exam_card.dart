@@ -33,7 +33,7 @@ class ExamCard extends StatelessWidget {
             horizontal: 24.0,
             vertical: 32.0,
           ).copyWith(top: 16.0),
-          height: 201.0,
+          // height: 201.0,
           decoration: BoxDecoration(borderRadius: borderRadius),
           child: Row(
             children: [
@@ -50,7 +50,7 @@ class ExamCard extends StatelessWidget {
                         color: AppColors.white,
                       ),
                     ),
-                    Spacer(),
+                    const SizedBox(height: 16.0),
 
                     /// QUESTION'S
                     Text(

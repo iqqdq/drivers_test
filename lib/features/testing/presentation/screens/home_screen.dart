@@ -27,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final watch = context.watch<HomeChangeNotifier>();
     final state = context.watch<SettingsChangeNotifier>().settings?.state;
-    final totalPassedTest =
-        context.watch<StatisticsChangeNotifier>().totalPassedTest;
+    final totalCompletedTest =
+        context.watch<StatisticsChangeNotifier>().totalCompletedTest;
     final totalTest = context.watch<StatisticsChangeNotifier>().totalTest;
     final examReadiness =
         context.watch<StatisticsChangeNotifier>().examReadiness;
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : Padding(
                 padding: EdgeInsets.only(bottom: 12.0),
                 child: GetPremiumCard(
-                  totalPassedTest: totalPassedTest,
+                  totalPassedTest: totalCompletedTest,
                   totalTest: totalTest,
                   onTap: _onGetPremiumTap,
                 ),
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           /// TEST
           TestsCard(
-            passed: totalPassedTest,
+            passed: totalCompletedTest,
             total: totalTest,
             onTap: _onTestsTap,
           ),
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             passing: watch.passingScore,
             correct: watch.correctAnswersToPass,
             minutes: watch.examQuestionAmount,
-            onTap: _onExamTap,
+            onTap: isSubscribed.value ? _onExamTap : _onGetPremiumTap,
           ),
           const SizedBox(height: 12.0),
 
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // MARK: - FUNCTION'S
 
   void _onGetPremiumTap() =>
-      router.push(OnboardingRoutes.onboarding, extra: true);
+      router.push(PaywallRoutes.paywall, extra: PaywallType.week);
 
   void _onStateTap() async {
     await router.push(SettingsRoutes.settingsSelection, extra: true);

@@ -2,6 +2,8 @@ import 'package:drivers_test/core/core.dart';
 import 'package:drivers_test/features/features.dart';
 
 abstract interface class TestingRepository {
+  // HOME
+  Future<TestEntity> initExam({required String state});
   // TEST
   Future<List<TestEntity>> getTests({required String state});
   Future<List<QuestionEntity>> getQuestions({required int testId});

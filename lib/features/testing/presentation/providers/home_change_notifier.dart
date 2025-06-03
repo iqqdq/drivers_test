@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:drivers_test/core/core.dart';
 
 class HomeChangeNotifier with ChangeNotifier {
-  HomeChangeNotifier();
-
   TestEntity? _test;
   TestEntity? get test => _test;
 
@@ -17,6 +15,7 @@ class HomeChangeNotifier with ChangeNotifier {
 
   Future getExam() async {
     final state = (await sl.get<SettingsRepository>().getSettings())!.state!;
-    _test = await sl.get<HomeRepository>().initExam(state: state);
+    _test = await sl.get<TestingRepository>().initExam(state: state);
+    notifyListeners();
   }
 }

@@ -22,4 +22,11 @@ class SettingsEntity {
     license: license,
     isOnboardingComplete: isOnboardingComplete,
   );
+
+  SettingsEntity copyWith({String? state, String? license}) => SettingsEntity(
+    isPushEnabled: isPushEnabled,
+    state: state ?? this.state,
+    license: license ?? this.license,
+    isOnboardingComplete: isOnboardingComplete,
+  );
 }

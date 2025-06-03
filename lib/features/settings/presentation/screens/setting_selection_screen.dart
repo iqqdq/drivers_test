@@ -14,12 +14,10 @@ class SettingSelectionScreen extends StatefulWidget {
 
 class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
   late final SettingsChangeNotifier _read;
-  String? _state;
 
   @override
   void initState() {
     _read = context.read<SettingsChangeNotifier>();
-    _state = _read.settings?.state;
     super.initState();
   }
 
@@ -29,15 +27,21 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
     final items = widget.isStateSelection ? states : licenses;
 
     return Scaffold(
-      appBar: _state == null ? null : CustomAppBar(),
+      appBar:
+          widget.isStateSelection && _read.settings?.state == null
+              ? null
+              : CustomAppBar(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.0,
-              ).copyWith(top: _state == null ? 24.0 : 0.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0).copyWith(
+                top:
+                    widget.isStateSelection && _read.settings?.state == null
+                        ? 24.0
+                        : 0.0,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,8 +83,8 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
                     title: items[index].toStateName(),
                     isSelected:
                         widget.isStateSelection
-                            ? watch.settings?.state == items[index]
-                            : watch.settings?.license == licenses[index],
+                            ? watch.state == items[index]
+                            : watch.license == licenses[index],
                     onTap:
                         () =>
                             widget.isStateSelection
@@ -101,10 +105,10 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
                 title: AppTitles.continuee,
                 onTap:
                     widget.isStateSelection
-                        ? watch.settings?.state == null
+                        ? watch.state == null
                             ? null
                             : () => _onContinueTap()
-                        : watch.settings?.license == null
+                        : watch.license == null
                         ? null
                         : () => _onContinueTap(),
               ),
@@ -116,14 +120,24 @@ class _SettingSelectionScreenState extends State<SettingSelectionScreen> {
   }
 
   // MARK: -
-  // MARK: -
+  // MARK: - FUNCTION'S
 
   void _onStateTap(String state) => _read.selectState(state);
 
   void _onLicenseTap(String license) => _read.selectLicense(license);
 
   void _onContinueTap() async {
-    await _read.saveSettings();
-    _state == null ? router.go(HomeRoutes.home) : router.pop();
+    if (widget.isStateSelection && !router.canPop()) {
+      router.push(
+        SettingsRoutes.settingsSelection,
+        extra: !widget.isStateSelection,
+      );
+    } else if (_read.settings?.state == null) {
+      await _read.saveSettings();
+      router.go(TestingRoutes.home);
+    } else {
+      await _read.saveSettings();
+      router.pop();
+    }
   }
 }

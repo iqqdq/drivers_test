@@ -4,10 +4,16 @@ import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 
 class QuestionView extends StatefulWidget {
+  final bool isExam;
   final QuestionEntity question;
   final Function(int answer) onTap;
 
-  const QuestionView({super.key, required this.question, required this.onTap});
+  const QuestionView({
+    super.key,
+    required this.isExam,
+    required this.question,
+    required this.onTap,
+  });
 
   @override
   State<QuestionView> createState() => _QuestionViewState();
@@ -42,7 +48,7 @@ class _QuestionViewState extends State<QuestionView>
             ? SizedBox.shrink()
             : Container(
               margin: EdgeInsets.only(bottom: 24.0),
-              constraints: BoxConstraints(minHeight: 248.0),
+              height: 300.0,
               decoration: BoxDecoration(
                 border: Border.all(width: 1.0, color: AppColors.border),
                 borderRadius: borderRadius,
@@ -52,7 +58,7 @@ class _QuestionViewState extends State<QuestionView>
                 borderRadius: borderRadius,
                 child: CachedNetworkImage(
                   imageUrl: widget.question.image!,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitHeight,
                   progressIndicatorBuilder:
                       (context, url, downloadProgress) =>
                           LoadingIndicator(color: AppColors.black100),
@@ -68,7 +74,7 @@ class _QuestionViewState extends State<QuestionView>
         ),
         const SizedBox(height: 24.0),
 
-        /// CHOISE'S
+        /// CHOICE'S
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -77,9 +83,13 @@ class _QuestionViewState extends State<QuestionView>
           itemBuilder: (context, index) {
             bool isSelected = _index == index;
             bool? isCorrect =
-                _index == null ? null : index == widget.question.correct;
+                widget.isExam
+                    ? null
+                    : _index == null
+                    ? null
+                    : index == widget.question.correct;
 
-            return QuestionTile(
+            return ChoiceTile(
               text: widget.question.choices[index],
               isSelected: isSelected,
               isCorrect: isCorrect,

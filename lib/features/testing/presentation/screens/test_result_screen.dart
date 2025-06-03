@@ -162,7 +162,12 @@ class _TestResultScreenState extends State<TestResultScreen> {
   // MARK: -
   // MARK: - FUNCTION'S
 
-  void _onCloseTap() => router.pop();
+  void _onCloseTap() async =>
+      router.canPop()
+          ? router.pop()
+          : _read.test.isExam
+          ? router.go(TestingRoutes.home)
+          : router.go(TestingRoutes.testCatalog);
 
   void _onReviewAnswersTap() => router.push(
     TestingRoutes.testPage,

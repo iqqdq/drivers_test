@@ -2,13 +2,13 @@ import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class QuestionTile extends StatelessWidget {
+class ChoiceTile extends StatelessWidget {
   final String text;
   final bool isSelected;
   final bool? isCorrect;
   final VoidCallback? onTap;
 
-  const QuestionTile({
+  const ChoiceTile({
     super.key,
     required this.text,
     required this.isSelected,
@@ -31,10 +31,17 @@ class QuestionTile extends StatelessWidget {
         color = AppColors.green100;
         icon = AppIcons.correct;
       }
+    } else {
+      if (isSelected) {
+        color = AppColors.blue100;
+      }
     }
 
     return Material(
-      color: color == null ? AppColors.card : color.withValues(alpha: 0.1),
+      color:
+          color == null || isCorrect == null
+              ? AppColors.card
+              : color.withValues(alpha: 0.1),
       borderRadius: borderRadius,
       child: InkWell(
         borderRadius: borderRadius,
@@ -49,7 +56,9 @@ class QuestionTile extends StatelessWidget {
           child: Row(
             children: [
               /// CHECKBOX
-              icon == null
+              isSelected && isCorrect == null
+                  ? CustomCheckbox(isSelected: isSelected)
+                  : icon == null
                   ? Container(
                     width: 24.0,
                     height: 24.0,
@@ -67,7 +76,7 @@ class QuestionTile extends StatelessWidget {
                 child: Text(
                   text,
                   style: AppTextStyles.subheadlineRegular.copyWith(
-                    color: color,
+                    color: isCorrect == null ? null : color,
                   ),
                 ),
               ),

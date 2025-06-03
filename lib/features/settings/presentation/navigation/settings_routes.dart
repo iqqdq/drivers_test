@@ -2,7 +2,7 @@ import 'package:drivers_test/features/features.dart';
 import 'package:go_router/go_router.dart';
 
 const _settings = '/settings';
-const _settingsSelection = '/settings_selection';
+const _settingsSelection = '/settings_selection/:is_state_selection';
 
 abstract class SettingsRoutes {
   static String get settings => _settings;

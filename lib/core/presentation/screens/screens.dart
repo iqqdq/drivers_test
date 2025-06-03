@@ -1,2 +1,2 @@
 export 'splash_screen.dart';
-export 'subscriptions_screen.dart';
+export 'get_premium_screen.dart';

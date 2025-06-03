@@ -2,7 +2,7 @@ import 'package:drivers_test/core/core.dart';
 import 'package:flutter/material.dart';
 
 class StatsCard extends StatelessWidget {
-  final int percent;
+  final double percent;
   final VoidCallback onTap;
 
   const StatsCard({super.key, required this.percent, required this.onTap});
@@ -20,7 +20,6 @@ class StatsCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.0).copyWith(top: 16.0),
-          height: 141.0,
           decoration: BoxDecoration(borderRadius: borderRadius),
           child: Row(
             children: [
@@ -34,12 +33,12 @@ class StatsCard extends StatelessWidget {
                     children: [
                       /// PERCENT
                       Text(
-                        '$percent%',
+                        percent.toStringPercent(),
                         style: AppTextStyles.headlineLargeTitle.copyWith(
                           color: AppColors.white,
                         ),
                       ),
-                      Spacer(),
+                      const SizedBox(height: 16.0),
 
                       /// QUESTION'S
                       Text(
