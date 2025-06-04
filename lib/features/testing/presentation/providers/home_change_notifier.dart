@@ -14,8 +14,8 @@ class HomeChangeNotifier with ChangeNotifier {
   int get passingScore => ((test?.minPassRatio ?? 0.0) * 100).toInt();
 
   Future getExam() async {
-    final state = (await sl.get<SettingsRepository>().getSettings())!.state!;
-    _test = await sl.get<TestingRepository>().initExam(state: state);
+    final settings = await sl.get<SettingsRepository>().getSettings();
+    _test = await sl.get<TestingRepository>().getExam(state: settings!.state!);
     notifyListeners();
   }
 }

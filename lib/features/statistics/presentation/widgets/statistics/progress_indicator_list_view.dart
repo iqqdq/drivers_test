@@ -45,7 +45,7 @@ class ProgressIndicatorListView extends StatelessWidget {
                 ? AppTitles.passedPracticalTests
                 : AppTitles.correctAnswers;
         final color =
-            index == 0
+            index == 1
                 ? AppColors.yellow
                 : index == 2
                 ? AppColors.blue100

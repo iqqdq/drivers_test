@@ -154,7 +154,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
     if (mounted) {
       if (error == null) {
         // Обновляем статистику
-        Provider.of<StatisticsChangeNotifier>(
+        await Provider.of<StatisticsChangeNotifier>(
           context,
           listen: false,
         ).getStatistics();

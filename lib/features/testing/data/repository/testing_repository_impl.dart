@@ -7,8 +7,9 @@ class TestingRepositoryImpl implements TestingRepository {
 
   final AppDatabase _db;
 
+  // Метод получения экзамена
   @override
-  Future<TestEntity> initExam({required String state}) async {
+  Future<TestEntity> getExam({required String state}) async {
     // Загружаем данные из assets
     final jsonData = await _db.loadJsonData(state: state);
     // Получаем новые вопросы штата

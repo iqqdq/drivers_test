@@ -37,7 +37,10 @@ class StatisticsChangeNotifier with ChangeNotifier {
   TestResultType? get resultType => _resultType;
 
   Future _getTests() async {
-    final state = (await sl.get<SettingsRepository>().getSettings())!.state!;
+    final settings = await sl.get<SettingsRepository>().getSettings();
+    final state = settings?.state;
+    if (state == null) return;
+
     _tests = await sl.get<StatisticsRepository>().getTestWithResult(
       state: state,
     );
@@ -58,9 +61,11 @@ class StatisticsChangeNotifier with ChangeNotifier {
   }
 
   Future getStatistics() async {
-    final repository = sl.get<StatisticsRepository>();
-    final state = (await sl.get<SettingsRepository>().getSettings())!.state!;
+    final settings = await sl.get<SettingsRepository>().getSettings();
+    final state = settings?.state;
+    if (state == null) return;
 
+    final repository = sl.get<StatisticsRepository>();
     _totalTest =
         isSubscribed.value ? await repository.getTotalTests(state: state) : 3;
     _totalCompletedTest = await repository.getTotalCompletedTests(state: state);

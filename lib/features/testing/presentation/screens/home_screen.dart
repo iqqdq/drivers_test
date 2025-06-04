@@ -90,6 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onStateTap() async {
     await router.push(SettingsRoutes.settingsSelection, extra: true);
+    // Обновляем статистику
+    await Provider.of<StatisticsChangeNotifier>(
+      context,
+      listen: false,
+    ).getStatistics();
+    // Обновляем экзамен
     await _read.getExam();
   }
 

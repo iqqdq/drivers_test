@@ -54,8 +54,8 @@ class PriceProductService {
 
   ///Получить цену без доллара
   ///ПРИМЕР:4.99
-  double getOnlyPrice() {
-    return _apphudProduct.getSKProduct.price;
+  String getOnlyPrice() {
+    return _apphudProduct.getSKProduct.price.toStringAsFixed(2);
   }
 
   ///Сколько дней/месяцев/лет длится подписка по скидке

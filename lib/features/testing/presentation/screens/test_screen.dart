@@ -109,28 +109,36 @@ class _TestScreenState extends State<TestScreen> {
 
                   /// QUESTION PAGE VIEW
                   Expanded(
-                    child: PageView.builder(
-                      physics: const ClampingScrollPhysics(
-                        parent: CustomPageScrollPhysics(),
-                      ),
-                      controller: _pageController,
-                      itemCount: watch.questions!.length,
-                      itemBuilder: (context, index) {
-                        final question = watch.questions![index];
-                        final isExam =
-                            watch.test.isExam && watch.test.result == null;
-
-                        return QuestionView(
-                          isExam: isExam,
-                          question: question,
-                          onTap:
-                              (index) => _onChoiceTap(
-                                question,
-                                index,
-                                watch.questions!.length - 1,
-                              ),
-                        );
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (ScrollNotification notification) {
+                        if (notification is ScrollEndNotification) {
+                          _onNumberTap(_pageController.page!.toInt());
+                        }
+                        return false;
                       },
+                      child: PageView.builder(
+                        physics: const ClampingScrollPhysics(
+                          parent: CustomPageScrollPhysics(),
+                        ),
+                        controller: _pageController,
+                        itemCount: watch.questions!.length,
+                        itemBuilder: (context, index) {
+                          final question = watch.questions![index];
+                          final isExam =
+                              watch.test.isExam && watch.test.result == null;
+
+                          return QuestionView(
+                            isExam: isExam,
+                            question: question,
+                            onTap:
+                                (index) => _onChoiceTap(
+                                  question,
+                                  index,
+                                  watch.questions!.length - 1,
+                                ),
+                          );
+                        },
+                      ),
                     ),
                   ),
 
@@ -195,7 +203,7 @@ class _TestScreenState extends State<TestScreen> {
     // Записываем результат
     await _read.saveResult();
     // Обновляем статистику
-    Provider.of<StatisticsChangeNotifier>(
+    await Provider.of<StatisticsChangeNotifier>(
       context,
       listen: false,
     ).getStatistics();

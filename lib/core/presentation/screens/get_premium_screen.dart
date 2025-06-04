@@ -55,9 +55,7 @@ class GetPremiumScreen extends StatelessWidget {
                         ? weekProduct.getPriceAndDuration(omitOneUnit: true)
                         : index == 1
                         ? weekTrialProduct.getPriceAndDurationPlus()
-                        : lifeTimeProduct.getPriceAndDuration(
-                          omitOneUnit: false,
-                        );
+                        : '${lifeTimeProduct.getOnlyCurrencySign()}${lifeTimeProduct.getOnlyPrice()}/${AppTitles.lifetime}';
                 return SubsctiptionTile(
                   title: title,
                   onTap: () => _onSubscriptionTap(index),
